@@ -17,5 +17,6 @@ addon | version | maintainers | summary
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.0.0 |  | Ability to add privacies as questions to survey
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_stages](survey_stages/) | 14.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
+[survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string
 
 [//]: # (end addons)
