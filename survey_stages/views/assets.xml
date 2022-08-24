@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="assets_frontend"
+        inherit_id="website.assets_frontend"
+        name="Survey Stages Assets Frontend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/survey_stages/static/src/js/survey_contacts.js"
+            />
+        </xpath>
+    </template>
+    <template
+        id="assets_frontend"
+        inherit_id="survey.survey_assets"
+        name="Survey assets"
+    >
+        <xpath expr="//link[last()]" position="after">
+            <script
+                type="text/javascript"
+                src="/survey_stages/static/src/js/survey.js"
+            />
+        </xpath>
+    </template>
+</odoo>

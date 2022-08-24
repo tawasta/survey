@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- EMAIL TEMPLATES -->
+        <record id="mail_template_data_participation_draft" model="mail.template">
+            <field name="name">Participation: Draft</field>
+            <field name="model_id" ref="survey.model_survey_user_input" />
+            <field name="subject">Draft of ${object.display_name}</field>
+            <field name="use_default_to" eval="True" />
+            <field name="body_html" type="xml">
+                <div>
+                    Dear ${object.partner_id.name or ''}<br />
+                    Your survey answer has been saved as a draft. In order to complete your answer please remember to send it.
+                    <br /><br />
+                    Thank you,
+                    % if user.signature
+                        <br />
+                        ${user.signature | safe}
+                    % endif
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+        <record id="mail_template_data_participation_sent" model="mail.template">
+            <field name="name">Participation: Sent</field>
+            <field name="model_id" ref="survey.model_survey_user_input" />
+            <field name="subject">Answer to ${object.display_name} sent</field>
+            <field name="use_default_to" eval="True" />
+            <field name="body_html" type="xml">
+                <div>
+                    Dear ${object.partner_id.name or ''}<br />
+                    Your survey answer has been completed and received.
+                    <br /><br />
+                    Thank you,
+                    % if user.signature
+                        <br />
+                        ${user.signature | safe}
+                    % endif
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+        <record
+            id="mail_template_data_participation_confirmation"
+            model="mail.template"
+        >
+            <field name="name">Participation: Confirmation</field>
+            <field name="model_id" ref="survey.model_survey_user_input" />
+            <field name="subject">Confirmation of ${object.display_name}</field>
+            <field name="use_default_to" eval="True" />
+            <field name="body_html" type="xml">
+                <div>
+                    Dear ${object.partner_id.name or ''}<br />
+                    We are pleased to inform you that your participation ${object.display_name} has been accepted and confirmed.
+                    <br /><br />
+                    Thank you,
+                    % if user.signature
+                        <br />
+                        ${user.signature | safe}
+                    % endif
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+        <record id="mail_template_data_participation_cancelation" model="mail.template">
+            <field name="name">Participation: Cancelation</field>
+            <field name="model_id" ref="survey.model_survey_user_input" />
+            <field name="subject">Cancelation of ${object.display_name}</field>
+            <field name="use_default_to" eval="True" />
+            <field name="body_html" type="xml">
+                <div>
+                    Dear ${object.partner_id.name or ''}<br />
+                    Unfortunately your participation ${object.display_name} has been canceled.
+                    <br /><br />
+                    Regards,
+                    % if user.signature
+                        <br />
+                        ${user.signature | safe}
+                    % endif
+                </div>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+        <!-- SURVEY USER INPUT STAGES -->
+        <record id="survey_user_input_stage0" model="survey.user_input.stage">
+            <field name="name">In Progress</field>
+            <field name="sequence">1</field>
+            <field name="is_hidden" eval="True" />
+        </record>
+        <record id="survey_user_input_stage1" model="survey.user_input.stage">
+            <field name="name">Draft</field>
+            <field name="sequence">2</field>
+            <field
+                name="mail_template_id"
+                ref="mail_template_data_participation_draft"
+            />
+            <field name="color">3</field>
+            <field name="is_editable" eval="True" />
+        </record>
+        <record id="survey_user_input_stage2" model="survey.user_input.stage">
+            <field name="name">Sent</field>
+            <field name="sequence">3</field>
+            <field
+                name="mail_template_id"
+                ref="mail_template_data_participation_sent"
+            />
+            <field name="color">4</field>
+            <field name="is_sent" eval="True" />
+        </record>
+        <record id="survey_user_input_stage3" model="survey.user_input.stage">
+            <field name="name">Confirmed</field>
+            <field name="sequence">4</field>
+            <field
+                name="mail_template_id"
+                ref="mail_template_data_participation_confirmation"
+            />
+            <field name="color">10</field>
+            <field name="is_accepted" eval="True" />
+        </record>
+        <record id="survey_user_input_stage4" model="survey.user_input.stage">
+            <field name="name">Canceled</field>
+            <field name="sequence">5</field>
+            <field
+                name="mail_template_id"
+                ref="mail_template_data_participation_cancelation"
+            />
+            <field name="color">1</field>
+            <field name="is_cancel" eval="True" />
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_line_attachment_view_form" model="ir.ui.view">
+        <field name="name">survey.user_input.line.attachment.view.form</field>
+        <field name="model">survey.user_input.line</field>
+        <field name="inherit_id" ref="survey.survey_user_input_line_view_form" />
+        <field name="arch" type="xml">
+            <field name="suggested_answer_id" position="after">
+                <field name="answer_type" invisible="1" />
+                <field
+                    name="value_attachment_ids"
+                    attrs="{'invisible': [('answer_type', '!=', 'attachment')]}"
+                >
+                    <tree create="0" edit="0">
+                        <field name="name" />
+                        <field name="file_size" optional="show" />
+                        <field name="datas" widget="binary" filename="name" />
+                        <field name="link_url" widget="url" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

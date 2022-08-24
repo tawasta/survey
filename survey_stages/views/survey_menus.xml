@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="survey_user_input_stage_menu"
+        name="Participation Stages"
+        action="survey_user_input_stage_action"
+        parent="survey.survey_menu_user_inputs"
+        groups="base.group_no_one"
+        sequence="10"
+    />
+</odoo>
