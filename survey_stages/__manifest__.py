@@ -1,0 +1,44 @@
+##############################################################################
+#
+#    Author: Oy Tawasta OS Technologies Ltd.
+#    Copyright 2021- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
+#
+##############################################################################
+{
+    "name": "Survey Stages",
+    "version": "14.0.1.0.0",
+    "category": "Marketing/Surveys",
+    "summary": "Ability to edit survey answers and send mail based on stages",
+    "website": "https://gitlab.com/tawasta/odoo/society",
+    "author": "Tawasta",
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
+    "depends": ["survey", "survey_mailing", "partner_firstname"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/survey_data.xml",
+        "views/assets.xml",
+        "views/survey_user_stage_views.xml",
+        "views/survey_menus.xml",
+        "views/survey_user_views.xml",
+        "views/portal_templates.xml",
+        "views/survey_templates_contacts.xml",
+        "views/survey_templates_management.xml",
+        "views/survey_templates_print.xml",
+        "views/survey_templates.xml",
+    ],
+}

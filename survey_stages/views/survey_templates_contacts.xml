@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- ADD SURVEY CONTACTS MODAL -->
+    <template name="Survey Contacts" id="survey_contacts_modal">
+        <div id="modal_survey_contacts" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <form
+                    id="survey-contacts-form"
+                    class="mt32 js_website_submit_form"
+                    t-att-action="'/survey/contacts/%s/%s/post' % (survey_token, answer_token)"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        t-att-value="request.csrf_token(time_limit=False)"
+                    />
+                    <input type="hidden" name="answer_id" t-att-value="answer.id" />
+                    <div class="modal-content">
+                        <div class="modal-header align-items-center">
+                            <h4 class="modal-title">Add Contacts</h4>
+                            <button
+                                type="button"
+                                class="close close-modal"
+                                aria-label="Close"
+                            >
+                                <span>×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body bg-light border-bottom">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Add Contacts</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p
+                                        t-if="not review"
+                                        class="alert alert-warning alert-dismissable"
+                                    ><a
+                                            href="#"
+                                            class="close"
+                                            data-dismiss="alert"
+                                            aria-label="close"
+                                        >×</a>
+                                        Please enter the information associated with a user you want to grant permissions to view and edit this survey answer.
+                                    </p>
+                                    <div class="row">
+                                        <div class="form-group col-xl-4">
+                                            <label
+                                                for="firstname"
+                                                class="col-form-label"
+                                            >First Name</label>
+                                            <input
+                                                name="firstname"
+                                                maxlength="30"
+                                                placeholder="First Name"
+                                                required="required"
+                                                class="form-control"
+                                                type="text"
+                                            />
+                                            <div
+                                                class="invalid-feedback"
+                                            >Please enter the contact's first name.</div>
+                                        </div>
+                                        <div class="form-group col-xl-4">
+                                            <label
+                                                for="lastname"
+                                                class="col-form-label"
+                                            >Last Name</label>
+                                            <input
+                                                name="lastname"
+                                                maxlength="30"
+                                                placeholder="Last Name"
+                                                class="form-control"
+                                                type="text"
+                                                required="required"
+                                            />
+                                            <div
+                                                class="invalid-feedback"
+                                            >Please enter the contact's last name.</div>
+                                        </div>
+                                        <div class="form-group col-xl-4">
+                                            <label
+                                                for="email"
+                                                class="col-form-label"
+                                            >Email</label>
+                                            <input
+                                                name="email"
+                                                placeholder="Email"
+                                                class="form-control"
+                                                type="email"
+                                                required="required"
+                                            />
+                                            <div
+                                                class="invalid-feedback"
+                                            >Please enter the contact's email address.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body bg-light border-bottom">
+                            <p class="alert alert-info alert-dismissable">
+                                <a
+                                    href="#"
+                                    class="close"
+                                    data-dismiss="alert"
+                                    aria-label="close"
+                                >×</a>
+                                <i class="fa fa-info-circle" />
+                                <span>By clicking <strong
+                                    >"Add Contact"</strong> the user with the given email address will be granted rights to view and edit this survey answer.</span>
+                            </p>
+                        </div>
+                        <div class="modal-footer border-0 justify-content-between">
+                            <button
+                                type="button"
+                                class="btn btn-secondary close-modal"
+                            >Cancel</button>
+                            <button
+                                type="submit"
+                                id="contact-submit-button"
+                                class="btn btn-primary submit-contact"
+                                data-toggle="tooltip"
+                                data-position="top"
+                                title="By clicking &quot;Add Contact&quot; the user with the given email address will be granted rights to view and edit this survey answer."
+                            >Add Contact</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+</odoo>

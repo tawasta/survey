@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- USER INPUTS -->
+    <record id="survey_user_input_view_search_stage" model="ir.ui.view">
+        <field name="name">survey.user_input.view.search.stage</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="stage_id" />
+                <field name="is_hidden" />
+                <field name="is_editable" />
+                <field name="is_sent" />
+                <field name="is_accepted" />
+                <field name="is_cancel" />
+            </field>
+            <filter name="completed" position="attributes">
+                <attribute name="domain">[('is_hidden', '=', False)]</attribute>
+            </filter>
+            <filter name="in_progress" position="attributes">
+                <attribute name="domain">[('is_hidden', '=', True)]</attribute>
+            </filter>
+            <filter name="new" position="after">
+                <separator />
+                <filter
+                    string="In Progress"
+                    name="progress"
+                    domain="[('is_hidden', '=', True)]"
+                />
+                <filter
+                    string="Draft"
+                    name="draft"
+                    domain="[('is_editable', '=', True)]"
+                />
+                <filter string="Sent" name="sent" domain="[('is_sent', '=', True)]" />
+                <filter
+                    string="Confirmed"
+                    name="confirmed"
+                    domain="[('is_accepted', '=', True)]"
+                />
+                <filter
+                    string="Canceled"
+                    name="canceled"
+                    domain="[('is_cancel', '=', True)]"
+                />
+            </filter>
+            <filter name="group_by_partner" position="after">
+                <filter
+                    string="Stage"
+                    name="group_by_stage"
+                    domain="[]"
+                    context="{'group_by': 'stage_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="survey_user_input_view_form_stage" model="ir.ui.view">
+        <field name="name">survey.user_input.view.form.stage</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="state" position="after">
+                <field
+                    name="stage_id"
+                    widget="statusbar"
+                    options="{'clickable': '1'}"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_view_tree_stage" model="ir.ui.view">
+        <field name="name">survey.user_input.view.tree.stage</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="state" position="after">
+                <field name="stage_id" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>

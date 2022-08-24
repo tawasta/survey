@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="survey_button_retake_hide_retry"
+        inherit_id="survey.survey_button_retake"
+    >
+        <xpath expr="//div" position="attributes">
+            <attribute name="t-if">not survey.hide_retry</attribute>
+        </xpath>
+    </template>
+</odoo>

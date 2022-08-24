@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_form_hide_try_again">
+        <field name="name">survey.form.hide.try.again</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <field name="access_mode" position="after">
+                <field name="hide_retry" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,545 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_stages
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-18 16:27+0000\n"
+"PO-Revision-Date: 2022-08-18 16:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_stages
+#: model:mail.template,body_html:survey_stages.mail_template_data_participation_cancelation
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Dear ${object.partner_id.name or ''}<br/>\n"
+"                    Unfortunately your participation ${object.display_name} has been canceled.\n"
+"                    <br/><br/>\n"
+"                    Regards,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Hyvä ${object.partner_id.name or ''}<br/>\n"
+"                    Valitettavasti osallistumisesi kyselyyn ${object.display_name} on hylätty.\n"
+"                    <br/><br/>\n"
+"                    Terveisin,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+
+#. module: survey_stages
+#: model:mail.template,body_html:survey_stages.mail_template_data_participation_confirmation
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Dear ${object.partner_id.name or ''}<br/>\n"
+"                    We are pleased to inform you that your participation ${object.display_name} has been accepted and confirmed.\n"
+"                    <br/><br/>\n"
+"                    Thank you,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Hyvä ${object.partner_id.name or ''}<br/>\n"
+"                    Voimme iloiksemme vahvistaa, että osallistumisesi kyselyyn ${object.display_name} on hyväksytty ja vahvistettu.\n"
+"                    <br/><br/>\n"
+"                    Kiitos,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+
+#. module: survey_stages
+#: model:mail.template,body_html:survey_stages.mail_template_data_participation_sent
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Dear ${object.partner_id.name or ''}<br/>\n"
+"                    Your survey answer has been completed and received.\n"
+"                    <br/><br/>\n"
+"                    Thank you,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Hyvä ${object.partner_id.name or ''}<br/>\n"
+"                    Kyselyn vastauksesi on vahvistettu ja vastaanotettu.\n"
+"                    <br/><br/>\n"
+"                    Kiitos,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+
+#. module: survey_stages
+#: model:mail.template,body_html:survey_stages.mail_template_data_participation_draft
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Dear ${object.partner_id.name or ''}<br/>\n"
+"                    Your survey answer has been saved as a draft. In order to complete your answer please remember to send it.\n"
+"                    <br/><br/>\n"
+"                    Thank you,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div>\n"
+"                    Hyvä ${object.partner_id.name or ''}<br/>\n"
+"                    Kyselyn vastauksesi on tallennettu luonnoksenta. Vahvistaaksesi vastauksesi muista lähettää se.\n"
+"                    <br/><br/>\n"
+"                    Kiitos,\n"
+"                    % if user.signature\n"
+"                        <br/>\n"
+"                        ${user.signature | safe}\n"
+"                    % endif\n"
+"                </div>\n"
+"            "
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                                <span>By clicking <strong>\"Add Contact\"</strong> the user with the given email address will be granted rights to view and edit this survey answer.</span>"
+msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                                <span>Klikkaamalla <strong>\"Lisää yhteyshenkilö\"</strong> antamaanne sähköpostiin liittyvälle käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta.</span>"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__is_accepted
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__is_accepted
+msgid "Accepted Stage"
+msgstr "Hyväksytty vaihe"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Add Contact"
+msgstr "Lisää yhteyshenkilö"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Add Contacts"
+msgstr "Lisää yhteyshenkilöitä"
+
+#. module: survey_stages
+#: model_terms:ir.actions.act_window,help:survey_stages.survey_user_input_stage_action
+msgid "Add a new stage in the task pipeline"
+msgstr "Lisää uusi vaihe tehtävän putkeen"
+
+#. module: survey_stages
+#: code:addons/survey_stages/controllers/main.py:0
+#, python-format
+msgid "Added a new contact {contact} to answer {answer}."
+msgstr "Uusi yhteyshenkilö {contact} lisätty vastaukseen {answer}."
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__is_editable
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__is_editable
+msgid "Allow Answer Edit"
+msgstr ""
+
+#. module: survey_stages
+#: model:mail.template,subject:survey_stages.mail_template_data_participation_sent
+msgid "Answer to ${object.display_name} sent"
+msgstr "Vastaus kyselyyn ${object.display_name} lähetetty"
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input__is_accepted
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__is_accepted
+msgid "Answers in this stage are accepted."
+msgstr "Tässä vaiheessa olevat vastaukset on hyväksyttyjä."
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input__is_cancel
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__is_cancel
+msgid "Answers in this stage are canceled."
+msgstr "Tässä vaiheessa olevat vastaukset on hylättyjä."
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input__is_sent
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__is_sent
+msgid "Answers in this stage are sent."
+msgstr "Tässä vaiheessa olevat vastaukset on lähetetty."
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input__is_editable
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__is_editable
+msgid "Answers in this stage can be edited."
+msgstr "Tässä vaiheessa olevat vastaukset on muokattavissa."
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input__is_hidden
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__is_hidden
+msgid "Answers in this stage will be hidden."
+msgstr "Tässä vaiheessa olevat vastaukset on piilotettuina."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid ""
+"By clicking \"Add Contact\" the user with the given email address will be "
+"granted rights to view and edit this survey answer."
+msgstr ""
+"Klikkaamalla \"Lisää yhteyshenkilö\" antamaanne sähköpostiin liittyvälle "
+"käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Cancel"
+msgstr "Peruuta"
+
+#. module: survey_stages
+#: model:mail.template,subject:survey_stages.mail_template_data_participation_cancelation
+msgid "Cancelation of ${object.display_name}"
+msgstr "Kyselyn ${object.display_name} hylkäys"
+
+#. module: survey_stages
+#: model:survey.user_input.stage,name:survey_stages.survey_user_input_stage4
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "Canceled"
+msgstr "Hylätty"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__is_cancel
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__is_cancel
+msgid "Canceled Stage"
+msgstr "Hylätty vaihe"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Close"
+msgstr "Sulje"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__color
+msgid "Color"
+msgstr "Väri"
+
+#. module: survey_stages
+#: model:mail.template,subject:survey_stages.mail_template_data_participation_confirmation
+msgid "Confirmation of ${object.display_name}"
+msgstr "Vahvistus ${object.display_name}"
+
+#. module: survey_stages
+#: model:survey.user_input.stage,name:survey_stages.survey_user_input_stage3
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "Confirmed"
+msgstr "Vahvistettu"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Contacts"
+msgstr "Yhteyshenkilöt"
+
+#. module: survey_stages
+#: code:addons/survey_stages/controllers/main.py:0
+#, python-format
+msgid "Could not deliver mail to %s"
+msgstr "Ei voitu toimittaa viestiä kumppanille %s"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Create Date"
+msgstr "Luontipäivä"
+
+#. module: survey_stages
+#: code:addons/survey_stages/controllers/main.py:0
+#, python-format
+msgid "Created a new user %s."
+msgstr "Luotiin uusi käyttäjä %s."
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__create_uid
+msgid "Created by"
+msgstr "Luonut"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__create_date
+msgid "Created on"
+msgstr "Luotu"
+
+#. module: survey_stages
+#: model_terms:ir.actions.act_window,help:survey_stages.survey_user_input_stage_action
+msgid ""
+"Define the steps that will be used in the survey answer from the\n"
+"            creation of the answer, up to the closing of the participation.\n"
+"            You will use these stages in order to track the progress in\n"
+"            solving a participation."
+msgstr ""
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__display_name
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_stages
+#: model:survey.user_input.stage,name:survey_stages.survey_user_input_stage1
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "Draft"
+msgstr "Luonnos"
+
+#. module: survey_stages
+#: model:mail.template,subject:survey_stages.mail_template_data_participation_draft
+msgid "Draft of ${object.display_name}"
+msgstr "Luonnos kyselystä ${object.display_name}"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_button_edit
+msgid "Edit"
+msgstr "Muokkaa"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Edit Answers"
+msgstr "Muokkaa vastauksia"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Email"
+msgstr "Sähköposti"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__mail_template_id
+msgid "Email Template"
+msgstr "Sähköpostipohja"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "First Name"
+msgstr "Etunimi"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__is_hidden
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__is_hidden
+msgid "Hidden stage"
+msgstr "Piilotettu vaihe"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__id
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_stages
+#: model:ir.model.fields,help:survey_stages.field_survey_user_input_stage__mail_template_id
+msgid ""
+"If set an email will be sent to the answer followers when the answer reaches"
+" this step."
+msgstr ""
+"Jos asetettuna niin sähköposti lähetetään vastauksen seuraajille kun vastaus"
+" saavuttaa tämän vaiheen."
+
+#. module: survey_stages
+#: model:survey.user_input.stage,name:survey_stages.survey_user_input_stage0
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "In Progress"
+msgstr "Meneillään"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input____last_update
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Last Name"
+msgstr "Sukunimi"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__write_uid
+msgid "Last Updated by"
+msgstr "Viimeksi päivittänyt"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__write_date
+msgid "Last Updated on"
+msgstr "Viimeksi päivitetty"
+
+#. module: survey_stages
+#: model:ir.model,name:survey_stages.model_survey_user_input_stage
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_stage_view_search
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_stage_view_tree
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_stage_view_form
+msgid "Participation Stage"
+msgstr "Osallistumisen vaihe"
+
+#. module: survey_stages
+#: model:ir.actions.act_window,name:survey_stages.survey_user_input_stage_action
+#: model:ir.ui.menu,name:survey_stages.survey_user_input_stage_menu
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_stage_view_search
+msgid "Participation Stages"
+msgstr "Osallistumisen vaiheet"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__partner_id
+msgid "Partner"
+msgstr "Kumppani"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Please enter the contact's email address."
+msgstr "Ole hyvä ja syötä yhteyshenkilön sähköpostiosoite."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Please enter the contact's first name."
+msgstr "Ole hyvä ja syötä yhteyshenkilön etunimi."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "Please enter the contact's last name."
+msgstr "Ole hyvä ja syötä yhteyshenkilön sukunimi."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid ""
+"Please enter the information associated with a user you want to grant "
+"permissions to view and edit this survey answer."
+msgstr ""
+"Ole hyvä ja anna tiedot käyttäjästä, jolle haluat antaa oikeudet tarkastella"
+" ja muokata tätä kyselyn vastausta."
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Review Answers"
+msgstr "Katsele vastauksia"
+
+#. module: survey_stages
+#: model:survey.user_input.stage,name:survey_stages.survey_user_input_stage2
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "Sent"
+msgstr "Lähetetty"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__is_sent
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__is_sent
+msgid "Sent Stage"
+msgstr "Lähetetty vaihe"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__sequence
+msgid "Sequence"
+msgstr "Järjestys"
+
+#. module: survey_stages
+#: code:addons/survey_stages/controllers/main.py:0
+#, python-format
+msgid "Signup is not allowed for uninvited users."
+msgstr "Rekisteröityminen ei ole sallittu kutsumattomille käyttäjille."
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input__stage_id
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_user_input_view_search_stage
+msgid "Stage"
+msgstr "Vaihe"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__name
+msgid "Stage Name"
+msgstr "Vaiheen nimi"
+
+#. module: survey_stages
+#: model:ir.model.fields,field_description:survey_stages.field_survey_user_input_stage__description
+msgid "Stage description"
+msgstr "Vaiheen kuvaus"
+
+#. module: survey
+#: model_terms:ir.ui.view,arch_db:survey.survey_fill_form_in_progress
+#: model_terms:ir.ui.view,arch_db:survey.survey_session_code
+msgid "Submit"
+msgstr "Lähetä hakemus"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_fill_form_in_progress_draft
+msgid "Submit as a Draft"
+msgstr "Tallenna luonnoksena"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Survey"
+msgstr "Kysely"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_home_menu_survey_answer
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_home_survey_answers
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "Survey Answers"
+msgstr "Kyselyn vastaukset"
+
+#. module: survey_stages
+#: model:ir.model,name:survey_stages.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Kyselyn käyttäjän syöte"
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "There are currently no survey answers for your account."
+msgstr "Tililläsi ei ole tällä hetkellä kyselyn vastauksia. "
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "badge-danger"
+msgstr ""
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "badge-default"
+msgstr ""
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "badge-info"
+msgstr ""
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "badge-success"
+msgstr ""
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.portal_my_survey_answers
+msgid "badge-warning"
+msgstr ""
+
+#. module: survey_stages
+#: model_terms:ir.ui.view,arch_db:survey_stages.survey_contacts_modal
+msgid "close"
+msgstr ""

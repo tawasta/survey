@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_attachment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-06 16:12+0000\n"
+"PO-Revision-Date: 2022-07-06 16:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__is_multiple_attachments
+msgid "Allow Multiple Attachments"
+msgstr "Salli usean liitetiedoston lataus"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__answer_type
+msgid "Answer Type"
+msgstr "Vastauksen tyyppi"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__question_type__attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_user_input_line__answer_type__attachment
+msgid "Attachment"
+msgstr "Liitetiedosto"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__value_attachment_ids
+msgid "Attachments Answer"
+msgstr "Liitetiedoston vastaus"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__display_name
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input__display_name
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.review_attachment
+msgid "Download"
+msgstr "Lataa"
+
+#. module: survey_question_attachment
+#. openerp-web
+#: code:addons/survey_question_attachment/static/src/js/survey.js:0
+#, python-format
+msgid "File upload"
+msgstr "Tiedoston lataus"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__id
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input__id
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question____last_update
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input____last_update
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__validation_max_attachment_filesize
+msgid "Maximum filesize (MB)"
+msgstr "Tiedoston maksimikoko (MB)"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__question_type
+msgid "Question Type"
+msgstr "Kysymyksen tyyppi"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Kyselyn käyttäjän syöte"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Kyselyn vastaustausrivi"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,help:survey_question_attachment.field_survey_question__validation_max_attachment_filesize
+msgid "The maximum filesize for the attachment answer in Megabytes"
+msgstr "Vastauksen liitetiedoston maksimikoko megatavuina"
+
+#. module: survey_question_attachment
+#. openerp-web
+#: code:addons/survey_question_attachment/static/src/js/survey.js:0
+#, python-format
+msgid "The selected attachment exceed the maximum file size of %s."
+msgstr "Valittu liitetiedosto on suurempi kuin tiedoston sallittu maksimikoko %s."
+
+#. module: survey_question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.survey_question_form
+msgid ""
+"Upload Attachments\n"
+"                        <i class=\"fa fa-upload fa-2x\" role=\"img\" aria-label=\"Attachment\" title=\"Attachment\"/>"
+msgstr ""
+"Lataa liitetidostoja\n"
+"                        <i class=\"fa fa-upload fa-2x\" role=\"img\" aria-label=\"Attachment\" title=\"Attachment\"/>"

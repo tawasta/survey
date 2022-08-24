@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_view_form_mailing" model="ir.ui.view">
+        <field name="name">survey.user_input.view.form.mailing</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="contact_ids" widget="many2many_tags" />
+            </xpath>
+        </field>
+    </record>
+    <record id="survey_user_input_view_tree_mailing" model="ir.ui.view">
+        <field name="name">survey.user_input.view.tree.mailing</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="contact_ids" widget="many2many_tags" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
