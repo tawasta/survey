@@ -18,20 +18,15 @@
 #
 ##############################################################################
 {
-    "name": "Survey Question Privacy",
-    "version": "14.0.1.1.0",
-    "category": "Survey",
-    "summary": "Ability to add privacies as questions to survey",
+    "name": "Survey String Answer",
+    "version": "14.0.1.0.0",
+    "category": "Marketing/Surveys",
+    "summary": "Save each answer value as string",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_string_answer", "privacy_consent"],
-    "data": [
-        "views/survey_question_views.xml",
-        "views/survey_user_input_views.xml",
-        "views/survey_templates.xml",
-        "views/assets.xml",
-    ],
+    "depends": ["survey"],
+    "data": ["views/survey_user_views.xml"],
 }

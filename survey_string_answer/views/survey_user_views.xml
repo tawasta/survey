@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- SURVEY.USER_INPUT.LINE VIEWS -->
+    <record id="survey_response_line_view_tree_string_answer" model="ir.ui.view">
+        <field name="name">survey.user_input.line.view.tree.string.answer</field>
+        <field name="model">survey.user_input.line</field>
+        <field name="inherit_id" ref="survey.survey_response_line_view_tree" />
+        <field name="arch" type="xml">
+            <field name="question_id" position="after">
+                <field name="string_answer" />
+            </field>
+        </field>
+    </record>
+</odoo>

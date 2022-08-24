@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Question Attachment",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Adds a new question type 'attachment' to survey",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,7 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "web_content_link_url"],
+    "depends": ["survey_string_answer", "web_content_link_url"],
     "data": [
         "views/assets.xml",
         "views/survey_question_views.xml",
