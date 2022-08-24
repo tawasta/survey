@@ -27,6 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "external_dependencies": {"python": ["xlsxwriter"]},
     "depends": ["survey_string_answer", "report_xlsx"],
     "data": ["report/survey_user_input_report_xlsx.xml"],
 }
