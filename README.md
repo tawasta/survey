@@ -18,5 +18,6 @@ addon | version | maintainers | summary
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_stages](survey_stages/) | 14.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string
+[survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.0.0 |  | Print an xlsx report from survey user inputs
 
 [//]: # (end addons)
