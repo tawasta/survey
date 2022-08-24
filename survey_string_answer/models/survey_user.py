@@ -59,18 +59,16 @@ class SurveyUserInputLine(models.Model):
         for line in self:
             if line.answer_type == "char_box" and line.value_char_box:
                 line.string_answer = line.value_char_box
-            elif line.answer_type == "text_box" and line.value_text_box:
+            if line.answer_type == "text_box" and line.value_text_box:
                 line.string_answer = str(line.value_text_box)
-            elif line.answer_type == "numerical_box" and line.value_numerical_box:
+            if line.answer_type == "numerical_box" and line.value_numerical_box:
                 line.string_answer = str(line.value_numerical_box)
-            elif line.answer_type == "date" and line.value_date:
+            if line.answer_type == "date" and line.value_date:
                 line.string_answer = str(format_date(self.env, line.value_date))
-            elif line.answer_type == "datetime" and line.value_datetime:
+            if line.answer_type == "datetime" and line.value_datetime:
                 line.string_answer = str(format_datetime(self.env, line.value_datetime))
-            elif line.answer_type == "suggestion" and line.suggested_answer_id:
+            if line.answer_type == "suggestion" and line.suggested_answer_id:
                 line.string_answer = str(line.suggested_answer_id.value)
-            else:
-                line.string_answer = ""
 
     # 5. Constraints and onchanges
 

@@ -109,6 +109,25 @@ class SurveyUserInputLine(models.Model):
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
+    @api.depends(
+        "answer_type",
+        "value_char_box",
+        "value_numerical_box",
+        "value_date",
+        "value_datetime",
+        "value_text_box",
+        "value_attachment_ids",
+        "suggested_answer_id",
+        "matrix_row_id",
+    )
+    def _compute_string_answer(self):
+        res = super(SurveyUserInputLine, self)._compute_string_answer()
+        for line in self:
+            if line.answer_type == "attachment" and line.value_attachment_ids:
+                line.string_answer = ", ".join(
+                    str(attachment.name) for attachment in line.value_attachment_ids
+                )
+        return res
 
     # 5. Constraints and onchanges
     @api.constrains("skipped", "answer_type")
