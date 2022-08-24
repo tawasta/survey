@@ -22,7 +22,7 @@
     "version": "14.0.1.0.0",
     "category": "Survey",
     "summary": "Ability to add privacies as questions to survey",
-    "website": "https://gitlab.com/tawasta/odoo/society",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,

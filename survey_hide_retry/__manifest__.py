@@ -22,7 +22,7 @@
     "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
     "summary": 'Ability to hide "Retry" button after Survey completion',
-    "website": "https://gitlab.com/tawasta/odoo/society",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,

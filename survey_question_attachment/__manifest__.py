@@ -22,7 +22,7 @@
     "version": "14.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Adds a new question type 'attachment' to survey",
-    "website": "https://gitlab.com/tawasta/odoo/society",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
