@@ -114,6 +114,23 @@ class SurveyUserInputLine(models.Model):
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
+    @api.depends(
+        "answer_type",
+        "value_char_box",
+        "value_numerical_box",
+        "value_date",
+        "value_datetime",
+        "value_text_box",
+        "value_privacy_consent",
+        "suggested_answer_id",
+        "matrix_row_id",
+    )
+    def _compute_string_answer(self):
+        res = super(SurveyUserInputLine, self)._compute_string_answer()
+        for line in self:
+            if line.answer_type == "privacy" and line.value_privacy_consent:
+                line.string_answer = line.value_privacy_consent.activity_id.name
+        return res
 
     # 5. Constraints and onchanges
     @api.constrains("skipped", "answer_type")

@@ -9,9 +9,7 @@
                 <field
                     name="value_privacy_consent"
                     attrs="{'invisible': [('answer_type', '!=', 'privacy')]}"
-                    widget="many2many_tags"
-                >
-                </field>
+                />
             </field>
         </field>
     </record>

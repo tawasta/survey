@@ -14,7 +14,7 @@ addon | version | maintainers | summary
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_mailing](survey_mailing/) | 14.0.1.0.0 |  | Send emails to survey user partners via chatter
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.1.0 |  | Adds a new question type 'attachment' to survey
-[survey_question_privacy](survey_question_privacy/) | 14.0.1.0.0 |  | Ability to add privacies as questions to survey
+[survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_stages](survey_stages/) | 14.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string

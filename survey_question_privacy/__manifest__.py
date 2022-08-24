@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Question Privacy",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Survey",
     "summary": "Ability to add privacies as questions to survey",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,7 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "privacy_consent"],
+    "depends": ["survey_string_answer", "privacy_consent"],
     "data": [
         "views/survey_question_views.xml",
         "views/survey_user_input_views.xml",
