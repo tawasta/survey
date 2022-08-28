@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_home_menu_survey_answer"
+        name="Portal layout : survey answer menu entries"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="40"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'survey_answers'"
+                t-attf-class="breadcrumb-item #{'active ' if not survey else ''}"
+            >
+                <a
+                    t-if="survey_answer"
+                    t-attf-href="/my/surveys?{{ keep_query() }}"
+                >Survey Answers</a>
+                <t t-else="">Survey Answers</t>
+            </li>
+        </xpath>
+    </template>
+    <template
+        id="portal_my_home_survey_answers"
+        name="Show Survey Answers"
+        inherit_id="portal.portal_my_home"
+        customize_show="True"
+        priority="40"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Survey Answers</t>
+                <t t-set="url" t-value="'/my/surveys'" />
+                <t t-set="placeholder_count" t-value="'survey_answer_count'" />
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_my_survey_answers" name="My Survey Answers">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Survey Answers</t>
+            </t>
+            <t t-if="not survey_answers">
+                <p>There are currently no survey answers for your account.</p>
+            </t>
+            <t t-if="survey_answers" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th id="th-survey">Survey</th>
+                        <th id="th-create-date">Create Date</th>
+                        <th id="th-contacts">Contacts</th>
+                        <th id="th-stage">Stage</th>
+                        <th id="td-buttons" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="survey_answers" t-as="answer">
+                        <tr>
+                            <td id="td-survey">
+                                <span
+                                    t-field="answer.survey_id.title"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.survey_id.title"
+                                />
+                            </td>
+                            <td id="td-create-date">
+                                <span
+                                    t-field="answer.create_date"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.create_date"
+                                    t-options="{'widget': 'datetime'}"
+                                />
+                            </td>
+                            <td id="td-contacts">
+                                <t
+                                    t-set="contact_count"
+                                    t-value="len(answer.contact_ids)"
+                                />
+                                <t t-set="current_count" t-value="0" />
+                                <t
+                                    t-foreach="answer.contact_ids.sorted(key=lambda x: x.name)"
+                                    t-as="contact"
+                                >
+                                    <t
+                                        t-set="current_count"
+                                        t-value="current_count +1"
+                                    />
+                                    <span
+                                        t-field="contact.name"
+                                        data-toggle="tooltip"
+                                        t-att-title="contact.name"
+                                    /><t t-if="contact_count - current_count != 0">, <br
+                                        /></t>
+                                </t>
+                            </td>
+                            <td id="td-stage">
+                                <t t-set="answer_state">badge-default</t>
+                                <t t-if="answer.stage_id.is_editable">
+                                    <t t-set="answer_state">badge-warning</t>
+                                </t>
+                                <t t-if="answer.stage_id.is_accepted">
+                                    <t t-set="answer_state">badge-success</t>
+                                </t>
+                                <t t-if="answer.stage_id.is_cancel">
+                                    <t t-set="answer_state">badge-danger</t>
+                                </t>
+                                <t t-if="answer.stage_id.is_sent">
+                                    <t t-set="answer_state">badge-info</t>
+                                </t>
+                                <span
+                                    t-field="answer.stage_id.name"
+                                    t-attf-class="badge badge-pill {{answer_state}}"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.stage_id.name"
+                                />
+                            </td>
+                            <td id="td-buttons">
+                                <form
+                                    id="survey_contacts"
+                                    t-att-action="'/survey/contacts/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                                    method="post"
+                                    itemscope="itemscope"
+                                    itemprop="offers"
+                                    itemtype="http://schema.org/AggregateOffer"
+                                >
+                                    <input
+                                        type="hidden"
+                                        name="csrf_token"
+                                        t-att-value="request.csrf_token()"
+                                    />
+                                    <button
+                                        type="submit"
+                                        class="btn btn-link a-submit float-right no-decoration o_wait_lazy_js"
+                                        role="button"
+                                        title="Add Contacts"
+                                        aria-label="Add Contacts"
+                                    >Add Contacts</button>
+                                </form>
+                                <t t-if="answer.is_editable">
+                                    <a
+                                        t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                                        class="btn btn-link float-right no-decoration"
+                                    >Edit Answers</a>
+                                </t>
+                                <a
+                                    t-att-href="'/survey/print/%s?answer_token=%s&amp;review=True' % (answer.survey_id.access_token, answer.access_token)"
+                                    class="btn btn-link float-right no-decoration"
+                                >Review Answers</a>
+                            </td>
+
+                         </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+</odoo>

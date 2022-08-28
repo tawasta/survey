@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_hide_retry
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-18 16:05+0000\n"
+"PO-Revision-Date: 2022-08-18 16:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_hide_retry
+#: model:ir.model.fields,field_description:survey_hide_retry.field_survey_survey__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_hide_retry
+#: model:ir.model.fields,help:survey_hide_retry.field_survey_survey__hide_retry
+msgid "Hide \"Retry\" button after survey completion."
+msgstr "Piilot \"Yritä uudelleen\" nappi kyselyn suorituksen jälkeen."
+
+#. module: survey_hide_retry
+#: model:ir.model.fields,field_description:survey_hide_retry.field_survey_survey__hide_retry
+msgid "Hide Retry"
+msgstr "Piilota yritä uudelleen nappi"
+
+#. module: survey_hide_retry
+#: model:ir.model.fields,field_description:survey_hide_retry.field_survey_survey__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_hide_retry
+#: model:ir.model.fields,field_description:survey_hide_retry.field_survey_survey____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_hide_retry
+#: model:ir.model,name:survey_hide_retry.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
