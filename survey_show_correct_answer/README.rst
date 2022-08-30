@@ -2,11 +2,17 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===============================================
-Survey: correct answer for single line text box
-===============================================
+===========================================
+Survey: Show correct answer after answering
+===========================================
 
-Allows scoring a single line text answer
+Adds an option to show correct answers after the survey.
+
+Currently only works with
+- Single line text box
+- Numerical value
+- Date
+- Datetime
 
 Configuration
 =============

@@ -19,17 +19,18 @@
 ##############################################################################
 
 {
-    "name": "Survey: show correct answer at the end",
-    "summary": "Allows scoring a single line text answer",
+    "name": "Survey: Show correct answer after answering",
+    "summary": "Adds an option to show correct answers after the survey",
     "category": "Survey",
     "version": "14.0.1.0.0",
-    "website": "https://gitlab.com/tawasta/odoo/stock",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": ["survey"],
     "data": [
-        "views/survey_question.xml",
+        "views/survey_survey.xml",
+        "views/website_survey_page_print.xml",
     ],
 }
