@@ -23,7 +23,7 @@
     "summary": "Allows scoring a single line text answer",
     "category": "Survey",
     "version": "14.0.1.0.0",
-    "website": "https://gitlab.com/tawasta/odoo/stock",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,

@@ -1,7 +1,4 @@
-from odoo import api
-from odoo import fields
-from odoo import models
-from odoo import _
+from odoo import _, api, fields, models
 
 
 class SurveyUserInputLine(models.Model):
@@ -56,7 +53,8 @@ class SurveyUserInputLine(models.Model):
                 if question_remaining_time < 0:  # if no time left
                     answer_score /= 2
                 elif seconds_to_answer > max_score_delay:
-                    time_limit -= max_score_delay  # we remove the max_score_delay to have all possible values
+                    # we remove the max_score_delay to have all possible values
+                    time_limit -= max_score_delay
                     score_proportion = (time_limit - seconds_to_answer) / time_limit
                     answer_score = (answer_score / 2) * (1 + score_proportion)
 

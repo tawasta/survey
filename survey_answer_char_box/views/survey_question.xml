@@ -6,13 +6,15 @@
         <field name="inherit_id" ref="survey.survey_question_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='answer_numerical_box']/../.." position="before">
-                <div class="col-6"
-                     attrs="{'invisible': ['|', ('scoring_type', '=', 'no_scoring'), ('question_type', 'not in', ['char_box'])]}">
+                <div
+                    class="col-6"
+                    attrs="{'invisible': ['|', ('scoring_type', '=', 'no_scoring'), ('question_type', 'not in', ['char_box'])]}"
+                >
                     <group>
-                        <field name="answer_char_box" string="Correct Answer"/>
+                        <field name="answer_char_box" string="Correct Answer" />
                         <field name="answer_char_box_case_sensitive" />
-                        <field name="is_scored_question"/>
-                        <field name="answer_score"/>
+                        <field name="is_scored_question" />
+                        <field name="answer_score" />
                     </group>
                 </div>
             </xpath>
