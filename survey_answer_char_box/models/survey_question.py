@@ -13,6 +13,16 @@ class SurveyQuestion(models.Model):
         help="Require a case sensitive answer",
         default=False,
     )
+    answer_char_box_similarity = fields.Float(
+        "Answer similarity %",
+        help="How similar the answer must be. \n"
+        "This can be used to compensate misspelling etc. \n"
+        "A similarity of at least 80% is recommended.\n\n"
+        "For example: \n"
+        "'receive' and 'recieve' are 85% similiar\n"
+        "'definitely' and 'definately' are 90% similiar",
+        default="100.0",
+    )
 
     @api.depends("answer_char_box")
     def _compute_is_scored_question_char_box(self):

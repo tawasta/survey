@@ -22,12 +22,16 @@
     "name": "Survey: correct answer for single line text box",
     "summary": "Allows scoring a single line text answer",
     "category": "Survey",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "external_dependencies": {
+        "python": ["difflib"],
+        "bin": [],
+    },
     "depends": ["survey"],
     "data": [
         "views/survey_question.xml",

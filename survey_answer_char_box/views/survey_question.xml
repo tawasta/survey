@@ -13,6 +13,7 @@
                     <group>
                         <field name="answer_char_box" string="Correct Answer" />
                         <field name="answer_char_box_case_sensitive" />
+                        <field name="answer_char_box_similarity" />
                         <field name="is_scored_question" />
                         <field name="answer_score" />
                     </group>

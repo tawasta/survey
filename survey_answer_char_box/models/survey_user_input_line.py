@@ -1,3 +1,4 @@
+from difflib import SequenceMatcher
 from odoo import _, api, fields, models
 
 
@@ -28,9 +29,16 @@ class SurveyUserInputLine(models.Model):
 
             correct_answer = question["answer_char_box"]
             if answer and question.answer_char_box_case_sensitive:
-                answer_is_correct = answer == correct_answer
+                correct_ratio = (
+                    SequenceMatcher(a=answer, b=correct_answer).ratio() * 100
+                )
+                answer_is_correct = correct_ratio >= question.answer_char_box_similarity
             else:
-                answer_is_correct = answer.lower() == correct_answer.lower()
+                correct_ratio = (
+                    SequenceMatcher(a=answer.lower(), b=correct_answer.lower()).ratio()
+                    * 100
+                )
+                answer_is_correct = correct_ratio >= question.answer_char_box_similarity
             if answer_is_correct:
                 answer_score = question.answer_score
 
