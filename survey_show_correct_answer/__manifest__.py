@@ -22,7 +22,7 @@
     "name": "Survey: Show correct answer after answering",
     "summary": "Adds an option to show correct answers after the survey",
     "category": "Survey",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
