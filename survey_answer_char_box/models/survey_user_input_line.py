@@ -1,4 +1,5 @@
 from difflib import SequenceMatcher
+
 from odoo import _, api, fields, models
 
 
