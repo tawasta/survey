@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="question_char_box" inherit_id="survey.question_char_box">
+        <xpath expr="//input" position="after">
+            <t
+                t-if="survey.show_answers and answer_lines and answer_lines[0].user_input_id.state == 'done' and question.answer_char_box"
+            >
+                <p
+                    t-if="answer_lines and not answer_lines[0].answer_is_correct"
+                    class="text-danger"
+                >Answer: <span
+                        class="font-weight-bold"
+                        t-field="question.answer_char_box"
+                    /></p>
+                <p t-elif="answer_lines" class="text-success">Correct answer</p>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="question_numerical_box" inherit_id="survey.question_numerical_box">
+        <xpath expr="//input" position="after">
+            <t
+                t-if="survey.show_answers and answer_lines and answer_lines[0].user_input_id.state == 'done' and question.answer_numerical_box"
+            >
+                <p
+                    t-if="answer_lines and not answer_lines[0].answer_is_correct"
+                    class="text-danger"
+                >Answer: <span
+                        class="font-weight-bold"
+                        t-field="question.answer_numerical_box"
+                    /></p>
+                <p t-elif="answer_lines" class="text-success">Correct answer</p>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="question_date" inherit_id="survey.question_date">
+        <xpath expr="//input/.." position="after">
+            <t
+                t-if="survey.show_answers and answer_lines and answer_lines[0].user_input_id.state == 'done' and question.answer_date"
+            >
+                <p
+                    t-if="answer_lines and not answer_lines[0].answer_is_correct"
+                    class="text-danger"
+                >Answer: <span
+                        class="font-weight-bold"
+                        t-field="question.answer_date"
+                    /></p>
+                <p t-elif="answer_lines" class="text-success">Correct answer</p>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="question_datetime" inherit_id="survey.question_datetime">
+        <xpath expr="//input/.." position="after">
+            <t
+                t-if="survey.show_answers and answer_lines and answer_lines[0].user_input_id.state == 'done' and question.answer_datetime"
+            >
+                <p
+                    t-if="answer_lines and not answer_lines[0].answer_is_correct"
+                    class="text-danger"
+                >Answer: <span
+                        class="font-weight-bold"
+                        t-field="question.answer_datetime"
+                    /></p>
+                <p
+                    t-elif="answer_lines"
+                    class="text-success font-weight-bold"
+                >Correct answer</p>
+            </t>
+        </xpath>
+    </template>
+</odoo>
