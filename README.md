@@ -11,13 +11,13 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[survey_answer_char_box](survey_answer_char_box/) | 14.0.1.0.0 |  | Allows scoring a single line text answer
+[survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 |  | Allows scoring a single line text answer
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_mailing](survey_mailing/) | 14.0.1.0.0 |  | Send emails to survey user partners via chatter
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.1.0 |  | Adds a new question type 'attachment' to survey
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
-[survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.0 |  | Adds an option to show correct answers after the survey
+[survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 |  | Adds an option to show correct answers after the survey
 [survey_stages](survey_stages/) | 14.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.0.0 |  | Print an xlsx report from survey user inputs
