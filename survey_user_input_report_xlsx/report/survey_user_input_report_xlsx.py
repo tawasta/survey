@@ -50,15 +50,63 @@ class SurveyUserInputXlsx(models.AbstractModel):
     # 7. Action methods
 
     # 8. Business methods
+    def _get_questions(self, survey_user_inputs):
+        questions = self.env["survey.question"]
+        for user_input in survey_user_inputs:
+            for user_input_line in user_input.user_input_line_ids:
+                if user_input_line.question_id not in questions:
+                    questions += user_input_line.question_id
+        print("@@@@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@@@@@@@@")
+        print(questions)
+        return questions
+
+    def _get_fields_to_print(self, user_input):
+        """Returns a dictionary where key is the xlsx column title and
+        value is the column value."""
+        fields_to_print = {
+            "Survey": user_input.survey_id.title,
+            "Partner": user_input.partner_id.name,
+            "Created on": user_input.create_date,
+        }
+        # for input_line in user_input.user_input_line_ids:
+        #     fields_to_print[input_line.question_id.title] = input_line.string_answer
+        return fields_to_print
+
     def generate_xlsx_report(self, workbook, data, survey_user_inputs):
         row = 0
         col = 0
         sheet = workbook.add_worksheet("Survey Answers")
+        sheet.set_landscape()
+        sheet.fit_to_pages(1, 0)
+        questions = self._get_questions(survey_user_inputs)
         for user_input in survey_user_inputs:
-            sheet.write(row, col, user_input.survey_id.title)
-            sheet.write(
-                row,
-                col + 1,
-                ", ".join(partner.name for partner in user_input.contact_ids),
-            )
+            fields_to_print = self._get_fields_to_print(user_input)
+            if row == 0:
+                for field_to_print in fields_to_print:
+                    sheet.write(
+                        row, col, field_to_print, workbook.add_format({"bold": True})
+                    )
+                    col += 1
+                for question in questions:
+                    sheet.write(
+                        row, col, question.title, workbook.add_format({"bold": True})
+                    )
+                    col += 1
+                col = 0
+                row += 1
+            for field_to_print in fields_to_print:
+                sheet.write(row, col, fields_to_print[field_to_print])
+                col += 1
+            matrix_answer = []
+            for user_input_line in user_input.user_input_line_ids:
+                if user_input_line.question_id in questions:
+                    if user_input_line.question_id.question_type == "matrix":
+                        matrix_answer.append(user_input_line.string_answer)
+                    else:
+                        sheet.write(row, col, user_input_line.string_answer)
+                col += 1
+            col = 0
             row += 1
