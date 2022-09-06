@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_survey_answers_upload_attachment"
+        inherit_id="survey_stages.portal_my_survey_answers"
+    >
+        <xpath expr="//form[@id='survey_contacts']" position="after">
+            <form
+                id="survey_attachments"
+                t-att-action="'/survey/attachments/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                method="post"
+                itemscope="itemscope"
+                itemprop="offers"
+                itemtype="http://schema.org/AggregateOffer"
+            >
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    t-att-value="request.csrf_token()"
+                />
+                <button
+                    type="submit"
+                    class="btn btn-link a-submit float-right no-decoration o_wait_lazy_js"
+                    role="button"
+                    title="Upload Attachments"
+                    aria-label="Upload Attachments"
+                >Upload Attachments</button>
+            </form>
+
+        </xpath>
+    </template>
+</odoo>
