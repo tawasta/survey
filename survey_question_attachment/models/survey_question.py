@@ -19,13 +19,17 @@
 ##############################################################################
 
 # 1. Standard library imports:
+import base64
+import re
+
+# 3. Odoo imports (openerp):
+from odoo import _, fields, models
+
+# 4. Imports from Odoo modules:
+from odoo.tools.mimetypes import guess_mimetype
 
 # 2. Known third party imports:
 
-# 3. Odoo imports (openerp):
-from odoo import fields, models
-
-# 4. Imports from Odoo modules:
 
 # 5. Local imports in the relative form:
 
@@ -44,6 +48,11 @@ class SurveyQuestion(models.Model):
         help="The maximum filesize for the attachment answer in Megabytes",
     )
     is_multiple_attachments = fields.Boolean("Allow Multiple Attachments")
+    validation_attachment_file_type = fields.Selection(
+        [("pdf", "PDF"), ("image", "Image")],
+        string="Limit Attachment File Type",
+        help="This field limits the accepted file type for attachments.",
+    )
 
     # 3. Default methods
 
@@ -57,6 +66,26 @@ class SurveyQuestion(models.Model):
     def validate_question(self, answer, comment=None):
         if self.constr_mandatory and self.question_type == "attachment":
             if "values" in answer:
+                if (
+                    self.validation_attachment_file_type
+                    and self.validation_attachment_file_type == "pdf"
+                ):
+                    for answer_data in answer.get("values"):
+                        mimetype = guess_mimetype(
+                            base64.b64decode(answer_data.get("data"))
+                        )
+                        if mimetype != "application/pdf":
+                            return {self.id: _("Files must be PDFs.")}
+                elif (
+                    self.validation_attachment_file_type
+                    and self.validation_attachment_file_type == "image"
+                ):
+                    for answer_data in answer.get("values"):
+                        mimetype = guess_mimetype(
+                            base64.b64decode(answer_data.get("data"))
+                        )
+                        if not re.search("^image/", mimetype):
+                            return {self.id: _("Files must be images.")}
                 return {}
             else:
                 return {self.id: self.constr_error_msg}

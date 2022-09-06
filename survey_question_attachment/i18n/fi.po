@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-06 16:12+0000\n"
-"PO-Revision-Date: 2022-07-06 16:12+0000\n"
+"POT-Creation-Date: 2022-09-06 13:10+0000\n"
+"PO-Revision-Date: 2022-09-06 13:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,28 @@ msgid "File upload"
 msgstr "Tiedoston lataus"
 
 #. module: survey_question_attachment
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be PDFs."
+msgstr "Tiedostojen pitää olla PDFiä."
+
+#. module: survey_question_attachment
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be images."
+msgstr "Tiedostojen pitää olla kuvia."
+
+#. module: survey_question_attachment
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__id
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input__id
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__id
 msgid "ID"
 msgstr "Tunniste (ID)"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__image
+msgid "Image"
+msgstr "Kuva"
 
 #. module: survey_question_attachment
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question____last_update
@@ -71,9 +88,19 @@ msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
 #. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__validation_attachment_file_type
+msgid "Limit Attachment File Type"
+msgstr "Rajoita liitteen tiedostotyyppi"
+
+#. module: survey_question_attachment
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__validation_max_attachment_filesize
 msgid "Maximum filesize (MB)"
 msgstr "Tiedoston maksimikoko (MB)"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__pdf
+msgid "PDF"
+msgstr "PDF"
 
 #. module: survey_question_attachment
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__question_type
@@ -105,7 +132,13 @@ msgstr "Vastauksen liitetiedoston maksimikoko megatavuina"
 #: code:addons/survey_question_attachment/static/src/js/survey.js:0
 #, python-format
 msgid "The selected attachment exceed the maximum file size of %s."
-msgstr "Valittu liitetiedosto on suurempi kuin tiedoston sallittu maksimikoko %s."
+msgstr ""
+"Valittu liitetiedosto on suurempi kuin tiedoston sallittu maksimikoko %s."
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,help:survey_question_attachment.field_survey_question__validation_attachment_file_type
+msgid "This field limits the accepted file type for attachments."
+msgstr "Tämä kenttä rajoittaa sallitut tiedostotyypit liitetiedostoille."
 
 #. module: survey_question_attachment
 #: model_terms:ir.ui.view,arch_db:survey_question_attachment.survey_question_form

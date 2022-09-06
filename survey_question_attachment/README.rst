@@ -14,7 +14,11 @@ Configuration
 
 Usage
 =====
-\-
+1. Create a new question for Survey. Choose Attachment as Question Type.
+2. Configuration options:
+    - Maximum filesize (MB)
+    - Allow Multiple Attachments (True/False)
+    - Limit Attachment File Type (Image/PFG)
 
 Known issues / Roadmap
 ======================

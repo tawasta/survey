@@ -26,6 +26,7 @@
                     <group>
                         <field name="validation_max_attachment_filesize" />
                         <field name="is_multiple_attachments" />
+                        <field name="validation_attachment_file_type" />
                     </group>
                 </div>
             </xpath>
