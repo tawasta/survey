@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2022- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#    Copyright 2021- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,20 +18,19 @@
 #
 ##############################################################################
 {
-    "name": "Survey Question Attachment",
-    "version": "14.0.1.2.0",
+    "name": "Survey Portal Upload Attachments",
+    "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Adds a new question type 'attachment' to survey",
+    "summary": "Upload attachments to surveys from portal",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_string_answer", "web_content_link_url"],
+    "depends": ["survey_stages", "survey_question_attachment"],
     "data": [
+        "views/portal_templates.xml",
+        "views/survey_templates_attachments.xml",
         "views/assets.xml",
-        "views/survey_question_views.xml",
-        "views/survey_user_input_views.xml",
-        "views/survey_templates.xml",
     ],
 }

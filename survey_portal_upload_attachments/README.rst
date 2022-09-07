@@ -2,11 +2,10 @@
         :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
         :alt: License: AGPL-3
 
-==========================
-Survey Question Attachment
-==========================
-
-* Adds a new question type: Attachment 
+================================
+Survey Portal Upload Attachments
+================================
+* Upload attachments to surveys from portal
 
 Configuration
 =============
@@ -14,11 +13,7 @@ Configuration
 
 Usage
 =====
-1. Create a new question for Survey. Choose Attachment as Question Type.
-2. Configuration options:
-    - Maximum filesize (MB)
-    - Allow Multiple Attachments (True/False)
-    - Limit Attachment File Type (Image/PFG)
+\-
 
 Known issues / Roadmap
 ======================

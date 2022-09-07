@@ -14,7 +14,8 @@ addon | version | maintainers | summary
 [survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 |  | Allows scoring a single line text answer
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_mailing](survey_mailing/) | 14.0.1.0.0 |  | Send emails to survey user partners via chatter
-[survey_question_attachment](survey_question_attachment/) | 14.0.1.1.0 |  | Adds a new question type 'attachment' to survey
+[survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.0 |  | Upload attachments to surveys from portal
+[survey_question_attachment](survey_question_attachment/) | 14.0.1.2.0 |  | Adds a new question type 'attachment' to survey
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 |  | Adds an option to show correct answers after the survey

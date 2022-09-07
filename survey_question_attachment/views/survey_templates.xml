@@ -23,6 +23,7 @@
                 t-att-data-question-type="question.question_type"
                 t-att-validation-size-max="question.validation_max_attachment_filesize"
                 t-att-multiple="None if not question.is_multiple_attachments else 'multiple'"
+                t-att-accept="None if not question.validation_attachment_file_type else ('application/pdf' if question.validation_attachment_file_type == 'pdf' else ('image/*' if question.validation_attachment_file_type == 'image' else None))"
                 class="form_control o_survey_question_attachment bg_transparent text-dark rounded-0 p-0"
             />
             <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
