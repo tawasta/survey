@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import api, fields, models
+from odoo import models
 
 # 4. Imports from Odoo modules:
 
@@ -38,9 +38,6 @@ class SurveyUserInput(models.Model):
     _inherit = ["mail.thread", "survey.user_input", "mail.activity.mixin"]
 
     # 2. Fields declaration
-    contact_ids = fields.Many2many(
-        "res.partner", string="Contact Persons", tracking=True
-    )
 
     # 3. Default methods
 
@@ -49,14 +46,9 @@ class SurveyUserInput(models.Model):
     # 5. Constraints and onchanges
 
     # 6. CRUD methods
-    @api.model
-    def create(self, vals):
-        if vals.get("partner_id"):
-            vals["contact_ids"] = [(4, vals.get("partner_id"), 0)]
-        return super(SurveyUserInput, self).create(vals)
 
     # 7. Action methods
-    def action_message_contact_ids(self):
+    def action_message_user_input(self):
         self.ensure_one()
         template = self.env.ref(
             "survey_mailing.survey_mailing_template_mail_attendees",

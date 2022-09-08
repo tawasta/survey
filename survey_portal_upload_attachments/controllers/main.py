@@ -18,16 +18,18 @@
 #
 ##############################################################################
 
-# 1. Standard library imports:
 import logging
+
+# 1. Standard library imports:
+import os
 
 # 2. Known third party imports:
 # 3. Odoo imports (openerp):
-from odoo import http
+from odoo import _, http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
-from odoo.addons.survey_stages.controllers.main import SurveyStages
+from odoo.addons.survey.controllers.main import Survey
 
 # 5. Local imports in the relative form:
 
@@ -36,7 +38,18 @@ from odoo.addons.survey_stages.controllers.main import SurveyStages
 _logger = logging.getLogger(__name__)
 
 
-class SurveyAttachments(SurveyStages):
+class SurveyAttachments(Survey):
+    def _validate_filesize(self, file, max_size):
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+        if file_size > max_size:
+            _logger.warning(
+                _("Attachment filesize is too big: %d MB") % (file_size / 1024 / 1024)
+            )
+            return False
+        return True
+
     @http.route(
         "/survey/attachments/<string:survey_token>/<string:answer_token>",
         type="json",
@@ -120,7 +133,34 @@ class SurveyAttachments(SurveyStages):
 
         answer_sudo = access_data["answer_sudo"]
         if answer_sudo and request.env.user.partner_id in answer_sudo.contact_ids:
-            # TODO: Save attachment
-            pass
-
+            request_files = request.httprequest.files
+            for file_input in request_files.items(multi=True):
+                question_id = request.env["survey.question"].search(
+                    [("id", "=", file_input[0])]
+                )
+                file = file_input[1]
+                max_size = question_id.validation_max_attachment_filesize * 1024 * 1024
+                if self._validate_filesize(file, max_size):
+                    vals = {
+                        "user_input_id": answer_sudo.id,
+                        "question_id": question_id.id,
+                        "skipped": False,
+                        "answer_type": question_id.question_type,
+                        "value_attachment_ids": [
+                            (
+                                0,
+                                4,
+                                {
+                                    "name": file.filename,
+                                    "store_fname": file.filename,
+                                    "datas": file.read(),
+                                    "description": "Survey Answer Attachment",
+                                    "type": "binary",
+                                    "res_model": "survey.user_input.line",
+                                },
+                            )
+                        ],
+                    }
+                    _logger.debug(vals)
+                    # TODO: Save attachment
         return request.redirect("/my/surveys")

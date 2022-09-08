@@ -27,7 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_stages", "survey_question_attachment"],
+    "depends": ["survey_portal", "survey_question_attachment"],
     "data": [
         "views/portal_templates.xml",
         "views/survey_templates_attachments.xml",

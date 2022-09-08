@@ -5,7 +5,6 @@
 =============
 Survey Stages
 =============
-
 * Ability to edit survey answers and send mails based on stages
 
 Configuration

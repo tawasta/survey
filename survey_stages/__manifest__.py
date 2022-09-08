@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Stages",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Ability to edit survey answers and send mail based on stages",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,7 +27,9 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "survey_mailing", "partner_firstname"],
+    "depends": [
+        "survey_contact_ids",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "data/survey_data.xml",
@@ -36,7 +38,6 @@
         "views/survey_menus.xml",
         "views/survey_user_views.xml",
         "views/portal_templates.xml",
-        "views/survey_templates_contacts.xml",
         "views/survey_templates_management.xml",
         "views/survey_templates_print.xml",
         "views/survey_templates.xml",

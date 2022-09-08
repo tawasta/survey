@@ -2,9 +2,10 @@
 <odoo>
     <template
         id="portal_my_survey_answers_upload_attachment"
-        inherit_id="survey_stages.portal_my_survey_answers"
+        inherit_id="survey_portal.portal_my_survey_answers"
+        name="My Survey Answers"
     >
-        <xpath expr="//form[@id='survey_contacts']" position="after">
+        <xpath expr="//a[@id='button-review-answer']" position="before">
             <form
                 id="survey_attachments"
                 t-att-action="'/survey/attachments/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
@@ -26,7 +27,6 @@
                     aria-label="Upload Attachments"
                 >Upload Attachments</button>
             </form>
-
         </xpath>
     </template>
 </odoo>

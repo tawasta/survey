@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_home_menu_survey_answer"
+        name="Portal layout : survey answer menu entries"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="40"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'survey_answers'"
+                t-attf-class="breadcrumb-item #{'active ' if not survey else ''}"
+            >
+                <a
+                    t-if="survey_answer"
+                    t-attf-href="/my/surveys?{{ keep_query() }}"
+                >Survey Answers</a>
+                <t t-else="">Survey Answers</t>
+            </li>
+        </xpath>
+    </template>
+    <template
+        id="portal_my_home_survey_answers"
+        name="Show Survey Answers"
+        inherit_id="portal.portal_my_home"
+        customize_show="True"
+        priority="40"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Survey Answers</t>
+                <t t-set="url" t-value="'/my/surveys'" />
+                <t t-set="placeholder_count" t-value="'survey_answer_count'" />
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_my_survey_answers" name="My Survey Answers">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Survey Answers</t>
+            </t>
+            <t t-if="not survey_answers">
+                <p>There are currently no survey answers for your account.</p>
+            </t>
+            <t t-if="survey_answers" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th id="th-survey">Survey</th>
+                        <th id="th-create-date">Create Date</th>
+                        <th id="td-buttons" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="survey_answers" t-as="answer">
+                        <tr>
+                            <td id="td-survey">
+                                <span
+                                    t-field="answer.survey_id.title"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.survey_id.title"
+                                />
+                            </td>
+                            <td id="td-create-date">
+                                <span
+                                    t-field="answer.create_date"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.create_date"
+                                    t-options="{'widget': 'datetime'}"
+                                />
+                            </td>
+                            <td id="td-buttons">
+                                <a
+                                    id="button-review-answer"
+                                    t-att-href="'/survey/print/%s?answer_token=%s&amp;review=True' % (answer.survey_id.access_token, answer.access_token)"
+                                    class="btn btn-link float-right no-decoration"
+                                >Review Answers</a>
+                            </td>
+                         </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+</odoo>

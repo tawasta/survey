@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_contact_ids
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-08 14:46+0000\n"
+"PO-Revision-Date: 2022-09-08 14:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                                <span>By clicking <strong>\"Add Contact\"</strong> the user with the given email address will be granted rights to view and edit this survey answer.</span>"
+msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                                <span>Klikkaamalla <strong>\"Lisää yhteyshenkilö\"</strong> antamaanne sähköpostiin liittyvälle käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta.</span>"
+
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Add Contact"
+msgstr "Lisää yhteyshenkilö"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_my_survey_answers_contacts
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Add Contacts"
+msgstr "Lisää yhteyshenkilöitä"
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/controllers/main.py:0
+#, python-format
+msgid "Added a new contact {contact} to answer {answer}."
+msgstr "Uusi yhteyshenkilö {contact} lisätty vastaukseen {answer}."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid ""
+"By clicking \"Add Contact\" the user with the given email address will be "
+"granted rights to view and edit this survey answer."
+msgstr ""
+"Klikkaamalla \"Lisää yhteyshenkilö\" antamaanne sähköpostiin liittyvälle "
+"käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Cancel"
+msgstr "Peruuta"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Close"
+msgstr "Sulje"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__contact_ids
+msgid "Contact Persons"
+msgstr "Yhteyshenkilöt"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_my_survey_answers_contacts
+msgid "Contacts"
+msgstr "Yhteyshenkilöt"
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/controllers/main.py:0
+#, python-format
+msgid "Could not deliver mail to %s"
+msgstr "Ei voitu toimittaa viestiä kumppanille %s"
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/controllers/main.py:0
+#, python-format
+msgid "Created a new user %s."
+msgstr "Luotiin uusi käyttäjä %s."
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__display_name
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Email"
+msgstr "Sähköposti"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "First Name"
+msgstr "Etunimi"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__id
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard____last_update
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Last Name"
+msgstr "Sukunimi"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Please enter the contact's email address."
+msgstr "Ole hyvä ja syötä yhteyshenkilön sähköpostiosoite."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Please enter the contact's first name."
+msgstr "Ole hyvä ja syötä yhteyshenkilön etunimi."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "Please enter the contact's last name."
+msgstr "Ole hyvä ja syötä yhteyshenkilön sukunimi."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid ""
+"Please enter the information associated with a user you want to grant "
+"permissions to view and edit this survey answer."
+msgstr ""
+"Ole hyvä ja anna tiedot käyttäjästä, jolle haluat antaa oikeudet tarkastella"
+" ja muokata tätä kyselyn vastausta."
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/controllers/main.py:0
+#, python-format
+msgid "Signup is not allowed for uninvited users."
+msgstr "Rekisteröityminen ei ole sallittu kutsumattomille käyttäjille."
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/controllers/main.py:0
+#, python-format
+msgid "Something went wrong in user creation with values %s."
+msgstr "Jotain meni pieleen käyttäjän luonnissa arvoilla %s."
+
+#. module: survey_contact_ids
+#: model:ir.model,name:survey_contact_ids.model_survey_mailing_wizard
+msgid "Survey Mailing Wizard"
+msgstr "Kyselyn Viestitys"
+
+#. module: survey_contact_ids
+#: model:ir.model,name:survey_contact_ids.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Kyselyn käyttäjän syöte"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+msgid "close"
+msgstr "sulje"

@@ -27,14 +27,16 @@ from odoo import http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
-from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.survey_contact_ids.controllers.portal import (
+    PortalSurveyAnswersContacts,
+)
 
 # 5. Local imports in the relative form:
 
 # 6. Unknown third party imports:
 
 
-class PortalSurveyAnswers(CustomerPortal):
+class PortalSurveyAnswersStages(PortalSurveyAnswersContacts):
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
         if "survey_answer_count" in counters:
@@ -73,4 +75,4 @@ class PortalSurveyAnswers(CustomerPortal):
                 "default_url": "/my/surveys",
             }
         )
-        return request.render("survey_stages.portal_my_survey_answers", values)
+        return request.render("survey_stages.portal_my_survey_answers_stages", values)

@@ -97,6 +97,16 @@ class SurveyMailingWizard(models.TransientModel):
     # 6. CRUD methods
 
     # 7. Action methods
+    def _get_email_values(self, recipient):
+        mail_values = {
+            "email_from": self.env.user.email_formatted,
+            "subject": self.subject,
+            "body_html": self.body,
+            "email_to": recipient.partner_id.email,
+            "attachment_ids": self.attachment_ids.ids,
+        }
+        return mail_values
+
     def action_message(self):
         self.ensure_one()
 
@@ -110,14 +120,7 @@ class SurveyMailingWizard(models.TransientModel):
         mail_values = []
         for recipient in self.recipients:
             msg_template = self.template_id
-            emails = {r.email for r in recipient.contact_ids if r.email}
-            mail_values = {
-                "email_from": self.env.user.email_formatted,
-                "subject": self.subject,
-                "body_html": self.body,
-                "email_to": ",".join(emails),
-                "attachment_ids": self.attachment_ids.ids,
-            }
+            mail_values = self._get_email_values(recipient)
             msg_template.sudo().send_mail(
                 recipient.id, email_values=mail_values, force_send=True
             )

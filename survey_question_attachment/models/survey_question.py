@@ -69,6 +69,7 @@ class SurveyQuestion(models.Model):
                 if (
                     self.validation_attachment_file_type
                     and self.validation_attachment_file_type == "pdf"
+                    and answer.get("values")
                 ):
                     for answer_data in answer.get("values"):
                         mimetype = guess_mimetype(
@@ -79,6 +80,7 @@ class SurveyQuestion(models.Model):
                 elif (
                     self.validation_attachment_file_type
                     and self.validation_attachment_file_type == "image"
+                    and answer.get("values")
                 ):
                     for answer_data in answer.get("values"):
                         mimetype = guess_mimetype(

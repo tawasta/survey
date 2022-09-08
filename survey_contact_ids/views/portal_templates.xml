@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_survey_answers_contacts"
+        inherit_id="survey_portal.portal_my_survey_answers"
+        name="My Survey Answers"
+    >
+        <xpath expr="//th[@id='th-create-date']" position="after">
+            <th id="th-contacts">Contacts</th>
+        </xpath>
+        <xpath expr="//td[@id='td-create-date']" position="after">
+            <td id="td-contacts">
+                <t t-set="contact_count" t-value="len(answer.contact_ids)" />
+                <t t-set="current_count" t-value="0" />
+                <t
+                    t-foreach="answer.contact_ids.sorted(key=lambda x: x.name)"
+                    t-as="contact"
+                >
+                    <t t-set="current_count" t-value="current_count +1" />
+                    <span
+                        t-field="contact.name"
+                        data-toggle="tooltip"
+                        t-att-title="contact.name"
+                    /><t t-if="contact_count - current_count != 0">, <br /></t>
+                </t>
+            </td>
+        </xpath>
+        <xpath expr="//a[@id='button-review-answer']" position="before">
+            <form
+                id="survey_contacts"
+                t-att-action="'/survey/contacts/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                method="post"
+                itemscope="itemscope"
+                itemprop="offers"
+                itemtype="http://schema.org/AggregateOffer"
+            >
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    t-att-value="request.csrf_token()"
+                />
+                <button
+                    id="button-add-contacts"
+                    type="submit"
+                    class="btn btn-link a-submit float-right no-decoration o_wait_lazy_js"
+                    role="button"
+                    title="Add Contacts"
+                    aria-label="Add Contacts"
+                >Add Contacts</button>
+            </form>
+        </xpath>
+    </template>
+</odoo>
