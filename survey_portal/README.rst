@@ -3,21 +3,14 @@
         :alt: License: AGPL-3
 
 =============
-Survey Stages
+Survey Portal
 =============
-* Ability to edit survey answers and send mails based on stages
+* Ability to view survey answers in portal
 
 Configuration
 =============
-Create stages or use default stages:
-    - Proposal
-    - Confirmed
-    - Canceled
+\-
 
-Create or use default mail templates for stages:
-    - Confirmation message
-    - Cancelation message
-      
 Usage
 =====
 \-

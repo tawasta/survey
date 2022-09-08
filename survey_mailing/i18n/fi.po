@@ -6,14 +6,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-18 17:53+0000\n"
-"PO-Revision-Date: 2022-07-18 17:53+0000\n"
+"POT-Creation-Date: 2022-09-08 14:51+0000\n"
+"PO-Revision-Date: 2022-09-08 14:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: survey_mailing
 #: model_terms:ir.ui.view,arch_db:survey_mailing.survey_mailing_view_form
@@ -36,24 +61,19 @@ msgid "Cancel"
 msgstr "Peruuta"
 
 #. module: survey_mailing
-#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__contact_ids
-msgid "Contact Persons"
-msgstr "Yhteyshenkilöt"
-
-#. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__body
 msgid "Contents"
-msgstr "Sisältö"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__create_uid
 msgid "Created by"
-msgstr "Luonut"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__create_date
 msgid "Created on"
-msgstr "Luotu"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__display_name
@@ -64,23 +84,55 @@ msgstr "Näyttönimi"
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_follower_ids
 msgid "Followers"
-msgstr "Seuraajat"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seurajat (Kanavat)"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seuraajat (Kumppanit)"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__id
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__id
 msgid "ID"
 msgstr "Tunniste (ID)"
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_needaction
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_has_error
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_is_follower
+msgid "Is Follower"
+msgstr "On seuraaja"
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard____last_update
@@ -91,12 +143,12 @@ msgstr "Viimeksi muokattu"
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Viimeksi päivittänyt"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__write_date
 msgid "Last Updated on"
-msgstr "Viimeksi päivitetty"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_main_attachment_id
@@ -106,17 +158,77 @@ msgstr "Pääliite"
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_has_error
 msgid "Message Delivery error"
-msgstr "Viestin lähetyksen virhe"
+msgstr ""
+
+#. module: survey_mailing
+#: model_terms:ir.ui.view,arch_db:survey_mailing.survey_mailing_view_form
+msgid "Message Email"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_ids
 msgid "Messages"
-msgstr "Viestit"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__recipients
 msgid "Recipients"
 msgstr "Vastaanottajat"
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: survey_mailing
 #: model_terms:ir.ui.view,arch_db:survey_mailing.survey_mailing_view_form
@@ -125,13 +237,22 @@ msgstr "Lähetä"
 
 #. module: survey_mailing
 #: model:ir.actions.act_window,name:survey_mailing.action_survey_mailing_tree
-msgid "Send message to contacts"
-msgstr "Lähetä viesti yhteyshenkilöille"
+msgid "Send message to user input"
+msgstr "Lähetä viesti vastauksille"
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__subject
 msgid "Subject"
-msgstr "Aihe"
+msgstr ""
 
 #. module: survey_mailing
 #: model_terms:ir.ui.view,arch_db:survey_mailing.survey_mailing_view_form
@@ -141,7 +262,7 @@ msgstr "Aihe..."
 #. module: survey_mailing
 #: model:ir.model,name:survey_mailing.model_survey_mailing_wizard
 msgid "Survey Mailing Wizard"
-msgstr "Kyselyn viestitoiminto"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model,name:survey_mailing.model_survey_user_input
@@ -149,12 +270,37 @@ msgid "Survey User Input"
 msgstr "Kyselyn käyttäjän syöte"
 
 #. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: survey_mailing
 #: code:addons/survey_mailing/wizard/survey_mailing.py:0
 #, python-format
 msgid "Unable to post message, please configure the sender's email address."
-msgstr "Viestiä ei voida lähettää, anna lähettäjän sähköpostiosoite."
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
 
 #. module: survey_mailing
 #: model:ir.model.fields,field_description:survey_mailing.field_survey_mailing_wizard__template_id
 msgid "Use template"
-msgstr "Käytä mallia"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,field_description:survey_mailing.field_survey_user_input__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: survey_mailing
+#: model:ir.model.fields,help:survey_mailing.field_survey_user_input__website_message_ids
+msgid "Website communication history"
+msgstr ""

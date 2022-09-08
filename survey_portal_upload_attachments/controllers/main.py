@@ -27,7 +27,7 @@ from odoo import http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
-from odoo.addons.survey_stages.controllers.main import SurveyStages
+from odoo.addons.survey.controllers.main import Survey
 
 # 5. Local imports in the relative form:
 
@@ -36,7 +36,7 @@ from odoo.addons.survey_stages.controllers.main import SurveyStages
 _logger = logging.getLogger(__name__)
 
 
-class SurveyAttachments(SurveyStages):
+class SurveyAttachments(Survey):
     @http.route(
         "/survey/attachments/<string:survey_token>/<string:answer_token>",
         type="json",

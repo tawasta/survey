@@ -2,22 +2,15 @@
         :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
         :alt: License: AGPL-3
 
-=============
-Survey Stages
-=============
-* Ability to edit survey answers and send mails based on stages
+===============
+Survey Contacts
+===============
+* Add multiple contacts to view and receive mails from survey answer
 
 Configuration
 =============
-Create stages or use default stages:
-    - Proposal
-    - Confirmed
-    - Canceled
+\-
 
-Create or use default mail templates for stages:
-    - Confirmation message
-    - Cancelation message
-      
 Usage
 =====
 \-

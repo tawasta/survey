@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record model="ir.actions.act_window" id="action_survey_mailing_tree">
-            <field name="name">Send message to contacts</field>
+            <field name="name">Send message to user input</field>
             <field name="res_model">survey.mailing.wizard</field>
             <field name="binding_model_id" ref="survey.model_survey_user_input" />
             <field name="view_mode">form</field>

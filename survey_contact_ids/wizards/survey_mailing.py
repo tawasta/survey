@@ -32,10 +32,9 @@ from odoo import models
 # 6. Unknown third party imports:
 
 
-class SurveyUserInput(models.Model):
+class SurveyMailingWizardContacts(models.TransientModel):
     # 1. Private attributes
-    _name = "survey.user_input"
-    _inherit = ["mail.thread", "survey.user_input", "mail.activity.mixin"]
+    _inherit = "survey.mailing.wizard"
 
     # 2. Fields declaration
 
@@ -48,23 +47,12 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
-    def action_message_user_input(self):
-        self.ensure_one()
-        template = self.env.ref(
-            "survey_mailing.survey_mailing_template_mail_attendees",
-            raise_if_not_found=False,
+    def _get_email_values(self, recipient):
+        mail_values = super(SurveyMailingWizardContacts, self)._get_email_values(
+            recipient
         )
-        local_context = dict(
-            self.env.context,
-            default_event_id=self.id,
-            default_template_id=template and template.id or False,
-        )
-        return {
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "res_model": "survey.mailling.wizard",
-            "target": "new",
-            "context": local_context,
-        }
+        emails = {r.email for r in recipient.contact_ids if r.email}
+        mail_values["email_to"] = ",".join(emails)
+        return mail_values
 
     # 8. Business methods

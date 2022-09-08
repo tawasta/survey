@@ -18,28 +18,20 @@
 #
 ##############################################################################
 {
-    "name": "Survey Stages",
-    "version": "14.0.1.1.0",
+    "name": "Survey Contacts",
+    "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Ability to edit survey answers and send mail based on stages",
+    "summary": "Add multiple contacts to view and receive mails from survey answer",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "survey_contact_ids",
-    ],
+    "depends": ["survey_mailing", "survey_portal", "partner_firstname"],
     "data": [
-        "security/ir.model.access.csv",
-        "data/survey_data.xml",
-        "views/assets.xml",
-        "views/survey_user_stage_views.xml",
-        "views/survey_menus.xml",
-        "views/survey_user_views.xml",
         "views/portal_templates.xml",
-        "views/survey_templates_management.xml",
-        "views/survey_templates_print.xml",
-        "views/survey_templates.xml",
+        "views/survey_templates_contacts.xml",
+        "views/survey_user_views.xml",
+        "views/assets.xml",
     ],
 }

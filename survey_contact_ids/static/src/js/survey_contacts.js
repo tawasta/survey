@@ -1,4 +1,4 @@
-odoo.define("survey_stages.survey_contacts", function (require) {
+odoo.define("survey_contact_ids.survey_contacts", function (require) {
     "use strict";
     var ajax = require("web.ajax");
     var Widget = require("web.Widget");
