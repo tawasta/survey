@@ -19,11 +19,13 @@
 ##############################################################################
 
 # 1. Standard library imports:
+from datetime import datetime
+
+# 3. Odoo imports (openerp):
+from odoo import _, fields, models
 
 # 2. Known third party imports:
 
-# 3. Odoo imports (openerp):
-from odoo import _, models
 
 # 4. Imports from Odoo modules:
 
@@ -36,6 +38,7 @@ class SurveyUserInputXlsx(models.AbstractModel):
     # 1. Private attributes
     _name = "report.survey_user_input_report_xlsx.user_input_report_xlsx"
     _inherit = "report.report_xlsx.abstract"
+    _description = "Survey User Input Report XLSX"
 
     # 2. Fields declaration
 
@@ -71,7 +74,10 @@ class SurveyUserInputXlsx(models.AbstractModel):
         row_fields = [
             user_input.survey_id.title,
             user_input.partner_id.name,
-            user_input.create_date,
+            datetime.strftime(
+                fields.Datetime.context_timestamp(self, user_input.create_date),
+                "%-d.%-m.%-Y %-H.%M",
+            ),
         ]
         return row_fields
 

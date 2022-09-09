@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <report
-        id="survey_user_input_xlsx"
-        model="survey.user_input"
-        string="Print to XLSX"
-        report_type="xlsx"
-        name="survey_user_input_report_xlsx.user_input_report_xlsx"
-        file="survey-answers"
-        attachment_use="False"
-    />
+    <record id="survey_user_input_xlsx" model="ir.actions.report">
+        <field name="name">Print Survey Participations to XLSX</field>
+        <field name="model">survey.user_input</field>
+        <field name="report_type">xlsx</field>
+        <field
+            name="report_name"
+        >survey_user_input_report_xlsx.user_input_report_xlsx</field>
+        <field
+            name="report_file"
+        >survey_user_input_report_xlsx.user_input_report_xlsx</field>
+        <field name="print_report_name">'Survey Participations'</field>
+        <field name="binding_model_id" ref="survey.model_survey_user_input" />
+        <field name="binding_type">report</field>
+    </record>
 </odoo>

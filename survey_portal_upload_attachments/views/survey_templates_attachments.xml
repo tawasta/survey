@@ -47,15 +47,17 @@
                                         >×</a>
                                         Please upload additional attachments for this survey answer.
                                     </p>
+                                    <div class="row">
                                         <t
-                                        t-foreach="survey.question_and_page_ids"
-                                        t-as="question"
-                                    >
+                                            t-foreach="survey.question_and_page_ids"
+                                            t-as="question"
+                                        >
                                             <t
-                                            t-if="not question.is_page and question in answer.predefined_question_ids"
-                                            t-call="survey_portal_upload_attachments.portal_question_container"
-                                        />
+                                                t-if="not question.is_page and question in answer.predefined_question_ids"
+                                                t-call="survey_portal_upload_attachments.portal_question_container"
+                                            />
                                         </t>
+                    </div>
                                 </div>
                             </div>
                         </div>
@@ -97,27 +99,31 @@
             t-value="answer.user_input_line_ids.filtered(lambda line: line.question_id == question)"
         />
         <t t-if="question.question_type == 'attachment'">
-            <div class="row">
-                <div class="col-lg my-2">
+                <div class="form-group col-lg-6">
+                    <label
+                    t-field="question.title"
+                    t-att-for="question.id"
+                    class="col-form-label"
+                />
                     <input
-                        type="file"
-                        t-att-name="question.id"
-                        t-att-data-name="question.id"
-                        t-att-id="'file_name_%d' % question.id"
-                        t-att-data-question-type="question.question_type"
-                        t-att-validation-size-max="question.validation_max_attachment_filesize"
-                        t-att-multiple="None if not question.is_multiple_attachments else 'multiple'"
-                        t-att-accept="None if not question.validation_attachment_file_type else ('application/pdf' if question.validation_attachment_file_type == 'pdf' else ('image/*' if question.validation_attachment_file_type == 'image' else None))"
-                        class="form_control portal_question_attachment bg_transparent text-dark rounded-0 p-0"
-                    />
+                    type="file"
+                    t-att-name="question.id"
+                    t-att-data-name="question.id"
+                    t-att-id="'file_name_%d' % question.id"
+                    t-att-data-question-type="question.question_type"
+                    t-att-validation-size-max="question.validation_max_attachment_filesize"
+                    t-att-multiple="None if not question.is_multiple_attachments else 'multiple'"
+                    t-att-accept="None if not question.validation_attachment_file_type else ('application/pdf' if question.validation_attachment_file_type == 'pdf' else ('image/*' if question.validation_attachment_file_type == 'image' else None))"
+                    class="form-control-file"
+                />
                     <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
                         <div class="o_survey_attachment_answer" t-att-id="file.id">
                             <a
-                                t-att-href="file.link_url"
-                                aria-label="Download"
-                                title="Download"
-                                target="_blank"
-                            >
+                            t-att-href="file.link_url"
+                            aria-label="Download"
+                            title="Download"
+                            target="_blank"
+                        >
                                 <i class="fa fa-download" />
                                 <span>
                                     <t t-esc="file.name" />
@@ -125,7 +131,6 @@
                             </a>
                         </div>
                     </t>
-                </div>
             </div>
         </t>
     </template>

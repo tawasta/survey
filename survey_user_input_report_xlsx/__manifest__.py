@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey User Input Report XLSX",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Print an xlsx report from survey user inputs",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -29,5 +29,7 @@
     "installable": True,
     "external_dependencies": {"python": ["xlsxwriter"]},
     "depends": ["survey_string_answer", "report_xlsx"],
-    "data": ["report/survey_user_input_report_xlsx.xml"],
+    "data": [
+        "report/survey_user_input_report_xlsx.xml",
+    ],
 }

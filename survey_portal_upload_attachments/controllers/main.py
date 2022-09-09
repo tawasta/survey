@@ -18,10 +18,9 @@
 #
 ##############################################################################
 
-import logging
-
 # 1. Standard library imports:
-import os
+import base64
+import logging
 
 # 2. Known third party imports:
 # 3. Odoo imports (openerp):
@@ -39,16 +38,57 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyAttachments(Survey):
-    def _validate_filesize(self, file, max_size):
-        file.seek(0, os.SEEK_END)
-        file_size = file.tell()
-        file.seek(0)
-        if file_size > max_size:
+    def _validate_filesize(self, file_data, max_size):
+        if len(file_data) > max_size:
             _logger.warning(
-                _("Attachment filesize is too big: %d MB") % (file_size / 1024 / 1024)
+                _("Attachment filesize is too big: %d MB")
+                % (len(file_data) / 1024 / 1024)
             )
             return False
         return True
+
+    def _save_line_attachment(self, answer_sudo, file_input):
+        question_id = request.env["survey.question"].search(
+            [("id", "=", file_input[0])]
+        )
+        file = file_input[1]
+        file_data = file.read()
+        max_size = question_id.validation_max_attachment_filesize * 1024 * 1024
+        if file.filename and self._validate_filesize(file_data, max_size):
+            vals = {
+                "user_input_id": answer_sudo.id,
+                "question_id": question_id.id,
+                "skipped": False,
+                "answer_type": question_id.question_type,
+                "value_attachment_ids": [
+                    (
+                        0,
+                        4,
+                        {
+                            "name": file.filename,
+                            "store_fname": file.filename,
+                            "datas": base64.b64encode(file_data),
+                            "description": "Survey Answer Attachment",
+                            "type": "binary",
+                            "res_model": "survey.user_input.line",
+                        },
+                    )
+                ],
+            }
+            # _logger.debug(vals)
+            answer_line = request.env["survey.user_input.line"].search(
+                [
+                    ("user_input_id", "=", answer_sudo.id),
+                    ("question_id", "=", question_id.id),
+                ],
+                limit=1,
+            )
+            answer_line.write(vals)
+            _logger.info(
+                _("Attachment {file} uploaded for answer line {line}.").format(
+                    file=file.filename, line=answer_line
+                ),
+            )
 
     @http.route(
         "/survey/attachments/<string:survey_token>/<string:answer_token>",
@@ -135,32 +175,5 @@ class SurveyAttachments(Survey):
         if answer_sudo and request.env.user.partner_id in answer_sudo.contact_ids:
             request_files = request.httprequest.files
             for file_input in request_files.items(multi=True):
-                question_id = request.env["survey.question"].search(
-                    [("id", "=", file_input[0])]
-                )
-                file = file_input[1]
-                max_size = question_id.validation_max_attachment_filesize * 1024 * 1024
-                if self._validate_filesize(file, max_size):
-                    vals = {
-                        "user_input_id": answer_sudo.id,
-                        "question_id": question_id.id,
-                        "skipped": False,
-                        "answer_type": question_id.question_type,
-                        "value_attachment_ids": [
-                            (
-                                0,
-                                4,
-                                {
-                                    "name": file.filename,
-                                    "store_fname": file.filename,
-                                    "datas": file.read(),
-                                    "description": "Survey Answer Attachment",
-                                    "type": "binary",
-                                    "res_model": "survey.user_input.line",
-                                },
-                            )
-                        ],
-                    }
-                    _logger.debug(vals)
-                    # TODO: Save attachment
+                self._save_line_attachment(answer_sudo, file_input)
         return request.redirect("/my/surveys")
