@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-08 14:46+0000\n"
-"PO-Revision-Date: 2022-09-08 14:46+0000\n"
+"POT-Creation-Date: 2022-09-09 16:29+0000\n"
+"PO-Revision-Date: 2022-09-09 16:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,18 @@ msgid ""
 msgstr ""
 "<i class=\"fa fa-info-circle\"/>\n"
 "                                <span>Klikkaamalla <strong>\"Lataa tiedostoja\"</strong> lisätyt tiedostot tallennetaan tämän kyselyn vastaukseen.</span>"
+
+#. module: survey_portal_upload_attachments
+#: code:addons/survey_portal_upload_attachments/controllers/main.py:0
+#, python-format
+msgid "Attachment filesize is too big: %d MB"
+msgstr "Liitetiedoston tiedostokoko on liian iso: %d MB"
+
+#. module: survey_portal_upload_attachments
+#: code:addons/survey_portal_upload_attachments/controllers/main.py:0
+#, python-format
+msgid "Attachment {file} uploaded for answer line {line}."
+msgstr "Liitetiedosto {file} ladattu vastausriville {line}."
 
 #. module: survey_portal_upload_attachments
 #: model_terms:ir.ui.view,arch_db:survey_portal_upload_attachments.survey_attachments_modal

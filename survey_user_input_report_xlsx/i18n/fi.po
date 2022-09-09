@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 20:01+0000\n"
-"PO-Revision-Date: 2022-09-05 20:01+0000\n"
+"POT-Creation-Date: 2022-09-09 16:28+0000\n"
+"PO-Revision-Date: 2022-09-09 16:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: survey_user_input_report_xlsx
+#: model:ir.actions.report,print_report_name:survey_user_input_report_xlsx.survey_user_input_xlsx
+msgid "'Survey Participations'"
+msgstr "'Kyselyn Osallistumiset'"
 
 #. module: survey_user_input_report_xlsx
 #: code:addons/survey_user_input_report_xlsx/report/survey_user_input_report_xlsx.py:0
@@ -44,8 +49,8 @@ msgstr "Kumppani"
 
 #. module: survey_user_input_report_xlsx
 #: model:ir.actions.report,name:survey_user_input_report_xlsx.survey_user_input_xlsx
-msgid "Print to XLSX"
-msgstr "Tulosta XLSX"
+msgid "Print Survey Participations to XLSX"
+msgstr "Tulosta kyselyn osallistumiset exceliin"
 
 #. module: survey_user_input_report_xlsx
 #: code:addons/survey_user_input_report_xlsx/report/survey_user_input_report_xlsx.py:0
@@ -55,5 +60,5 @@ msgstr "Kysely"
 
 #. module: survey_user_input_report_xlsx
 #: model:ir.model,name:survey_user_input_report_xlsx.model_report_survey_user_input_report_xlsx_user_input_report_xlsx
-msgid "report.survey_user_input_report_xlsx.user_input_report_xlsx"
-msgstr ""
+msgid "Survey User Input Report XLSX"
+msgstr "Kyselyn käytäjäsyötteen raportti XLSX"
