@@ -36,6 +36,11 @@
                                             <t t-esc="line.value_date.strftime('%d.%m.%Y')"></t>
                                         </div>
                                    </t>
+                                   <t t-if="line.answer_type == 'datetime'">
+                                        <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                            <t t-esc="line.value_datetime.strftime('%d.%m.%Y %H:%M:%S')"></t>
+                                        </div>
+                                   </t>
                                    <t t-if="line.answer_type == 'suggestion'">
                                         <t t-foreach="line.question_id.suggested_answer_ids" t-as="answer">
                                             <t t-if="len(line.question_id.suggested_answer_ids) == 1">
