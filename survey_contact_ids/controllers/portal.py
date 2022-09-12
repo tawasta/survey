@@ -23,7 +23,6 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
@@ -35,42 +34,8 @@ from odoo.addons.survey_portal.controllers.portal import PortalSurveyAnswers
 
 
 class PortalSurveyAnswersContacts(PortalSurveyAnswers):
-    def _prepare_home_portal_values(self, counters):
-        values = super()._prepare_home_portal_values(counters)
-        if "survey_answer_count" in counters:
-            survey_answer_count = (
-                request.env["survey.user_input"]
-                .sudo()
-                .search_count(
-                    [
-                        ("contact_ids", "in", request.env.user.partner_id.id),
-                        ("test_entry", "!=", True),
-                    ]
-                )
-            )
-            values["survey_answer_count"] = survey_answer_count or 0
-        return values
-
-    @http.route(["/my/surveys"], type="http", auth="user", website=True)
-    def portal_my_surveys(self, **kw):
-        values = self._prepare_portal_layout_values()
-        survey_answers = (
-            request.env["survey.user_input"]
-            .sudo()
-            .search(
-                [
-                    ("contact_ids", "in", request.env.user.partner_id.id),
-                    ("test_entry", "!=", True),
-                ]
-            )
-        )
-        values.update(
-            {
-                "survey_answers": survey_answers,
-                "page_name": "survey_answer",
-                "default_url": "/my/surveys",
-            }
-        )
-        return request.render(
-            "survey_contact_ids.portal_my_survey_answers_contacts", values
-        )
+    def _get_survey_answers_domain(self):
+        return [
+            ("contact_ids", "in", request.env.user.partner_id.id),
+            ("test_entry", "!=", True),
+        ]

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="survey_fill_form_done_view_portal"
+        inherit_id="survey.survey_fill_form_done"
+    >
+        <xpath expr="//t[@t-call='survey.survey_button_retake']" position="after">
+            <t t-call="survey_portal.survey_button_view_portal" />
+        </xpath>
+    </template>
+</odoo>

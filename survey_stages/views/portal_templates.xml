@@ -32,7 +32,9 @@
             </td>
         </xpath>
         <xpath expr="//a[@id='button-review-answer']" position="before">
-            <t t-if="answer.is_editable">
+            <t
+                t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft']"
+            >
                 <a
                     id="button-edit-answers"
                     t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
