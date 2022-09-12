@@ -9,8 +9,9 @@
                             <div style="text-align: center; line-height: 0.4rem; margin-bottom: 32px;">
                                 <h1><t t-esc="o.survey_id.title"/></h1>
                             </div>
-                            
+                            <t t-set="previous_degree_list" t-value="[]"/>
                             <t t-foreach="o.user_input_line_ids" t-as="line">
+                                <t t-if="line.question_id not in previous_degree_list">
                                 <div style="width:100%; min-height:180px;">
                                     <div style="margin-bottom:5px; width:100%;">
                                         <h2><t t-esc="line.question_id.title"/></h2>
@@ -42,34 +43,45 @@
                                         </div>
                                    </t>
                                    <t t-if="line.answer_type == 'suggestion'">
-                                        <t t-foreach="line.question_id.suggested_answer_ids" t-as="answer">
-                                            <t t-if="len(line.question_id.suggested_answer_ids) == 1">
-                                                <t t-if="answer == line.suggested_answer_id">
-                                                     <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
-                                                        
-                                                        <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
-                                                    </div>
-                                                </t>
-                                                <t t-else="">
-                                                    <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
-                                                        <span style="font-weight: bold;" t-field="answer.value" />
-                                                    </div>
+                                        <t t-if="line.question_id not in previous_degree_list">
+                                            <t t-set="line_list" t-value="[]"/>
+                                            <t t-foreach="o.user_input_line_ids" t-as="current_line">
+                                                <t t-if="current_line.question_id == line.question_id">
+                                                    <t t-set="new_answer_id" t-value="[current_line.suggested_answer_id]"/>
+                                                    <t t-set="line_list" t-value="line_list + new_answer_id"/>
                                                 </t>
                                             </t>
-                                            <t t-else="">
-                                                <t t-if="answer == line.suggested_answer_id">
-                                                     <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
-                                                        
-                                                        <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
-                                                    </div>
+                                            <t t-foreach="line.question_id.suggested_answer_ids" t-as="answer">
+                                                <t t-if="len(line.question_id.suggested_answer_ids) == 1">
+                                                    <t t-if="answer == line.suggested_answer_id">
+                                                         <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                            
+                                                            <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
+                                                        </div>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                            <span style="font-weight: bold;" t-field="answer.value" />
+                                                        </div>
+                                                    </t>
                                                 </t>
                                                 <t t-else="">
-                                                    <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
-                                                        <span style="font-weight: bold;" t-field="answer.value" />
-                                                    </div>
+                                                    <t t-if="answer in line_list">
+                                                         <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                            
+                                                            <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
+                                                        </div>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                            <span style="font-weight: bold;" t-field="answer.value" />
+                                                        </div>
+                                                    </t>
                                                 </t>
+                                                
                                             </t>
-                                            
+                                            <t t-set="new_degree_id" t-value="[line.question_id]"/>
+                                            <t t-set="previous_degree_list" t-value="previous_degree_list + new_degree_id"/>
                                         </t>
                                    </t>
                                    <t t-if="line.answer_type == 'privacy'">
@@ -85,6 +97,7 @@
                                </div>
                                <br />
                            </div>
+                        </t>
                        </t>
 
                    </div>
