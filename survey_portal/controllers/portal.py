@@ -95,7 +95,7 @@ class PortalSurveyAnswers(CustomerPortal):
         if date_begin:
             domain += [("create_date", ">", date_begin)]
         # count for pager
-        answer_count = SurveyUserInput.search_count(domain)
+        answer_count = SurveyUserInput.sudo().search_count(domain)
         pager = portal_pager(
             url="/my/surveys",
             url_args={"date_begin": date_begin, "sortby": sortby},
@@ -103,7 +103,7 @@ class PortalSurveyAnswers(CustomerPortal):
             page=page,
             step=self._items_per_page,
         )
-        answers = SurveyUserInput.search(
+        answers = SurveyUserInput.sudo().search(
             domain, order=order, limit=self._items_per_page, offset=pager["offset"]
         )
         values.update(
