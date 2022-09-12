@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import http
+from odoo import _
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
@@ -37,42 +37,42 @@ from odoo.addons.survey_contact_ids.controllers.portal import (
 
 
 class PortalSurveyAnswersStages(PortalSurveyAnswersContacts):
-    def _prepare_home_portal_values(self, counters):
-        values = super()._prepare_home_portal_values(counters)
-        if "survey_answer_count" in counters:
-            survey_answer_count = (
-                request.env["survey.user_input"]
-                .sudo()
-                .search_count(
-                    [
-                        ("contact_ids", "in", request.env.user.partner_id.id),
-                        ("test_entry", "!=", True),
-                        ("is_hidden", "!=", True),
-                    ]
-                )
-            )
-            values["survey_answer_count"] = survey_answer_count or 0
-        return values
+    def _get_survey_answers_domain(self):
+        return [
+            ("contact_ids", "in", request.env.user.partner_id.id),
+            ("test_entry", "!=", True),
+            ("is_hidden", "!=", True),
+        ]
 
-    @http.route(["/my/surveys"], type="http", auth="user", website=True)
-    def portal_my_surveys(self, **kw):
-        values = self._prepare_portal_layout_values()
-        survey_answers = (
-            request.env["survey.user_input"]
-            .sudo()
-            .search(
-                [
-                    ("contact_ids", "in", request.env.user.partner_id.id),
-                    ("test_entry", "!=", True),
-                    ("is_hidden", "!=", True),
-                ]
-            )
-        )
-        values.update(
+    def _get_survey_answers_searchbar_sortings(self):
+        vals = super(
+            PortalSurveyAnswersStages, self
+        )._get_survey_answers_searchbar_sortings()
+        vals.update({"stage": {"label": _("Stage"), "order": "stage_id desc"}})
+        return vals
+
+    def _get_survey_answers_searchbar_filters(self):
+        vals = super(
+            PortalSurveyAnswersStages, self
+        )._get_survey_answers_searchbar_filters()
+        vals.update(
             {
-                "survey_answers": survey_answers,
-                "page_name": "survey_answer",
-                "default_url": "/my/surveys",
+                "draft": {
+                    "label": _("Draft"),
+                    "domain": [("stage_id.is_editable", "=", True)],
+                },
+                "sent": {
+                    "label": _("Sent"),
+                    "domain": [("stage_id.is_sent", "=", True)],
+                },
+                "confirmed": {
+                    "label": _("Confirmed"),
+                    "domain": [("stage_id.is_accepted", "=", True)],
+                },
+                "canceled": {
+                    "label": _("Canceled"),
+                    "domain": [("stage_id.is_cancel", "=", True)],
+                },
             }
         )
-        return request.render("survey_stages.portal_my_survey_answers_stages", values)
+        return vals

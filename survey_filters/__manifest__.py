@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2021- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#    Copyright 2022- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,20 +18,15 @@
 #
 ##############################################################################
 {
-    "name": "Survey Portal",
-    "version": "14.0.1.0.1",
+    "name": "Survey Filters",
+    "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Ability to view survey answers in portal",
+    "summary": "Order Surveys by sequence",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": [
-        "views/portal_templates.xml",
-        "views/survey_templates_management.xml",
-        "views/survey_templates_print.xml",
-        "views/survey_templates.xml",
-    ],
+    "data": ["views/templates.xml"],
 }

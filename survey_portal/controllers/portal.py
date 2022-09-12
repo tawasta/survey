@@ -23,11 +23,11 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import http
+from odoo import _, http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
-from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
 
 # 5. Local imports in the relative form:
 
@@ -41,34 +41,105 @@ class PortalSurveyAnswers(CustomerPortal):
             survey_answer_count = (
                 request.env["survey.user_input"]
                 .sudo()
-                .search_count(
-                    [
-                        ("partner_id.id", "=", request.env.user.partner_id.id),
-                        ("test_entry", "!=", True),
-                    ]
-                )
+                .search_count(self._get_survey_answers_domain())
             )
             values["survey_answer_count"] = survey_answer_count or 0
         return values
 
-    @http.route(["/my/surveys"], type="http", auth="user", website=True)
-    def portal_my_surveys(self, **kw):
+    def _survey_answer_get_page_view_values(self, answer, **kwargs):
+        values = {
+            "page_name": "survey_answer",
+            "answer": answer,
+        }
+        return values
+
+    def _get_survey_answers_domain(self):
+        return [
+            ("partner_id.id", "=", request.env.user.partner_id.id),
+            ("test_entry", "!=", True),
+        ]
+
+    def _get_survey_answers_searchbar_sortings(self):
+        return {
+            "date": {"label": _("Date"), "order": "create_date desc"},
+            "name": {"label": _("Name"), "order": "display_name desc"},
+        }
+
+    def _get_survey_answers_searchbar_filters(self):
+        return {
+            "all": {"label": _("All"), "domain": []},
+        }
+
+    @http.route(
+        ["/my/surveys", "/my/surveys/page/<int:page>"],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def portal_my_surveys(
+        self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, **kw
+    ):
         values = self._prepare_portal_layout_values()
-        survey_answers = (
+        SurveyUserInput = request.env["survey.user_input"]
+        domain = self._get_survey_answers_domain()
+        searchbar_sortings = self._get_survey_answers_searchbar_sortings()
+        # default sort by
+        if not sortby:
+            sortby = "date"
+        order = searchbar_sortings[sortby]["order"]
+        searchbar_filters = self._get_survey_answers_searchbar_filters()
+        # default filter value
+        if not filterby:
+            filterby = "all"
+        domain += searchbar_filters[filterby]["domain"]
+        if date_begin:
+            domain += [("create_date", ">", date_begin)]
+        # count for pager
+        answer_count = SurveyUserInput.search_count(domain)
+        pager = portal_pager(
+            url="/my/surveys",
+            url_args={"date_begin": date_begin, "sortby": sortby},
+            total=answer_count,
+            page=page,
+            step=self._items_per_page,
+        )
+        answers = SurveyUserInput.search(
+            domain, order=order, limit=self._items_per_page, offset=pager["offset"]
+        )
+        values.update(
+            {
+                "date": date_begin,
+                "survey_answers": answers,
+                "page_name": "survey_answer",
+                "pager": pager,
+                "default_url": "/my/surveys",
+                "searchbar_sortings": searchbar_sortings,
+                "sortby": sortby,
+                "searchbar_filters": searchbar_filters,
+                "filterby": filterby,
+            }
+        )
+        return request.render("survey_portal.portal_my_survey_answers", values)
+
+    @http.route(
+        ["/my/surveys/<int:user_input_id>"], type="http", auth="user", website=True
+    )
+    def portal_my_survey_detail(
+        self, user_input_id, access_token=None, report_type=None, download=False, **kw
+    ):
+        answer_sudo = (
             request.env["survey.user_input"]
             .sudo()
             .search(
                 [
                     ("partner_id.id", "=", request.env.user.partner_id.id),
                     ("test_entry", "!=", True),
-                ]
+                    ("id", "=", user_input_id),
+                ],
+                limit=1,
             )
         )
-        values.update(
-            {
-                "survey_answers": survey_answers,
-                "page_name": "survey_answer",
-                "default_url": "/my/surveys",
-            }
-        )
-        return request.render("survey_portal.portal_my_survey_answers", values)
+        if not answer_sudo:
+            return request.redirect("/my")
+        values = self._survey_answer_get_page_view_values(answer_sudo)
+        return request.render("survey_portal.portal_answer_page", values)

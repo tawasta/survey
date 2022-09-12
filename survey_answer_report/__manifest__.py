@@ -18,20 +18,19 @@
 #
 ##############################################################################
 {
-    "name": "Survey Portal",
-    "version": "14.0.1.0.1",
+    "name": "Survey Answer Report",
+    "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Ability to view survey answers in portal",
+    "summary": "Print an pdf report from survey answer",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey"],
+    "external_dependencies": {"python": ["xlsxwriter"]},
+    "depends": ["survey_string_answer", "survey"],
     "data": [
-        "views/portal_templates.xml",
-        "views/survey_templates_management.xml",
-        "views/survey_templates_print.xml",
-        "views/survey_templates.xml",
+        "report/report_menu.xml",
+        "report/report_survey_answer.xml",
     ],
 }

@@ -50,4 +50,48 @@
             </form>
         </xpath>
     </template>
+    <template
+        id="portal_answer_page_contact_ids"
+        name="Survey Answer Portal Template"
+        inherit_id="survey_portal.portal_answer_page"
+    >
+        <xpath expr="//li[@id='sidebar_partner']" position="after">
+            <li
+                id="sidebar_contact"
+                t-if="answer.contact_ids"
+                class="list-group-item flex-grow-1"
+            >
+                <div class="small mb-1"><strong
+                        class="text-muted"
+                    >Contacts</strong></div>
+                <t t-foreach="answer.contact_ids" t-as="contact">
+                    <div class="row">
+                        <div class="col flex-grow-0 pr-2">
+                            <img
+                                t-if="contact.image_1024"
+                                class="rounded-circle mt-1 o_portal_contact_img"
+                                t-att-src="image_data_uri(contact.image_1024)"
+                                alt="Contact"
+                            />
+                            <img
+                                t-else=""
+                                class="rounded-circle mt-1 o_portal_contact_img"
+                                src="/web/static/src/img/user_menu_avatar.png"
+                                alt="Contact"
+                            />
+                        </div>
+                        <div class="col pl-0">
+                            <span
+                                t-esc="contact"
+                                t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'
+                            />
+                        </div>
+                    </div>
+                </t>
+            </li>
+        </xpath>
+        <xpath expr="//li[@id='sidebar_partner']" position="attributes">
+            <attribute name="t-if">1==0</attribute>
+        </xpath>
+    </template>
 </odoo>

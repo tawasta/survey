@@ -8,11 +8,11 @@
     >
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li
-                t-if="page_name == 'survey_answers'"
-                t-attf-class="breadcrumb-item #{'active ' if not survey else ''}"
+                t-if="page_name == 'survey_answer'"
+                t-attf-class="breadcrumb-item #{'active ' if not answer else ''}"
             >
                 <a
-                    t-if="survey_answer"
+                    t-if="answer"
                     t-attf-href="/my/surveys?{{ keep_query() }}"
                 >Survey Answers</a>
                 <t t-else="">Survey Answers</t>
@@ -55,11 +55,12 @@
                     <t t-foreach="survey_answers" t-as="answer">
                         <tr>
                             <td id="td-survey">
-                                <span
-                                    t-field="answer.survey_id.title"
-                                    data-toggle="tooltip"
+                                <a
+                                    t-att-href="'/my/surveys/%d' % answer.id"
                                     t-att-title="answer.survey_id.title"
-                                />
+                                >
+                                    <t t-esc="answer.survey_id.title" />
+                                </a>
                             </td>
                             <td id="td-create-date">
                                 <span
@@ -81,5 +82,82 @@
                 </tbody>
             </t>
         </t>
+    </template>
+    <template
+        id="portal_answer_page"
+        name="Survey Answer Portal Template"
+        inherit_id="portal.portal_sidebar"
+        primary="True"
+    >
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-set="o_portal_fullwidth_alert" groups="survey.group_survey_manager">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (answer._name, answer.id, answer.env.ref('survey.action_survey_user_input').id)"
+                    />
+                </t>
+            </t>
+
+            <div class="row mt16 o_portal_answer_sidebar">
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
+                    <t t-set="title">
+                        <h2 class="mb-0">
+                            <b t-field="answer.display_name" />
+                        </h2>
+                    </t>
+
+                    <t t-set="entries">
+                        <ul
+                            class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
+                        >
+                            <li
+                                id="sidebar_partner"
+                                t-if="answer.partner_id"
+                                class="list-group-item flex-grow-1"
+                            >
+                                <div class="small mb-1"><strong
+                                        class="text-muted"
+                                    >Partner</strong></div>
+                                <div class="row">
+                                    <div class="col flex-grow-0 pr-2">
+                                        <img
+                                            t-if="answer.partner_id.image_1024"
+                                            class="rounded-circle mt-1 o_portal_contact_img"
+                                            t-att-src="image_data_uri(answer.partner_id.image_1024)"
+                                            alt="Contact"
+                                        />
+                                        <img
+                                            t-else=""
+                                            class="rounded-circle mt-1 o_portal_contact_img"
+                                            src="/web/static/src/img/user_menu_avatar.png"
+                                            alt="Contact"
+                                        />
+                                    </div>
+                                    <div class="col pl-0">
+                                        <span
+                                            t-field="answer.partner_id"
+                                            t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'
+                                        />
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+                <!-- Page Content -->
+                <div id="answer_content" class="col-12 col-lg">
+                    <div id="answer_communication" class="mt-4">
+                        <h2>History</h2>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="answer" />
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
     </template>
 </odoo>
