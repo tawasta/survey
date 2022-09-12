@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="survey_filter_assets" name="Survey filter assets">
+        <script
+                type="text/javascript"
+                src="/survey_filters/static/src/js/survey_filter.js"
+            />
+    </template>
+    <template id="survey_page_statistics_inner" inherit_id="survey.survey_page_statistics_inner">
+        <xpath expr="//div[@class='card-body']" position="inside">
+            <t
+                t-call-assets="survey_filters.survey_filter_assets"
+                lazy_load="True"
+            />
+            <div id="user_container" class="col-sm-4"
+              t-att-data-user="current_user if current_user else 0">
+              <!-- Categories -->
+              <select id="select_user" class="select2 w-100" autocomplete="off">
+                <option value="">All users</option>
+                <t t-foreach="users" t-as="u">
+                  <option t-att-value="u.id" t-att-selected="None if not current_user else current_user.id"><t t-esc="u.name"/></option>
+                </t>
+              </select>
+            </div>
+        </xpath>
+    </template>
+</odoo>

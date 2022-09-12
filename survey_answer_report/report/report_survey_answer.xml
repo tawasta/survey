@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_survey_answer">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div id="wrap" class="page" style="display: inline-block;">
+                            <div style="text-align: center; line-height: 0.4rem; margin-bottom: 32px;">
+                                <h1><t t-esc="o.survey_id.title"/></h1>
+                            </div>
+                            
+                            <t t-foreach="o.user_input_line_ids" t-as="line">
+                                <div style="width:100%; min-height:180px;">
+                                    <div style="margin-bottom:5px; width:100%;">
+                                        <h2><t t-esc="line.question_id.title"/></h2>
+                                    </div>
+                                    <div style="width:100%;">
+                                       <t t-if="line.answer_type == 'text_box'">
+                                        <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                            <span t-field="line.value_text_box"/>
+                                        </div>
+                                    </t>
+                                    <t t-if="line.answer_type == 'char_box'">
+                                        <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                            <span t-field="line.value_char_box"/>
+                                        </div>
+                                    </t>
+                                    <t t-if="line.answer_type == 'numerical_box'">
+                                        <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                            <t t-esc="line.value_numerical_box" />
+                                        </div>
+                                    </t>
+                                    <t t-if="line.answer_type == 'date'">
+                                        <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                            <t t-esc="line.value_date.strftime('%d.%m.%Y')"></t>
+                                        </div>
+                                   </t>
+                                   <t t-if="line.answer_type == 'suggestion'">
+                                        <t t-foreach="line.question_id.suggested_answer_ids" t-as="answer">
+                                            <t t-if="len(line.question_id.suggested_answer_ids) == 1">
+                                                <t t-if="answer == line.suggested_answer_id">
+                                                     <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                        
+                                                        <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div style="width:99%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                        <span style="font-weight: bold;" t-field="answer.value" />
+                                                    </div>
+                                                </t>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-if="answer == line.suggested_answer_id">
+                                                     <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                        
+                                                        <span style="font-weight: bold;"><t t-esc="answer.value"/> <span class="fa fa-check-circle"/></span>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <div style="width:49%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                                        <span style="font-weight: bold;" t-field="answer.value" />
+                                                    </div>
+                                                </t>
+                                            </t>
+                                            
+                                        </t>
+                                   </t>
+                                   <t t-if="line.answer_type == 'privacy'">
+
+                                   </t>
+                                   <t t-if="line.answer_type == 'attachment'">
+                                        <t t-foreach="line.question_id.value_attachment_ids" t-as="attachment">
+                                            <div style="border-color: #6C757D; border-bottom: 1px solid #6C757D;">
+                                                <span t-field="attachment.name"/>
+                                            </div>
+                                        </t>
+                                   </t>
+                               </div>
+                               <br />
+                           </div>
+                       </t>
+
+                   </div>
+               </t>
+           </t>
+       </t>
+   </template>
+</data>
+</odoo>
