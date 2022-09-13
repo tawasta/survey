@@ -157,7 +157,7 @@
                                    </t>
                                    <t t-if="line.answer_type == 'attachment'">
                                         <t
-                                                    t-foreach="line.question_id.value_attachment_ids"
+                                                    t-foreach="line.value_attachment_ids"
                                                     t-as="attachment"
                                                 >
                                             <div
