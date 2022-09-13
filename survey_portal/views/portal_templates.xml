@@ -104,10 +104,9 @@
                 <t t-call="portal.portal_record_sidebar">
                     <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
                     <t t-set="title">
-                        <h2 id="survey_portal_sidebar_title" class="mb-0">
-                            <b t-field="answer.display_name" />
-                        </h2>
-                        <div class="small"><i class="fa fa-clock-o" /><span
+                        <div id="survey_portal_sidebar_create_date" class="small"><i
+                                class="fa fa-clock-o"
+                            /><span
                                 class="o_portal_sidebar_createdate ml4"
                                 t-field="answer.create_date"
                                 t-options="{'widget': 'datetime'}"
