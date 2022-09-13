@@ -48,7 +48,7 @@
         name="Survey Answer Portal Template"
         inherit_id="survey_portal.portal_answer_page"
     >
-        <xpath expr="//h2[@id='survey_portal_sidebar_title']" position="after">
+        <xpath expr="//div[@id='survey_portal_sidebar_create_date']" position="before">
             <t t-set="answer_state">badge-default</t>
             <t t-if="answer.stage_id.is_editable">
                 <t t-set="answer_state">badge-warning</t>
