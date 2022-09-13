@@ -29,4 +29,39 @@
             </form>
         </xpath>
     </template>
+    <template
+        id="portal_answer_page_attachment"
+        name="Survey Answer Portal Template"
+        inherit_id="survey_portal.portal_answer_page"
+    >
+        <xpath
+            expr="//ul[@id='survey_portal_sidebar_list']//div[hasclass('o_download_pdf')]"
+            position="inside"
+        >
+            <div class="btn-group flex-grow-1 mr-1 mb-1">
+                <form
+                    id="survey_attachments"
+                    t-att-action="'/survey/attachments/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                    method="post"
+                    itemscope="itemscope"
+                    itemprop="offers"
+                    itemtype="http://schema.org/AggregateOffer"
+                    class="w-100"
+                >
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        t-att-value="request.csrf_token()"
+                    />
+                    <button
+                        type="submit"
+                        class="btn btn-secondary btn-block o_add_attachment_btn a-submit o_wait_lazy_js"
+                        role="button"
+                        title="Upload Attachments"
+                        aria-label="Upload Attachments"
+                    ><i class="fa fa-upload" /> Upload Attachments</button>
+                </form>
+            </div>
+        </xpath>
+    </template>
 </odoo>

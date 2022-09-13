@@ -176,4 +176,4 @@ class SurveyAttachments(Survey):
             request_files = request.httprequest.files
             for file_input in request_files.items(multi=True):
                 self._save_line_attachment(answer_sudo, file_input)
-        return request.redirect("/my/surveys")
+        return request.redirect("/my/surveys/%d" % answer_sudo.id)

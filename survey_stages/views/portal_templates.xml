@@ -43,4 +43,47 @@
             </t>
         </xpath>
     </template>
+    <template
+        id="portal_answer_page_stage"
+        name="Survey Answer Portal Template"
+        inherit_id="survey_portal.portal_answer_page"
+    >
+        <xpath expr="//h2[@id='survey_portal_sidebar_title']" position="after">
+            <t t-set="answer_state">badge-default</t>
+            <t t-if="answer.stage_id.is_editable">
+                <t t-set="answer_state">badge-warning</t>
+            </t>
+            <t t-if="answer.stage_id.is_accepted">
+                <t t-set="answer_state">badge-success</t>
+            </t>
+            <t t-if="answer.stage_id.is_cancel">
+                <t t-set="answer_state">badge-danger</t>
+            </t>
+            <t t-if="answer.stage_id.is_sent">
+                <t t-set="answer_state">badge-info</t>
+            </t>
+            <div><span
+                    t-attf-class="badge badge-pill o_portal_sidebar_stage ml4 {{answer_state}}"
+                    t-field="answer.stage_id.name"
+                    data-toggle="tooltop"
+                    t-att-title="answer.stage_id.name"
+                /></div>
+        </xpath>
+        <xpath
+            expr="//ul[@id='survey_portal_sidebar_list']//a[hasclass('o_review_survey_btn')]//.."
+            position="after"
+        >
+            <t
+                t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft']"
+            >
+                <div class="btn-group flex-grow-1 mr-1 mb-1">
+                    <a
+                        class="btn btn-secondary btn-block o_edit_survey_btn"
+                        t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                        title="Edit"
+                    ><i class="fa fa-pencil" /> Edit</a>
+                </div>
+            </t>
+        </xpath>
+    </template>
 </odoo>

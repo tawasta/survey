@@ -104,15 +104,33 @@
                 <t t-call="portal.portal_record_sidebar">
                     <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
                     <t t-set="title">
-                        <h2 class="mb-0">
+                        <h2 id="survey_portal_sidebar_title" class="mb-0">
                             <b t-field="answer.display_name" />
                         </h2>
+                        <div class="small"><i class="fa fa-clock-o" /><span
+                                class="o_portal_sidebar_createdate ml4"
+                                t-field="answer.create_date"
+                                t-options="{'widget': 'datetime'}"
+                            /></div>
                     </t>
-
                     <t t-set="entries">
                         <ul
                             class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
+                            id="survey_portal_sidebar_list"
                         >
+                            <li class="list-group-item flex-grow-1">
+                                <div
+                                    class="o_download_pdf btn-toolbar flex-sm-nowrap flex-column"
+                                >
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a
+                                            class="btn btn-secondary btn-block o_review_survey_btn"
+                                            t-att-href="'/survey/print/%s?answer_token=%s&amp;review=True' % (answer.survey_id.access_token, answer.access_token)"
+                                            title="Review"
+                                        ><i class="fa fa-eye" /> Review</a>
+                                    </div>
+                                </div>
+                            </li>
                             <li
                                 id="sidebar_partner"
                                 t-if="answer.partner_id"

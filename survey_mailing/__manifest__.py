@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Mailing",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "category": "Marketing/Surveys",
     "summary": "Send emails to survey user partners via chatter",
     "website": "https://gitlab.com/tawasta/odoo/survey",

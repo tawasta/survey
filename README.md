@@ -13,17 +13,17 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 |  | Allows scoring a single line text answer
 [survey_answer_report](survey_answer_report/) | 14.0.1.0.0 |  | Print an pdf report from survey answer
-[survey_contact_ids](survey_contact_ids/) | 14.0.1.0.1 |  | Add multiple contacts to view and receive mails from survey answer
+[survey_contact_ids](survey_contact_ids/) | 14.0.1.0.2 |  | Add multiple contacts to view and receive mails from survey answer
 [survey_filters](survey_filters/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
-[survey_mailing](survey_mailing/) | 14.0.1.1.0 |  | Send emails to survey user partners via chatter
-[survey_portal](survey_portal/) | 14.0.1.0.1 |  | Ability to view survey answers in portal
-[survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.0 |  | Upload attachments to surveys from portal
+[survey_mailing](survey_mailing/) | 14.0.1.1.1 |  | Send emails to survey user partners via chatter
+[survey_portal](survey_portal/) | 14.0.1.0.2 |  | Ability to view survey answers in portal
+[survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.1 |  | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.1 |  | Adds a new question type 'attachment' to survey
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 |  | Adds an option to show correct answers after the survey
-[survey_stages](survey_stages/) | 14.0.1.1.1 |  | Ability to edit survey answers and send mail based on stages
+[survey_stages](survey_stages/) | 14.0.1.1.3 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.0.1 |  | Print an xlsx report from survey user inputs
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 14.0.1.0.0 |  | Ability to align survey choice buttons vertically
