@@ -28,7 +28,11 @@
     "application": False,
     "installable": True,
     "external_dependencies": {"python": ["xlsxwriter"]},
-    "depends": ["survey_string_answer", "survey"],
+    "depends": [
+        "survey_string_answer",
+        "survey_question_privacy",
+        "survey_question_attachment",
+    ],
     "data": [
         "report/report_menu.xml",
         "report/report_survey_answer.xml",
