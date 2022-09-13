@@ -219,4 +219,4 @@ class SurveyContacts(Survey):
                 )
             )
 
-        return request.redirect("/my/surveys")
+        return request.redirect("/my/surveys/%d" % answer_sudo.id)

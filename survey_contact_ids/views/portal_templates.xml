@@ -93,5 +93,35 @@
         <xpath expr="//li[@id='sidebar_partner']" position="attributes">
             <attribute name="t-if">1==0</attribute>
         </xpath>
+        <xpath
+            expr="//ul[@id='survey_portal_sidebar_list']//div[hasclass('o_download_pdf')]"
+            position="inside"
+        >
+            <div class="btn-group flex-grow-1 mr-1 mb-1">
+                <form
+                    id="survey_contacts"
+                    t-att-action="'/survey/contacts/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                    method="post"
+                    itemscope="itemscope"
+                    itemprop="offers"
+                    itemtype="http://schema.org/AggregateOffer"
+                    class="w-100"
+                >
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        t-att-value="request.csrf_token()"
+                    />
+                    <button
+                        id="button-add-contacts"
+                        type="submit"
+                        class="btn btn-secondary btn-block o_add_contact_btn a-submit o_wait_lazy_js"
+                        role="button"
+                        title="Add Contacts"
+                        aria-label="Add Contacts"
+                    ><i class="fa fa-address-book" /> Add Contacts</button>
+                </form>
+            </div>
+        </xpath>
     </template>
 </odoo>
