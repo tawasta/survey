@@ -77,6 +77,7 @@ class SurveyUserInput(models.Model):
                 answer.stage_id.mail_template_id,
                 {
                     "composition_mode": "comment",
+                    "message_type": "comment",
                     "auto_delete_message": True,
                     "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
                         "mail.mt_comment"

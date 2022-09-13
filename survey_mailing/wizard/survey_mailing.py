@@ -97,15 +97,17 @@ class SurveyMailingWizard(models.TransientModel):
     # 6. CRUD methods
 
     # 7. Action methods
-    def _get_email_values(self, recipient):
-        mail_values = {
+    def _get_message_values(self):
+        vals = {
             "email_from": self.env.user.email_formatted,
             "subject": self.subject,
-            "body_html": self.body,
-            "email_to": recipient.partner_id.email,
+            "body": self.body,
+            "notify_by_email": True,
             "attachment_ids": self.attachment_ids.ids,
+            "message_type": "comment",
+            "subtype_xmlid": "mail.mt_comment",
         }
-        return mail_values
+        return vals
 
     def action_message(self):
         self.ensure_one()
@@ -117,18 +119,8 @@ class SurveyMailingWizard(models.TransientModel):
                 )
             )
 
-        mail_values = []
         for recipient in self.recipients:
-            msg_template = self.template_id
-            mail_values = self._get_email_values(recipient)
-            msg_template.sudo().send_mail(
-                recipient.id, email_values=mail_values, force_send=True
-            )
-            recipient.sudo().message_post(
-                subject=self.subject,
-                body=self.body,
-                notify_by_email=False,
-                attachment_ids=self.attachment_ids.ids,
-            )
+            message_vals = self._get_message_values()
+            recipient.sudo().message_post(**message_vals)
 
     # 8. Business methods

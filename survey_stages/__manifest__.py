@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Stages",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.1.2",
     "category": "Marketing/Surveys",
     "summary": "Ability to edit survey answers and send mail based on stages",
     "website": "https://gitlab.com/tawasta/odoo/survey",
