@@ -153,7 +153,22 @@
                                         </t>
                                    </t>
                                    <t t-if="line.answer_type == 'privacy'">
-
+                                    <t t-if="line.value_privacy_consent.accepted">
+                                        <div
+                                            style="width:99%; display: inline-block; float: left; position: relative; background-color: #6C757D; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                            
+                                                <span style="font-weight: bold;"><t t-esc="line.value_privacy_consent.activity_id.name"/> <span class="fa fa-check-circle"/></span>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div
+                                            style="width:99%; display: inline-block; float: left; position: relative; background-color: #ADB5BD; border-color: transparent; color: white; padding-left: 1rem !important; padding-right: 1rem !important; padding-bottom: 0.25rem !important; padding-top: 0.25rem !important; border-radius: 0.25rem !important; margin-right: 0.5rem !important;">
+                                            <span
+                                                style="font-weight: bold;"
+                                                t-field="line.value_privacy_consent.activity_id.name"
+                                            />
+                                        </div>
+                                    </t>
                                    </t>
                                    <t t-if="line.answer_type == 'attachment'">
                                         <t
