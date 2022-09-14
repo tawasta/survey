@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="survey_fill_header_reference" inherit_id="survey.survey_fill_header">
+        <xpath expr="//h1[@t-esc='survey.title']" position="after">
+            <h3 t-if="answer.ref"><span t-field="answer.ref" class="text-break" /></h3>
+        </xpath>
+    </template>
+</odoo>

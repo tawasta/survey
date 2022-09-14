@@ -18,20 +18,20 @@
 #
 ##############################################################################
 {
-    "name": "Survey Portal",
-    "version": "14.0.1.1.0",
+    "name": "Survey User Input Reference Sequence",
+    "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Ability to view survey answers in portal",
+    "summary": "Give survey answers a unique reference with sequence",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_mailing", "survey_user_input_reference_sequence"],
+    "depends": ["survey"],
     "data": [
-        "views/portal_templates.xml",
-        "views/survey_templates_management.xml",
-        "views/survey_templates_print.xml",
+        "data/survey_user_input_sequence.xml",
+        "views/survey_user_views.xml",
         "views/survey_templates.xml",
+        "views/survey_templates_print.xml",
     ],
 }
