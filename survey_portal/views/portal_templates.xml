@@ -46,6 +46,7 @@
             <t t-if="survey_answers" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
+                        <th id="th-reference">Reference</th>
                         <th id="th-survey">Survey</th>
                         <th id="th-create-date">Create Date</th>
                         <th id="td-buttons" />
@@ -54,13 +55,20 @@
                 <tbody>
                     <t t-foreach="survey_answers" t-as="answer">
                         <tr>
-                            <td id="td-survey">
+                            <td id="td-reference">
                                 <a
                                     t-att-href="'/my/surveys/%d' % answer.id"
-                                    t-att-title="answer.survey_id.title"
+                                    t-att-title="answer.ref"
                                 >
-                                    <t t-esc="answer.survey_id.title" />
+                                    <t t-esc="answer.ref" />
                                 </a>
+                            </td>
+                            <td id="td-survey">
+                                <span
+                                    t-field="answer.survey_id.title"
+                                    data-toggle="tooltip"
+                                    t-att-title="answer.survey_id.title"
+                                />
                             </td>
                             <td id="td-create-date">
                                 <span
@@ -104,13 +112,17 @@
                 <t t-call="portal.portal_record_sidebar">
                     <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
                     <t t-set="title">
-                        <div id="survey_portal_sidebar_create_date" class="small"><i
-                                class="fa fa-clock-o"
-                            /><span
+                        <h2 class="mb-0">
+                            <b t-field="answer.ref" />
+                        </h2>
+                        <div id="survey_portal_sidebar_create_date" class="small">
+                            <i class="fa fa-clock-o" />
+                            <span
                                 class="o_portal_sidebar_createdate ml4"
                                 t-field="answer.create_date"
                                 t-options="{'widget': 'datetime'}"
-                            /></div>
+                            />
+                        </div>
                     </t>
                     <t t-set="entries">
                         <ul
@@ -167,6 +179,11 @@
 
                 <!-- Page Content -->
                 <div id="answer_content" class="col-12 col-lg">
+                    <div id="answer_main_content" class="card bg-white sticky-top">
+                        <div class="card-body text-center pb-2 pt-3">
+                            <h3 class="card-title" t-field="answer.survey_id.title" />
+                        </div>
+                    </div>
                     <div id="answer_communication" class="mt-4">
                         <h2>History</h2>
                         <t t-call="portal.message_thread">

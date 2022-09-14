@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Portal",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Ability to view survey answers in portal",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,7 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_mailing"],
+    "depends": ["survey_mailing", "survey_user_input_reference_sequence"],
     "data": [
         "views/portal_templates.xml",
         "views/survey_templates_management.xml",
