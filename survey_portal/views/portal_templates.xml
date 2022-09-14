@@ -17,6 +17,10 @@
                 >Survey Answers</a>
                 <t t-else="">Survey Answers</t>
             </li>
+            <li t-if="answer" class="breadcrumb-item active">
+                <t t-esc="answer.ref" t-if="answer.ref" />
+                <t t-else=""><em>Draft Answer</em></t>
+            </li>
         </xpath>
     </template>
     <template
