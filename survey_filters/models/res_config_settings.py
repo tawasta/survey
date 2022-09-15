@@ -14,7 +14,7 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="survey.filter.date",
     )
 
-    module_society_event_core = fields.Boolean(string='Use event')
+    module_society_event_core = fields.Boolean(string="Use event")
 
     use_event_filter = fields.Boolean(
         string="Survey: use the event filter in the survey result view",

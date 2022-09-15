@@ -28,5 +28,5 @@
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": ["views/res_config_settings_view.xml","views/templates.xml"],
+    "data": ["views/res_config_settings_view.xml", "views/templates.xml"],
 }

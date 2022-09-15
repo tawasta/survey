@@ -1,7 +1,7 @@
+from datetime import datetime
+
 from odoo import http
 from odoo.http import request
-from datetime import date
-from datetime import datetime
 
 from odoo.addons.survey.controllers.main import Survey
 
@@ -34,9 +34,11 @@ class SurveyFilter(Survey):
             .search([("id", "in", user_input_ids.ids)])
             .mapped("partner_id")
         )
-        use_event = request.env["res.config.settings"].sudo().search([
-            ('module_society_event_core', '=', True)
-        ])
+        use_event = (
+            request.env["res.config.settings"]
+            .sudo()
+            .search([("module_society_event_core", "=", True)])
+        )
         use_event_filter = request.env["ir.config_parameter"].get_param(
             "survey.filter.event"
         )
@@ -51,26 +53,42 @@ class SurveyFilter(Survey):
 
         return res
 
+    @http.route(
+        [
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
+        ],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def survey_report_filter(
+        self,
+        survey,
+        user_id=None,
+        event_id=None,
+        select_date=None,
+        answer_token=None,
+        **post
+    ):
 
-    @http.route([
-        '''/survey/results/<model("survey.survey"):survey>/user/<int:user_id>''',
-        '''/survey/results/<model("survey.survey"):survey>/event/<int:event_id>''',
-        '''/survey/results/<model("survey.survey"):survey>/date/<string:select_date>''',
-    ], type='http', auth="user", website=True,)
-    def survey_report_filter(self, survey, user_id=None, event_id=None, select_date=None, answer_token=None, **post):
-
-        user_input_lines, search_filters = self._extract_survey_data(survey, user_id, event_id, select_date, post)
+        user_input_lines, search_filters = self._extract_survey_data(
+            survey, user_id, event_id, select_date, post
+        )
         survey_data = survey._prepare_statistics(user_input_lines)
-        question_and_page_data = survey.question_and_page_ids._prepare_statistics(user_input_lines)
+        question_and_page_data = survey.question_and_page_ids._prepare_statistics(
+            user_input_lines
+        )
 
         template_values = {
             # survey and its statistics
-            'survey': survey,
-            'question_and_page_data': question_and_page_data,
-            'survey_data': survey_data,
+            "survey": survey,
+            "question_and_page_data": question_and_page_data,
+            "survey_data": survey_data,
             # search
-            'search_filters': search_filters,
-            'search_finished': post.get('finished') == 'true',
+            "search_filters": search_filters,
+            "search_finished": post.get("finished") == "true",
         }
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
@@ -89,34 +107,35 @@ class SurveyFilter(Survey):
         template_values.update({"users": users})
 
         if user_id:
-            user = request.env["res.partner"].sudo().search([
-                ('id', '=', user_id)
-            ])
+            user = request.env["res.partner"].sudo().search([("id", "=", user_id)])
             template_values.update({"current_user": user})
 
         if event_id:
-            event = request.env["event.event"].sudo().search([
-                ('id', '=', event_id)
-            ])
+            event = request.env["event.event"].sudo().search([("id", "=", event_id)])
 
             template_values.update({"current_event": event})
 
         if survey.session_show_leaderboard:
-            template_values['leaderboard'] = survey._prepare_leaderboard_values()
+            template_values["leaderboard"] = survey._prepare_leaderboard_values()
 
-        return request.render('survey.survey_page_statistics', template_values)
-
+        return request.render("survey.survey_page_statistics", template_values)
 
     def _extract_survey_data(self, survey, user_id, event_id, select_date, post):
         search_filters = []
         if event_id:
-            line_filter_domain, line_choices = [("user_input_id.event_id", "=", event_id)], []
+            line_filter_domain, line_choices = [
+                ("user_input_id.event_id", "=", event_id)
+            ], []
         if user_id:
-            line_filter_domain, line_choices = [("user_input_id.partner_id", "=", user_id)], []
+            line_filter_domain, line_choices = [
+                ("user_input_id.partner_id", "=", user_id)
+            ], []
 
         if select_date:
             select_date_obj = datetime.strptime(select_date, "%d.%m.%Y").date()
-            line_filter_domain, line_choices = [("user_input_id.create_date", "=", select_date_obj)], []
+            line_filter_domain, line_choices = [
+                ("user_input_id.create_date", "=", select_date_obj)
+            ], []
         if not user_id and not select_date and not event_id:
             line_filter_domain, line_choices = [], []
         for data in post.get("filters", "").split("|"):

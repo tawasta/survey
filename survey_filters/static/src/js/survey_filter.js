@@ -32,27 +32,27 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             }
         });
 
-        var path = window.location.pathname
+        var path = window.location.pathname;
         if (path.indexOf("/date") >= 0) {
             var date_current = path.split("/date/")[1];
             var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
-            $('#datetimepicker-filter-date').datetimepicker({
-                format : 'DD.MM.Y',
+            $("#datetimepicker-filter-date").datetimepicker({
+                format: "DD.MM.Y",
                 locale: moment.locale(),
                 defaultDate: newDateTime,
             });
-        }else {
+        } else {
             var dateNow = new Date();
-            $('#datetimepicker-filter-date').datetimepicker({
-                format : 'DD.MM.Y',
+            $("#datetimepicker-filter-date").datetimepicker({
+                format: "DD.MM.Y",
                 locale: moment.locale(),
                 defaultDate: dateNow,
             });
         }
 
-        $("#datetimepicker-filter-date").on("change.datetimepicker", function() {
-            var date = $(this).find('.datetimepicker-input').val();
-            var path = window.location.pathname
+        $("#datetimepicker-filter-date").on("change.datetimepicker", function () {
+            var date = $(this).find(".datetimepicker-input").val();
+            var path = window.location.pathname;
             if (path.indexOf("/date") >= 0) {
                 path = window.location.pathname.split("/date")[0];
             }
