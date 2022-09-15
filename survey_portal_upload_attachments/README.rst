@@ -13,7 +13,7 @@ Configuration
 
 Usage
 =====
-\-
+1. Go to Portal > My Survey Answers. Press upload attachments.
 
 Known issues / Roadmap
 ======================

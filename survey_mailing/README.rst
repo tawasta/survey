@@ -5,7 +5,7 @@
 ==============
 Survey Mailing
 ==============
-* Send emails to survey user partners via chatter
+* Send emails to survey user partners via chatter and action wizard
 
 Configuration
 =============

@@ -11,23 +11,102 @@
         inherit_id="survey.survey_page_statistics_inner"
     >
         <xpath expr="//div[@class='card-body']" position="inside">
+
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
-            <div
-                id="user_container"
-                class="col-sm-4"
-                t-att-data-user="current_user if current_user else 0"
-            >
-              <!-- Categories -->
-              <select id="select_user" class="select2 w-100" autocomplete="off">
+            <div class="container">
+                    <div
+                    class="form-inline flex-md-nowrap justify-content-between justify-content-md-center"
+                >
+                        <t
+                        t-set="user_filter"
+                        t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.user')"
+                    />
+                        <t
+                        t-set="date_filter"
+                        t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.date')"
+                    />
+                        <t
+                        t-set="event_filter"
+                        t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.event')"
+                    />
+                        <t t-if="user_filter">
+                            <t t-call="survey_filters.users" />
+                        </t>
+                        <t t-if="date_filter">
+                            <t t-call="survey_filters.date_filter" />
+                        </t>
+                        <t t-if="event_filter">
+                            <t t-call="survey_filters.events" />
+                        </t>
+                    </div>
+            </div>
+
+
+        </xpath>
+    </template>
+
+    <template id="users" name="Users Box">
+        <div
+            id="user_container"
+            class="col-sm-4"
+            t-att-data-user="current_user if current_user else 0"
+        >
+
+            <select id="select_user" class="select2 w-100" autocomplete="off">
                 <option value="">All users</option>
                 <t t-foreach="users" t-as="u">
-                  <option
-                            t-att-value="u.id"
-                            t-att-selected="None if not current_user else current_user.id"
-                        ><t t-esc="u.name" /></option>
+                    <option
+                        t-att-value="u.id"
+                        t-att-selected="None if not current_user else current_user.id"
+                    ><t t-esc="u.name" /></option>
                 </t>
-              </select>
-            </div>
-        </xpath>
+            </select>
+        </div>
+    </template>
+
+    <template id="events" name="Events Box">
+        <div
+            id="event_container"
+            class="col-sm-4"
+            t-att-data-user="current_event if current_event else 0"
+        >
+
+            <select id="select_event" class="select2 w-100" autocomplete="off">
+                <option value="">All events</option>
+                <t t-foreach="events" t-as="e">
+                    <option
+                        t-att-value="e.id"
+                        t-att-selected="None if not current_event else current_event.id"
+                    ><t t-esc="e.name" /></option>
+                </t>
+            </select>
+        </div>
+    </template>
+
+    <template id="date_filter" name="Date filter">
+      <div id="date_container" class="col-sm-4">
+        <div
+                class="input-group date"
+                id="datetimepicker-filter-date"
+                data-target-input="nearest"
+            >
+          <input
+                    type="text"
+                    data-date-format="yyyy/mm/dd"
+                    name="filter_date"
+                    id="filter-date"
+                    class="form-control datetimepicker-input"
+                    data-target="#datetimepicker-filter-date"
+                />
+          <div
+                    class="input-group-append"
+                    data-date-format="yyyy/mm/dd"
+                    data-target="#datetimepicker-filter-date"
+                    data-toggle="datetimepicker"
+                >
+            <div class="input-group-text"><i class="fa fa-calendar" /></div>
+          </div>
+        </div>
+      </div>
     </template>
 </odoo>
