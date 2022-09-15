@@ -10,11 +10,15 @@ Survey Stages
 Configuration
 =============
 Create stages or use default stages:
-    - Proposal
-    - Confirmed
-    - Canceled
+    - In Progress (default stage when survey answer is created)
+    - Draft (is_editable = True)
+    - Sent (is_sent = True)
+    - Confirmed (is_accepted = True)
+    - Canceled (is_cancel = True)
 
 Create or use default mail templates for stages:
+    - Draft message
+    - Sent message
     - Confirmation message
     - Cancelation message
       

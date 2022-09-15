@@ -13,7 +13,8 @@ Configuration
 
 Usage
 =====
-\-
+1. Create a new question for Survey. Choose Privacy as Question Type.
+2. Choose existing privacy activity to question. If no privacy activity exists go ahead and create one in Privacy application.
 
 Known issues / Roadmap
 ======================

@@ -13,7 +13,8 @@ Configuration
 
 Usage
 =====
-\-
+- Add partners to contact_ids from backend to give them partner permissions
+- Add partners to contact_ids from portal survey answer view
 
 Known issues / Roadmap
 ======================
