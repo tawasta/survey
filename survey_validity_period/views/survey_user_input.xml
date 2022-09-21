@@ -7,8 +7,14 @@
         <field name="arch" type="xml">
             <field name="access_token" position="before">
                 <field name="qualification_period" />
-                <field name="start_date" attrs="{'invisible': [('qualification_period', '=', False)]}" />
-                <field name="end_date" attrs="{'invisible': [('qualification_period', '=', False)]}" />
+                <field
+                    name="start_date"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
+                <field
+                    name="end_date"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
             </field>
         </field>
     </record>
