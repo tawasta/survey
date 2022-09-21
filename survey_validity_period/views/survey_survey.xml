@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_form" model="ir.ui.view">
+        <field name="name">Form view for survey: qualification</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <field name="users_can_go_back" position="after">
+                <field name="qualification_period" />
+                <field
+                    name="interval_unit"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
+                <field
+                    name="interval_nbr"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

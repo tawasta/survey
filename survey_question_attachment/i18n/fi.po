@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 13:10+0000\n"
-"PO-Revision-Date: 2022-09-06 13:10+0000\n"
+"POT-Creation-Date: 2022-09-21 12:47+0000\n"
+"PO-Revision-Date: 2022-09-21 12:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,13 +54,19 @@ msgstr "Lataa"
 #: code:addons/survey_question_attachment/static/src/js/survey.js:0
 #, python-format
 msgid "File upload"
-msgstr "Tiedoston lataus"
+msgstr "Liitetiedoston lataus"
 
 #. module: survey_question_attachment
 #: code:addons/survey_question_attachment/models/survey_question.py:0
 #, python-format
 msgid "Files must be PDFs."
 msgstr "Tiedostojen pitää olla PDFiä."
+
+#. module: survey_question_attachment
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be images or PDFs."
+msgstr "Tiedostojen pitää olla kuvia tai PDFiä."
 
 #. module: survey_question_attachment
 #: code:addons/survey_question_attachment/models/survey_question.py:0
@@ -79,6 +85,11 @@ msgstr "Tunniste (ID)"
 #: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__image
 msgid "Image"
 msgstr "Kuva"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__image-pdf
+msgid "Image and PDF"
+msgstr "Kuva ja PDF"
 
 #. module: survey_question_attachment
 #: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question____last_update
@@ -132,8 +143,7 @@ msgstr "Vastauksen liitetiedoston maksimikoko megatavuina"
 #: code:addons/survey_question_attachment/static/src/js/survey.js:0
 #, python-format
 msgid "The selected attachment exceed the maximum file size of %s."
-msgstr ""
-"Valittu liitetiedosto on suurempi kuin tiedoston sallittu maksimikoko %s."
+msgstr "Valitut liitetiedostot ylittävät tiedoston maksimikoon %s."
 
 #. module: survey_question_attachment
 #: model:ir.model.fields,help:survey_question_attachment.field_survey_question__validation_attachment_file_type
