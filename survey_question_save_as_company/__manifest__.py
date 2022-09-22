@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2022 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
+#    Copyright 2021- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,24 +17,16 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 {
-    "name": "Survey: period of qualification",
-    "summary": "Survey: period of qualification",
-    "category": "Survey",
-    "version": "14.0.1.0.1",
+    "name": "Survey Question Save as Company",
+    "version": "14.0.1.0.0",
+    "category": "Marketing/Surveys",
+    "summary": "Save the user's answer as its company name",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "survey_stages"],
-    "data": [
-        "data/ir_cron.xml",
-        "data/mail_data.xml",
-        "views/portal_templates.xml",
-        "views/survey_survey.xml",
-        "views/survey_user_input.xml",
-        "views/user_input_stage.xml",
-    ],
+    "depends": ["survey"],
+    "data": ["views/survey_question_views.xml", "views/survey_user_views.xml"],
 }

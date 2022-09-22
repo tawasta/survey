@@ -24,7 +24,7 @@ class SurveyUserInput(models.Model):
                 .sudo()
                 .search([("id", "=", vals.get("stage_id"))])
             )
-            if stage.is_accepted and self.qualification_period and not self.start_date:
+            if stage.is_accepted and self.qualification_period:
                 start_date = fields.Date.today()
                 days_val = self.survey_id.interval_nbr
                 end_date = start_date + relativedelta(days=days_val)
@@ -56,6 +56,11 @@ class SurveyUserInput(models.Model):
         ended_stage = (
             self.env["survey.user_input.stage"].sudo().search([("is_end", "=", True)])
         )
+        draft_stage = (
+            self.env["survey.user_input.stage"]
+            .sudo()
+            .search([("is_editable", "=", True), ("is_end", "!=", True)])
+        )
         for user_input in user_input_ids:
             if now > user_input.end_date:
                 user_input.sudo().write(
@@ -73,3 +78,8 @@ class SurveyUserInput(models.Model):
                 }
                 message_template.sudo().write(values)
                 message_template.sudo().send_mail(user_input.id, force_send=True)
+                user_input.sudo().write(
+                    {
+                        "stage_id": draft_stage.id,
+                    }
+                )

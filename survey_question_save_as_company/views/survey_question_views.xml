@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_question_form_save_as_company">
+        <field name="name">Form view for survey question save as company</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <label for="save_as_nickname" position="after">
+                <br />
+                <field name="save_as_company" nolabel="1" />
+                <label for="save_as_company" />
+            </label>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_view_search_company" model="ir.ui.view">
+        <field name="name">survey.user_input.view.search.company</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="company_name" />
+            </field>
+            <filter name="group_by_partner" position="after">
+                <filter
+                    string="Company"
+                    name="group_by_company"
+                    domain="[]"
+                    context="{'group_by': 'company_name'}"
+                />
+            </filter>
+        </field>
+    </record>
+    <record id="survey_user_input_view_form_company" model="ir.ui.view">
+        <field name="name">survey.user_input.view.form.company</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="company_name" />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_view_tree_company" model="ir.ui.view">
+        <field name="name">survey.user_input.view.tree.company</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="company_name" optional="show" />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_viuew_kanban_company" model="ir.ui.view">
+        <field name="name">survey.user_input.view.kanban.company</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_viuew_kanban" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="company_name" />
+            </field>
+        </field>
+    </record>
+</odoo>

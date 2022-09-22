@@ -21,6 +21,7 @@ addon | version | maintainers | summary
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 |  | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.2 |  | Adds a new question type 'attachment' to survey
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
+[survey_question_save_as_company](survey_question_save_as_company/) | 14.0.1.0.0 |  | Save the user's answer as its company name
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 |  | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 |  | Adds an option to show correct answers after the survey
 [survey_stages](survey_stages/) | 14.0.1.1.3 |  | Ability to edit survey answers and send mail based on stages
