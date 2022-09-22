@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_survey_answers_stages"
+        inherit_id="survey_stages.portal_my_survey_answers_stages"
+    >
+        <xpath expr="//a[@id='button-edit-answers']" position="replace">
+            <t
+                t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft'] and not answer.stage_id.is_end and not answer.qualification_period"
+            >
+                <a
+                    id="button-edit-answers"
+                    t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                    class="btn btn-link float-right no-decoration"
+                >Edit Answers</a>
+            </t>
+            <t
+                t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft'] and not answer.stage_id.is_end and answer.qualification_period and answer.start_date"
+            >
+                <a
+                    id="button-edit-answers"
+                    t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                    class="btn btn-link float-right no-decoration"
+                >Renew qualification</a>
+            </t>
+            <t
+                t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft'] and answer.stage_id.is_end"
+            >
+                <a
+                    id="button-edit-answers"
+                    t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
+                    class="btn btn-link float-right no-decoration"
+                >Renew qualification</a>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -7,9 +7,9 @@ class SurveyUserInput(models.Model):
 
     _inherit = "survey.user_input"
 
-    start_date = fields.Date(string="Start Date", readonly=True)
+    start_date = fields.Date(string="Start Date", readonly=False)
 
-    end_date = fields.Date(string="End Date", readonly=True)
+    end_date = fields.Date(string="End Date", readonly=False)
 
     qualification_period = fields.Boolean(
         string="Specify the period of qualification",

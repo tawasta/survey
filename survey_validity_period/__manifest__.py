@@ -32,6 +32,7 @@
     "data": [
         "data/ir_cron.xml",
         "data/mail_data.xml",
+        "views/portal_templates.xml",
         "views/survey_survey.xml",
         "views/survey_user_input.xml",
         "views/user_input_stage.xml",
