@@ -7,9 +7,9 @@ class SurveyUserInput(models.Model):
 
     _inherit = "survey.user_input"
 
-    start_date = fields.Date(string='Start Date', readonly=True)
+    start_date = fields.Date(string="Start Date", readonly=True)
 
-    end_date = fields.Date(string='End Date', readonly=True)
+    end_date = fields.Date(string="End Date", readonly=True)
 
     qualification_period = fields.Boolean(
         string="Specify the period of qualification",
@@ -56,8 +56,10 @@ class SurveyUserInput(models.Model):
         ended_stage = (
             self.env["survey.user_input.stage"].sudo().search([("is_end", "=", True)])
         )
-        draft_stage = self.env["survey.user_input.stage"].sudo().search(
-            [("is_editable", "=", True),('is_end', '!=', True)]
+        draft_stage = (
+            self.env["survey.user_input.stage"]
+            .sudo()
+            .search([("is_editable", "=", True), ("is_end", "!=", True)])
         )
         for user_input in user_input_ids:
             if now > user_input.end_date:
@@ -76,4 +78,8 @@ class SurveyUserInput(models.Model):
                 }
                 message_template.sudo().write(values)
                 message_template.sudo().send_mail(user_input.id, force_send=True)
-                user_input.sudo().write({"stage_id": draft_stage.id,})
+                user_input.sudo().write(
+                    {
+                        "stage_id": draft_stage.id,
+                    }
+                )
