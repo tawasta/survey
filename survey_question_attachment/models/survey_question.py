@@ -49,7 +49,7 @@ class SurveyQuestion(models.Model):
     )
     is_multiple_attachments = fields.Boolean("Allow Multiple Attachments")
     validation_attachment_file_type = fields.Selection(
-        [("pdf", "PDF"), ("image", "Image")],
+        [("pdf", "PDF"), ("image", "Image"), ("image-pdf", "Image and PDF")],
         string="Limit Attachment File Type",
         help="This field limits the accepted file type for attachments.",
     )
@@ -88,6 +88,20 @@ class SurveyQuestion(models.Model):
                         )
                         if not re.search("^image/", mimetype):
                             return {self.id: _("Files must be images.")}
+                elif (
+                    self.validation_attachment_file_type
+                    and self.validation_attachment_file_type == "image-pdf"
+                    and answer.get("values")
+                ):
+                    for answer_data in answer.get("values"):
+                        mimetype = guess_mimetype(
+                            base64.b64decode(answer_data.get("data"))
+                        )
+                        if (
+                            not re.search("^image/", mimetype)
+                            and mimetype != "application/pdf"
+                        ):
+                            return {self.id: _("Files must be images or PDFs.")}
                 return {}
             else:
                 return {self.id: self.constr_error_msg}

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 15:54+0000\n"
-"PO-Revision-Date: 2022-09-13 15:54+0000\n"
+"POT-Creation-Date: 2022-09-21 13:33+0000\n"
+"PO-Revision-Date: 2022-09-21 13:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:survey_portal_upload_attachments.portal_answer_page_attachment
 msgid "<i class=\"fa fa-upload\"/> Upload Attachments"
 msgstr "<i class=\"fa fa-upload\"/> Lataa liitetiedostoja"
+
+#. module: survey_portal_upload_attachments
+#: model:ir.model.fields,field_description:survey_portal_upload_attachments.field_survey_question__allow_portal_file_upload
+msgid "Allow Portal File Upload"
+msgstr "Salli tiedoston lataus portaalissa"
+
+#. module: survey_portal_upload_attachments
+#: model:ir.model.fields,help:survey_portal_upload_attachments.field_survey_question__allow_portal_file_upload
+msgid "Allow file uploads for this question in portal."
+msgstr "Salli liitetiedostojen lataus portaalissa tähän kysymykseen."
 
 #. module: survey_portal_upload_attachments
 #: code:addons/survey_portal_upload_attachments/controllers/main.py:0
@@ -61,6 +71,11 @@ msgid "Close"
 msgstr "Sulje"
 
 #. module: survey_portal_upload_attachments
+#: model:ir.model.fields,field_description:survey_portal_upload_attachments.field_survey_question__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_portal_upload_attachments
 #: model_terms:ir.ui.view,arch_db:survey_portal_upload_attachments.portal_question_container
 msgid "Download"
 msgstr "Lataa"
@@ -73,17 +88,31 @@ msgid "File upload"
 msgstr "Tiedoston lataus"
 
 #. module: survey_portal_upload_attachments
+#: model:ir.model.fields,field_description:survey_portal_upload_attachments.field_survey_question__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_portal_upload_attachments
+#: model:ir.model.fields,field_description:survey_portal_upload_attachments.field_survey_question____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_portal_upload_attachments
 #: model_terms:ir.ui.view,arch_db:survey_portal_upload_attachments.survey_attachments_modal
 msgid "Please upload additional attachments for this survey answer."
 msgstr "Ole hyvä ja lataa lisätiedostoja tämän kyselyn vastaukseen."
+
+#. module: survey_portal_upload_attachments
+#: model:ir.model,name:survey_portal_upload_attachments.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
 
 #. module: survey_portal_upload_attachments
 #. openerp-web
 #: code:addons/survey_portal_upload_attachments/static/src/js/survey_attachments.js:0
 #, python-format
 msgid "The selected attachment exceed the maximum file size of %s."
-msgstr ""
-"Valittu liitetiedosto on suurempi kuin tiedoston sallittu maksimikoko %s."
+msgstr "Valitut liitetiedostot ylittävät tiedoston maksimikoon %s."
 
 #. module: survey_portal_upload_attachments
 #: model_terms:ir.ui.view,arch_db:survey_portal_upload_attachments.portal_answer_page_attachment

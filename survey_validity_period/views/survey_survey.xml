@@ -7,8 +7,14 @@
         <field name="arch" type="xml">
             <field name="users_can_go_back" position="after">
                 <field name="qualification_period" />
-                <field name="interval_unit" attrs="{'invisible': [('qualification_period', '=', False)]}"/>
-                <field name="interval_nbr" attrs="{'invisible': [('qualification_period', '=', False)]}" />
+                <field
+                    name="interval_unit"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
+                <field
+                    name="interval_nbr"
+                    attrs="{'invisible': [('qualification_period', '=', False)]}"
+                />
             </field>
         </field>
     </record>

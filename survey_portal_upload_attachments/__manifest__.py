@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Portal Upload Attachments",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "Marketing/Surveys",
     "summary": "Upload attachments to surveys from portal",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -29,6 +29,7 @@
     "installable": True,
     "depends": ["survey_portal", "survey_question_attachment"],
     "data": [
+        "views/survey_question_views.xml",
         "views/portal_templates.xml",
         "views/survey_templates_attachments.xml",
         "views/assets.xml",
