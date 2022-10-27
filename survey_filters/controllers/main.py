@@ -19,7 +19,6 @@ class SurveyFilter(Survey):
             survey,
             answer_token,
         )
-
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
             request.env["survey.user_input.line"]
