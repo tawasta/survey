@@ -56,8 +56,12 @@ class SurveyFilter(Survey):
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",
             """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",
             """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",
         ],
         type="http",
         auth="user",
@@ -97,6 +101,23 @@ class SurveyFilter(Survey):
             .search([("id", "in", user_input_lines.ids)])
             .mapped("user_input_id")
         )
+
+        use_event = (
+            request.env["res.config.settings"]
+            .sudo()
+            .search([("module_society_event_core", "=", True)])
+        )
+        use_event_filter = request.env["ir.config_parameter"].get_param(
+            "survey.filter.event"
+        )
+        if use_event_filter and use_event:
+            events = (
+                request.env["survey.user_input"]
+                .sudo()
+                .search([("id", "in", user_input_ids.ids)])
+                .mapped("event_id")
+            )
+            template_values.update({"events": events})
 
         users = (
             request.env["survey.user_input"]

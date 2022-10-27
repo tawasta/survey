@@ -9,7 +9,12 @@
     <template
         id="survey_page_statistics_inner"
         inherit_id="survey.survey_page_statistics_inner"
-    >
+    >   
+        <xpath expr="//div[@class='card d-print-none']" position="attributes">
+            <attribute name="class">products_pager form-inline justify-content-center</attribute>
+        </xpath>
+        <xpath expr="//div[@class='card-header']" position="replace" />
+
         <xpath expr="//div[@class='card-body']" position="inside">
 
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
@@ -57,7 +62,7 @@
                 <t t-foreach="users" t-as="u">
                     <option
                         t-att-value="u.id"
-                        t-att-selected="None if not current_user else current_user.id"
+                        t-att-selected="None if not current_user else u.id == current_user.id"
                     ><t t-esc="u.name" /></option>
                 </t>
             </select>
@@ -76,7 +81,7 @@
                 <t t-foreach="events" t-as="e">
                     <option
                         t-att-value="e.id"
-                        t-att-selected="None if not current_event else current_event.id"
+                        t-att-selected="None if not current_event else e.id == current_event.id"
                     ><t t-esc="e.name" /></option>
                 </t>
             </select>
