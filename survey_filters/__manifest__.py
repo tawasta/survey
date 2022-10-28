@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Filters",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Order Surveys by sequence",
     "website": "https://gitlab.com/tawasta/odoo/survey",

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Portal",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "category": "Marketing/Surveys",
     "summary": "Ability to view survey answers in portal",
     "website": "https://gitlab.com/tawasta/odoo/survey",
