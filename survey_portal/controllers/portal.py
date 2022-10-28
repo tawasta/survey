@@ -127,15 +127,12 @@ class PortalSurveyAnswers(CustomerPortal):
     def portal_my_survey_detail(
         self, user_input_id, access_token=None, report_type=None, download=False, **kw
     ):
+        domain = self._get_survey_answers_domain() + [("id", "=", user_input_id)]
         answer_sudo = (
             request.env["survey.user_input"]
             .sudo()
             .search(
-                [
-                    ("partner_id.id", "=", request.env.user.partner_id.id),
-                    ("test_entry", "!=", True),
-                    ("id", "=", user_input_id),
-                ],
+                domain,
                 limit=1,
             )
         )
