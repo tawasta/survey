@@ -9,9 +9,11 @@
     <template
         id="survey_page_statistics_inner"
         inherit_id="survey.survey_page_statistics_inner"
-    >   
+    >
         <xpath expr="//div[@class='card d-print-none']" position="attributes">
-            <attribute name="class">products_pager form-inline justify-content-center</attribute>
+            <attribute
+                name="class"
+            >products_pager form-inline justify-content-center</attribute>
         </xpath>
         <xpath expr="//div[@class='card-header']" position="replace" />
         <xpath expr="//div[@class='card-body']" position="inside">

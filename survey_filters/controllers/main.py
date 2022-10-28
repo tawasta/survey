@@ -55,12 +55,12 @@ class SurveyFilter(Survey):
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",  # noqa B950
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",  # noqa B950
             """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",  # noqa B950
             """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
-            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",  # noqa B950
         ],
         type="http",
         auth="user",
