@@ -21,6 +21,8 @@
 # 1. Standard library imports:
 import logging
 
+from werkzeug import exceptions
+
 # 3. Odoo imports (openerp):
 from odoo import _, http
 from odoo.exceptions import AccessError
@@ -197,26 +199,63 @@ class SurveyContacts(Survey):
 
         answer_sudo = access_data["answer_sudo"]
         if answer_sudo and request.env.user.partner_id in answer_sudo.contact_ids:
-            partner_values = {
-                "firstname": post.get("firstname"),
-                "lastname": post.get("lastname"),
-                "name": self._get_name(post.get("lastname"), post.get("firstname")),
-                "email": post.get("email"),
-                "login": post.get("email"),
-                "company_type": "person",
-            }
-            new_contact_user = self._create_or_get_signup_user(partner_values)
-            if not new_contact_user:
-                _logger.warning(
-                    _("Something went wrong in user creation with values %s.")
-                    % partner_values
-                )
-            answer_sudo.message_subscribe(partner_ids=[new_contact_user.partner_id.id])
-            answer_sudo.write({"contact_ids": [(4, new_contact_user.partner_id.id, 0)]})
+            # Create invitation link for answer
+            email = post.get("email")
+            survey_invite = request.env["survey.user.invite"].create(
+                {
+                    "survey_user_input_id": answer_sudo.id,
+                    "email": email,
+                }
+            )
             _logger.info(
-                _("Added a new contact {contact} to answer {answer}.").format(
-                    contact=new_contact_user, answer=answer_sudo
+                "Created invitation link {} for email {} for answer {}".format(
+                    survey_invite.id,
+                    email,
+                    answer_sudo.id,
                 )
             )
-
         return request.redirect("/my/surveys/%d" % answer_sudo.id)
+
+    @http.route(
+        ["/survey/invite/code/<string:code>"],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def survey_invite_accept(self, code):
+        """
+        Accept invitation code
+
+        :param code: uuid4
+        :return: exception|redirect
+        """
+        user = request.env.user
+        invitation = (
+            request.env["survey.user.invite"]
+            .sudo()
+            .search(
+                [
+                    ("code", "=", code),
+                    ("user_id", "=", False),
+                ]
+            )
+        )
+        if not invitation:
+            # Code doesn't exist or already used
+            raise exceptions.Forbidden()
+
+        invitation.survey_user_input_id.message_subscribe(
+            partner_ids=[user.partner_id.id]
+        )
+        invitation.survey_user_input_id.write(
+            {"contact_ids": [(4, user.partner_id.id)]}
+        )
+        invitation.user_id = user.id
+        _logger.info(
+            "Added a new contact {} to answer {}.".format(
+                user.partner_id.id, invitation.survey_user_input_id.id
+            )
+        )
+        return request.redirect(
+            "/my/surveys/{}".format(invitation.survey_user_input_id.id)
+        )

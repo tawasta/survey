@@ -19,11 +19,13 @@
 ##############################################################################
 
 # 1. Standard library imports:
+from uuid import uuid4
+
+# 3. Odoo imports (openerp):
+from odoo import _, api, fields, models
 
 # 2. Known third party imports:
 
-# 3. Odoo imports (openerp):
-from odoo import api, fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -32,19 +34,42 @@ from odoo import api, fields, models
 # 6. Unknown third party imports:
 
 
-class SurveyUserInput(models.Model):
+class SurveyUserInvite(models.Model):
+
     # 1. Private attributes
-    _inherit = "survey.user_input"
+    _name = "survey.user.invite"
+    _description = "Unique invites to survey"
+    _rec_name = "email"
+    _sql_constraints = [
+        (
+            "code_unique",
+            "unique(code)",
+            _("Code has to be unique for every invite!"),
+        )
+    ]
 
     # 2. Fields declaration
-    contact_ids = fields.Many2many(
-        "res.partner", string="Contact Persons", tracking=True
+    survey_user_input_id = fields.Many2one(
+        comodel_name="survey.user_input",
+        string="Survey answer",
+        help="Survey answer this invite belongs to",
+        required=True,
     )
-    invite_ids = fields.One2many(
-        comodel_name="survey.user.invite",
-        inverse_name="survey_user_input_id",
-        string="Invites",
-        help="Invites for other users to participate on this survey",
+    code = fields.Char(
+        string="Code",
+        help="Unique invite code for intitee",
+        default=lambda self: uuid4(),
+        required=True,
+    )
+    email = fields.Char(
+        string="Email",
+        help="Where was invite sent",
+        required=True,
+    )
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Used by",
+        help="User who accepted the invitation",
     )
 
     # 3. Default methods
@@ -56,9 +81,16 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
     @api.model
     def create(self, vals):
-        if vals.get("partner_id"):
-            vals["contact_ids"] = [(4, vals.get("partner_id"), 0)]
-        return super(SurveyUserInput, self).create(vals)
+        """Send email to receiver"""
+        res = super().create(vals)
+        template_id = self.env.ref(
+            "survey_contact_ids.mail_template_survey_invite",
+            raise_if_not_found=False,
+        ).id
+        self.env["mail.template"].browse(template_id).sudo().send_mail(
+            res.id, force_send=True
+        )
+        return res
 
     # 7. Action methods
 

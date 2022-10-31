@@ -14,7 +14,7 @@ addon | version | maintainers | summary
 [survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 |  | Allows scoring a single line text answer
 [survey_answer_report](survey_answer_report/) | 14.0.1.0.0 |  | Print an pdf report from survey answer
 [survey_auditlog_rules](survey_auditlog_rules/) | 14.0.1.0.0 |  | Adds audit log rules for surveys
-[survey_contact_ids](survey_contact_ids/) | 14.0.1.0.2 |  | Add multiple contacts to view and receive mails from survey answer
+[survey_contact_ids](survey_contact_ids/) | 14.0.1.1.0 |  | Add multiple contacts to view and receive mails from survey answer
 [survey_filters](survey_filters/) | 14.0.1.0.1 |  | Order Surveys by sequence
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 |  | Send emails to survey user partners via chatter

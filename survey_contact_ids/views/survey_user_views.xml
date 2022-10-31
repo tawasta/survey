@@ -8,6 +8,19 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="contact_ids" widget="many2many_tags" />
             </xpath>
+            <xpath expr="//field[@name='user_input_line_ids']" position="after">
+                <group name="invites" string="Invites">
+                    <field name="invite_ids" nolabel="1">
+                        <tree readonly="1">
+                            <field name="create_uid" />
+                            <field name="create_date" />
+                            <field name="email" />
+                            <field name="user_id" />
+                            <field name="code" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
         </field>
     </record>
     <record id="survey_user_input_view_tree_contacts" model="ir.ui.view">
