@@ -84,16 +84,17 @@
                                                 style="min-width: 590px; text-align:center;"
                                             >
                                                 <div>
-                                                    You have been invited to participate in survey answer.<br
+                                                    You have been invited to participate in survey answer by ${object.create_uid.name}.<br
                                                     />
                                                     To accept the invitation please click the link below:
-                                                    <br /><br />
+                                                    <br /><br /><br /><br />
                                                     <a
                                                         href="/survey/invite/code/${object.code}"
                                                         style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px"
                                                     >
                                                         Accept invitation
                                                     </a>
+                                                    <br /><br /><br />
                                                 </div>
                                             </td>
                                         </tr>
