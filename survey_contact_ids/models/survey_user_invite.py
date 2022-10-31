@@ -40,6 +40,7 @@ class SurveyUserInvite(models.Model):
     _name = "survey.user.invite"
     _description = "Unique invites to survey"
     _rec_name = "email"
+    _order = "id DESC"
     _sql_constraints = [
         (
             "code_unique",

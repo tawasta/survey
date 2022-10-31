@@ -244,18 +244,20 @@ class SurveyContacts(Survey):
             # Code doesn't exist or already used
             raise exceptions.Forbidden()
 
-        invitation.survey_user_input_id.message_subscribe(
-            partner_ids=[user.partner_id.id]
-        )
-        invitation.survey_user_input_id.write(
-            {"contact_ids": [(4, user.partner_id.id)]}
-        )
-        invitation.user_id = user.id
-        _logger.info(
-            "Added a new contact {} to answer {}.".format(
-                user.partner_id.id, invitation.survey_user_input_id.id
+        # Prevent existing users from using code accidently
+        if user.partner_id.id not in invitation.survey_user_input_id.contact_ids.ids:
+            invitation.survey_user_input_id.message_subscribe(
+                partner_ids=[user.partner_id.id]
             )
-        )
+            invitation.survey_user_input_id.write(
+                {"contact_ids": [(4, user.partner_id.id)]}
+            )
+            invitation.user_id = user.id
+            _logger.info(
+                "Added a new contact {} to answer {}.".format(
+                    user.partner_id.id, invitation.survey_user_input_id.id
+                )
+            )
         return request.redirect(
             "/my/surveys/{}".format(invitation.survey_user_input_id.id)
         )
