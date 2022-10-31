@@ -6,14 +6,178 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 15:51+0000\n"
-"PO-Revision-Date: 2022-09-13 15:51+0000\n"
+"POT-Creation-Date: 2022-10-31 07:40+0000\n"
+"PO-Revision-Date: 2022-10-31 09:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: fi\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: survey_contact_ids
+#: model:mail.template,subject:survey_contact_ids.mail_template_survey_invite
+msgid "${object.create_uid.name} invites you to participate"
+msgstr "${object.create_uid.name} kutsuu sinut osallistumaan hakemukseen"
+
+#. module: survey_contact_ids
+#: model:mail.template,body_html:survey_contact_ids.mail_template_survey_invite
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<table style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                    <tbody>\n"
+"                        <tr>\n"
+"                            <td align=\"center\">\n"
+"                                <table style=\"padding: 24px; background-color: white; color: #454748; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                    <tbody>\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px;\" align=\"center\">\n"
+"                                                <table style=\"background-color: white; padding: 0; border-collapse:separate;\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                                    <tbody>\n"
+"                                                        <tr>\n"
+"                                                            <td valign=\"middle\">\n"
+"                                                                <span style=\"font-size: 10px;\">Survey User Input</span><br/>\n"
+"                                                                <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                                    ${object.survey_user_input_id.survey_id.title}\n"
+"                                                                </span>\n"
+"                                                            </td>\n"
+"                                                            <td valign=\"middle\" align=\"right\">\n"
+"                                                                <img style=\"padding: 0px; margin: 0px; height: 48px;\" src=\"http://0.0.0.0:8069/logo.png?company=1\" alt=\"${object.env.company.name}\" loading="
+"\"lazy\"/>\n"
+"                                                            </td>\n"
+"                                                        </tr>\n"
+"                                                        <tr>\n"
+"                                                            <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                                <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px "
+"0px 32px 0px;\" width=\"100%\"/>\n"
+"                                                            </td>\n"
+"                                                        </tr>\n"
+"                                                    </tbody>\n"
+"                                                </table>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px; text-align:center;\">\n"
+"                                                <div>\n"
+"                                                    You have been invited to participate in survey answer.<br/>\n"
+"                                                    To accept the invitation please click the link below:\n"
+"                                                    <br/><br/>\n"
+"                                                    <a href=\"/survey/invite/code/${object.code}\" style=\"padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; "
+"background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px\">\n"
+"                                                        Accept invitation\n"
+"                                                    </a>\n"
+"                                                </div>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px; padding: 0 8px 0 8px; font-size:11px;\" align=\"center\">\n"
+"                                                <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;\" "
+"width=\"100%\"/>\n"
+"                                                <b>${object.env.company.name}</b><br/>\n"
+"                                                <div style=\"color: #999999;\">\n"
+"                                                    ${object.env.company.phone}\n"
+"                                                    |\n"
+"                                                    <a style=\"text-decoration:none; color: #999999;\" href=\"mailto:${object.env.company.email}\">${object.env.company.email}</a>\n"
+"                                                    |\n"
+"                                                    <a style=\"text-decoration:none; color: #999999;\" href=\"${object.env.company.website}\">\n"
+"                                                        ${object.env.company.website}\n"
+"                                                    </a>\n"
+"                                                </div>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"                                    </tbody>\n"
+"                                </table>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"min-width: 590px;\" align=\"center\">\n"
+"                                Powered by <a target=\"_blank\" href=\"https://futural.fi?utm_source=db&amp;utm_medium=email\" style=\"color: #ff7e16;\">Futural</a>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"            "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<table style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                    <tbody>\n"
+"                        <tr>\n"
+"                            <td align=\"center\">\n"
+"                                <table style=\"padding: 24px; background-color: white; color: #454748; border-collapse:separate;\" width=\"590\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                    <tbody>\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px;\" align=\"center\">\n"
+"                                                <table style=\"background-color: white; padding: 0; border-collapse:separate;\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                                                    <tbody>\n"
+"                                                        <tr>\n"
+"                                                            <td valign=\"middle\">\n"
+"                                                                <span style=\"font-size: 10px;\">Kyselyn vastaus</span><br/>\n"
+"                                                                <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                                    ${object.survey_user_input_id.survey_id.title}\n"
+"                                                                </span>\n"
+"                                                            </td>\n"
+"                                                            <td valign=\"middle\" align=\"right\">\n"
+"                                                                <img style=\"padding: 0px; margin: 0px; height: 48px;\" src=\"http://0.0.0.0:8069/logo.png?company=1\" alt=\"${object.env.company.name}\" loading="
+"\"lazy\"/>\n"
+"                                                            </td>\n"
+"                                                        </tr>\n"
+"                                                        <tr>\n"
+"                                                            <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                                <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px "
+"0px 32px 0px;\" width=\"100%\"/>\n"
+"                                                            </td>\n"
+"                                                        </tr>\n"
+"                                                    </tbody>\n"
+"                                                </table>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px; text-align:center;\">\n"
+"                                                <div>\n"
+"                                                    Sinut on kutsuttu osallistumaan hakemuksen täyttämiseen.<br/>\n"
+"                                                    Hyväksyäksesi kutsun paina alla olevaa linkkiä:\n"
+"                                                    <br/><br/>\n"
+"                                                    <a href=\"/survey/invite/code/${object.code}\" style=\"padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; "
+"background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px\">\n"
+"                                                        Hyväksy kutsu\n"
+"                                                    </a>\n"
+"                                                </div>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"\n"
+"                                        <tr>\n"
+"                                            <td style=\"min-width: 590px; padding: 0 8px 0 8px; font-size:11px;\" align=\"center\">\n"
+"                                                <hr style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;\" "
+"width=\"100%\"/>\n"
+"                                                <b>${object.env.company.name}</b><br/>\n"
+"                                                <div style=\"color: #999999;\">\n"
+"                                                    ${object.env.company.phone}\n"
+"                                                    |\n"
+"                                                    <a style=\"text-decoration:none; color: #999999;\" href=\"mailto:${object.env.company.email}\">${object.env.company.email}</a>\n"
+"                                                    |\n"
+"                                                    <a style=\"text-decoration:none; color: #999999;\" href=\"${object.env.company.website}\">\n"
+"                                                        ${object.env.company.website}\n"
+"                                                    </a>\n"
+"                                                </div>\n"
+"                                            </td>\n"
+"                                        </tr>\n"
+"                                    </tbody>\n"
+"                                </table>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"min-width: 590px;\" align=\"center\">\n"
+"                                Järjestelmää pyörittää <a target=\"_blank\" href=\"https://futural.fi?utm_source=db&amp;utm_medium=email\" style=\"color: #ff7e16;\">Futural</a>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                    </tbody>\n"
+"                </table>\n"
+"            "
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids
@@ -40,26 +204,15 @@ msgid "Add Contact"
 msgstr "Lisää yhteyshenkilö"
 
 #. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_my_survey_answers_contacts
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_my_survey_answers_contacts
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Add Contacts"
 msgstr "Lisää yhteyshenkilöitä"
 
 #. module: survey_contact_ids
-#: code:addons/survey_contact_ids/controllers/main.py:0
-#, python-format
-msgid "Added a new contact {contact} to answer {answer}."
-msgstr "Uusi yhteystieto {contact} lisätty vastaukselle {answer}."
-
-#. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid ""
-"By clicking \"Add Contact\" the user with the given email address will be "
-"granted rights to view and edit this survey answer."
-msgstr ""
-"Klikkaamalla \"Lisää yhteyshenkilö\" antamaanne sähköpostiin liittyvälle "
-"käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta."
+msgid "By clicking \"Add Contact\" the user with the given email address will be granted rights to view and edit this survey answer."
+msgstr "Klikkaamalla \"Lisää yhteyshenkilö\" antamaanne sähköpostiin liittyvälle käyttäjälle annetaan oikeudet tarkastella ja muokata tätä kyselyn vastausta."
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
@@ -70,6 +223,17 @@ msgstr "Peruuta"
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Close"
 msgstr "Sulje"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__code
+msgid "Code"
+msgstr "Tunniste"
+
+#. module: survey_contact_ids
+#: code:addons/survey_contact_ids/models/survey_user_invite.py:0 model:ir.model.constraint,message:survey_contact_ids.constraint_survey_user_invite_code_unique
+#, python-format
+msgid "Code has to be unique for every invite!"
+msgstr "Kutsun tunnisteen tulee olla jokaiselle kutsulle yksilöllinen!"
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids
@@ -99,37 +263,57 @@ msgid "Created a new user %s."
 msgstr "Uusi käyttäjä luotu %s."
 
 #. module: survey_contact_ids
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__display_name
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__display_name
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__create_uid
+msgid "Created by"
+msgstr "Luonut"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__create_date
+msgid "Created on"
+msgstr "Luotu"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__display_name model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__display_name
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__display_name
 msgid "Display Name"
 msgstr "Näyttönimi"
 
 #. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__email model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Email"
 msgstr "Sähköposti"
 
 #. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid "First Name"
-msgstr "Etunimi"
-
-#. module: survey_contact_ids
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__id
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__id
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard__id model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__id
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__id
 msgid "ID"
 msgstr "Tunniste (ID)"
 
 #. module: survey_contact_ids
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard____last_update
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input____last_update
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__invite_ids model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_user_input_view_form_contacts
+msgid "Invites"
+msgstr "Kutsut"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,help:survey_contact_ids.field_survey_user_input__invite_ids
+msgid "Invites for other users to participate on this survey"
+msgstr "Tämän kyselyn vastauksen kautta lähetetyt kutsut"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard____last_update model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input____last_update
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite____last_update
 msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
 #. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid "Last Name"
-msgstr "Sukunimi"
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__write_uid
+msgid "Last Updated by"
+msgstr "Viimeksi päivittänyt"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__write_date
+msgid "Last Updated on"
+msgstr "Viimeksi päivitetty"
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
@@ -138,22 +322,8 @@ msgstr "Ole hyvä ja syötä yhteyshenkilön sähköpostiosoite."
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid "Please enter the contact's first name."
-msgstr "Ole hyvä ja syötä yhteyshenkilön etunimi."
-
-#. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid "Please enter the contact's last name."
-msgstr "Ole hyvä ja syötä yhteyshenkilön sukunimi."
-
-#. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
-msgid ""
-"Please enter the information associated with a user you want to grant "
-"permissions to view and edit this survey answer."
-msgstr ""
-"Ole hyvä ja anna tiedot käyttäjästä, jolle haluat antaa oikeudet tarkastella"
-" ja muokata tätä kyselyn vastausta."
+msgid "Please enter the information associated with a user you want to grant permissions to view and edit this survey answer."
+msgstr "Ole hyvä ja anna tiedot käyttäjästä, jolle haluat antaa oikeudet tarkastella ja muokata tätä kyselyn vastausta."
 
 #. module: survey_contact_ids
 #: code:addons/survey_contact_ids/controllers/main.py:0
@@ -162,20 +332,49 @@ msgid "Signup is not allowed for uninvited users."
 msgstr "Rekisteröinti ei ole sallittu kutsumattomille käyttäjille."
 
 #. module: survey_contact_ids
-#: code:addons/survey_contact_ids/controllers/main.py:0
-#, python-format
-msgid "Something went wrong in user creation with values %s."
-msgstr "Jotain meni pieleen käyttäjän luonnissa arvoilla %s."
-
-#. module: survey_contact_ids
 #: model:ir.model,name:survey_contact_ids.model_survey_mailing_wizard
 msgid "Survey Mailing Wizard"
-msgstr ""
+msgstr "Kyselyn Viestitys"
 
 #. module: survey_contact_ids
 #: model:ir.model,name:survey_contact_ids.model_survey_user_input
 msgid "Survey User Input"
-msgstr "Kyselyn käyttäjän syöte"
+msgstr "Kyselyn vastaus"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__survey_user_input_id
+msgid "Survey answer"
+msgstr "Kyselyn vastaus"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,help:survey_contact_ids.field_survey_user_invite__survey_user_input_id
+msgid "Survey answer this invite belongs to"
+msgstr "Kyselyn vastaus, johon tämä kutsu kuuluu"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,help:survey_contact_ids.field_survey_user_invite__code
+msgid "Unique invite code for intitee"
+msgstr "Yksilöllinen kutsun tunniste, joka on lähetetty kutsutulle"
+
+#. module: survey_contact_ids
+#: model:ir.model,name:survey_contact_ids.model_survey_user_invite
+msgid "Unique invites to survey"
+msgstr "Yksilölliset kutsut kyselyn vastaukseen"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__user_id
+msgid "Used by"
+msgstr "Käyttänyt"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,help:survey_contact_ids.field_survey_user_invite__user_id
+msgid "User who accepted the invitation"
+msgstr "Käyttäjä, joka käytti kutsun"
+
+#. module: survey_contact_ids
+#: model:ir.model.fields,help:survey_contact_ids.field_survey_user_invite__email
+msgid "Where was invite sent"
+msgstr "Minne kutsu lähetettiin"
 
 #. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal

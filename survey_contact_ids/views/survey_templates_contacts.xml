@@ -3,7 +3,7 @@
     <!-- ADD SURVEY CONTACTS MODAL -->
     <template name="Survey Contacts" id="survey_contacts_modal">
         <div id="modal_survey_contacts" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <form
                     id="survey-contacts-form"
                     class="mt32 js_website_submit_form"
@@ -46,41 +46,7 @@
                                         Please enter the information associated with a user you want to grant permissions to view and edit this survey answer.
                                     </p>
                                     <div class="row">
-                                        <div class="form-group col-xl-4">
-                                            <label
-                                                for="firstname"
-                                                class="col-form-label"
-                                            >First Name</label>
-                                            <input
-                                                name="firstname"
-                                                maxlength="30"
-                                                placeholder="First Name"
-                                                required="required"
-                                                class="form-control"
-                                                type="text"
-                                            />
-                                            <div
-                                                class="invalid-feedback"
-                                            >Please enter the contact's first name.</div>
-                                        </div>
-                                        <div class="form-group col-xl-4">
-                                            <label
-                                                for="lastname"
-                                                class="col-form-label"
-                                            >Last Name</label>
-                                            <input
-                                                name="lastname"
-                                                maxlength="30"
-                                                placeholder="Last Name"
-                                                class="form-control"
-                                                type="text"
-                                                required="required"
-                                            />
-                                            <div
-                                                class="invalid-feedback"
-                                            >Please enter the contact's last name.</div>
-                                        </div>
-                                        <div class="form-group col-xl-4">
+                                        <div class="form-group col">
                                             <label
                                                 for="email"
                                                 class="col-form-label"
