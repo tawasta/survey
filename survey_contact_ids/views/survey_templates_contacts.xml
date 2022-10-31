@@ -98,4 +98,75 @@
             </div>
         </div>
     </template>
+
+    <template name="Survey Contact Invites" id="survey_contact_invites_modal">
+        <div
+            id="modal_survey_contact_invites"
+            class="modal fade"
+            tabindex="-1"
+            role="dialog"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header align-items-center">
+                        <h4 class="modal-title">Survey answer invites</h4>
+                        <button
+                            type="button"
+                            class="close close-modal"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span>x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Created at</th>
+                                            <th scope="col">Invited by</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Link</th>
+                                            <th scope="col">Used by</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="answer.invite_ids" t-as="invite">
+                                            <tr>
+                                                <td>
+                                                    <span
+                                                        t-field="invite.create_date"
+                                                    />
+                                                </td>
+                                                <td><t
+                                                        t-esc="invite.create_uid.name"
+                                                    /></td>
+                                                <td><t t-esc="invite.email" /></td>
+                                                <td>
+                                                    <a
+                                                        t-attf-href="/survey/invite/code/{{invite.code}}"
+                                                    >Link</a>
+                                                </td>
+                                                <td><t
+                                                        t-esc="invite.user_id.name or '-'"
+                                                    /></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary close-modal"
+                        >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </odoo>

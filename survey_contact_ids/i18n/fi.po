@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 09:33+0000\n"
-"PO-Revision-Date: 2022-10-31 11:34+0200\n"
+"POT-Creation-Date: 2022-10-31 14:03+0000\n"
+"PO-Revision-Date: 2022-10-31 16:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr ""
 "background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px\">\n"
 "                                                        Hyväksy kutsu\n"
 "                                                    </a>\n"
-"                                                    <br/><br/><br/>\n"
+"                                                    <br/><br/><br/><br/>\n"
 "                                                </div>\n"
 "                                            </td>\n"
 "                                        </tr>\n"
@@ -187,6 +187,11 @@ msgid "<i class=\"fa fa-address-book\"/> Add Contacts"
 msgstr "<i class=\"fa fa-address-book\"/> Lisää yhteyshenkilöitä"
 
 #. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids
+msgid "<i class=\"fa fa-envelope\"/> Show invites"
+msgstr "<i class=\"fa fa-envelope\"/> Näytä kutsupyynnöt"
+
+#. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
@@ -222,7 +227,7 @@ msgid "Cancel"
 msgstr "Peruuta"
 
 #. module: survey_contact_ids
-#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Close"
 msgstr "Sulje"
 
@@ -265,6 +270,11 @@ msgid "Created a new user %s."
 msgstr "Uusi käyttäjä luotu %s."
 
 #. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
+msgid "Created at"
+msgstr "Luotu"
+
+#. module: survey_contact_ids
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__create_uid
 msgid "Created by"
 msgstr "Luonut"
@@ -281,7 +291,8 @@ msgid "Display Name"
 msgstr "Näyttönimi"
 
 #. module: survey_contact_ids
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__email model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__email model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -290,6 +301,11 @@ msgstr "Sähköposti"
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__id
 msgid "ID"
 msgstr "Tunniste (ID)"
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
+msgid "Invited by"
+msgstr "Kutsunut"
 
 #. module: survey_contact_ids
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input__invite_ids model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_user_input_view_form_contacts
@@ -323,6 +339,11 @@ msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
 
 #. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
+msgid "Link"
+msgstr "Linkki"
+
+#. module: survey_contact_ids
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Please enter the contact's email address."
 msgstr "Ole hyvä ja syötä yhteyshenkilön sähköpostiosoite."
@@ -331,6 +352,11 @@ msgstr "Ole hyvä ja syötä yhteyshenkilön sähköpostiosoite."
 #: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contacts_modal
 msgid "Please enter the information associated with a user you want to grant permissions to view and edit this survey answer."
 msgstr "Ole hyvä ja anna tiedot käyttäjästä, jolle haluat antaa oikeudet tarkastella ja muokata tätä kyselyn vastausta."
+
+#. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.portal_answer_page_contact_ids
+msgid "Show invites"
+msgstr "Näytä kutsupyynnöt"
 
 #. module: survey_contact_ids
 #: code:addons/survey_contact_ids/controllers/main.py:0
@@ -354,6 +380,11 @@ msgid "Survey answer"
 msgstr "Kyselyn vastaus"
 
 #. module: survey_contact_ids
+#: model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
+msgid "Survey answer invites"
+msgstr "Kyselyn vastauksen kutsupyynnöt"
+
+#. module: survey_contact_ids
 #: model:ir.model.fields,help:survey_contact_ids.field_survey_user_invite__survey_user_input_id
 msgid "Survey answer this invite belongs to"
 msgstr "Kyselyn vastaus, johon tämä kutsu kuuluu"
@@ -369,7 +400,7 @@ msgid "Unique invites to survey"
 msgstr "Yksilölliset kutsut kyselyn vastaukseen"
 
 #. module: survey_contact_ids
-#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__user_id
+#: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__user_id model_terms:ir.ui.view,arch_db:survey_contact_ids.survey_contact_invites_modal
 msgid "Used by"
 msgstr "Käyttänyt"
 
