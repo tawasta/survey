@@ -87,8 +87,11 @@ class SurveyUserInvite(models.Model):
             "survey_contact_ids.mail_template_survey_invite",
             raise_if_not_found=False,
         ).id
+        email_values = {
+            "email_from": self.env.ref("base.main_company").email_formatted,
+        }
         self.env["mail.template"].browse(template_id).sudo().send_mail(
-            res.id, force_send=True
+            res.id, email_values=email_values, force_send=True
         )
         return res
 

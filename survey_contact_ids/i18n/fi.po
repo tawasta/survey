@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 07:40+0000\n"
-"PO-Revision-Date: 2022-10-31 09:49+0200\n"
+"POT-Creation-Date: 2022-10-31 09:33+0000\n"
+"PO-Revision-Date: 2022-10-31 11:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -62,13 +62,14 @@ msgid ""
 "                                        <tr>\n"
 "                                            <td style=\"min-width: 590px; text-align:center;\">\n"
 "                                                <div>\n"
-"                                                    You have been invited to participate in survey answer.<br/>\n"
+"                                                    You have been invited to participate in survey answer by ${object.create_uid.name}.<br/>\n"
 "                                                    To accept the invitation please click the link below:\n"
-"                                                    <br/><br/>\n"
+"                                                    <br/><br/><br/><br/>\n"
 "                                                    <a href=\"/survey/invite/code/${object.code}\" style=\"padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; "
 "background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px\">\n"
 "                                                        Accept invitation\n"
 "                                                    </a>\n"
+"                                                    <br/><br/><br/>\n"
 "                                                </div>\n"
 "                                            </td>\n"
 "                                        </tr>\n"
@@ -115,7 +116,7 @@ msgstr ""
 "                                                    <tbody>\n"
 "                                                        <tr>\n"
 "                                                            <td valign=\"middle\">\n"
-"                                                                <span style=\"font-size: 10px;\">Kyselyn vastaus</span><br/>\n"
+"                                                                <span style=\"font-size: 10px;\">Kyselyn käyttäjän syöte</span><br/>\n"
 "                                                                <span style=\"font-size: 20px; font-weight: bold;\">\n"
 "                                                                    ${object.survey_user_input_id.survey_id.title}\n"
 "                                                                </span>\n"
@@ -141,11 +142,12 @@ msgstr ""
 "                                                <div>\n"
 "                                                    Sinut on kutsuttu osallistumaan hakemuksen täyttämiseen.<br/>\n"
 "                                                    Hyväksyäksesi kutsun paina alla olevaa linkkiä:\n"
-"                                                    <br/><br/>\n"
+"                                                    <br/><br/><br/><br/>\n"
 "                                                    <a href=\"/survey/invite/code/${object.code}\" style=\"padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; "
 "background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px\">\n"
 "                                                        Hyväksy kutsu\n"
 "                                                    </a>\n"
+"                                                    <br/><br/><br/>\n"
 "                                                </div>\n"
 "                                            </td>\n"
 "                                        </tr>\n"
@@ -230,7 +232,7 @@ msgid "Code"
 msgstr "Tunniste"
 
 #. module: survey_contact_ids
-#: code:addons/survey_contact_ids/models/survey_user_invite.py:0 model:ir.model.constraint,message:survey_contact_ids.constraint_survey_user_invite_code_unique
+#: code:addons/survey_contact_ids/models/survey_user_invite.py:0
 #, python-format
 msgid "Code has to be unique for every invite!"
 msgstr "Kutsun tunnisteen tulee olla jokaiselle kutsulle yksilöllinen!"
@@ -300,6 +302,11 @@ msgid "Invites for other users to participate on this survey"
 msgstr "Tämän kyselyn vastauksen kautta lähetetyt kutsut"
 
 #. module: survey_contact_ids
+#: model:ir.model.constraint,message:survey_contact_ids.constraint_survey_user_invite_code_unique
+msgid "Kutsun tunnisteen tulee olla jokaiselle kutsulle yksilöllinen!"
+msgstr ""
+
+#. module: survey_contact_ids
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_mailing_wizard____last_update model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_input____last_update
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite____last_update
 msgid "Last Modified on"
@@ -339,7 +346,7 @@ msgstr "Kyselyn Viestitys"
 #. module: survey_contact_ids
 #: model:ir.model,name:survey_contact_ids.model_survey_user_input
 msgid "Survey User Input"
-msgstr "Kyselyn vastaus"
+msgstr "Kyselyn käyttäjän syöte"
 
 #. module: survey_contact_ids
 #: model:ir.model.fields,field_description:survey_contact_ids.field_survey_user_invite__survey_user_input_id
