@@ -14,9 +14,18 @@
                 <br />
                 <field name="save_as_secondary_contact_phone" nolabel="1" />
                 <label for="save_as_secondary_contact_phone" />
-                <br />
-                <field name="save_as_secondary_contact_email" nolabel="1" />
-                <label for="save_as_secondary_contact_email" />
+            </label>
+            <label for="save_as_email" position="after">
+                <br attrs="{'invisible': [('validation_email', '=', False)]}" />
+                <field
+                    name="save_as_secondary_contact_email"
+                    nolabel="1"
+                    attrs="{'invisible': [('validation_email', '=', False)]}"
+                />
+                <label
+                    for="save_as_secondary_contact_email"
+                    attrs="{'invisible': [('validation_email', '=', False)]}"
+                />
             </label>
         </field>
     </record>
