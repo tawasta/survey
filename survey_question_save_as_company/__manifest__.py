@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Question Save as Company",
-    "version": "14.0.1.0.0",
+    "version": "14.0.2.0.0",
     "category": "Marketing/Surveys",
     "summary": "Save the user's answer as its company name",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,6 +27,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey"],
+    "depends": ["survey", "res_partner_addresses_simple"],
     "data": ["views/survey_question_views.xml", "views/survey_user_views.xml"],
 }

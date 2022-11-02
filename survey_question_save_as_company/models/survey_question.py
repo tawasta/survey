@@ -37,23 +37,79 @@ class SurveyQuestion(models.Model):
     _inherit = "survey.question"
 
     # 2. Fields declaration
-    save_as_company = fields.Boolean(
-        "Save as user company",
-        compute="_compute_save_as_company",
+    save_as_company_name = fields.Boolean(
+        "Save as user company name",
+        compute="_compute_save_as_company_name",
         readonly=False,
         store=True,
         copy=True,
-        help="If checked, this option will save the user's answer as its company.",
+        help="If checked, this option will save the user's answer as its company name.",
+    )
+    save_as_company_street = fields.Boolean(
+        "Save as user company street",
+        compute="_compute_save_as_company_street",
+        readonly=False,
+        store=True,
+        copy=True,
+        help="If checked, this option will save the user's answer as its company street.",
+    )
+    save_as_company_zip = fields.Boolean(
+        "Save as user company zip",
+        compute="_compute_save_as_company_zip",
+        readonly=False,
+        store=True,
+        copy=True,
+        help="If checked, this option will save the user's answer as its company zip.",
+    )
+    save_as_company_city = fields.Boolean(
+        "Save as user company city",
+        compute="_compute_save_as_company_city",
+        readonly=False,
+        store=True,
+        copy=True,
+        help="If checked, this option will save the user's answer as its company city.",
+    )
+    save_as_company_website = fields.Boolean(
+        "Save as user company website",
+        compute="_compute_save_as_company_website",
+        readonly=False,
+        store=True,
+        copy=True,
+        help="If checked, this option will save the user's answer as its company website.",
     )
 
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
     @api.depends("question_type")
-    def _compute_save_as_company(self):
+    def _compute_save_as_company_name(self):
         for question in self:
             if question.question_type != "char_box":
-                question.save_as_company = False
+                question.save_as_company_name = False
+
+    @api.depends("question_type")
+    def _compute_save_as_company_street(self):
+        for question in self:
+            if question.question_type != "char_box":
+                question.save_as_company_street = False
+
+    @api.depends("question_type")
+    def _compute_save_as_company_zip(self):
+        for question in self:
+            if question.question_type != "char_box":
+                question.save_as_company_zip = False
+
+    @api.depends("question_type")
+    def _compute_save_as_company_city(self):
+        for question in self:
+            if question.question_type != "char_box":
+                question.save_as_company_city = False
+
+    @api.depends("question_type")
+    def _compute_save_as_company_website(self):
+        for question in self:
+            if question.question_type != "char_box":
+                question.save_as_company_website = False
 
     # 5. Constraints and onchanges
 

@@ -19,9 +19,9 @@
 ##############################################################################
 
 # 1. Standard library imports:
+import logging
 
 # 2. Known third party imports:
-
 # 3. Odoo imports (openerp):
 from odoo import fields, models
 
@@ -31,6 +31,8 @@ from odoo import fields, models
 
 # 6. Unknown third party imports:
 
+_logger = logging.getLogger(__name__)
+
 
 class SurveyUserInput(models.Model):
     # 1. Private attributes
@@ -38,6 +40,13 @@ class SurveyUserInput(models.Model):
 
     # 2. Fields declaration
     company_name = fields.Char(readonly=True)
+    company_street = fields.Char(readonly=True)
+    company_zip = fields.Char(readonly=True)
+    company_city = fields.Char(readonly=True)
+    company_website = fields.Char(readonly=True)
+    partner_company_id = fields.Many2one(
+        string="Partner's Company", related="partner_id.parent_id"
+    )
 
     # 3. Default methods
 
@@ -54,8 +63,120 @@ class SurveyUserInput(models.Model):
         overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
         """
         res = super(SurveyUserInput, self).save_lines(question, answer, comment)
-        if question.question_type == "char_box" and question.save_as_company and answer:
+        if (
+            question.question_type == "char_box"
+            and question.save_as_company_name
+            and answer
+        ):
             self.write({"company_name": answer})
+            if self.partner_company_id:
+                self.partner_company_id.write({"name": answer})
+                _logger.debug(
+                    "Wrote new company name %s for partner company %s."
+                    % (answer, self.partner_company_id)
+                )
+            else:
+                company = self.env["res.partner"].create(
+                    {
+                        "name": answer,
+                        "type": "invoice",
+                        "company_type": "company",
+                        "contact_ids": (4, self.partner_id.id, 0),
+                    }
+                )
+                _logger.debug("Created a new company %s." % company)
+        if (
+            question.question_type == "char_box"
+            and question.save_as_company_street
+            and answer
+        ):
+            self.write({"company_street": answer})
+            if self.partner_company_id:
+                self.partner_company_id.write({"street": answer})
+                _logger.debug(
+                    "Wrote a new street %s for partner company %s."
+                    % (answer, self.partner_company_id)
+                )
+            else:
+                company = self.env["res.partner"].create(
+                    {
+                        "name": "null",
+                        "street": answer,
+                        "type": "invoice",
+                        "company_type": "company",
+                        "contact_ids": (4, self.partner_id.id, 0),
+                    }
+                )
+                _logger.debug("Created a new company %s." % company)
+        if (
+            question.question_type == "char_box"
+            and question.save_as_company_zip
+            and answer
+        ):
+            self.write({"company_zip": answer})
+            if self.partner_company_id:
+                self.partner_company_id.write({"zip": answer})
+                _logger.debug(
+                    "Wrote a new zip %s for partner company %s."
+                    % (answer, self.partner_company_id)
+                )
+            else:
+                company = self.env["res.partner"].create(
+                    {
+                        "name": "null",
+                        "zip": answer,
+                        "type": "invoice",
+                        "company_type": "company",
+                        "contact_ids": (4, self.partner_id.id, 0),
+                    }
+                )
+                _logger.debug("Created a new company %s." % company)
+        if (
+            question.question_type == "char_box"
+            and question.save_as_company_city
+            and answer
+        ):
+            self.write({"company_city": answer})
+            if self.partner_company_id:
+                self.partner_company_id.write({"city": answer})
+                _logger.debug(
+                    "Wrote a new city %s for partner company %s."
+                    % (answer, self.partner_company_id)
+                )
+            else:
+                company = self.env["res.partner"].create(
+                    {
+                        "name": "null",
+                        "city": answer,
+                        "type": "invoice",
+                        "company_type": "company",
+                        "contact_ids": (4, self.partner_id.id, 0),
+                    }
+                )
+                _logger.debug("Created a new company %s." % company)
+        if (
+            question.question_type == "char_box"
+            and question.save_as_company_website
+            and answer
+        ):
+            self.write({"company_website": answer})
+            if self.partner_company_id:
+                self.partner_company_id.write({"website": answer})
+                _logger.debug(
+                    "Wrote a new website %s for partner company %s."
+                    % (answer, self.partner_company_id)
+                )
+            else:
+                company = self.env["res.partner"].create(
+                    {
+                        "name": "null",
+                        "website": answer,
+                        "type": "invoice",
+                        "company_type": "company",
+                        "contact_ids": (4, self.partner_id.id, 0),
+                    }
+                )
+                _logger.debug("Created a new company %s." % company)
         return res
 
     # 8. Business methods

@@ -5,7 +5,13 @@
 ===============================
 Survey Question Save as Company
 ===============================
-* Save user's answer as its company.
+* Save user's answer as its company. 
+* Answer options:
+    - Company Name
+    - Company Street
+    - Company Zip
+    - Company City
+    - Company Website
 
 Configuration
 =============
