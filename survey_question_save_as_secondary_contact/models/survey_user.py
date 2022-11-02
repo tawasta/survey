@@ -39,14 +39,10 @@ class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
 
     # 2. Fields declaration
-    company_name = fields.Char(readonly=True)
-    company_street = fields.Char(readonly=True)
-    company_zip = fields.Char(readonly=True)
-    company_city = fields.Char(readonly=True)
-    company_website = fields.Char(readonly=True)
-    partner_company_id = fields.Many2one(
-        string="Partner's Company", related="partner_id.parent_id"
-    )
+    secondary_contact_name = fields.Char(readonly=True)
+    secondary_contact_phone = fields.Char(readonly=True)
+    secondary_contact_email = fields.Char(readonly=True)
+    secondary_contact_id = fields.Many2one("res.partner", string="Secondary Contact")
 
     # 3. Default methods
 
@@ -65,115 +61,133 @@ class SurveyUserInput(models.Model):
         res = super(SurveyUserInput, self).save_lines(question, answer, comment)
         if (
             question.question_type == "char_box"
-            and question.save_as_company_name
+            and question.save_as_secondary_contact_name
             and answer
         ):
-            self.write({"company_name": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"name": answer})
+            self.write({"secondary_contact_name": answer})
+            secondary_contact = self.secondary_contact_id
+            if secondary_contact:
+                self.secondary_contact_id.write({"name": answer})
                 _logger.debug(
-                    "Wrote new company name %s for partner company %s."
-                    % (answer, self.partner_company_id)
+                    "Wrote new partner name %s for secondary contact %s."
+                    % (answer, self.secondary_contact_id)
                 )
             else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
+                secondary_contact = self.env["res.partner"].create(
+                    {"name": answer, "type": "invoice", "company_type": "person"}
                 )
-                _logger.debug("Created a new company %s." % company)
-        if (
-            question.question_type == "char_box"
-            and question.save_as_company_street
-            and answer
-        ):
-            self.write({"company_street": answer})
+                self.write({"secondary_contact_id": secondary_contact.id})
+                _logger.debug("Created a new contact %s." % secondary_contact)
+
             if self.partner_company_id:
-                self.partner_company_id.write({"street": answer})
+                self.partner_company_id.write(
+                    {"contact_ids": [(4, secondary_contact.id, 0)]}
+                )
                 _logger.debug(
-                    "Wrote a new street %s for partner company %s."
-                    % (answer, self.partner_company_id)
+                    "Added a new partner %s for partner company %s."
+                    % (secondary_contact, self.partner_company_id)
                 )
             else:
                 company = self.env["res.partner"].create(
                     {
                         "name": "null",
-                        "street": answer,
                         "type": "invoice",
                         "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
+                        "contact_ids": [
+                            (4, self.partner_id.id, 0),
+                            (4, secondary_contact.id, 0),
+                        ],
                     }
                 )
                 _logger.debug("Created a new company %s." % company)
         if (
             question.question_type == "char_box"
-            and question.save_as_company_zip
+            and question.save_as_secondary_contact_phone
             and answer
         ):
-            self.write({"company_zip": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"zip": answer})
+            self.write({"secondary_contact_phone": answer})
+            secondary_contact = self.secondary_contact_id
+            if secondary_contact:
+                self.secondary_contact_id.write({"phone": answer})
                 _logger.debug(
-                    "Wrote a new zip %s for partner company %s."
-                    % (answer, self.partner_company_id)
+                    "Wrote new partner phone %s for secondary contact %s."
+                    % (answer, self.secondary_contact_id)
+                )
+            else:
+                secondary_contact = self.env["res.partner"].create(
+                    {
+                        "name": "null",
+                        "phone": answer,
+                        "type": "invoice",
+                        "company_type": "person",
+                    }
+                )
+                self.write({"secondary_contact_id": secondary_contact.id})
+                _logger.debug("Created a new contact %s." % secondary_contact)
+
+            if self.partner_company_id:
+                self.partner_company_id.write(
+                    {"contact_ids": [(4, secondary_contact.id, 0)]}
+                )
+                _logger.debug(
+                    "Added a new partner %s for partner company %s."
+                    % (secondary_contact, self.partner_company_id)
                 )
             else:
                 company = self.env["res.partner"].create(
                     {
                         "name": "null",
-                        "zip": answer,
                         "type": "invoice",
                         "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
+                        "contact_ids": [
+                            (4, self.partner_id.id, 0),
+                            (4, secondary_contact.id, 0),
+                        ],
                     }
                 )
                 _logger.debug("Created a new company %s." % company)
         if (
             question.question_type == "char_box"
-            and question.save_as_company_city
+            and question.save_as_secondary_contact_email
             and answer
         ):
-            self.write({"company_city": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"city": answer})
+            self.write({"secondary_contact_email": answer})
+            secondary_contact = self.secondary_contact_id
+            if secondary_contact:
+                self.secondary_contact_id.write({"email": answer})
                 _logger.debug(
-                    "Wrote a new city %s for partner company %s."
-                    % (answer, self.partner_company_id)
+                    "Wrote new partner email %s for secondary contact %s."
+                    % (answer, self.secondary_contact_id)
                 )
             else:
-                company = self.env["res.partner"].create(
+                secondary_contact = self.env["res.partner"].create(
                     {
                         "name": "null",
-                        "city": answer,
+                        "email": answer,
                         "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
+                        "company_type": "person",
                     }
                 )
-                _logger.debug("Created a new company %s." % company)
-        if (
-            question.question_type == "char_box"
-            and question.save_as_company_website
-            and answer
-        ):
-            self.write({"company_website": answer})
+                self.write({"secondary_contact_id": secondary_contact.id})
+                _logger.debug("Created a new contact %s." % secondary_contact)
+
             if self.partner_company_id:
-                self.partner_company_id.write({"website": answer})
+                self.partner_company_id.write(
+                    {"contact_ids": [(4, secondary_contact.id, 0)]}
+                )
                 _logger.debug(
-                    "Wrote a new website %s for partner company %s."
-                    % (answer, self.partner_company_id)
+                    "Added a new partner %s for partner company %s."
+                    % (secondary_contact, self.partner_company_id)
                 )
             else:
                 company = self.env["res.partner"].create(
                     {
                         "name": "null",
-                        "website": answer,
                         "type": "invoice",
                         "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
+                        "contact_ids": [
+                            (4, self.partner_id.id, 0),
+                        ],
                     }
                 )
                 _logger.debug("Created a new company %s." % company)

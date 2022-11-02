@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_question_form_save_as_secondary_contact">
+        <field
+            name="name"
+        >Form view for survey question save as secondary contact</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <label for="save_as_nickname" position="after">
+                <br />
+                <field name="save_as_secondary_contact_name" nolabel="1" />
+                <label for="save_as_secondary_contact_name" />
+                <br />
+                <field name="save_as_secondary_contact_phone" nolabel="1" />
+                <label for="save_as_secondary_contact_phone" />
+                <br />
+                <field name="save_as_secondary_contact_email" nolabel="1" />
+                <label for="save_as_secondary_contact_email" />
+            </label>
+        </field>
+    </record>
+</odoo>
