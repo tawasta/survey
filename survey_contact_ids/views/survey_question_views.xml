@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_question_form_contact">
+        <field name="name">survey.question.form.contact</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <field name="validation_email" position="before">
+                <label
+                    for="contact_number"
+                    attrs="{'invisible': ['&amp;', '&amp;', ('save_as_contact_name', '=', False), ('save_as_contact_phone', '=', False), ('save_as_contact_email', '=', False)]}"
+                />
+                <field
+                    name="contact_number"
+                    nolabel="1"
+                    attrs="{'invisible': ['&amp;', '&amp;', ('save_as_contact_name', '=', False), ('save_as_contact_phone', '=', False), ('save_as_contact_email', '=', False)], 'required': ['|', '|', ('save_as_contact_name', '=', True), ('save_as_contact_phone', '=', True), ('save_as_contact_email', '=', True)]}"
+                />
+                <br
+                    attrs="{'invisible': ['&amp;', '&amp;', ('save_as_contact_name', '=', False), ('save_as_contact_phone', '=', False), ('save_as_contact_email', '=', False)]}"
+                />
+            </field>
+            <label for="save_as_nickname" position="after">
+                <br />
+                <field name="save_as_contact_name" nolabel="1" />
+                <label for="save_as_contact_name" />
+                <br />
+                <field name="save_as_contact_phone" nolabel="1" />
+                <label for="save_as_contact_phone" />
+            </label>
+            <label for="save_as_email" position="after">
+                <br attrs="{'invisible': [('validation_email', '=', False)]}" />
+                <field
+                    name="save_as_contact_email"
+                    nolabel="1"
+                    attrs="{'invisible': [('validation_email', '=', False)]}"
+                />
+                <label
+                    for="save_as_contact_email"
+                    attrs="{'invisible': [('validation_email', '=', False)]}"
+                />
+            </label>
+        </field>
+    </record>
+</odoo>

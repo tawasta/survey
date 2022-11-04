@@ -57,13 +57,11 @@ class SurveyUserInvite(models.Model):
         required=True,
     )
     code = fields.Char(
-        string="Code",
         help="Unique invite code for intitee",
         default=lambda self: uuid4(),
         required=True,
     )
     email = fields.Char(
-        string="Email",
         help="Where was invite sent",
         required=True,
     )

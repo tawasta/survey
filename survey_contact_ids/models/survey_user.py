@@ -19,17 +19,21 @@
 ##############################################################################
 
 # 1. Standard library imports:
-
-# 2. Known third party imports:
+import logging
 
 # 3. Odoo imports (openerp):
 from odoo import api, fields, models
+
+# 2. Known third party imports:
+
 
 # 4. Imports from Odoo modules:
 
 # 5. Local imports in the relative form:
 
 # 6. Unknown third party imports:
+
+_logger = logging.getLogger(__name__)
 
 
 class SurveyUserInput(models.Model):
@@ -61,5 +65,96 @@ class SurveyUserInput(models.Model):
         return super(SurveyUserInput, self).create(vals)
 
     # 7. Action methods
+    def _create_new_contact(self, vals_list):
+        """Create a new contact
+
+        This function creates a new contact for survey answer from dictionary of values.
+        :param Dictionary vals_list: Values to create a new contact
+        :returns: None
+        """
+        _logger.debug(vals_list)
+        contact = self.env["res.partner"].sudo().create(vals_list)
+        self.write({"contact_ids": [(4, contact.id, 0)]})
+        _logger.debug("Created a new contact %s." % contact)
+
+    def save_lines(self, question, answer, comment=None):
+        """Save answers to questions, depending on question type
+        If an answer already exists for question and user_input_id, it will be
+        overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
+        """
+        res = super(SurveyUserInput, self).save_lines(question, answer, comment)
+        if (
+            question.question_type == "char_box"
+            and question.save_as_contact_name
+            and answer
+        ):
+            contacts = self.contact_ids.filtered(
+                lambda r: r.survey_contact_number == question.contact_number
+            )
+            if contacts:
+                for contact in contacts:
+                    contact.write({"name": answer})
+                    _logger.debug(
+                        "Wrote new partner name %s for contact %s." % (answer, contact)
+                    )
+            else:
+                self._create_new_contact(
+                    {
+                        "name": answer,
+                        "survey_contact_number": question.contact_number,
+                        "type": "invoice",
+                        "company_type": "person",
+                    }
+                )
+        if (
+            question.question_type == "char_box"
+            and question.save_as_contact_phone
+            and answer
+        ):
+            contacts = self.contact_ids.filtered(
+                lambda r: r.survey_contact_number == question.contact_number
+            )
+            if contacts:
+                for contact in contacts:
+                    contact.write({"phone": answer})
+                    _logger.debug(
+                        "Wrote new partner phone number %s for contact %s."
+                        % (answer, contact)
+                    )
+            else:
+                self._create_new_contact(
+                    {
+                        "name": "null",
+                        "phone": answer,
+                        "survey_contact_number": question.contact_number,
+                        "type": "invoice",
+                        "company_type": "person",
+                    }
+                )
+        if (
+            question.question_type == "char_box"
+            and question.save_as_contact_email
+            and answer
+        ):
+            contacts = self.contact_ids.filtered(
+                lambda r: r.survey_contact_number == question.contact_number
+            )
+            if contacts:
+                for contact in contacts:
+                    contact.write({"email": answer})
+                    _logger.debug(
+                        "Wrote new partner email %s for contact %s." % (answer, contact)
+                    )
+            else:
+                self._create_new_contact(
+                    {
+                        "name": "null",
+                        "email": answer,
+                        "survey_contact_number": question.contact_number,
+                        "type": "invoice",
+                        "company_type": "person",
+                    }
+                )
+        return res
 
     # 8. Business methods
