@@ -5,7 +5,8 @@
 ===============================
 Survey Question Save as Company
 ===============================
-* Save user's answer as its company. 
+* Save user's answer as its partner company. 
+* Optionally save contacts to partner's company. 
 * Answer options:
     - Company Name
     - Company Street

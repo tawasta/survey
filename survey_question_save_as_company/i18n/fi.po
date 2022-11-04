@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0-20221025\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-04 19:10+0000\n"
-"PO-Revision-Date: 2022-11-04 19:10+0000\n"
+"POT-Creation-Date: 2022-11-04 20:15+0000\n"
+"PO-Revision-Date: 2022-11-04 20:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_survey__attach_contacts_to_company
+msgid "Attach Contacts To Company"
+msgstr "Liitä yhteyshenkilöt yritykseen"
 
 #. module: survey_question_save_as_company
 #: model_terms:ir.ui.view,arch_db:survey_question_save_as_company.survey_user_input_view_search_company
@@ -58,6 +63,13 @@ msgstr "Näyttönimi"
 #: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__id
 msgid "ID"
 msgstr "Tunniste (ID)"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_survey__attach_contacts_to_company
+msgid ""
+"If checked, this option will attach all new contacts to partner's company."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa uudet yhteyshenkilöt käyttäjän yritykseen."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_city

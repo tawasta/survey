@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import models
+from odoo import fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -37,6 +37,11 @@ class Survey(models.Model):
     _inherit = "survey.survey"
 
     # 2. Fields declaration
+    attach_contacts_to_company = fields.Boolean(
+        copy=True,
+        default=True,
+        help="If checked, this option will attach all new contacts to partner's company.",
+    )
 
     # 3. Default methods
 

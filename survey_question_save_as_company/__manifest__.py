@@ -28,5 +28,9 @@
     "application": False,
     "installable": True,
     "depends": ["survey", "res_partner_addresses_simple", "survey_contact_ids"],
-    "data": ["views/survey_question_views.xml", "views/survey_user_views.xml"],
+    "data": [
+        "views/survey_question_views.xml",
+        "views/survey_user_views.xml",
+        "views/survey_survey_views.xml",
+    ],
 }

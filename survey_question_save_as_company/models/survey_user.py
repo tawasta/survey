@@ -69,6 +69,7 @@ class SurveyUserInput(models.Model):
         return company
 
     def _save_company_contact(self, contact):
+        """This function will save a contact to partner's company"""
         if (
             self.partner_company_id
             and contact not in self.partner_company_id.contact_ids
@@ -92,7 +93,8 @@ class SurveyUserInput(models.Model):
             )
 
     def _save_contact_field(self, question, answer, field):
-        """overried original function from survey_contact_ids"""
+        """Override original function from survey_contact_ids to save contacts to
+        company"""
         contacts = self.contact_ids.filtered(
             lambda r: r.survey_contact_number == question.contact_number
         )
@@ -102,7 +104,8 @@ class SurveyUserInput(models.Model):
                 _logger.debug(
                     "Wrote new partner %s %s for contact %s." % (field, answer, contact)
                 )
-                self._save_company_contact(contact)
+                if self.survey_id.attach_contacts_to_company:
+                    self._save_company_contact(contact)
         else:
             contact = self._create_new_contact(
                 {
@@ -112,9 +115,12 @@ class SurveyUserInput(models.Model):
                     "company_type": "person",
                 }
             )
-            self._save_company_contact(contact)
+            if self.survey_id.attach_contacts_to_company:
+                self._save_company_contact(contact)
 
     def _save_company_field(self, answer, field):
+        """This function will save a new field for company based on.
+        If company does not exist we create a new one."""
         if self.partner_company_id:
             self.partner_company_id.write({field: answer})
             _logger.debug(
@@ -128,7 +134,11 @@ class SurveyUserInput(models.Model):
                     "type": "invoice",
                     "company_type": "company",
                     "contact_ids": [(4, self.partner_id.id, 0)]
-                    + [(4, contact.id, 0) for contact in self.contact_ids],
+                    + [
+                        (4, contact.id, 0)
+                        for contact in self.contact_ids
+                        if self.survey_id.attach_contacts_to_company
+                    ],
                 }
             )
 

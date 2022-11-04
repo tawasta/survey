@@ -78,6 +78,8 @@ class SurveyUserInput(models.Model):
         return contact
 
     def _save_contact_field(self, question, answer, field):
+        """This function will save a new field for contact based on it's contact number.
+        If contact does not exist we create a new one."""
         contacts = self.contact_ids.filtered(
             lambda r: r.survey_contact_number == question.contact_number
         )
