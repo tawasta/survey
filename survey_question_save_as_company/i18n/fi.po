@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0-20221025\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 19:11+0000\n"
-"PO-Revision-Date: 2022-11-02 19:11+0000\n"
+"POT-Creation-Date: 2022-11-04 19:10+0000\n"
+"PO-Revision-Date: 2022-11-04 19:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,35 +64,40 @@ msgstr "Tunniste (ID)"
 msgid ""
 "If checked, this option will save the user's answer as its company city."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen kaupunkina."
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"kaupunkina."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_name
 msgid ""
 "If checked, this option will save the user's answer as its company name."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen nimenä."
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"nimenä."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_street
 msgid ""
 "If checked, this option will save the user's answer as its company street."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen katuosoitteena."
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"katuosoitteena."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_website
 msgid ""
 "If checked, this option will save the user's answer as its company website."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen verkkosivuna."
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"verkkosivuna."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_zip
 msgid ""
 "If checked, this option will save the user's answer as its company zip."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen postinumerona."
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"postinumerona."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question____last_update

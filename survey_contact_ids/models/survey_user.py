@@ -70,12 +70,32 @@ class SurveyUserInput(models.Model):
 
         This function creates a new contact for survey answer from dictionary of values.
         :param Dictionary vals_list: Values to create a new contact
-        :returns: None
+        :returns: res.partner: Newly created partner
         """
-        _logger.debug(vals_list)
         contact = self.env["res.partner"].sudo().create(vals_list)
         self.write({"contact_ids": [(4, contact.id, 0)]})
         _logger.debug("Created a new contact %s." % contact)
+        return contact
+
+    def _save_contact_field(self, question, answer, field):
+        contacts = self.contact_ids.filtered(
+            lambda r: r.survey_contact_number == question.contact_number
+        )
+        if contacts:
+            for contact in contacts:
+                contact.write({field: answer})
+                _logger.debug(
+                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)
+                )
+        else:
+            self._create_new_contact(
+                {
+                    field: answer,
+                    "survey_contact_number": question.contact_number,
+                    "type": "invoice",
+                    "company_type": "person",
+                }
+            )
 
     def save_lines(self, question, answer, comment=None):
         """Save answers to questions, depending on question type
@@ -88,73 +108,19 @@ class SurveyUserInput(models.Model):
             and question.save_as_contact_name
             and answer
         ):
-            contacts = self.contact_ids.filtered(
-                lambda r: r.survey_contact_number == question.contact_number
-            )
-            if contacts:
-                for contact in contacts:
-                    contact.write({"name": answer})
-                    _logger.debug(
-                        "Wrote new partner name %s for contact %s." % (answer, contact)
-                    )
-            else:
-                self._create_new_contact(
-                    {
-                        "name": answer,
-                        "survey_contact_number": question.contact_number,
-                        "type": "invoice",
-                        "company_type": "person",
-                    }
-                )
+            self._save_contact_field(question, answer, "name")
         if (
             question.question_type == "char_box"
             and question.save_as_contact_phone
             and answer
         ):
-            contacts = self.contact_ids.filtered(
-                lambda r: r.survey_contact_number == question.contact_number
-            )
-            if contacts:
-                for contact in contacts:
-                    contact.write({"phone": answer})
-                    _logger.debug(
-                        "Wrote new partner phone number %s for contact %s."
-                        % (answer, contact)
-                    )
-            else:
-                self._create_new_contact(
-                    {
-                        "name": "null",
-                        "phone": answer,
-                        "survey_contact_number": question.contact_number,
-                        "type": "invoice",
-                        "company_type": "person",
-                    }
-                )
+            self._save_contact_field(question, answer, "phone")
         if (
             question.question_type == "char_box"
             and question.save_as_contact_email
             and answer
         ):
-            contacts = self.contact_ids.filtered(
-                lambda r: r.survey_contact_number == question.contact_number
-            )
-            if contacts:
-                for contact in contacts:
-                    contact.write({"email": answer})
-                    _logger.debug(
-                        "Wrote new partner email %s for contact %s." % (answer, contact)
-                    )
-            else:
-                self._create_new_contact(
-                    {
-                        "name": "null",
-                        "email": answer,
-                        "survey_contact_number": question.contact_number,
-                        "type": "invoice",
-                        "company_type": "person",
-                    }
-                )
+            self._save_contact_field(question, answer, "email")
         return res
 
     # 8. Business methods

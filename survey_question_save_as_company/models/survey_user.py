@@ -57,6 +57,81 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
+    def _create_new_company(self, vals_list):
+        """Create a new company
+
+        This function creates a new contact for survey answer from dictionary of values.
+        :param Dictionary vals_list: Values to create a new contact
+        :returns: res.partner company: Created company
+        """
+        company = self.env["res.partner"].sudo().create(vals_list)
+        _logger.debug("Created a new company %s." % company)
+        return company
+
+    def _save_company_contact(self, contact):
+        if (
+            self.partner_company_id
+            and contact not in self.partner_company_id.contact_ids
+        ):
+            self.partner_company_id.write({"contact_ids": [(4, contact.id, 0)]})
+            _logger.debug(
+                "Added a new partner %s for partner company %s."
+                % (contact, self.partner_company_id)
+            )
+        else:
+            self._create_new_company(
+                {
+                    "name": "null",
+                    "type": "invoice",
+                    "company_type": "company",
+                    "contact_ids": [
+                        (4, self.partner_id.id, 0),
+                        (4, contact.id, 0),
+                    ],
+                }
+            )
+
+    def _save_contact_field(self, question, answer, field):
+        """overried original function from survey_contact_ids"""
+        contacts = self.contact_ids.filtered(
+            lambda r: r.survey_contact_number == question.contact_number
+        )
+        if contacts:
+            for contact in contacts:
+                contact.write({field: answer})
+                _logger.debug(
+                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)
+                )
+                self._save_company_contact(contact)
+        else:
+            contact = self._create_new_contact(
+                {
+                    field: answer,
+                    "survey_contact_number": question.contact_number,
+                    "type": "invoice",
+                    "company_type": "person",
+                }
+            )
+            self._save_company_contact(contact)
+
+    def _save_company_field(self, answer, field):
+        if self.partner_company_id:
+            self.partner_company_id.write({field: answer})
+            _logger.debug(
+                "Wrote new company %s %s for partner company %s."
+                % (field, answer, self.partner_company_id)
+            )
+        else:
+            self._create_new_company(
+                {
+                    field: answer,
+                    "type": "invoice",
+                    "company_type": "company",
+                    "contact_ids": [(4, self.partner_id.id, 0)]
+                    + [(4, contact.id, 0) for contact in self.contact_ids],
+                }
+            )
+
     def save_lines(self, question, answer, comment=None):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
@@ -69,114 +144,35 @@ class SurveyUserInput(models.Model):
             and answer
         ):
             self.write({"company_name": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"name": answer})
-                _logger.debug(
-                    "Wrote new company name %s for partner company %s."
-                    % (answer, self.partner_company_id)
-                )
-            else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
-                )
-                _logger.debug("Created a new company %s." % company)
+            self._save_company_field(answer, "name")
         if (
             question.question_type == "char_box"
             and question.save_as_company_street
             and answer
         ):
             self.write({"company_street": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"street": answer})
-                _logger.debug(
-                    "Wrote a new street %s for partner company %s."
-                    % (answer, self.partner_company_id)
-                )
-            else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": "null",
-                        "street": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
-                )
-                _logger.debug("Created a new company %s." % company)
+            self._save_company_field(answer, "street")
         if (
             question.question_type == "char_box"
             and question.save_as_company_zip
             and answer
         ):
             self.write({"company_zip": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"zip": answer})
-                _logger.debug(
-                    "Wrote a new zip %s for partner company %s."
-                    % (answer, self.partner_company_id)
-                )
-            else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": "null",
-                        "zip": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
-                )
-                _logger.debug("Created a new company %s." % company)
+            self._save_company_field(answer, "zip")
         if (
             question.question_type == "char_box"
             and question.save_as_company_city
             and answer
         ):
             self.write({"company_city": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"city": answer})
-                _logger.debug(
-                    "Wrote a new city %s for partner company %s."
-                    % (answer, self.partner_company_id)
-                )
-            else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": "null",
-                        "city": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
-                )
-                _logger.debug("Created a new company %s." % company)
+            self._save_company_field(answer, "city")
         if (
             question.question_type == "char_box"
             and question.save_as_company_website
             and answer
         ):
             self.write({"company_website": answer})
-            if self.partner_company_id:
-                self.partner_company_id.write({"website": answer})
-                _logger.debug(
-                    "Wrote a new website %s for partner company %s."
-                    % (answer, self.partner_company_id)
-                )
-            else:
-                company = self.env["res.partner"].create(
-                    {
-                        "name": "null",
-                        "website": answer,
-                        "type": "invoice",
-                        "company_type": "company",
-                        "contact_ids": [(4, self.partner_id.id, 0)],
-                    }
-                )
-                _logger.debug("Created a new company %s." % company)
+            self._save_company_field(answer, "website")
         return res
 
     # 8. Business methods
