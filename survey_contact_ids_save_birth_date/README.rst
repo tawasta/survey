@@ -2,12 +2,12 @@
         :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
         :alt: License: AGPL-3
 
-===========================
-Survey Contacts Save Gender
-===========================
-* Gender field for partners
-* Save contacts answer as its gender
-* Save partner answer as its gender
+===============================
+Survey Contacts Save Birth Date
+===============================
+* Birth Date field for partners
+* Save contacts answer as its birth date
+* Save partner answer as its birth date
 
 Configuration
 =============
@@ -19,7 +19,7 @@ Usage
 
 Known issues / Roadmap
 ======================
-- Gender answer can be anything so we need to hard-code string comparison values.
+\-
 
 Credits
 =======
