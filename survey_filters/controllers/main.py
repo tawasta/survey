@@ -1,11 +1,12 @@
+import logging
 from datetime import datetime
 
 from odoo import http
-import logging
 from odoo.http import request
 
-_logger = logging.getLogger(__name__)
 from odoo.addons.survey.controllers.main import Survey
+
+_logger = logging.getLogger(__name__)
 
 
 class SurveyFilter(Survey):
@@ -15,12 +16,16 @@ class SurveyFilter(Survey):
         auth="user",
         website=True,
     )
-    def survey_report(self, survey,
+    def survey_report(
+        self,
+        survey,
         search="",
         user_id=None,
         event_id=None,
         select_date=None,
-        answer_token=None, **post):
+        answer_token=None,
+        **post
+    ):
 
         res = super(SurveyFilter, self).survey_report(
             survey,
@@ -67,12 +72,12 @@ class SurveyFilter(Survey):
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
-            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",  # noqa
         ],
         type="http",
         auth="user",
@@ -156,7 +161,9 @@ class SurveyFilter(Survey):
 
         return request.render("survey.survey_page_statistics", template_values)
 
-    def _extract_survey_data(self, survey, user_id, event_id, select_date, search, post):
+    def _extract_survey_data(
+        self, survey, user_id, event_id, select_date, search, post
+    ):
         search_filters = []
         logging.info(search)
         if search:
