@@ -15,14 +15,21 @@ class SurveyFilter(Survey):
         auth="user",
         website=True,
     )
-    def survey_report(self, survey, search="", answer_token=None, **post):
+    def survey_report(self, survey,
+        search="",
+        user_id=None,
+        event_id=None,
+        select_date=None,
+        answer_token=None, **post):
 
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
         )
         logging.info("====KAYKO EDES TAALLA=====")
-        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+        user_input_lines, search_filters = self._extract_survey_data(
+            survey, user_id, event_id, select_date, search, post
+        )
         user_input_ids = (
             request.env["survey.user_input.line"]
             .sudo()
