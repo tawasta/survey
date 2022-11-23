@@ -14,6 +14,11 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="survey.filter.date",
     )
 
+    use_event_contain_filter = fields.Boolean(
+        string="Survey: use the text filter in the survey result view",
+        config_parameter="survey.filter.event.contain",
+    )
+
     module_society_event_core = fields.Boolean(string="Use event")
 
     use_event_filter = fields.Boolean(
