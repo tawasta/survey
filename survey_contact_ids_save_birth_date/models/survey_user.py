@@ -50,6 +50,12 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
+    def _save_partner_birth_date(self, answer):
+        """Saves birth date to partner"""
+        self.write({"partner_birth_date": answer})
+        self.partner_id.write({"birth_date": answer})
+        _logger.debug("Partner's %s birth date saved." % self.partner_id)
+
     def save_lines(self, question, answer, comment=None):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
@@ -61,9 +67,7 @@ class SurveyUserInput(models.Model):
             and question.save_as_partner_birth_date
             and answer
         ):
-            self.write({"partner_birth_date": answer})
-            self.partner_id.write({"birth_date": answer})
-            _logger.debug("Partner's %s birth date saved." % self.partner_id)
+            self._save_partner_birth_date(answer)
         if (
             question.question_type == "date"
             and question.save_as_contact_birth_date

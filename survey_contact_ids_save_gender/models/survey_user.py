@@ -58,6 +58,12 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
+    def _save_partner_gender(self, gender):
+        """Saves gender to partner"""
+        self.write({"partner_gender": gender})
+        self.partner_id.write({"gender": gender})
+        _logger.debug("Partner's %s gender saved." % self.partner_id)
+
     def save_lines(self, question, answer, comment=None):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
@@ -79,14 +85,11 @@ class SurveyUserInput(models.Model):
             # Question answers can be anything so we need to hard-code some string comparisons.
             # If no match is found don't save gender. (But still save the answer)
             if answer_value.casefold() in GENDER_OPTS.get("m"):
-                self.write({"partner_gender": "m"})
-                self.partner_id.write({"gender": "m"})
+                self._save_partner_gender("m")
             elif answer_value.casefold() in GENDER_OPTS.get("f"):
-                self.write({"partner_gender": "f"})
-                self.partner_id.write({"gender": "f"})
+                self._save_partner_gender("f")
             elif answer_value.casefold() in GENDER_OPTS.get("o"):
-                self.write({"partner_gender": "o"})
-                self.partner_id.write({"gender": "o"})
+                self._save_partner_gender("o")
             else:
                 _logger.warning(
                     "Gender %s answer does not match known gender options in %s. "
