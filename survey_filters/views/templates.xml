@@ -9,11 +9,9 @@
     <template
         id="survey_page_statistics_inner"
         inherit_id="survey.survey_page_statistics_inner"
-    >
+    >   
         <xpath expr="//div[@class='card d-print-none']" position="attributes">
-            <attribute
-                name="class"
-            >products_pager form-inline justify-content-center</attribute>
+            <attribute name="class">products_pager form-inline justify-content-center</attribute>
         </xpath>
         <xpath expr="//div[@class='card-header']" position="replace" />
         <xpath expr="//div[@class='card-body']" position="inside">
@@ -35,6 +33,10 @@
                         t-set="event_filter"
                         t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.event')"
                     />
+                        <t
+                        t-set="event_text_filter"
+                        t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.event.contain')"
+                    />
                         <t t-if="user_filter">
                             <t t-call="survey_filters.users" />
                         </t>
@@ -43,6 +45,9 @@
                         </t>
                         <t t-if="event_filter">
                             <t t-call="survey_filters.events" />
+                        </t>
+                        <t t-if="event_text_filter and events">
+                            <t t-call="survey_filters.event_text" />
                         </t>
                     </div>
             </div>
@@ -67,6 +72,19 @@
                     ><t t-esc="u.name" /></option>
                 </t>
             </select>
+        </div>
+    </template>
+
+    <template id="event_text" name="Event Text Box">
+        <form t-att-action="search_url" method="get" class="col-sm-4 px-0">
+            <t t-call="website.website_search_box"/>
+        </form>
+        <div class="mt-3 h5" t-if="current_search">
+            <span>Showing results with search: </span>
+            <a t-att-href="request.httprequest.path" class="badge badge-secondary">
+                <t t-esc="current_search"/>
+                <span aria-label="Close">&amp;times;</span>
+            </a>
         </div>
     </template>
 

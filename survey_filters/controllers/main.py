@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from odoo import http
+import logging
 from odoo.http import request
 
+_logger = logging.getLogger(__name__)
 from odoo.addons.survey.controllers.main import Survey
 
 
@@ -13,12 +15,13 @@ class SurveyFilter(Survey):
         auth="user",
         website=True,
     )
-    def survey_report(self, survey, answer_token=None, **post):
+    def survey_report(self, survey, search="", answer_token=None, **post):
 
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
         )
+        logging.info("====KAYKO EDES TAALLA=====")
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
             request.env["survey.user_input.line"]
@@ -42,12 +45,14 @@ class SurveyFilter(Survey):
             "survey.filter.event"
         )
         if use_event_filter and use_event:
+            logging.info("====TANNE MENTIIN HYVIN========")
             events = (
                 request.env["survey.user_input"]
                 .sudo()
                 .search([("id", "in", user_input_ids.ids)])
                 .mapped("event_id")
             )
+            logging.info(events)
             res.qcontext.update({"users": users, "events": events})
 
         return res
@@ -55,12 +60,12 @@ class SurveyFilter(Survey):
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",  # noqa B950
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",  # noqa B950
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",
             """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",  # noqa B950
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",
             """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
-            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",  # noqa B950
+            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",
         ],
         type="http",
         auth="user",
@@ -69,6 +74,7 @@ class SurveyFilter(Survey):
     def survey_report_filter(
         self,
         survey,
+        search="",
         user_id=None,
         event_id=None,
         select_date=None,
@@ -77,13 +83,13 @@ class SurveyFilter(Survey):
     ):
 
         user_input_lines, search_filters = self._extract_survey_data(
-            survey, user_id, event_id, select_date, post
+            survey, user_id, event_id, select_date, search, post
         )
         survey_data = survey._prepare_statistics(user_input_lines)
         question_and_page_data = survey.question_and_page_ids._prepare_statistics(
             user_input_lines
         )
-
+        search_url = request.httprequest.path + ("?%s" % search)
         template_values = {
             # survey and its statistics
             "survey": survey,
@@ -91,6 +97,8 @@ class SurveyFilter(Survey):
             "survey_data": survey_data,
             # search
             "search_filters": search_filters,
+            "search_url": search_url,
+            "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
@@ -109,6 +117,7 @@ class SurveyFilter(Survey):
         use_event_filter = request.env["ir.config_parameter"].get_param(
             "survey.filter.event"
         )
+
         if use_event_filter and use_event:
             events = (
                 request.env["survey.user_input"]
@@ -140,8 +149,13 @@ class SurveyFilter(Survey):
 
         return request.render("survey.survey_page_statistics", template_values)
 
-    def _extract_survey_data(self, survey, user_id, event_id, select_date, post):
+    def _extract_survey_data(self, survey, user_id, event_id, select_date, search, post):
         search_filters = []
+        logging.info(search)
+        if search:
+            line_filter_domain, line_choices = [
+                ("user_input_id.event_id.name", "ilike", search)
+            ], []
         if event_id:
             line_filter_domain, line_choices = [
                 ("user_input_id.event_id", "=", event_id)
@@ -156,7 +170,7 @@ class SurveyFilter(Survey):
             line_filter_domain, line_choices = [
                 ("user_input_id.create_date", "=", select_date_obj)
             ], []
-        if not user_id and not select_date and not event_id:
+        if not user_id and not select_date and not event_id and not search:
             line_filter_domain, line_choices = [], []
         for data in post.get("filters", "").split("|"):
             try:
