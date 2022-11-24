@@ -1,12 +1,11 @@
-import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from odoo import http
+import logging
 from odoo.http import request
 
-from odoo.addons.survey.controllers.main import Survey
-
 _logger = logging.getLogger(__name__)
+from odoo.addons.survey.controllers.main import Survey
 
 
 class SurveyFilter(Survey):
@@ -16,25 +15,24 @@ class SurveyFilter(Survey):
         auth="user",
         website=True,
     )
-    def survey_report(
-        self,
-        survey,
+    def survey_report(self, survey,
         search="",
         user_id=None,
         event_id=None,
         select_date=None,
-        answer_token=None,
-        **post
-    ):
+        date_end=None,
+        answer_token=None, **post):
 
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
         )
-        logging.info("====KAYKO EDES TAALLA=====")
         user_input_lines, search_filters = self._extract_survey_data(
-            survey, user_id, event_id, select_date, search, post
+            survey, user_id, event_id, select_date, date_end, search, post
         )
+        survey_data = survey._prepare_statistics(user_input_lines)
+        question_and_page_data = survey.question_and_page_ids._prepare_statistics(user_input_lines)
+        res.qcontext.update({'question_and_page_data': question_and_page_data, 'survey_data': survey_data,})
         user_input_ids = (
             request.env["survey.user_input.line"]
             .sudo()
@@ -57,14 +55,12 @@ class SurveyFilter(Survey):
             "survey.filter.event"
         )
         if use_event_filter and use_event:
-            logging.info("====TANNE MENTIIN HYVIN========")
             events = (
                 request.env["survey.user_input"]
                 .sudo()
                 .search([("id", "in", user_input_ids.ids)])
                 .mapped("event_id")
             )
-            logging.info(events)
             res.qcontext.update({"users": users, "events": events})
 
         return res
@@ -72,12 +68,13 @@ class SurveyFilter(Survey):
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date/<string:select_date>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<int:event_id>""",
+            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>""",
             """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>""",
-            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>""",
-            """/survey/results/<model("survey.survey"):survey>/date/<string:select_date>/event/<int:event_id>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/event/<int:event_id>/date_start/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",
+            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>""",
+            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/event/<int:event_id>""",
         ],
         type="http",
         auth="user",
@@ -90,12 +87,13 @@ class SurveyFilter(Survey):
         user_id=None,
         event_id=None,
         select_date=None,
+        date_end=None,
         answer_token=None,
         **post
     ):
 
         user_input_lines, search_filters = self._extract_survey_data(
-            survey, user_id, event_id, select_date, search, post
+            survey, user_id, event_id, select_date, date_end, search, post
         )
         survey_data = survey._prepare_statistics(user_input_lines)
         question_and_page_data = survey.question_and_page_ids._prepare_statistics(
@@ -161,11 +159,8 @@ class SurveyFilter(Survey):
 
         return request.render("survey.survey_page_statistics", template_values)
 
-    def _extract_survey_data(
-        self, survey, user_id, event_id, select_date, search, post
-    ):
+    def _extract_survey_data(self, survey, user_id, event_id, select_date, date_end, search, post):
         search_filters = []
-        logging.info(search)
         if search:
             line_filter_domain, line_choices = [
                 ("user_input_id.event_id.name", "ilike", search)
@@ -179,12 +174,20 @@ class SurveyFilter(Survey):
                 ("user_input_id.partner_id", "=", user_id)
             ], []
 
-        if select_date:
-            select_date_obj = datetime.strptime(select_date, "%d.%m.%Y").date()
+        if select_date and not date_end:
+            select_date_obj = datetime.strptime(select_date, "%d.%m.%Y")
+            select_date_end_obj = select_date_obj + timedelta(hours=23, minutes=59, seconds=59)
             line_filter_domain, line_choices = [
-                ("user_input_id.create_date", "=", select_date_obj)
+                ("user_input_id.create_date", ">=", select_date_obj),("user_input_id.create_date", "<=", select_date_end_obj),
             ], []
-        if not user_id and not select_date and not event_id and not search:
+        if select_date and date_end:
+            select_date_start_obj = datetime.strptime(select_date, "%d.%m.%Y")
+            select_date_end_obj = datetime.strptime(date_end, "%d.%m.%Y")
+            date_end_obj = select_date_end_obj + timedelta(hours=23, minutes=59, seconds=59)
+            line_filter_domain, line_choices = [
+                ("user_input_id.create_date", ">=", select_date_start_obj),("user_input_id.create_date", "<=", date_end_obj),
+            ], []
+        if not user_id and not select_date and not event_id and not search and not date_end:
             line_filter_domain, line_choices = [], []
         for data in post.get("filters", "").split("|"):
             try:
