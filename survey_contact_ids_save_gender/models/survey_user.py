@@ -58,6 +58,25 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
+    def _get_partner_gender(self, answer_id):
+        answer_value = (
+            self.env["survey.question.answer"]
+            .sudo()
+            .search([("id", "=", answer_id)], limit=1)
+            .value
+        )
+        if answer_value:
+            # Question answers can be anything so we need to hard-code some string comparisons.
+            # If no match is found don't save gender. (But still save the answer)
+            for gender_opt, gender in GENDER_OPTS.items():
+                if answer_value.casefold() in gender:
+                    return gender_opt
+            _logger.warning(
+                "Gender %s answer does not match known gender options in %s. "
+                % (answer_value.casefold(), GENDER_OPTS)
+            )
+        return False
+
     def _save_partner_gender(self, gender):
         """Saves gender to partner"""
         self.write({"partner_gender": gender})
@@ -76,50 +95,18 @@ class SurveyUserInput(models.Model):
             and answer
             and not question.comment_count_as_answer
         ):
-            answer_value = (
-                self.env["survey.question.answer"]
-                .sudo()
-                .search([("id", "=", answer)], limit=1)
-                .value
-            )
-            # Question answers can be anything so we need to hard-code some string comparisons.
-            # If no match is found don't save gender. (But still save the answer)
-            if answer_value.casefold() in GENDER_OPTS.get("m"):
-                self._save_partner_gender("m")
-            elif answer_value.casefold() in GENDER_OPTS.get("f"):
-                self._save_partner_gender("f")
-            elif answer_value.casefold() in GENDER_OPTS.get("o"):
-                self._save_partner_gender("o")
-            else:
-                _logger.warning(
-                    "Gender %s answer does not match known gender options in %s. "
-                    % (answer_value.casefold(), GENDER_OPTS)
-                )
+            gender_opt = self._get_partner_gender(answer)
+            if gender_opt:
+                self._save_partner_gender(gender_opt)
         if (
             question.question_type == "simple_choice"
             and question.save_as_contact_gender
             and answer
             and not question.comment_count_as_answer
         ):
-            answer_value = (
-                self.env["survey.question.answer"]
-                .sudo()
-                .search([("id", "=", answer)], limit=1)
-                .value
-            )
-            # Question answers can be anything so we need to hard-code some string comparisons.
-            # If no match is found don't save gender. (But still save the answer)
-            if answer_value.casefold() in GENDER_OPTS.get("m"):
-                self._save_contact_field(question, "m", "gender")
-            elif answer_value.casefold() in GENDER_OPTS.get("f"):
-                self._save_contact_field(question, "f", "gender")
-            elif answer_value.casefold() in GENDER_OPTS.get("o"):
-                self._save_contact_field(question, "o", "gender")
-            else:
-                _logger.warning(
-                    "Gender %s answer does not match known gender options in %s. "
-                    % (answer_value.casefold(), GENDER_OPTS)
-                )
+            gender_opt = self._get_partner_gender(answer)
+            if gender_opt:
+                self._save_contact_field(gender_opt)
         return res
 
     # 8. Business methods
