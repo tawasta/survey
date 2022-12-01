@@ -122,6 +122,21 @@
                     ><i class="fa fa-address-book" /> Add Contacts</button>
                 </form>
             </div>
+            <div class="btn-group flex-grow-1 mr-1 mb-1">
+                <button
+                    id="button-show-invites"
+                    type="button"
+                    class="btn btn-secondary btn-block"
+                    role="button"
+                    title="Show invites"
+                    aria-label="Show invites"
+                    data-toggle="modal"
+                    data-target="#modal_survey_contact_invites"
+                ><i class="fa fa-envelope" /> Show invites</button>
+            </div>
+        </xpath>
+        <xpath expr="//body" position="inside">
+            <t t-call="survey_contact_ids.survey_contact_invites_modal" />
         </xpath>
     </template>
 </odoo>

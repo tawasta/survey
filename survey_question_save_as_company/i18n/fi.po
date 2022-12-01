@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 14.0-20221025\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-22 14:20+0000\n"
-"PO-Revision-Date: 2022-09-22 14:20+0000\n"
+"POT-Creation-Date: 2022-11-04 20:15+0000\n"
+"PO-Revision-Date: 2022-11-04 20:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,39 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_survey__attach_contacts_to_company
+msgid "Attach Contacts To Company"
+msgstr "Liitä yhteyshenkilöt yritykseen"
+
+#. module: survey_question_save_as_company
 #: model_terms:ir.ui.view,arch_db:survey_question_save_as_company.survey_user_input_view_search_company
 msgid "Company"
 msgstr "Yritys"
 
 #. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__company_city
+msgid "Company City"
+msgstr "Yrityksen kaupunki"
+
+#. module: survey_question_save_as_company
 #: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__company_name
 msgid "Company Name"
 msgstr "Yrityksen nimi"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__company_street
+msgid "Company Street"
+msgstr "Yrityksen katuosoite"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__company_website
+msgid "Company Website"
+msgstr "Yrityksen verkkosivu"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__company_zip
+msgid "Company Zip"
+msgstr "Yrityksen postinumero"
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__display_name
@@ -40,10 +65,51 @@ msgid "ID"
 msgstr "Tunniste (ID)"
 
 #. module: survey_question_save_as_company
-#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company
-msgid "If checked, this option will save the user's answer as its company."
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_survey__attach_contacts_to_company
+msgid ""
+"If checked, this option will attach all new contacts to partner's company."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen nimenä."
+"Jos valittuna, tämä vaihtoehto tallentaa uudet yhteyshenkilöt käyttäjän yritykseen."
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_city
+msgid ""
+"If checked, this option will save the user's answer as its company city."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"kaupunkina."
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_name
+msgid ""
+"If checked, this option will save the user's answer as its company name."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"nimenä."
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_street
+msgid ""
+"If checked, this option will save the user's answer as its company street."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"katuosoitteena."
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_website
+msgid ""
+"If checked, this option will save the user's answer as its company website."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"verkkosivuna."
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,help:survey_question_save_as_company.field_survey_question__save_as_company_zip
+msgid ""
+"If checked, this option will save the user's answer as its company zip."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yrityksen "
+"postinumerona."
 
 #. module: survey_question_save_as_company
 #: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question____last_update
@@ -53,9 +119,34 @@ msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
 #. module: survey_question_save_as_company
-#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company
-msgid "Save as user company"
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_user_input__partner_company_id
+msgid "Partner's Company"
+msgstr "Kumppanin yritys"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company_city
+msgid "Save as user company city"
+msgstr "Tallenna käyttäjän yrityksen kaupunkina"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company_name
+msgid "Save as user company name"
 msgstr "Tallenna käyttäjän yrityksen nimenä"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company_street
+msgid "Save as user company street"
+msgstr "Tallenna käyttäjän yrityksen katuosoitteena"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company_website
+msgid "Save as user company website"
+msgstr "Tallenna käyttäjän yrityksen verkkosivuna"
+
+#. module: survey_question_save_as_company
+#: model:ir.model.fields,field_description:survey_question_save_as_company.field_survey_question__save_as_company_zip
+msgid "Save as user company zip"
+msgstr "Tallenna käyttäjän yrityksen postinumerona"
 
 #. module: survey_question_save_as_company
 #: model:ir.model,name:survey_question_save_as_company.model_survey_survey
@@ -70,4 +161,4 @@ msgstr "Kyselyn kysymykset"
 #. module: survey_question_save_as_company
 #: model:ir.model,name:survey_question_save_as_company.model_survey_user_input
 msgid "Survey User Input"
-msgstr "Kyselyn käyttäjän syöte"
+msgstr "Käyttäjäsyöte kyselyssä"

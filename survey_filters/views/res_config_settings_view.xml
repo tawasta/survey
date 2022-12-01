@@ -68,6 +68,31 @@
                         </div>
                         <div
                             class="row mt16 o_settings_container"
+                            name="use_text_filter_setting_container"
+                        >
+                            <div
+                                class="col-12 col-lg-6 o_setting_box"
+                                id="use_event_contain_filter_settings"
+                            >
+                                <div class="o_setting_left_pane">
+                                    <field name="use_event_contain_filter" />
+                                </div>
+                                <div
+                                    class="o_setting_right_pane"
+                                    name="use_event_contain_filter_pane"
+                                >
+                                    <label
+                                        for="use_event_contain_filter"
+                                        string="Use the text filter in the survey result view"
+                                    />
+                                    <div class="text-muted">
+                                        Use the text filter in the survey result view
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="row mt16 o_settings_container"
                             name="module_society_event_core_setting_container"
                         >
                             <div

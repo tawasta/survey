@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import models
+from odoo import fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -37,6 +37,11 @@ class Survey(models.Model):
     _inherit = "survey.survey"
 
     # 2. Fields declaration
+    attach_contacts_to_company = fields.Boolean(
+        copy=True,
+        default=True,
+        help="If checked, this option will attach all new contacts to partner's company.",
+    )
 
     # 3. Default methods
 
@@ -61,11 +66,26 @@ class Survey(models.Model):
             user, partner, email, test_entry, check_attempts, **additional_vals
         )
         for question in self.mapped("question_ids").filtered(
-            lambda q: q.question_type == "char_box" and (q.save_as_company)
+            lambda q: q.question_type == "char_box"
+            and (
+                q.save_as_company_name
+                or q.save_as_company_street
+                or q.save_as_company_zip
+                or q.save_as_company_city
+                or q.save_as_company_website
+            )
         ):
             for user_input in res:
-                if question.save_as_company and user_input.company_name:
+                if question.save_as_company_name and user_input.company_name:
                     user_input.save_lines(question, user_input.company_name)
+                if question.save_as_company_street and user_input.company_street:
+                    user_input.save_lines(question, user_input.company_street)
+                if question.save_as_company_zip and user_input.company_zip:
+                    user_input.save_lines(question, user_input.company_zip)
+                if question.save_as_company_city and user_input.company_city:
+                    user_input.save_lines(question, user_input.company_city)
+                if question.save_as_company_website and user_input.company_website:
+                    user_input.save_lines(question, user_input.company_website)
         return res
 
     # 8. Business methods

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Contacts",
-    "version": "14.0.1.0.2",
+    "version": "14.0.2.0.0",
     "category": "Marketing/Surveys",
     "summary": "Add multiple contacts to view and receive mails from survey answer",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -29,9 +29,12 @@
     "installable": True,
     "depends": ["survey_mailing", "survey_portal", "partner_firstname"],
     "data": [
+        "security/ir.model.access.csv",
         "views/portal_templates.xml",
         "views/survey_templates_contacts.xml",
         "views/survey_user_views.xml",
+        "views/survey_question_views.xml",
         "views/assets.xml",
+        "data/survey_data.xml",
     ],
 }

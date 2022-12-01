@@ -15,6 +15,7 @@ Usage
 =====
 - Add partners to contact_ids from backend to give them partner permissions
 - Add partners to contact_ids from portal survey answer view
+- Add up to 9 partners to contact_ids from survey questions
 
 Known issues / Roadmap
 ======================

@@ -33,8 +33,8 @@ odoo.define("survey.survey_page_statistics_inner", function () {
         });
 
         var path = window.location.pathname;
-        if (path.indexOf("/date") >= 0) {
-            var date_current = path.split("/date/")[1];
+        if (path.indexOf("/date_start") >= 0) {
+            var date_current = path.split("/date_start/")[1];
             var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
             $("#datetimepicker-filter-date").datetimepicker({
                 format: "DD.MM.Y",
@@ -53,12 +53,42 @@ odoo.define("survey.survey_page_statistics_inner", function () {
         $("#datetimepicker-filter-date").on("change.datetimepicker", function () {
             var date = $(this).find(".datetimepicker-input").val();
             var path = window.location.pathname;
-            if (path.indexOf("/date") >= 0) {
-                path = window.location.pathname.split("/date")[0];
+            if (path.indexOf("/date_start") >= 0) {
+                path = window.location.pathname.split("/date_start")[0];
             }
 
             if (date) {
-                window.location.href = path + "/date/" + date;
+                window.location.href = path + "/date_start/" + date;
+            } else {
+                window.location.href = path;
+            }
+        });
+        if (path.indexOf("/date_end") >= 0) {
+            var date_current = path.split("/date_end/")[1];
+            var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
+            $("#datetimepicker-filter-end-date").datetimepicker({
+                format: "DD.MM.Y",
+                locale: moment.locale(),
+                defaultDate: newDateTime,
+            });
+        } else {
+            var dateNow = new Date();
+            $("#datetimepicker-filter-end-date").datetimepicker({
+                format: "DD.MM.Y",
+                locale: moment.locale(),
+                defaultDate: dateNow,
+            });
+        }
+
+        $("#datetimepicker-filter-end-date").on("change.datetimepicker", function () {
+            var date = $(this).find(".datetimepicker-input").val();
+            var path = window.location.pathname;
+            if (path.indexOf("/date_end") >= 0) {
+                path = window.location.pathname.split("/date_end")[0];
+            }
+
+            if (date) {
+                window.location.href = path + "/date_end/" + date;
             } else {
                 window.location.href = path;
             }

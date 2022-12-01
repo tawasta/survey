@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_question_form_birth_date">
+        <field name="name">survey.question.form.birth.date</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='validation_required']//.." position="before">
+                <div attrs="{'invisible': [('question_type', '!=', 'date')]}">
+                    <label
+                        for="contact_number"
+                        attrs="{'invisible': [('save_as_contact_birth_date', '=', False)]}"
+                    />
+                    <field
+                        name="contact_number"
+                        nolabel="1"
+                        attrs="{'invisible': [('save_as_contact_birth_date', '=', False)], 'required': [('save_as_contact_birth_date', '=', True)]}"
+                    />
+                    <br
+                        attrs="{'invisible': [('save_as_contact_birth_date', '=', False)]}"
+                    />
+                    <field name="save_as_contact_birth_date" nolabel="1" />
+                    <label for="save_as_contact_birth_date" />
+                    <br />
+                    <field name="save_as_partner_birth_date" nolabel="1" />
+                    <label for="save_as_partner_birth_date" />
+                    <br />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

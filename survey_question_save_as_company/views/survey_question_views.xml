@@ -7,8 +7,20 @@
         <field name="arch" type="xml">
             <label for="save_as_nickname" position="after">
                 <br />
-                <field name="save_as_company" nolabel="1" />
-                <label for="save_as_company" />
+                <field name="save_as_company_name" nolabel="1" />
+                <label for="save_as_company_name" />
+                <br />
+                <field name="save_as_company_street" nolabel="1" />
+                <label for="save_as_company_street" />
+                <br />
+                <field name="save_as_company_zip" nolabel="1" />
+                <label for="save_as_company_zip" />
+                <br />
+                <field name="save_as_company_city" nolabel="1" />
+                <label for="save_as_company_city" />
+                <br />
+                <field name="save_as_company_website" nolabel="1" />
+                <label for="save_as_company_website" />
             </label>
         </field>
     </record>
