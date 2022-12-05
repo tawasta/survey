@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="survey_page_statistics_header_hidden_scoring"
+        inherit_id="survey.survey_page_statistics_header"
+    >
+        <xpath expr="//span[@role='img']" position="attributes">
+            <attribute
+                name="t-attf-class"
+            >fa fa-bar-chart-o #{'fa-bar-chart-o' if survey.scoring_type in ['no_scoring', 'hidden_scoring'] else 'fa-trophy' if survey.certification else 'fa-question-circle-o'} float-right</attribute>
+        </xpath>
+    </template>
+</odoo>
