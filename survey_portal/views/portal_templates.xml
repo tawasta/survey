@@ -18,7 +18,10 @@
                 <t t-else="">Survey Answers</t>
             </li>
             <li t-if="answer" class="breadcrumb-item active">
-                <t t-esc="answer.ref" t-if="answer.ref" />
+                <t
+                    t-esc="answer.ref"
+                    t-if="answer.survey_id.show_survey_answer_ref and answer.ref"
+                />
                 <t t-else=""><em>Draft Answer</em></t>
             </li>
         </xpath>
@@ -64,7 +67,10 @@
                                     t-att-href="'/my/surveys/%d' % answer.id"
                                     t-att-title="answer.ref"
                                 >
-                                    <t t-esc="answer.ref" />
+                                    <t
+                                        t-if="answer.survey_id.show_survey_answer_ref and answer.ref"
+                                        t-esc="answer.ref"
+                                    />
                                 </a>
                             </td>
                             <td id="td-survey">
@@ -117,7 +123,10 @@
                     <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
                     <t t-set="title">
                         <h2 class="mb-0">
-                            <b t-field="answer.ref" />
+                            <b
+                                t-if="answer.survey_id.show_survey_answer_ref and answer.ref"
+                                t-field="answer.ref"
+                            />
                         </h2>
                         <div id="survey_portal_sidebar_create_date" class="small">
                             <i class="fa fa-clock-o" />

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey User Input Reference Sequence",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Give survey answers a unique reference with sequence",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -31,6 +31,7 @@
     "data": [
         "data/survey_user_input_sequence.xml",
         "views/survey_user_views.xml",
+        "views/survey_survey_views.xml",
         "views/survey_templates.xml",
         "views/survey_templates_print.xml",
     ],
