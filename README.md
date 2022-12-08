@@ -16,6 +16,7 @@ addon | version | maintainers | summary
 [survey_auditlog_rules](survey_auditlog_rules/) | 14.0.1.0.0 |  | Adds audit log rules for surveys
 [survey_contact_ids](survey_contact_ids/) | 14.0.2.0.0 |  | Add multiple contacts to view and receive mails from survey answer
 [survey_contact_ids_save_birth_date](survey_contact_ids_save_birth_date/) | 14.0.1.0.1 |  | Save survey answer as partner or contact birth date
+[survey_contact_ids_save_city](survey_contact_ids_save_city/) | 14.0.1.0.0 |  | Save survey answer as partner or contact city
 [survey_contact_ids_save_gender](survey_contact_ids_save_gender/) | 14.0.1.0.1 |  | Save survey answer as partner or contact gender
 [survey_filters](survey_filters/) | 14.0.1.0.1 |  | Order Surveys by sequence
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
