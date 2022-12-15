@@ -178,38 +178,40 @@ class SurveyFilter(Survey):
         self, survey, user_id, event_id, select_date, date_end, search, post
     ):
         search_filters = []
+        line_filter_domain = []
+        line_choices = []
         if search:
-            line_filter_domain, line_choices += [
+            line_filter_domain += [
                 ("user_input_id.event_id.name", "ilike", search)
-            ], []
+            ]
         if event_id:
-            line_filter_domain, line_choices += [
+            line_filter_domain += [
                 ("user_input_id.event_id", "=", event_id)
-            ], []
+            ]
         if user_id:
-            line_filter_domain, line_choices += [
+            line_filter_domain += [
                 ("user_input_id.partner_id", "=", user_id)
-            ], []
+            ]
 
         if select_date and not date_end:
             select_date_obj = datetime.strptime(select_date, "%d.%m.%Y")
             select_date_end_obj = select_date_obj + timedelta(
                 hours=23, minutes=59, seconds=59
             )
-            line_filter_domain, line_choices += [
+            line_filter_domain += [
                 ("user_input_id.create_date", ">=", select_date_obj),
                 ("user_input_id.create_date", "<=", select_date_end_obj),
-            ], []
+            ]
         if select_date and date_end:
             select_date_start_obj = datetime.strptime(select_date, "%d.%m.%Y")
             select_date_end_obj = datetime.strptime(date_end, "%d.%m.%Y")
             date_end_obj = select_date_end_obj + timedelta(
                 hours=23, minutes=59, seconds=59
             )
-            line_filter_domain, line_choices += [
+            line_filter_domain += [
                 ("user_input_id.create_date", ">=", select_date_start_obj),
                 ("user_input_id.create_date", "<=", date_end_obj),
-            ], []
+            ]
         if (
             not user_id
             and not select_date
