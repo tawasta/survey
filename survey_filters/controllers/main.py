@@ -179,15 +179,15 @@ class SurveyFilter(Survey):
     ):
         search_filters = []
         if search:
-            line_filter_domain, line_choices = [
+            line_filter_domain, line_choices += [
                 ("user_input_id.event_id.name", "ilike", search)
             ], []
         if event_id:
-            line_filter_domain, line_choices = [
+            line_filter_domain, line_choices += [
                 ("user_input_id.event_id", "=", event_id)
             ], []
         if user_id:
-            line_filter_domain, line_choices = [
+            line_filter_domain, line_choices += [
                 ("user_input_id.partner_id", "=", user_id)
             ], []
 
@@ -196,7 +196,7 @@ class SurveyFilter(Survey):
             select_date_end_obj = select_date_obj + timedelta(
                 hours=23, minutes=59, seconds=59
             )
-            line_filter_domain, line_choices = [
+            line_filter_domain, line_choices += [
                 ("user_input_id.create_date", ">=", select_date_obj),
                 ("user_input_id.create_date", "<=", select_date_end_obj),
             ], []
@@ -206,7 +206,7 @@ class SurveyFilter(Survey):
             date_end_obj = select_date_end_obj + timedelta(
                 hours=23, minutes=59, seconds=59
             )
-            line_filter_domain, line_choices = [
+            line_filter_domain, line_choices += [
                 ("user_input_id.create_date", ">=", select_date_start_obj),
                 ("user_input_id.create_date", "<=", date_end_obj),
             ], []
