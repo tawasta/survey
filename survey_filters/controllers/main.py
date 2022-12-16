@@ -181,17 +181,11 @@ class SurveyFilter(Survey):
         line_filter_domain = []
         line_choices = []
         if search:
-            line_filter_domain += [
-                ("user_input_id.event_id.name", "ilike", search)
-            ]
+            line_filter_domain += [("user_input_id.event_id.name", "ilike", search)]
         if event_id:
-            line_filter_domain += [
-                ("user_input_id.event_id", "=", event_id)
-            ]
+            line_filter_domain += [("user_input_id.event_id", "=", event_id)]
         if user_id:
-            line_filter_domain += [
-                ("user_input_id.partner_id", "=", user_id)
-            ]
+            line_filter_domain += [("user_input_id.partner_id", "=", user_id)]
 
         if select_date and not date_end:
             select_date_obj = datetime.strptime(select_date, "%d.%m.%Y")
