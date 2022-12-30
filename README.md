@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 |  | Send emails to survey user partners via chatter
 [survey_portal](survey_portal/) | 14.0.1.1.2 |  | Ability to view survey answers in portal
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 |  | Upload attachments to surveys from portal
-[survey_question_attachment](survey_question_attachment/) | 14.0.1.2.2 |  | Adds a new question type 'attachment' to survey
+[survey_question_attachment](survey_question_attachment/) | 14.0.1.2.3 |  | Adds a new question type 'attachment' to survey
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 |  | Ability to add privacies as questions to survey
 [survey_question_save_as_company](survey_question_save_as_company/) | 14.0.2.1.0 |  | Save the user's answer as its company name
 [survey_responsive](survey_responsive/) | 14.0.1.0.0 |  | Responsivity improvements for survey
