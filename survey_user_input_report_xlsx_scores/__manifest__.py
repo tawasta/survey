@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey User Input Report XLSX Scores",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Show user input report scores in XLSX report",
     "website": "https://gitlab.com/tawasta/odoo/survey",

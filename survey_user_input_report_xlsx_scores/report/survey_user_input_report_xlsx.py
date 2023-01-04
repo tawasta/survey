@@ -21,11 +21,10 @@
 # 1. Standard library imports:
 import math
 
+# 2. Known third party imports:
 # 3. Odoo imports (openerp):
 from odoo import _, models
-
-# 2. Known third party imports:
-
+from odoo.tools import format_date, format_datetime
 
 # 4. Imports from Odoo modules:
 
@@ -63,18 +62,61 @@ class SurveyUserInputXlsx(models.AbstractModel):
             row_questions.append(math.fsum(column_answer))
         return row_questions
 
+    def _write_scored_answers(self, workbook, sheet, question, row):
+        """Write a questions title, answer, and score on sheet. Returns the next empty row."""
+        col = 0
+        sheet.write(row, col, question.title, workbook.add_format({"bold": True}))
+        col += 1
+        sheet.write(row, col, _("Answer"), workbook.add_format({"bold": True}))
+        col += 1
+        sheet.write(row, col, _("Score"), workbook.add_format({"bold": True}))
+        row += 1
+        # simple choice / multiple choice / matrix
+        if question.suggested_answer_ids:
+            for suggested_answer_id in question.suggested_answer_ids:
+                col = 1
+                sheet.write(row, col, suggested_answer_id.value)
+                col += 1
+                sheet.write(row, col, suggested_answer_id.answer_score)
+                row += 1
+        # date / datetime / other unknown type
+        else:
+            if question.question_type == "date":
+                col = 1
+                sheet.write(
+                    row,
+                    col,
+                    str(format_date(self.env, question.answer_date)),
+                )
+                col += 1
+                sheet.write(row, col, question.answer_score)
+                row += 1
+            if question.question_type == "datetime":
+                col = 1
+                sheet.write(
+                    row,
+                    col,
+                    str(format_datetime(self.env, question.answer_datetime)),
+                )
+                col += 1
+                sheet.write(row, col, question.answer_score)
+                row += 1
+        return row
+
     def generate_xlsx_report(self, workbook, data, survey_user_inputs):
         res = super(SurveyUserInputXlsx, self).generate_xlsx_report(
             workbook, data, survey_user_inputs
         )
         row = 0
         col = 0
+
         # New sheet for score answers
         sheet = workbook.add_worksheet(_("Survey Answer Scores"))
         sheet.set_landscape()
         sheet.fit_to_pages(1, 0)
         column_fields = self._get_column_fields()
         column_questions = self._get_column_questions(survey_user_inputs)
+
         # Write column titles first
         for column_field in column_fields:
             sheet.write(row, col, column_field, workbook.add_format({"bold": True}))
@@ -86,6 +128,7 @@ class SurveyUserInputXlsx(models.AbstractModel):
             col += 1
         row += 1
         col = 0
+
         # Write a row for each user input
         for user_input in survey_user_inputs:
             row_fields = self._get_row_fields(user_input)
@@ -98,4 +141,20 @@ class SurveyUserInputXlsx(models.AbstractModel):
                 col += 1
             row += 1
             col = 0
+        # Padding after answer rows
+        row += 3
+
+        # Scored answers table at the end of sheet
+        scored_questions = column_questions.filtered(
+            lambda s: s.is_scored_question
+            or (
+                s.question_type == "matrix"
+                and any(
+                    question_answer.answer_score
+                    for question_answer in s.suggested_answer_ids
+                )
+            )
+        )
+        for question in scored_questions:
+            row = self._write_scored_answers(workbook, sheet, question, row)
         return res
