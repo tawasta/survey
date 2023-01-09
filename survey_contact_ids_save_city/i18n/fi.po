@@ -55,7 +55,7 @@ msgstr "Viimeksi muokattu"
 #. module: survey_contact_ids_save_city
 #: model:ir.model.fields,field_description:survey_contact_ids_save_city.field_survey_user_input__partner_city
 msgid "Partner's City"
-msgstr "Kummpanin kaupunki"
+msgstr "Kumppanin kaupunki"
 
 #. module: survey_contact_ids_save_city
 #: model:ir.model.fields,field_description:survey_contact_ids_save_city.field_survey_question__save_as_contact_city
