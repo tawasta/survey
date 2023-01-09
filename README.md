@@ -18,6 +18,7 @@ addon | version | maintainers | summary
 [survey_contact_ids_save_birth_date](survey_contact_ids_save_birth_date/) | 14.0.1.0.1 |  | Save survey answer as partner or contact birth date
 [survey_contact_ids_save_city](survey_contact_ids_save_city/) | 14.0.1.0.0 |  | Save survey answer as partner or contact city
 [survey_contact_ids_save_gender](survey_contact_ids_save_gender/) | 14.0.1.0.1 |  | Save survey answer as partner or contact gender
+[survey_contact_ids_save_zip](survey_contact_ids_save_zip/) | 14.0.1.0.0 |  | Save survey answer as partner or contact zip
 [survey_filters](survey_filters/) | 14.0.1.0.1 |  | Order Surveys by sequence
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 |  | Send emails to survey user partners via chatter
