@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from odoo import http
 from odoo.http import request
+from odoo.osv import expression
 
 from odoo.addons.survey.controllers.main import Survey
 
@@ -221,14 +222,16 @@ class SurveyFilter(Survey):
                 pass
             else:
                 if row_id and answer_id:
-                    line_filter_domain = [
+                    line_filter_domain = expression.AND(
                         [
-                            "&",
-                            ("matrix_row_id", "=", row_id),
-                            ("suggested_answer_id", "=", answer_id),
-                        ],
-                        line_filter_domain,
-                    ]
+                            [
+                                "&",
+                                ("matrix_row_id", "=", row_id),
+                                ("suggested_answer_id", "=", answer_id),
+                            ],
+                            line_filter_domain,
+                        ]
+                    )
                     answers = request.env["survey.question.answer"].browse(
                         [row_id, answer_id]
                     )
@@ -250,10 +253,9 @@ class SurveyFilter(Survey):
                         }
                     )
         if line_choices:
-            line_filter_domain = [
-                [("suggested_answer_id", "in", line_choices)],
-                line_filter_domain,
-            ]
+            line_filter_domain = expression.AND(
+                [[("suggested_answer_id", "in", line_choices)], line_filter_domain]
+            )
 
         user_input_domain = self._get_user_input_domain(
             survey, line_filter_domain, **post
