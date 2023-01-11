@@ -215,31 +215,56 @@ class SurveyFilter(Survey):
             and not date_end
         ):
             line_filter_domain, line_choices = [], []
-        for data in post.get('filters', '').split('|'):
+        for data in post.get("filters", "").split("|"):
             try:
-                row_id, answer_id = (int(item) for item in data.split(','))
+                row_id, answer_id = (int(item) for item in data.split(","))
             except Exception:
                 pass
             else:
                 if row_id and answer_id:
-                    line_filter_domain = expression.AND([
-                        ['&', ('matrix_row_id', '=', row_id), ('suggested_answer_id', '=', answer_id)],
-                        line_filter_domain
-                    ])
-                    answers = request.env['survey.question.answer'].browse([row_id, answer_id])
+                    line_filter_domain = expression.AND(
+                        [
+                            [
+                                "&",
+                                ("matrix_row_id", "=", row_id),
+                                ("suggested_answer_id", "=", answer_id),
+                            ],
+                            line_filter_domain,
+                        ]
+                    )
+                    answers = request.env["survey.question.answer"].browse(
+                        [row_id, answer_id]
+                    )
                 elif answer_id:
                     line_choices.append(answer_id)
-                    answers = request.env['survey.question.answer'].browse([answer_id])
+                    answers = request.env["survey.question.answer"].browse([answer_id])
                 if answer_id:
-                    question_id = answers[0].matrix_question_id or answers[0].question_id
-                    search_filters.append({
-                        'question': question_id.title,
-                        'answers': '%s%s' % (answers[0].value, ': %s' % answers[1].value if len(answers) > 1 else '')
-                    })
+                    question_id = (
+                        answers[0].matrix_question_id or answers[0].question_id
+                    )
+                    search_filters.append(
+                        {
+                            "question": question_id.title,
+                            "answers": "%s%s"
+                            % (
+                                answers[0].value,
+                                ": %s" % answers[1].value if len(answers) > 1 else "",
+                            ),
+                        }
+                    )
         if line_choices:
-            line_filter_domain = expression.AND([[('suggested_answer_id', 'in', line_choices)], line_filter_domain])
+            line_filter_domain = expression.AND(
+                [[("suggested_answer_id", "in", line_choices)], line_filter_domain]
+            )
 
-        user_input_domain = self._get_user_input_domain(survey, line_filter_domain, **post)
-        user_input_lines = request.env['survey.user_input'].sudo().search(user_input_domain).mapped('user_input_line_ids')
+        user_input_domain = self._get_user_input_domain(
+            survey, line_filter_domain, **post
+        )
+        user_input_lines = (
+            request.env["survey.user_input"]
+            .sudo()
+            .search(user_input_domain)
+            .mapped("user_input_line_ids")
+        )
 
         return user_input_lines, search_filters
