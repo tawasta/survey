@@ -218,7 +218,7 @@ class SurveyFilter(Survey):
         for data in post.get("filters", "").split("|"):
             try:
                 row_id, answer_id = (int(item) for item in data.split(","))
-            except:
+            except Exception:
                 pass
             else:
                 if row_id and answer_id:
