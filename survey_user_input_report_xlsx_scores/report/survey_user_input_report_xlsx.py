@@ -157,22 +157,26 @@ class SurveyUserInputXlsx(models.AbstractModel):
                 for question in survey.question_ids:
                     if question.question_type == "matrix":
                         for matrix_row in question.matrix_row_ids:
-                            answer_score = 0.0
+                            answer_list = []
                             for user_input_line in user_input.user_input_line_ids:
                                 if (
                                     user_input_line.question_id == question
                                     and user_input_line.matrix_row_id == matrix_row
                                 ):
-                                    answer_score += user_input_line.answer_score
-                            sheet.write(row, col, answer_score)
+                                    answer_list.append(
+                                        str(user_input_line.answer_score) or ""
+                                    )
+                            sheet.write(row, col, ", ".join(answer_list))
                             col += 1
                     else:
-                        answer_score = 0.0
+                        answer_list = []
                         for user_input_line in user_input.user_input_line_ids:
                             if user_input_line.question_id == question:
                                 if question.suggested_answer_ids:
-                                    answer_score += user_input_line.answer_score
-                        sheet.write(row, col, answer_score)
+                                    answer_list.append(
+                                        str(user_input_line.answer_score) or ""
+                                    )
+                        sheet.write(row, col, ", ".join(answer_list))
                         col += 1
             row += 1
             col = 0
