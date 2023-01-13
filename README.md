@@ -36,8 +36,8 @@ addon | version | maintainers | summary
 [survey_stages](survey_stages/) | 14.0.1.2.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 |  | Save each answer value as string
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 14.0.1.1.0 |  | Give survey answers a unique reference with sequence
-[survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.0.1 |  | Print an xlsx report from survey user inputs
-[survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 14.0.1.1.0 |  | Show user input report scores in XLSX report
+[survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.1.0 |  | Print an xlsx report from survey user inputs
+[survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 14.0.1.2.0 |  | Show user input report scores in XLSX report
 [survey_validity_period](survey_validity_period/) | 14.0.1.0.1 |  | Survey: period of qualification
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 14.0.1.0.0 |  | Ability to align survey choice buttons vertically
 
