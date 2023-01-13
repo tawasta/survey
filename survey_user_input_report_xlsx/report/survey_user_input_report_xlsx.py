@@ -19,19 +19,20 @@
 ##############################################################################
 
 # 1. Standard library imports:
+import logging
 from datetime import datetime
 
+# 2. Known third party imports:
 # 3. Odoo imports (openerp):
 from odoo import _, fields, models
-
-# 2. Known third party imports:
-
 
 # 4. Imports from Odoo modules:
 
 # 5. Local imports in the relative form:
 
 # 6. Unknown third party imports:
+
+_logger = logging.getLogger(__name__)
 
 
 class SurveyUserInputXlsx(models.AbstractModel):
@@ -53,45 +54,31 @@ class SurveyUserInputXlsx(models.AbstractModel):
     # 7. Action methods
 
     # 8. Business methods
-    def _get_column_fields(self):
-        """Returns a list of static fields for column titles. To extend this list
-        make sure to also extend the list in _get_row_fields()"""
-        column_fields = [_("Survey"), _("Partner"), _("Created on")]
-        return column_fields
+    def _get_user_input_fnames(self):
+        """Returns a dictionary of static fields for report with title and field name"""
+        user_input_fnames = {
+            _("Survey"): "survey_id",
+            _("Partner"): "partner_id",
+            _("Created on"): "create_date",
+        }
+        return user_input_fnames
 
-    def _get_column_questions(self, survey_user_inputs):
-        """Traverse through each user input line to get all questions for column titles"""
-        questions = self.env["survey.question"]
-        for user_input in survey_user_inputs:
-            for user_input_line in user_input.user_input_line_ids:
-                if user_input_line.question_id not in questions:
-                    questions += user_input_line.question_id
-        return questions.sorted()
-
-    def _get_row_fields(self, user_input):
-        """Returns a list of static fields for rows. To extend this list make sure
-        to also extend the list in _get_column_fields()"""
-        row_fields = [
-            user_input.survey_id.title,
-            user_input.partner_id.name or "",
-            datetime.strftime(
-                fields.Datetime.context_timestamp(self, user_input.create_date),
-                "%-d.%-m.%-Y %-H.%M",
-            ),
-        ]
-        return row_fields
-
-    def _get_row_questions(self, column_questions, user_input):
-        """Traverse through each question in column questions and returns a list
-        of row question answers"""
-        row_questions = []
-        for column_question in column_questions:
-            column_answer = []
-            for user_input_line in user_input.user_input_line_ids:
-                if column_question == user_input_line.question_id:
-                    column_answer.append(user_input_line.string_answer or "")
-            row_questions.append(", ".join(column_answer))
-        return row_questions
+    def _get_user_input_fname_value(self, user_input, fname):
+        """Returns a string value for a corresponding field"""
+        value = ""
+        if fname == "survey_id":
+            value = user_input.survey_id.display_name or ""
+        if fname == "partner_id":
+            value = user_input.partner_id.name or ""
+        if fname == "create_date":
+            value = (
+                datetime.strftime(
+                    fields.Datetime.context_timestamp(self, user_input.create_date),
+                    "%-d.%-m.%-Y %-H.%M",
+                )
+                or ""
+            )
+        return value
 
     def generate_xlsx_report(self, workbook, data, survey_user_inputs):
         row = 0
@@ -100,28 +87,73 @@ class SurveyUserInputXlsx(models.AbstractModel):
         sheet = workbook.add_worksheet(_("Survey Answers"))
         sheet.set_landscape()
         sheet.fit_to_pages(1, 0)
-        column_fields = self._get_column_fields()
-        column_questions = self._get_column_questions(survey_user_inputs)
-        # Write column titles first
-        for column_field in column_fields:
-            sheet.write(row, col, column_field, workbook.add_format({"bold": True}))
+        user_input_fnames = self._get_user_input_fnames()
+        surveys = self.env["survey.survey"].search(
+            [["user_input_ids", "in", survey_user_inputs.ids]]
+        )
+        # Write user input field titles
+        _logger.debug("Writing title columns for static fields: %s", user_input_fnames)
+        for fname in user_input_fnames:
+            sheet.write(row, col, fname, workbook.add_format({"bold": True}))
             col += 1
-        for column_question in column_questions:
-            sheet.write(
-                row, col, column_question.title, workbook.add_format({"bold": True})
+        # Write survey question titles
+        for survey in surveys:
+            _logger.debug(
+                "Writing title columns for survey %s questions: %s",
+                (survey, survey.question_ids),
             )
-            col += 1
+            for question in survey.question_ids:
+                if question.question_type == "matrix":
+                    for matrix_row in question.matrix_row_ids:
+                        sheet.write(
+                            row,
+                            col,
+                            matrix_row.value,
+                            workbook.add_format({"bold": True}),
+                        )
+                        col += 1
+                else:
+                    sheet.write(
+                        row, col, question.title, workbook.add_format({"bold": True})
+                    )
+                    col += 1
         row += 1
         col = 0
         # Write a row for each user input
         for user_input in survey_user_inputs:
-            row_fields = self._get_row_fields(user_input)
-            row_questions = self._get_row_questions(column_questions, user_input)
-            for row_field in row_fields:
-                sheet.write(row, col, row_field)
+            _logger.debug("Writing a row for user input: %s", user_input)
+            # Write user input field values
+            for fname in user_input_fnames:
+                sheet.write(
+                    row,
+                    col,
+                    self._get_user_input_fname_value(
+                        user_input, user_input_fnames[fname]
+                    ),
+                )
                 col += 1
-            for row_question in row_questions:
-                sheet.write(row, col, row_question)
-                col += 1
+            # Write each question answer
+            for survey in surveys:
+                for question in survey.question_ids:
+                    if question.question_type == "matrix":
+                        for matrix_row in question.matrix_row_ids:
+                            answer_list = []
+                            for user_input_line in user_input.user_input_line_ids:
+                                if (
+                                    user_input_line.question_id == question
+                                    and user_input_line.matrix_row_id == matrix_row
+                                ):
+                                    answer_list.append(
+                                        user_input_line.string_answer or ""
+                                    )
+                            sheet.write(row, col, ", ".join(answer_list))
+                            col += 1
+                    else:
+                        answer_list = []
+                        for user_input_line in user_input.user_input_line_ids:
+                            if user_input_line.question_id == question:
+                                answer_list.append(user_input_line.string_answer or "")
+                        sheet.write(row, col, ", ".join(answer_list))
+                        col += 1
             row += 1
             col = 0
