@@ -60,7 +60,7 @@ msgstr ""
 msgid ""
 "If checked, this option will save the user's answer as its partner gender."
 msgstr ""
-"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen kumppanin "
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen yhteyshenkilön "
 "sukupuolena."
 
 #. module: survey_contact_ids_save_gender
@@ -86,7 +86,7 @@ msgstr "Muu"
 #. module: survey_contact_ids_save_gender
 #: model:ir.model.fields,field_description:survey_contact_ids_save_gender.field_survey_user_input__partner_gender
 msgid "Partner's Gender"
-msgstr "Kumppanin sukupuoli"
+msgstr "Yhteyshenkilön sukupuoli"
 
 #. module: survey_contact_ids_save_gender
 #: model:ir.model.fields,field_description:survey_contact_ids_save_gender.field_survey_question__save_as_contact_gender
@@ -96,7 +96,7 @@ msgstr "Tallenna yhteyshenkilön sukupuolena"
 #. module: survey_contact_ids_save_gender
 #: model:ir.model.fields,field_description:survey_contact_ids_save_gender.field_survey_question__save_as_partner_gender
 msgid "Save As Partner Gender"
-msgstr "Tallenna kumppanin sukupuolena"
+msgstr "Tallenna yhteyshenkilön sukupuolena"
 
 #. module: survey_contact_ids_save_gender
 #: model:ir.model,name:survey_contact_ids_save_gender.model_survey_survey
