@@ -106,7 +106,7 @@ class SurveyUserInput(models.Model):
         ):
             gender_opt = self._get_partner_gender(answer)
             if gender_opt:
-                self._save_contact_field(gender_opt)
+                self._save_contact_field(question, gender_opt, "gender")
         return res
 
     # 8. Business methods

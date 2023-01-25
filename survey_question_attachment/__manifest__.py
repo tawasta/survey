@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Question Attachment",
-    "version": "14.0.1.2.2",
+    "version": "14.0.1.2.3",
     "category": "Marketing/Surveys",
     "summary": "Adds a new question type 'attachment' to survey",
     "website": "https://gitlab.com/tawasta/odoo/survey",

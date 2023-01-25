@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 14.0-20221202\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 16:28+0000\n"
-"PO-Revision-Date: 2022-09-09 16:28+0000\n"
+"POT-Creation-Date: 2023-01-13 18:11+0000\n"
+"PO-Revision-Date: 2023-01-13 18:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,12 @@ msgstr "Tulosta kyselyn osallistumiset exceliin"
 #, python-format
 msgid "Survey"
 msgstr "Kysely"
+
+#. module: survey_user_input_report_xlsx
+#: code:addons/survey_user_input_report_xlsx/report/survey_user_input_report_xlsx.py:0
+#, python-format
+msgid "Survey Answers"
+msgstr "Kyselyn vastaukset"
 
 #. module: survey_user_input_report_xlsx
 #: model:ir.model,name:survey_user_input_report_xlsx.model_report_survey_user_input_report_xlsx_user_input_report_xlsx

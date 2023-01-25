@@ -5,19 +5,154 @@
         <record id="mail_template_data_participation_draft" model="mail.template">
             <field name="name">Participation: Draft</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
-            <field name="subject">Draft of ${object.display_name}</field>
+            <field
+                name="subject"
+            >Your draft application on ${object.survey_id.title}</field>
             <field name="use_default_to" eval="True" />
+            <field
+                name="email_from"
+            >${(object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted or '') | safe}</field>
             <field name="body_html" type="xml">
-                <div>
-                    Dear ${object.partner_id.name or ''}<br />
-                    Your survey answer has been saved as a draft. In order to complete your answer please remember to send it.
-                    <br /><br />
-                    Thank you,
-                    % if user.signature
-                        <br />
-                        ${user.signature | safe}
-                    % endif
-                </div>
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+                ><tr><td align="center">
+                    % set survey = object.survey_id
+                    % set survey_organizer = object.survey_id.organizer_id
+                    <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                width="590"
+                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                            >
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="middle">
+                                                <span
+                                                            style="font-size: 10px;"
+                                                        >Your application</span><br />
+                                                <span
+                                                            style="font-size: 20px; font-weight: bold;"
+                                                        >
+                                                    ${survey.title}
+                                                </span>
+                                            </td>
+                                            <td valign="middle" align="right">
+                                                <a
+                                                            href="${'/my/surveys/%s' % object.id}"
+                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                        >
+                                                    View Application
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="top" style="font-size: 14px;">
+                                                <div>
+                                                    Hello ${object.partner_id.name or ''},<br
+                                                            /><br />
+                                                    Your application for ${survey.title} has been saved as a draft. Please remember to submit the application or it will not be reviewed.
+                                                    <br /><br />
+                                                    To submit your application, follow the link below:
+                                                    <a
+                                                                href="${'/my/surveys/%s' % object.id}"
+                                                            />
+                                                    <div
+                                                                style="margin: 16px 0px 16px 0px;"
+                                                            >
+                                                        <a
+                                                                    href="${'/my/surveys/%s' % object.id}"
+                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                                >
+                                                            View Application
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Thank you,<br />
+                                                    <span style="color: #454748;">
+                                                        -- <br />
+                                                        % if survey_organizer:
+                                                            ${survey_organizer.name}
+                                                        % else:
+                                                            The ${survey.title} Team
+                                                        % endif
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table></td></tr>
+                    <!-- FOOTER BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            % if survey.company_id
+                            <table
+                                width="590"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;"
+                            >
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;">
+                                        Sent by <a
+                                            target="_blank"
+                                            href="${survey.company_id.website}"
+                                            style="color: #875A7B;"
+                                        >${survey.company_id.name}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            % endif
+                        </td>
+                    </tr>
+                </table>
             </field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="auto_delete" eval="True" />
@@ -25,19 +160,154 @@
         <record id="mail_template_data_participation_sent" model="mail.template">
             <field name="name">Participation: Sent</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
-            <field name="subject">Answer to ${object.display_name} sent</field>
+            <field
+                name="subject"
+            >Your application on ${object.survey_id.title} has been sent</field>
+            <field
+                name="email_from"
+            >${(object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted or '') | safe}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
-                <div>
-                    Dear ${object.partner_id.name or ''}<br />
-                    Your survey answer has been completed and received.
-                    <br /><br />
-                    Thank you,
-                    % if user.signature
-                        <br />
-                        ${user.signature | safe}
-                    % endif
-                </div>
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+                ><tr><td align="center">
+                    % set survey = object.survey_id
+                    % set survey_organizer = object.survey_id.organizer_id
+                    <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                width="590"
+                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                            >
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="middle">
+                                                <span
+                                                            style="font-size: 10px;"
+                                                        >Your application</span><br />
+                                                <span
+                                                            style="font-size: 20px; font-weight: bold;"
+                                                        >
+                                                    ${survey.title}
+                                                </span>
+                                            </td>
+                                            <td valign="middle" align="right">
+                                                <a
+                                                            href="${'/my/surveys/%s' % object.id}"
+                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                        >
+                                                    View Application
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="top" style="font-size: 14px;">
+                                                <div>
+                                                    Hello ${object.partner_id.name or ''},<br
+                                                            /><br />
+                                                    Your application for ${survey.title} has been sent and received.
+                                                    <br /><br />
+                                                    To view your application, follow the link below:
+                                                    <a
+                                                                href="${'/my/surveys/%s' % object.id}"
+                                                            />
+                                                    <div
+                                                                style="margin: 16px 0px 16px 0px;"
+                                                            >
+                                                        <a
+                                                                    href="${'/my/surveys/%s' % object.id}"
+                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                                >
+                                                            View Application
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Thank you,<br />
+                                                    <span style="color: #454748;">
+                                                        -- <br />
+                                                        % if survey_organizer:
+                                                            ${survey_organizer.name}
+                                                        % else:
+                                                            The ${survey.title} Team
+                                                        % endif
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table></td></tr>
+                    <!-- FOOTER BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            % if survey.company_id
+                            <table
+                                width="590"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;"
+                            >
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;">
+                                        Sent by <a
+                                            target="_blank"
+                                            href="${survey.company_id.website}"
+                                            style="color: #875A7B;"
+                                        >${survey.company_id.name}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            % endif
+                        </td>
+                    </tr>
+                </table>
             </field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="auto_delete" eval="True" />
@@ -48,19 +318,154 @@
         >
             <field name="name">Participation: Confirmation</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
-            <field name="subject">Confirmation of ${object.display_name}</field>
+            <field
+                name="subject"
+            >Your application on ${object.survey_id.title} has been accepted</field>
+            <field
+                name="email_from"
+            >${(object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted or '') | safe}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
-                <div>
-                    Dear ${object.partner_id.name or ''}<br />
-                    We are pleased to inform you that your participation ${object.display_name} has been accepted and confirmed.
-                    <br /><br />
-                    Thank you,
-                    % if user.signature
-                        <br />
-                        ${user.signature | safe}
-                    % endif
-                </div>
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+                ><tr><td align="center">
+                    % set survey = object.survey_id
+                    % set survey_organizer = object.survey_id.organizer_id
+                    <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                width="590"
+                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                            >
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="middle">
+                                                <span
+                                                            style="font-size: 10px;"
+                                                        >Your application</span><br />
+                                                <span
+                                                            style="font-size: 20px; font-weight: bold;"
+                                                        >
+                                                    ${survey.title}
+                                                </span>
+                                            </td>
+                                            <td valign="middle" align="right">
+                                                <a
+                                                            href="${'/my/surveys/%s' % object.id}"
+                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                        >
+                                                    View Application
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="top" style="font-size: 14px;">
+                                                <div>
+                                                    Hello ${object.partner_id.name or ''},<br
+                                                            /><br />
+                                                    Your application for ${survey.title} has been confirmed and accepted.
+                                                    <br /><br />
+                                                    To view your application, follow the link below:
+                                                    <a
+                                                                href="${'/my/surveys/%s' % object.id}"
+                                                            />
+                                                    <div
+                                                                style="margin: 16px 0px 16px 0px;"
+                                                            >
+                                                        <a
+                                                                    href="${'/my/surveys/%s' % object.id}"
+                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                                >
+                                                            View Application
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Thank you,<br />
+                                                    <span style="color: #454748;">
+                                                        -- <br />
+                                                        % if survey_organizer:
+                                                            ${survey_organizer.name}
+                                                        % else:
+                                                            The ${survey.title} Team
+                                                        % endif
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table></td></tr>
+                    <!-- FOOTER BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            % if survey.company_id
+                            <table
+                                width="590"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;"
+                            >
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;">
+                                        Sent by <a
+                                            target="_blank"
+                                            href="${survey.company_id.website}"
+                                            style="color: #875A7B;"
+                                        >${survey.company_id.name}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            % endif
+                        </td>
+                    </tr>
+                </table>
             </field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="auto_delete" eval="True" />
@@ -68,19 +473,154 @@
         <record id="mail_template_data_participation_cancelation" model="mail.template">
             <field name="name">Participation: Cancelation</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
-            <field name="subject">Cancelation of ${object.display_name}</field>
+            <field
+                name="subject"
+            >Your application on ${object.survey_id.title} has been canceled</field>
+            <field
+                name="email_from"
+            >${(object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted or '') | safe}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
-                <div>
-                    Dear ${object.partner_id.name or ''}<br />
-                    Unfortunately your participation ${object.display_name} has been canceled.
-                    <br /><br />
-                    Regards,
-                    % if user.signature
-                        <br />
-                        ${user.signature | safe}
-                    % endif
-                </div>
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+                ><tr><td align="center">
+                    % set survey = object.survey_id
+                    % set survey_organizer = object.survey_id.organizer_id
+                    <table
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                width="590"
+                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                            >
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="middle">
+                                                <span
+                                                            style="font-size: 10px;"
+                                                        >Your application</span><br />
+                                                <span
+                                                            style="font-size: 20px; font-weight: bold;"
+                                                        >
+                                                    ${survey.title}
+                                                </span>
+                                            </td>
+                                            <td valign="middle" align="right">
+                                                <a
+                                                            href="${'/my/surveys/%s' % object.id}"
+                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                        >
+                                                    View Application
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table
+                                                width="590"
+                                                border="0"
+                                                cellpadding="0"
+                                                cellspacing="0"
+                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                            >
+                                        <tr>
+                                            <td valign="top" style="font-size: 14px;">
+                                                <div>
+                                                    Hello ${object.partner_id.name or ''},<br
+                                                            /><br />
+                                                    Your application for ${survey.title} has been canceled.
+                                                    <br /><br />
+                                                    To view your application, follow the link below:
+                                                    <a
+                                                                href="${'/my/surveys/%s' % object.id}"
+                                                            />
+                                                    <div
+                                                                style="margin: 16px 0px 16px 0px;"
+                                                            >
+                                                        <a
+                                                                    href="${'/my/surveys/%s' % object.id}"
+                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                                >
+                                                            View Application
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Thank you,<br />
+                                                    <span style="color: #454748;">
+                                                        -- <br />
+                                                        % if survey_organizer:
+                                                            ${survey_organizer.name}
+                                                        % else:
+                                                            The ${survey.title} Team
+                                                        % endif
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;">
+                                                <hr
+                                                            width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                        />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table></td></tr>
+                    <!-- FOOTER BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            % if survey.company_id
+                            <table
+                                width="590"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;"
+                            >
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;">
+                                        Sent by <a
+                                            target="_blank"
+                                            href="${survey.company_id.website}"
+                                            style="color: #875A7B;"
+                                        >${survey.company_id.name}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            % endif
+                        </td>
+                    </tr>
+                </table>
             </field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="auto_delete" eval="True" />

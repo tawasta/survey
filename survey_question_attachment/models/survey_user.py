@@ -19,9 +19,9 @@
 ##############################################################################
 
 # 1. Standard library imports:
+import logging
 
 # 2. Known third party imports:
-
 # 3. Odoo imports (openerp):
 from odoo import api, fields, models
 
@@ -30,6 +30,8 @@ from odoo import api, fields, models
 # 5. Local imports in the relative form:
 
 # 6. Unknown third party imports:
+
+_logger = logging.getLogger(__name__)
 
 
 class SurveyUserInput(models.Model):
@@ -64,8 +66,8 @@ class SurveyUserInput(models.Model):
         vals = {
             "user_input_id": self.id,
             "question_id": question.id,
-            "skipped": False,
             "answer_type": question.question_type,
+            "skipped": True,
         }
         if answer and answer.get("values") and answer.get("is_answer_update"):
             attachment_data_lines = [
@@ -84,11 +86,20 @@ class SurveyUserInput(models.Model):
                 for answer_data in answer.get("values")
             ]
             vals.update({"value_attachment_ids": attachment_data_lines})
-            old_answers.create(vals)
+            vals.update({"skipped": False})
+        if old_answers:
+            # If answer is skipped but it wasn't skipped previously mark answer as not skipped
+            if vals.get("skipped") and not old_answers.skipped:
+                vals.update({"skipped": False})
+            old_answers.write(vals)
+            _logger.debug(
+                "Old answer %s updated with values:\n%s" % (old_answers, vals)
+            )
+            return old_answers
         else:
-            vals.update({"answer_type": None, "skipped": True})
-
-        return old_answers
+            new_answer = self.env["survey.user_input.line"].create(vals)
+            _logger.debug("New answer %s created with values:\n%s" % (new_answer, vals))
+            return new_answer
 
     # 8. Business methods
 

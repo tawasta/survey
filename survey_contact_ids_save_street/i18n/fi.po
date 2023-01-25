@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_contact_ids_save_street
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20221202\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-09 20:03+0000\n"
+"PO-Revision-Date: 2023-01-09 20:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_question__display_name
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_survey__display_name
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_user_input__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_question__id
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_survey__id
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_user_input__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,help:survey_contact_ids_save_street.field_survey_question__save_as_contact_street
+msgid ""
+"If checked, this option will save the user's answer as its contact street."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen sen yhteyshenkilön "
+"katuosoitteena."
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,help:survey_contact_ids_save_street.field_survey_question__save_as_partner_street
+msgid ""
+"If checked, this option will save the user's answer as its partner street."
+msgstr ""
+"Jos valittuna, tämä vaihtoehto tallentaa käyttäjän vastauksen sen kumppanin "
+"katuosoitteena."
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_question____last_update
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_survey____last_update
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_user_input____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_user_input__partner_street
+msgid "Partner's Street"
+msgstr "Kumppanin katuosoite"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_question__save_as_contact_street
+msgid "Save As Contact Street"
+msgstr "Tallenna yhteyshenkilön katuosoitteena"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model.fields,field_description:survey_contact_ids_save_street.field_survey_question__save_as_partner_street
+msgid "Save As Partner Street"
+msgstr "Tallenna kumppanin katuosoitteena"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model,name:survey_contact_ids_save_street.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model,name:survey_contact_ids_save_street.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
+
+#. module: survey_contact_ids_save_street
+#: model:ir.model,name:survey_contact_ids_save_street.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Kyselyn käyttäjän syöte"
