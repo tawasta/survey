@@ -5,7 +5,8 @@
 ====================================
 Survey User Input Reference Sequence
 ====================================
-* Give survey answers a unique reference as sequence
+* Give survey answers a unique reference as sequence, similar to SO, Invoice etc. 
+* This is helpful when survey answers are considered applications (Application number)
 
 Configuration
 =============

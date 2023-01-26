@@ -6,6 +6,7 @@
 Survey Portal
 =============
 * Ability to view survey answers in portal
+* Adds chatter to portal so portal users can send messages
 
 Configuration
 =============

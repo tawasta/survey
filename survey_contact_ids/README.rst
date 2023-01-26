@@ -6,6 +6,7 @@
 Survey Contacts
 ===============
 * Add multiple contacts to view and receive mails from survey answer
+* Survey Contacts should have the same access to view and edit Surveys as the owner
 
 Configuration
 =============

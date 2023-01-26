@@ -6,6 +6,7 @@
 Survey Question Privacy
 =======================
 * Ability to add privacies as questions to survey.
+* Privacies can be required or optional
 
 Configuration
 =============

@@ -6,6 +6,10 @@
 Survey User Input Report XLSX
 =============================
 * Print an xlsx report from survey user inputs
+* Report follows format:
+    - First few columns are field data from survey.user_input followed by all survey
+      questions (can be multiple surveys in one report) (Matrix questions get their own
+      column for each row)
 
 Configuration
 =============
@@ -17,7 +21,10 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+* When getting reports for event attendees (society_event_core), each attendee can have
+  multiple survey answers (ie. basic information survey, allergy information survey) - 
+  In this case attendees will have multiple rows in XLSX report. Find a way to combine
+  these in one row. 
 
 Credits
 =======

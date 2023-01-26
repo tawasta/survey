@@ -5,7 +5,10 @@
 =============
 Survey Stages
 =============
-* Ability to edit survey answers and send mails based on stages
+* Ability to edit survey answers and send mails based on stages - Useful for when a 
+  survey is an application
+* Stages define when survey is editable, when additional attachments can be sent to
+  survey
 
 Configuration
 =============
