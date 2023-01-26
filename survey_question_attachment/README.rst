@@ -5,8 +5,8 @@
 ==========================
 Survey Question Attachment
 ==========================
-
 * Adds a new question type: Attachment 
+* Ability to send attachments (Any filetype, image, or PDF)
 
 Configuration
 =============

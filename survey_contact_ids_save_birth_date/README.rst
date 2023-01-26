@@ -19,7 +19,8 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+* Module features could be merged with survey_contact_ids instead of its own module
+* Add ability to define max/min birth date
 
 Credits
 =======

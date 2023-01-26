@@ -5,7 +5,8 @@
 ====================================
 Survey User Input Report XLSX Scores
 ====================================
-* Extends survey user input report to add a new sheet with scores as answers
+* Extends survey user input report to add a new sheet with scores as answers - Used for
+  reporting data
 
 Configuration
 =============

@@ -5,7 +5,8 @@
 ==================================
 Survey Scoring Type Hidden Scoring
 ==================================
-* New scoring type "Hidden scoring", which enables scores for answers but is not shown to attendees
+* New scoring type "Hidden scoring", which enables scores for answers but is not shown 
+  to attendees/answer partners - This is used to get reporting data
 
 Configuration
 =============

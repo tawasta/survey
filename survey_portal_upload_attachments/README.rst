@@ -6,6 +6,7 @@
 Survey Portal Upload Attachments
 ================================
 * Upload attachments to surveys from portal
+* Attachments can be uploaded to existing attachment questions on Survey
 
 Configuration
 =============
@@ -13,7 +14,8 @@ Configuration
 
 Usage
 =====
-1. Go to Portal > My Survey Answers. Press upload attachments.
+1. Go to Portal > My Survey Answers. Press upload attachments. Note that survey_stages 
+   module defines when attachments can be uploaded.
 
 Known issues / Roadmap
 ======================

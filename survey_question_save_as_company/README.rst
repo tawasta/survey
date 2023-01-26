@@ -5,7 +5,8 @@
 ===============================
 Survey Question Save as Company
 ===============================
-* Save user's answer as its partner company. 
+* Save user's answer as its partner company - This will link the user answer partner as 
+  the parent company's child
 * Optionally save contacts to partner's company. 
 * Answer options:
     - Company Name

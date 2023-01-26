@@ -5,7 +5,8 @@
 ====================
 Survey String Answer
 ====================
-* Save each answer value as string. This makes reporting and data export easier.
+* Compute each answer value as string. This makes reporting and data export easier. Used in
+  XLSX answer reports and list views to quickly see answers.
 
 Configuration
 =============

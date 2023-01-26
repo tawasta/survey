@@ -5,7 +5,7 @@
 =================
 Survey Responsive
 =================
-* Responsivity improvements for survey
+* Responsivity improvements for survey - mainly for big matrix questions
 
 Configuration
 =============

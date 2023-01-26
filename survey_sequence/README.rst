@@ -5,7 +5,8 @@
 ===============
 Survey Sequence
 ===============
-Order Surveys by Sequence
+* Order Surveys by Sequence - This is mainly used to order event surveys in correct order
+  when multiple surveys are attached to an event (society_event_core)
 
 Configuration
 =============

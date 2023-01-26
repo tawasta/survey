@@ -6,7 +6,7 @@
 Survey: Show correct answer after answering
 ===========================================
 
-Adds an option to show correct answers after the survey.
+* Adds an option to show correct answers after the survey.
 
 Currently only works with
 - Single line text box

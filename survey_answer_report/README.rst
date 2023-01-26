@@ -5,7 +5,7 @@
 ====================
 Survey Answer Report
 ====================
-* Survey Answer Report
+* Survey Answer Report PDF
 
 Configuration
 =============

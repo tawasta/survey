@@ -20,6 +20,8 @@ Usage
 Known issues / Roadmap
 ======================
 - Gender answer can be anything so we need to hard-code string comparison values.
+- Maybe we could define a new question type alltogether called "gender", which has all 
+  the genders from res.partner gender field to avoid string comparison. 
 
 Credits
 =======

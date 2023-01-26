@@ -5,7 +5,9 @@
 ==============================
 Survey Vertical Choice Buttons
 ==============================
-* Ability to show choice buttons vertically on survey.
+* Ability to show choice buttons vertically on survey - Improves responsiveness and some
+  clients prefer the look of vertical buttons as opposed to automatically scaling
+  horizontal/vertical buttons
 
 Configuration
 =============
