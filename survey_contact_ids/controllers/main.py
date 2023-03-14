@@ -253,6 +253,9 @@ class SurveyContacts(Survey):
                 {"contact_ids": [(4, user.partner_id.id)]}
             )
             invitation.user_id = user.id
+            if not user.partner_id.email:
+                user.partner_id.email = invitation.email
+
             _logger.info(
                 "Added a new contact {} to answer {}.".format(
                     user.partner_id.id, invitation.survey_user_input_id.id

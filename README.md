@@ -14,7 +14,7 @@ addon | version | maintainers | summary
 [survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 |  | Allows scoring a single line text answer
 [survey_answer_report](survey_answer_report/) | 14.0.1.0.0 |  | Print an pdf report from survey answer
 [survey_auditlog_rules](survey_auditlog_rules/) | 14.0.1.0.0 |  | Adds audit log rules for surveys
-[survey_contact_ids](survey_contact_ids/) | 14.0.2.0.0 |  | Add multiple contacts to view and receive mails from survey answer
+[survey_contact_ids](survey_contact_ids/) | 14.0.2.0.1 |  | Add multiple contacts to view and receive mails from survey answer
 [survey_contact_ids_save_birth_date](survey_contact_ids_save_birth_date/) | 14.0.1.0.1 |  | Save survey answer as partner or contact birth date
 [survey_contact_ids_save_city](survey_contact_ids_save_city/) | 14.0.1.0.0 |  | Save survey answer as partner or contact city
 [survey_contact_ids_save_gender](survey_contact_ids_save_gender/) | 14.0.1.0.1 |  | Save survey answer as partner or contact gender
