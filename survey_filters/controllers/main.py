@@ -44,6 +44,7 @@ class SurveyFilter(Survey):
             {
                 "question_and_page_data": question_and_page_data,
                 "survey_data": survey_data,
+                "search_filters": search_filters,
             }
         )
         user_input_ids = (
@@ -259,7 +260,7 @@ class SurveyFilter(Survey):
         #user_input_domain = self._get_user_input_domain(survey, line_filter_domain, **post)
 
         #user_input_lines = request.env['survey.user_input'].sudo().search(user_input_domain).mapped('user_input_line_ids')
-
+        logging.info(search_filters)
         return user_input_lines, search_filters
 
     # def _extract_survey_data(

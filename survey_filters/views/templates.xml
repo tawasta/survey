@@ -6,20 +6,20 @@
             src="/survey_filters/static/src/js/survey_filter.js"
         />
     </template>
-    <!-- <template
+    <template
         id="survey_page_statistics_inner"
         inherit_id="survey.survey_page_statistics_inner"
     >
-        <xpath expr="//div[@class='card d-print-none']" position="attributes">
+<!--         <xpath expr="//div[@class='card d-print-none']" position="attributes">
             <attribute
                 name="class"
             >products_pager form-inline justify-content-center</attribute>
-        </xpath>
-        <xpath expr="//div[@class='card-header']" position="replace" />
-        <xpath expr="//div[@class='card-body']" position="inside">
+        </xpath> -->
+        <!-- <xpath expr="//div[@class='card-header']" position="replace" /> -->
+        <xpath expr="//div[@class='card d-print-none']" position="before">
 
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
-            <div class="container">
+            <div class="container pb-2 pt-2">
                     <div
                     class="form-inline flex-md-nowrap justify-content-between justify-content-md-center"
                 >
@@ -59,7 +59,7 @@
 
 
         </xpath>
-    </template> -->
+    </template>
 
     <template id="users" name="Users Box">
         <div
