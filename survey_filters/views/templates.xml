@@ -6,7 +6,7 @@
             src="/survey_filters/static/src/js/survey_filter.js"
         />
     </template>
-    <template
+    <!-- <template
         id="survey_page_statistics_inner"
         inherit_id="survey.survey_page_statistics_inner"
     >
@@ -59,7 +59,7 @@
 
 
         </xpath>
-    </template>
+    </template> -->
 
     <template id="users" name="Users Box">
         <div
