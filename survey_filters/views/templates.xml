@@ -21,7 +21,7 @@
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
             <div class="container pb-2 pt-2">
                     <div
-                    class="form-inline flex-md-nowrap justify-content-between justify-content-md-center"
+                    class="row"
                 >
                         <t
                         t-set="user_filter"
@@ -39,6 +39,10 @@
                         t-set="event_text_filter"
                         t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.event.contain')"
                     />
+                    <t
+                        t-set="course_filter"
+                        t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.course')"
+                    />
                         <t t-if="user_filter">
                             <t t-call="survey_filters.users" />
                         </t>
@@ -54,6 +58,9 @@
                         <t t-if="event_text_filter and events">
                             <t t-call="survey_filters.event_text" />
                         </t>
+                        <t t-if="course_filter">
+                            <t t-call="survey_filters.courses" />
+                        </t>
                     </div>
             </div>
 
@@ -64,7 +71,7 @@
     <template id="users" name="Users Box">
         <div
             id="user_container"
-            class="col-sm-4"
+            class="col-sm-4 mt-1 mb-1"
             t-att-data-user="current_user if current_user else 0"
             groups="survey.group_survey_manager"
         >
@@ -81,11 +88,28 @@
         </div>
     </template>
 
+    <template id="courses" name="Courses Box">
+        <div
+            id="course_container"
+            class="col-sm-4 mt-1 mb-1"
+            t-att-data-user="select_courses if select_courses else 0"
+        >
+            <select class="form-control input-lg" name="select_course" id="select_course" multiple="multiple">
+                <t t-foreach="courses" t-as="c">
+                    <option t-att-value="c.id" t-att-selected="None if not select_courses else c.id in select_courses.ids">
+                        <t t-esc="c.name"/>
+                    </option>
+                </t>
+            </select>
+            <input type="hidden" id="hidden_courses" name="hidden_courses_ids"/>
+        </div>
+    </template>
+
     <template id="event_text" name="Event Text Box">
         <form
             t-att-action="search_url"
             method="get"
-            class="col-sm-4 px-0"
+            class="col-sm-4 px-0 mt-1 mb-1"
             groups="survey.group_survey_manager"
         >
             <t t-call="website.website_search_box" />
@@ -102,25 +126,22 @@
     <template id="events" name="Events Box">
         <div
             id="event_container"
-            class="col-sm-4"
-            t-att-data-user="current_event if current_event else 0"
-            groups="survey.group_survey_manager"
+            class="col-sm-4 mt-1 mb-1"
+            t-att-data-user="select_events if select_events else 0"
         >
-
-            <select id="select_event" class="select2 w-100" autocomplete="off">
-                <option value="">All events</option>
+            <select class="form-control input-lg" name="select_event" id="select_event" multiple="multiple">
                 <t t-foreach="events" t-as="e">
-                    <option
-                        t-att-value="e.id"
-                        t-att-selected="None if not current_event else e.id == current_event.id"
-                    ><t t-esc="e.name" /></option>
+                    <option t-att-value="e.id" t-att-selected="None if not select_events else e.id in select_events.ids">
+                        <t t-esc="e.name"/>
+                    </option>
                 </t>
             </select>
+            <input type="hidden" id="hidden_events" name="hidden_events_ids"/>
         </div>
     </template>
 
     <template id="date_filter" name="Date filter">
-      <div id="date_container" class="col-sm-4">
+      <div id="date_container" class="col-sm-4 mt-1 mb-1">
         <div
                 class="input-group date"
                 id="datetimepicker-filter-date"
@@ -147,7 +168,7 @@
     </template>
 
     <template id="date_end_filter" name="Date end filter">
-      <div id="date_container" class="col-sm-4">
+      <div id="date_container" class="col-sm-4 mt-1 mb-1">
         <div
                 class="input-group date"
                 id="datetimepicker-filter-end-date"
