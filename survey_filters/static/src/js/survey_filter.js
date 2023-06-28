@@ -17,10 +17,34 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             }
         });
 
-        $("#select_event").on("change", function () {
-            var val = $(this).val();
-            var path = window.location.pathname;
+        $("#select_course").select2({
+            placeholder: "Select courses",
+            allowClear: true,
+        });
+        $("#select_event").select2({
+            placeholder: "Select events",
+            allowClear: true,
+        });
 
+        $("#select_course").on("change", function () {
+            $("#hidden_courses").val($("#select_course").val().toString());
+            var path = window.location.pathname;
+            var val = $("#hidden_courses").val();
+            if (path.indexOf("/course") >= 0) {
+                path = window.location.pathname.split("/course")[0];
+            }
+
+            if (val) {
+                window.location.href = path + "/course/" + val;
+            } else {
+                window.location.href = path;
+            }
+        });
+
+        $("#select_event").on("change", function () {
+            $("#hidden_events").val($("#select_event").val().toString());
+            var path = window.location.pathname;
+            var val = $("#hidden_events").val();
             if (path.indexOf("/event") >= 0) {
                 path = window.location.pathname.split("/event")[0];
             }
