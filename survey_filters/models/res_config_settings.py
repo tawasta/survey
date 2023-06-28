@@ -20,7 +20,7 @@ class ResConfigSettings(models.TransientModel):
     )
     use_course_filter = fields.Boolean(
         string="Survey: use the course filter in the survey result view",
-        config_parameter="survey.filter.course"
+        config_parameter="survey.filter.course",
     )
 
     module_society_event_core = fields.Boolean(string="Use event")

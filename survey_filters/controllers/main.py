@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyFilter(Survey):
+    # flake8: noqa: C901
     @http.route(
         '/survey/results/<model("survey.survey"):survey>',
         type="http",
@@ -35,7 +36,14 @@ class SurveyFilter(Survey):
             answer_token,
         )
         user_input_lines, search_filters = self._extract_survey_data(
-            survey, user_id, selected_courses, selected_events, select_date, date_end, search, post
+            survey,
+            user_id,
+            selected_courses,
+            selected_events,
+            select_date,
+            date_end,
+            search,
+            post,
         )
         survey_data = survey._prepare_statistics(user_input_lines)
         question_and_page_data = survey.question_and_page_ids._prepare_statistics(
@@ -60,10 +68,17 @@ class SurveyFilter(Survey):
             .search([("id", "in", user_input_ids.ids)])
             .mapped("event_id")
         )
-        courses = request.env["event.event"].sudo().search([
-            ('id', 'in', get_events.ids)
-        ]).mapped('course_id')
-        res.qcontext.update({"courses": courses,})
+        courses = (
+            request.env["event.event"]
+            .sudo()
+            .search([("id", "in", get_events.ids)])
+            .mapped("course_id")
+        )
+        res.qcontext.update(
+            {
+                "courses": courses,
+            }
+        )
         users = (
             request.env["survey.user_input"]
             .sudo()
@@ -89,6 +104,7 @@ class SurveyFilter(Survey):
 
         return res
 
+    # flake8: noqa: C901
     @http.route(
         [
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",  # noqa
@@ -96,7 +112,7 @@ class SurveyFilter(Survey):
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<string:selected_events>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",   # noqa
+            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
@@ -121,10 +137,17 @@ class SurveyFilter(Survey):
         **post
     ):
 
-        logging.info("========COURSES==========");
-        logging.info(selected_courses);
+        logging.info("========COURSES==========")
+        logging.info(selected_courses)
         user_input_lines, search_filters = self._extract_survey_data(
-            survey, user_id, selected_courses, selected_events, select_date, date_end, search, post
+            survey,
+            user_id,
+            selected_courses,
+            selected_events,
+            select_date,
+            date_end,
+            search,
+            post,
         )
         survey_data = survey._prepare_statistics(user_input_lines)
         question_and_page_data = survey.question_and_page_ids._prepare_statistics(
@@ -144,14 +167,18 @@ class SurveyFilter(Survey):
             "search_finished": post.get("finished") == "true",
         }
         if selected_courses:
-            select_courses = request.env["op.course"].sudo().search([
-                ('id', 'in', list(map(int, selected_courses.split(","))))
-            ])
+            select_courses = (
+                request.env["op.course"]
+                .sudo()
+                .search([("id", "in", list(map(int, selected_courses.split(","))))])
+            )
             template_values.update({"select_courses": select_courses})
         if selected_events:
-            select_events = request.env["event.event"].sudo().search([
-                ('id', 'in', list(map(int, selected_events.split(","))))
-            ])
+            select_events = (
+                request.env["event.event"]
+                .sudo()
+                .search([("id", "in", list(map(int, selected_events.split(","))))])
+            )
             template_values.update({"select_events": select_events})
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
@@ -166,9 +193,12 @@ class SurveyFilter(Survey):
             .search([("id", "in", user_input_ids.ids)])
             .mapped("event_id")
         )
-        courses = request.env["event.event"].sudo().search([
-            ('id', 'in', get_events.ids)
-        ]).mapped('course_id')
+        courses = (
+            request.env["event.event"]
+            .sudo()
+            .search([("id", "in", get_events.ids)])
+            .mapped("course_id")
+        )
 
         template_values.update({"courses": courses})
 
@@ -207,69 +237,112 @@ class SurveyFilter(Survey):
 
         return request.render("survey.survey_page_statistics", template_values)
 
-
     def _get_user_input_domain(self, survey, line_filter_domain, **post):
-        user_input_domain = ['&', ('test_entry', '=', False), ('survey_id', '=', survey.id)]
+        user_input_domain = [
+            "&",
+            ("test_entry", "=", False),
+            ("survey_id", "=", survey.id),
+        ]
         if line_filter_domain:
-            matching_line_ids = request.env['survey.user_input.line'].sudo().search(line_filter_domain).ids
-            logging.info(matching_line_ids);
-            user_input_domain = expression.AND([
-                [('user_input_line_ids', 'in', matching_line_ids)],
-                user_input_domain
-            ])
-        if post.get('finished'):
-            user_input_domain = expression.AND([[('state', '=', 'done')], user_input_domain])
+            matching_line_ids = (
+                request.env["survey.user_input.line"]
+                .sudo()
+                .search(line_filter_domain)
+                .ids
+            )
+            logging.info(matching_line_ids)
+            user_input_domain = expression.AND(
+                [[("user_input_line_ids", "in", matching_line_ids)], user_input_domain]
+            )
+        if post.get("finished"):
+            user_input_domain = expression.AND(
+                [[("state", "=", "done")], user_input_domain]
+            )
         else:
-            user_input_domain = expression.AND([[('state', '!=', 'new')], user_input_domain])
+            user_input_domain = expression.AND(
+                [[("state", "!=", "new")], user_input_domain]
+            )
         return user_input_domain
 
-
-    def _extract_survey_data(self, survey, user_id, selected_courses, selected_events, select_date, date_end, search, post):
+    # flake8: noqa: C901
+    def _extract_survey_data(
+        self,
+        survey,
+        user_id,
+        selected_courses,
+        selected_events,
+        select_date,
+        date_end,
+        search,
+        post,
+    ):
         search_filters = []
         line_filter_domain, line_choices = [], []
-        for data in post.get('filters', '').split('|'):
+        for data in post.get("filters", "").split("|"):
             try:
-                row_id, answer_id = (int(item) for item in data.split(','))
+                row_id, answer_id = (int(item) for item in data.split(","))
             except:
                 pass
             else:
                 if row_id and answer_id:
-                    line_filter_domain = expression.AND([
-                        ['&', ('matrix_row_id', '=', row_id), ('suggested_answer_id', '=', answer_id)],
-                        line_filter_domain
-                    ])
-                    answers = request.env['survey.question.answer'].browse([row_id, answer_id])
+                    line_filter_domain = expression.AND(
+                        [
+                            [
+                                "&",
+                                ("matrix_row_id", "=", row_id),
+                                ("suggested_answer_id", "=", answer_id),
+                            ],
+                            line_filter_domain,
+                        ]
+                    )
+                    answers = request.env["survey.question.answer"].browse(
+                        [row_id, answer_id]
+                    )
                 elif answer_id:
                     line_choices.append(answer_id)
-                    answers = request.env['survey.question.answer'].browse([answer_id])
+                    answers = request.env["survey.question.answer"].browse([answer_id])
                 if answer_id:
-                    question_id = answers[0].matrix_question_id or answers[0].question_id
-                    search_filters.append({
-                        'question': question_id.title,
-                        'answers': '%s%s' % (answers[0].value, ': %s' % answers[1].value if len(answers) > 1 else '')
-                    })
+                    question_id = (
+                        answers[0].matrix_question_id or answers[0].question_id
+                    )
+                    search_filters.append(
+                        {
+                            "question": question_id.title,
+                            "answers": "%s%s"
+                            % (
+                                answers[0].value,
+                                ": %s" % answers[1].value if len(answers) > 1 else "",
+                            ),
+                        }
+                    )
         if line_choices:
-            #line_filter_domain = expression.AND([[('suggested_answer_id', '=', line_choices)], line_filter_domain])
+            # line_filter_domain = expression.AND([[('suggested_answer_id', '=', line_choices)], line_filter_domain])
             for lc in line_choices:
-                line_filter_domain += [('user_input_line_ids.suggested_answer_id', '=', lc)]
-        line_filter_domain += [('test_entry', '=', False)]
-        line_filter_domain += [('survey_id', '=', survey.id)]
-        if post.get('finished'):
-            line_filter_domain += [('state', '=', 'done')]
+                line_filter_domain += [
+                    ("user_input_line_ids.suggested_answer_id", "=", lc)
+                ]
+        line_filter_domain += [("test_entry", "=", False)]
+        line_filter_domain += [("survey_id", "=", survey.id)]
+        if post.get("finished"):
+            line_filter_domain += [("state", "=", "done")]
         else:
-            line_filter_domain += [('state', '!=', 'new')]
+            line_filter_domain += [("state", "!=", "new")]
 
         if selected_courses:
-            select_courses = request.env["op.course"].sudo().search([
-                ('id', 'in', list(map(int, selected_courses.split(","))))
-            ])
-            line_filter_domain += [("event_id.course_id", "in", select_courses.ids)] 
+            select_courses = (
+                request.env["op.course"]
+                .sudo()
+                .search([("id", "in", list(map(int, selected_courses.split(","))))])
+            )
+            line_filter_domain += [("event_id.course_id", "in", select_courses.ids)]
         if search:
             line_filter_domain += [("event_id.name", "ilike", search)]
         if selected_events:
-            select_events = request.env["event.event"].sudo().search([
-                ('id', 'in', list(map(int, selected_events.split(","))))
-            ])
+            select_events = (
+                request.env["event.event"]
+                .sudo()
+                .search([("id", "in", list(map(int, selected_events.split(","))))])
+            )
             line_filter_domain += [("event_id", "in", select_events.ids)]
         if user_id:
             line_filter_domain += [("partner_id", "=", user_id)]
@@ -293,12 +366,17 @@ class SurveyFilter(Survey):
                 ("create_date", ">=", select_date_start_obj),
                 ("create_date", "<=", date_end_obj),
             ]
-        
-        user_input_lines = request.env["survey.user_input"].sudo().search(line_filter_domain).mapped('user_input_line_ids')
-        logging.info(user_input_lines);
-        #user_input_domain = self._get_user_input_domain(survey, line_filter_domain, **post)
 
-        #user_input_lines = request.env['survey.user_input'].sudo().search(user_input_domain).mapped('user_input_line_ids')
+        user_input_lines = (
+            request.env["survey.user_input"]
+            .sudo()
+            .search(line_filter_domain)
+            .mapped("user_input_line_ids")
+        )
+        logging.info(user_input_lines)
+        # user_input_domain = self._get_user_input_domain(survey, line_filter_domain, **post)
+
+        # user_input_lines = request.env['survey.user_input'].sudo().search(user_input_domain).mapped('user_input_line_ids')
         logging.info(search_filters)
         return user_input_lines, search_filters
 

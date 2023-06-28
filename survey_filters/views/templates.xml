@@ -20,9 +20,7 @@
 
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
             <div class="container pb-2 pt-2">
-                    <div
-                    class="row"
-                >
+                    <div class="row">
                         <t
                         t-set="user_filter"
                         t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.user')"
@@ -94,14 +92,22 @@
             class="col-sm-4 mt-1 mb-1"
             t-att-data-user="select_courses if select_courses else 0"
         >
-            <select class="form-control input-lg" name="select_course" id="select_course" multiple="multiple">
+            <select
+                class="form-control input-lg"
+                name="select_course"
+                id="select_course"
+                multiple="multiple"
+            >
                 <t t-foreach="courses" t-as="c">
-                    <option t-att-value="c.id" t-att-selected="None if not select_courses else c.id in select_courses.ids">
-                        <t t-esc="c.name"/>
+                    <option
+                        t-att-value="c.id"
+                        t-att-selected="None if not select_courses else c.id in select_courses.ids"
+                    >
+                        <t t-esc="c.name" />
                     </option>
                 </t>
             </select>
-            <input type="hidden" id="hidden_courses" name="hidden_courses_ids"/>
+            <input type="hidden" id="hidden_courses" name="hidden_courses_ids" />
         </div>
     </template>
 
@@ -129,14 +135,22 @@
             class="col-sm-4 mt-1 mb-1"
             t-att-data-user="select_events if select_events else 0"
         >
-            <select class="form-control input-lg" name="select_event" id="select_event" multiple="multiple">
+            <select
+                class="form-control input-lg"
+                name="select_event"
+                id="select_event"
+                multiple="multiple"
+            >
                 <t t-foreach="events" t-as="e">
-                    <option t-att-value="e.id" t-att-selected="None if not select_events else e.id in select_events.ids">
-                        <t t-esc="e.name"/>
+                    <option
+                        t-att-value="e.id"
+                        t-att-selected="None if not select_events else e.id in select_events.ids"
+                    >
+                        <t t-esc="e.name" />
                     </option>
                 </t>
             </select>
-            <input type="hidden" id="hidden_events" name="hidden_events_ids"/>
+            <input type="hidden" id="hidden_events" name="hidden_events_ids" />
         </div>
     </template>
 
