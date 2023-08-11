@@ -21,7 +21,7 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             placeholder: "Select courses",
             allowClear: true,
         });
-        $("#select_event").select2({
+        $("#selectevent").select2({
             placeholder: "Select events",
             allowClear: true,
         });
@@ -41,10 +41,10 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             }
         });
 
-        $("#select_event").on("change", function () {
-            $("#hidden_events").val($("#select_event").val().toString());
+        $("#selectevent").on("change", function () {
+            $("#hiddenevents").val($("#selectevent").val().toString());
             var path = window.location.pathname;
-            var val = $("#hidden_events").val();
+            var val = $("#hiddenevents").val();
             if (path.indexOf("/event") >= 0) {
                 path = window.location.pathname.split("/event")[0];
             }

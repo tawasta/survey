@@ -137,8 +137,8 @@
         >
             <select
                 class="form-control input-lg"
-                name="select_event"
-                id="select_event"
+                name="selectevent"
+                id="selectevent"
                 multiple="multiple"
             >
                 <t t-foreach="events" t-as="e">
@@ -150,7 +150,7 @@
                     </option>
                 </t>
             </select>
-            <input type="hidden" id="hidden_events" name="hidden_events_ids" />
+            <input type="hidden" id="hiddenevents" name="hidden_events_ids" />
         </div>
     </template>
 
