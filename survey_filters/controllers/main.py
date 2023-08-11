@@ -113,7 +113,6 @@ class SurveyFilter(Survey):
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<model("event.event"):event>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
@@ -128,7 +127,6 @@ class SurveyFilter(Survey):
     def survey_report_filter(
         self,
         survey,
-        event,
         search="",
         user_id=None,
         selected_courses=None,
@@ -140,7 +138,7 @@ class SurveyFilter(Survey):
     ):
 
         logging.info("========COURSES==========")
-        logging.info(selected_courses)
+        logging.info(selected_events)
         user_input_lines, search_filters = self._extract_survey_data(
             survey,
             user_id,
@@ -176,21 +174,13 @@ class SurveyFilter(Survey):
             )
             template_values.update({"select_courses": select_courses})
         if selected_events:
-            logging.info("=====TAMA==========");
             select_events = (
                 request.env["event.event"]
                 .sudo()
                 .search([("id", "in", list(map(int, selected_events.split(","))))])
             )
             template_values.update({"select_events": select_events})
-        if event:
-            logging.info("=====TASSA=======");
-            select_events = (
-                request.env["event.event"]
-                .sudo()
-                .search([("id", "=", event)])
-            )
-            template_values.update({"select_events": select_events})
+            logging.info(select_events);
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
             request.env["survey.user_input.line"]
