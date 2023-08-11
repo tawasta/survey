@@ -45,12 +45,14 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             $("#hiddenevents").val($("#selectevent").val().toString());
             var path = window.location.pathname;
             var val = $("#hiddenevents").val();
+            console.log(val);
             if (path.indexOf("/event") >= 0) {
                 path = window.location.pathname.split("/event")[0];
             }
 
             if (val) {
                 window.location.href = path + "/event/" + val;
+                console.log(path + "/event/" + val);
             } else {
                 window.location.href = path;
             }
