@@ -113,6 +113,7 @@ class SurveyFilter(Survey):
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/event/<model("event.event"):event>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
             """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
@@ -127,6 +128,7 @@ class SurveyFilter(Survey):
     def survey_report_filter(
         self,
         survey,
+        event,
         search="",
         user_id=None,
         selected_courses=None,
@@ -186,7 +188,7 @@ class SurveyFilter(Survey):
                 select_events = (
                     request.env["event.event"]
                     .sudo()
-                    .search([("id", "=", selected_events)])
+                    .search([("id", "=", event)])
                 )
             template_values.update({"select_events": select_events})
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
