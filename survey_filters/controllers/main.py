@@ -176,20 +176,20 @@ class SurveyFilter(Survey):
             )
             template_values.update({"select_courses": select_courses})
         if selected_events:
-            if len(selected_events) > 1:
-                logging.info("=====TAMA==========");
-                select_events = (
-                    request.env["event.event"]
-                    .sudo()
-                    .search([("id", "in", list(map(int, selected_events.split(","))))])
-                )
-            else:
-                logging.info("=====TASSA=======");
-                select_events = (
-                    request.env["event.event"]
-                    .sudo()
-                    .search([("id", "=", event)])
-                )
+            logging.info("=====TAMA==========");
+            select_events = (
+                request.env["event.event"]
+                .sudo()
+                .search([("id", "in", list(map(int, selected_events.split(","))))])
+            )
+            template_values.update({"select_events": select_events})
+        if event:
+            logging.info("=====TASSA=======");
+            select_events = (
+                request.env["event.event"]
+                .sudo()
+                .search([("id", "=", event)])
+            )
             template_values.update({"select_events": select_events})
         user_input_lines, search_filters = self._extract_filters_data(survey, post)
         user_input_ids = (
