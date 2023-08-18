@@ -21,7 +21,7 @@
             <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
             <div class="container pb-2 pt-2">
                     <div class="row">
-                        <t
+<!--                         <t
                         t-set="user_filter"
                         t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.user')"
                     />
@@ -40,25 +40,25 @@
                     <t
                         t-set="course_filter"
                         t-value="request.env['ir.config_parameter'].sudo().get_param('survey.filter.course')"
-                    />
-                        <t t-if="user_filter">
+                    /> -->
+<!--                         <t t-if="user_filter">
                             <t t-call="survey_filters.users" />
-                        </t>
-                        <t t-if="date_filter">
-                            <t t-call="survey_filters.date_filter" />
-                            <t t-if="date_filter">
-                                <t t-call="survey_filters.date_end_filter" />
-                            </t>
-                        </t>
-                        <t t-if="event_filter">
-                            <t t-call="survey_filters.events" />
-                        </t>
-                        <t t-if="event_text_filter and events">
+                        </t> -->
+                        <!-- <t t-if="date_filter"> -->
+                        <t t-call="survey_filters.date_filter" />
+                            <!-- <t t-if="date_filter"> -->
+                        <t t-call="survey_filters.date_end_filter" />
+<!--                             </t>
+                        </t> -->
+                        <!-- <t t-if="event_filter"> -->
+                        <t t-call="survey_filters.events" />
+                        <!-- </t> -->
+                        <t t-if="events">
                             <t t-call="survey_filters.event_text" />
                         </t>
-                        <t t-if="course_filter">
-                            <t t-call="survey_filters.courses" />
-                        </t>
+                        <!-- <t t-if="course_filter"> -->
+                        <t t-call="survey_filters.courses" />
+                        <!-- </t> -->
                     </div>
             </div>
 
@@ -66,7 +66,7 @@
         </xpath>
     </template>
 
-    <template id="users" name="Users Box">
+<!--     <template id="users" name="Users Box">
         <div
             id="user_container"
             class="col-sm-4 mt-1 mb-1"
@@ -84,7 +84,7 @@
                 </t>
             </select>
         </div>
-    </template>
+    </template> -->
 
     <template id="courses" name="Courses Box">
         <div
