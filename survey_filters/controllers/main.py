@@ -29,7 +29,7 @@ class SurveyFilter(Survey):
         answer_token=None,
         **post
     ):
-
+        print("TESTAUS 1")
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
@@ -66,6 +66,7 @@ class SurveyFilter(Survey):
             .search([("id", "in", user_input_ids.ids)])
             .mapped("event_id")
         )
+        print("get_events:", get_events)
         courses = (
             request.env["event.event"]
             .sudo()
@@ -99,20 +100,25 @@ class SurveyFilter(Survey):
             .mapped("event_id")
         )
         res.qcontext.update({"events": events})
+        print("events:", events)
 
         return res
 
     # flake8: noqa: C901
     @http.route(
         [
-            """/survey/results/<model("survey.survey"):survey>/course/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/event/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>/event/<string:selected_courses>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/course/<string:selected_courses>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/event/<string:selected_courses>""",  # noqa
+            #"""/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>/event/<string:selected_courses>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/<path:filters>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:selected_events>"""
+            #  /survey/results/testi-kysely-1/event/testaus-2023-09-01-2023-10-31-20
+            #  /survey/results/testi-kysely-1/course/1
         ],
         type="http",
         auth="user",
@@ -126,10 +132,31 @@ class SurveyFilter(Survey):
         selected_events=None,
         select_date=None,
         date_end=None,
+        filters=None,
         answer_token=None,
         **post
     ):
-
+        print("TESTAUS 2")
+        print("PATH:", filters)
+        if selected_events:
+            selected_events = str(selected_events)
+        else:
+            selected_events = None
+        if filters:
+            filter_list = filters.split("/")
+            for i in range(0, len(filter_list) - 1, 2):
+                filter_name = filter_list[i]
+                filter_value = filter_list[i+1]
+                if filter_name == "course":
+                    selected_courses = filter_value
+                elif filter_name == "event":
+                    selected_events = filter_value
+                elif filter_name == "date_start":
+                    select_date = filter_value
+                elif filter_name == "date_end":
+                    date_end = filter_value
+        print("selected_events:", selected_events)
+        print("selected_courses:", selected_courses)
         logging.info("========COURSES==========")
         logging.info(selected_events)
         user_input_lines, search_filters = self._extract_survey_data(
@@ -158,6 +185,8 @@ class SurveyFilter(Survey):
             "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
+        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+
         if selected_courses:
             select_courses = (
                 request.env["op.course"]
@@ -173,7 +202,8 @@ class SurveyFilter(Survey):
             )
             template_values.update({"select_events": select_events})
             logging.info(select_events);
-        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+            print("SELECT EVENTS (SURVET_REPORT_FILTER):", select_events)
+
         user_input_ids = (
             request.env["survey.user_input.line"]
             .sudo()
@@ -212,6 +242,7 @@ class SurveyFilter(Survey):
             .mapped("event_id")
         )
         template_values.update({"events": events})
+        print("EVENTS (SURVE_REPORT_FILTER):", events)
 
         # users = (
         #     request.env["survey.user_input"]
@@ -231,6 +262,7 @@ class SurveyFilter(Survey):
         return request.render("survey.survey_page_statistics", template_values)
 
     def _get_user_input_domain(self, survey, line_filter_domain, **post):
+        print("TESTAUS 3")
         user_input_domain = [
             "&",
             ("test_entry", "=", False),
@@ -244,6 +276,7 @@ class SurveyFilter(Survey):
                 .ids
             )
             logging.info(matching_line_ids)
+            print("LINE FILTER DOMAIN:", line_filter_domain)
             user_input_domain = expression.AND(
                 [[("user_input_line_ids", "in", matching_line_ids)], user_input_domain]
             )
@@ -268,6 +301,7 @@ class SurveyFilter(Survey):
         search,
         post,
     ):
+        print("TESTAUS 4")
         search_filters = []
         line_filter_domain, line_choices = [], []
         for data in post.get("filters", "").split("|"):
@@ -336,6 +370,7 @@ class SurveyFilter(Survey):
                 .search([("id", "in", list(map(int, selected_events.split(","))))])
             )
             line_filter_domain += [("event_id", "in", select_events.ids)]
+            print("SELECT_EVENTS (_extract_survey_data):", select_events)
         # if user_id:
         #     line_filter_domain += [("partner_id", "=", user_id)]
 
