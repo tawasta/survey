@@ -9,7 +9,6 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             if (path.indexOf("/user") >= 0) {
                 path = window.location.pathname.split("/user")[0];
             }
-            console.log("path:", path);
             if (val) {
                 window.location.href = path + "/user/" + val;
             } else {
@@ -36,7 +35,6 @@ odoo.define("survey.survey_page_statistics_inner", function () {
 
             if (val) {
                 window.location.href = path + "/course/" + val;
-                console.log("path5:", window.location.pathname);
             } else {
                 window.location.href = path;
             }
@@ -46,22 +44,18 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             $("#hiddenevents").val($("#selectevent").val().toString());
             var path = window.location.pathname;
             var val = $("#hiddenevents").val();
-            console.log("event filter hiddenevents val:", val);
             if (path.indexOf("/event") >= 0) {
                 path = window.location.pathname.split("/event")[0];
             }
 
             if (val) {
                 window.location.href = path + "/event/" + val;
-                console.log(path + "/event/" + val);
-                console.log("path4:", window.location.pathname);
             } else {
                 window.location.href = path;
             }
         });
 
         var path = window.location.pathname;
-        console.log("path2:", path);
         if (path.indexOf("/date_start") >= 0) {
             var date_current = path.split("/date_start/")[1];
             var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
@@ -78,7 +72,6 @@ odoo.define("survey.survey_page_statistics_inner", function () {
                 defaultDate: dateNow,
             });
         }
-        console.log("path3:", path);
 
         $("#datetimepicker-filter-date").on("change.datetimepicker", function () {
             var date = $(this).find(".datetimepicker-input").val();
