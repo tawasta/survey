@@ -120,6 +120,7 @@
         >
             <t t-call="website.website_search_box" />
         </form>
+
         <div class="mt-3 h5" t-if="current_search" groups="survey.group_survey_manager">
             <span>Showing results with search: </span>
             <a t-att-href="request.httprequest.path" class="badge badge-secondary">

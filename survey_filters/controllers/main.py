@@ -29,7 +29,6 @@ class SurveyFilter(Survey):
         answer_token=None,
         **post
     ):
-
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
@@ -105,14 +104,8 @@ class SurveyFilter(Survey):
     # flake8: noqa: C901
     @http.route(
         [
-            """/survey/results/<model("survey.survey"):survey>/course/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/event/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>/event/<string:selected_courses>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/<path:filters>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:selected_events>""",
         ],
         type="http",
         auth="user",
@@ -126,9 +119,27 @@ class SurveyFilter(Survey):
         selected_events=None,
         select_date=None,
         date_end=None,
+        filters=None,
         answer_token=None,
         **post
     ):
+        if selected_events:
+            selected_events = str(selected_events)
+        else:
+            selected_events = None
+        if filters:
+            filter_list = filters.split("/")
+            for i in range(0, len(filter_list) - 1, 2):
+                filter_name = filter_list[i]
+                filter_value = filter_list[i + 1]
+                if filter_name == "course":
+                    selected_courses = filter_value
+                elif filter_name == "event":
+                    selected_events = filter_value
+                elif filter_name == "date_start":
+                    select_date = filter_value
+                elif filter_name == "date_end":
+                    date_end = filter_value
 
         logging.info("========COURSES==========")
         logging.info(selected_events)
@@ -158,6 +169,8 @@ class SurveyFilter(Survey):
             "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
+        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+
         if selected_courses:
             select_courses = (
                 request.env["op.course"]
@@ -172,8 +185,8 @@ class SurveyFilter(Survey):
                 .search([("id", "in", list(map(int, selected_events.split(","))))])
             )
             template_values.update({"select_events": select_events})
-            logging.info(select_events);
-        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+            logging.info(select_events)
+
         user_input_ids = (
             request.env["survey.user_input.line"]
             .sudo()
