@@ -22,7 +22,6 @@ class SurveyFilter(Survey):
         self,
         survey,
         search="",
-        user_id=None,
         selected_courses=None,
         selected_events=None,
         select_date=None,
@@ -30,14 +29,12 @@ class SurveyFilter(Survey):
         answer_token=None,
         **post
     ):
-
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
         )
         user_input_lines, search_filters = self._extract_survey_data(
             survey,
-            user_id,
             selected_courses,
             selected_events,
             select_date,
@@ -79,46 +76,36 @@ class SurveyFilter(Survey):
                 "courses": courses,
             }
         )
-        users = (
+        # users = (
+        #     request.env["survey.user_input"]
+        #     .sudo()
+        #     .search([("id", "in", user_input_ids.ids)])
+        #     .mapped("partner_id")
+        # )
+        # use_event = (
+        #     request.env["res.config.settings"]
+        #     .sudo()
+        #     .search([("module_society_event_core", "=", True)])
+        # )
+        # use_event_filter = request.env["ir.config_parameter"].get_param(
+        #     "survey.filter.event"
+        # )
+        # if use_event_filter and use_event:
+        events = (
             request.env["survey.user_input"]
             .sudo()
             .search([("id", "in", user_input_ids.ids)])
-            .mapped("partner_id")
+            .mapped("event_id")
         )
-        use_event = (
-            request.env["res.config.settings"]
-            .sudo()
-            .search([("module_society_event_core", "=", True)])
-        )
-        use_event_filter = request.env["ir.config_parameter"].get_param(
-            "survey.filter.event"
-        )
-        if use_event_filter and use_event:
-            events = (
-                request.env["survey.user_input"]
-                .sudo()
-                .search([("id", "in", user_input_ids.ids)])
-                .mapped("event_id")
-            )
-            res.qcontext.update({"users": users, "events": events})
+        res.qcontext.update({"events": events})
 
         return res
 
     # flake8: noqa: C901
     @http.route(
         [
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/course/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/event/<string:selected_events>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/user/<int:user_id>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_events>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/event/<string:selected_courses>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/event/<string:selected_courses>""",  # noqa
-            """/survey/results/<model("survey.survey"):survey>/date_start/<string:select_date>/date_end/<string:date_end>/event/<string:selected_courses>""",  # noqa
+            """/survey/results/<model("survey.survey"):survey>/<path:filters>""",
+            """/survey/results/<model("survey.survey"):survey>/event/<int:selected_events>""",
         ],
         type="http",
         auth="user",
@@ -128,20 +115,36 @@ class SurveyFilter(Survey):
         self,
         survey,
         search="",
-        user_id=None,
         selected_courses=None,
         selected_events=None,
         select_date=None,
         date_end=None,
+        filters=None,
         answer_token=None,
         **post
     ):
+        if selected_events:
+            selected_events = str(selected_events)
+        else:
+            selected_events = None
+        if filters:
+            filter_list = filters.split("/")
+            for i in range(0, len(filter_list) - 1, 2):
+                filter_name = filter_list[i]
+                filter_value = filter_list[i + 1]
+                if filter_name == "course":
+                    selected_courses = filter_value
+                elif filter_name == "event":
+                    selected_events = filter_value
+                elif filter_name == "date_start":
+                    select_date = filter_value
+                elif filter_name == "date_end":
+                    date_end = filter_value
 
         logging.info("========COURSES==========")
-        logging.info(selected_courses)
+        logging.info(selected_events)
         user_input_lines, search_filters = self._extract_survey_data(
             survey,
-            user_id,
             selected_courses,
             selected_events,
             select_date,
@@ -166,6 +169,8 @@ class SurveyFilter(Survey):
             "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
+        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+
         if selected_courses:
             select_courses = (
                 request.env["op.course"]
@@ -180,7 +185,8 @@ class SurveyFilter(Survey):
                 .search([("id", "in", list(map(int, selected_events.split(","))))])
             )
             template_values.update({"select_events": select_events})
-        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+            logging.info(select_events)
+
         user_input_ids = (
             request.env["survey.user_input.line"]
             .sudo()
@@ -202,35 +208,35 @@ class SurveyFilter(Survey):
 
         template_values.update({"courses": courses})
 
-        use_event = (
-            request.env["res.config.settings"]
-            .sudo()
-            .search([("module_society_event_core", "=", True)])
-        )
-        use_event_filter = request.env["ir.config_parameter"].get_param(
-            "survey.filter.event"
-        )
+        # use_event = (
+        #     request.env["res.config.settings"]
+        #     .sudo()
+        #     .search([("module_society_event_core", "=", True)])
+        # )
+        # use_event_filter = request.env["ir.config_parameter"].get_param(
+        #     "survey.filter.event"
+        # )
 
-        if use_event_filter and use_event:
-            events = (
-                request.env["survey.user_input"]
-                .sudo()
-                .search([("id", "in", user_input_ids.ids)])
-                .mapped("event_id")
-            )
-            template_values.update({"events": events})
-
-        users = (
+        # if use_event_filter and use_event:
+        events = (
             request.env["survey.user_input"]
             .sudo()
             .search([("id", "in", user_input_ids.ids)])
-            .mapped("partner_id")
+            .mapped("event_id")
         )
-        template_values.update({"users": users})
+        template_values.update({"events": events})
 
-        if user_id:
-            user = request.env["res.partner"].sudo().search([("id", "=", user_id)])
-            template_values.update({"current_user": user})
+        # users = (
+        #     request.env["survey.user_input"]
+        #     .sudo()
+        #     .search([("id", "in", user_input_ids.ids)])
+        #     .mapped("partner_id")
+        # )
+        # template_values.update({"users": users})
+
+        # if user_id:
+        #     user = request.env["res.partner"].sudo().search([("id", "=", user_id)])
+        #     template_values.update({"current_user": user})
 
         if survey.session_show_leaderboard:
             template_values["leaderboard"] = survey._prepare_leaderboard_values()
@@ -268,7 +274,6 @@ class SurveyFilter(Survey):
     def _extract_survey_data(
         self,
         survey,
-        user_id,
         selected_courses,
         selected_events,
         select_date,
@@ -344,8 +349,8 @@ class SurveyFilter(Survey):
                 .search([("id", "in", list(map(int, selected_events.split(","))))])
             )
             line_filter_domain += [("event_id", "in", select_events.ids)]
-        if user_id:
-            line_filter_domain += [("partner_id", "=", user_id)]
+        # if user_id:
+        #     line_filter_domain += [("partner_id", "=", user_id)]
 
         if select_date and not date_end:
             select_date_obj = datetime.strptime(select_date, "%d.%m.%Y")
