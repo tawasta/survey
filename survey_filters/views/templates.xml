@@ -91,6 +91,7 @@
             id="course_container"
             class="col-sm-4 mt-1 mb-1"
             t-att-data-user="select_courses if select_courses else 0"
+            groups="survey.group_survey_manager"
         >
             <select
                 class="form-control input-lg"
@@ -135,6 +136,7 @@
             id="event_container"
             class="col-sm-4 mt-1 mb-1"
             t-att-data-user="select_events if select_events else 0"
+            groups="survey.group_survey_manager"
         >
             <select
                 class="form-control input-lg"
