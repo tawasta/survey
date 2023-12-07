@@ -11,6 +11,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[survey_answer_archive](survey_answer_archive/) | 14.0.1.0.0 | Allows archiving survey answers
 [survey_answer_char_box](survey_answer_char_box/) | 14.0.1.1.0 | Allows scoring a single line text answer
 [survey_answer_report](survey_answer_report/) | 14.0.1.0.0 | Print an pdf report from survey answer
 [survey_auditlog_rules](survey_auditlog_rules/) | 14.0.1.0.0 | Adds audit log rules for surveys
