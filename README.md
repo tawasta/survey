@@ -30,6 +30,7 @@ addon | version | summary
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 | Ability to add privacies as questions to survey
 [survey_question_save_as_company](survey_question_save_as_company/) | 14.0.2.1.0 | Save the user's answer as its company name
 [survey_responsive](survey_responsive/) | 14.0.1.0.0 | Responsivity improvements for survey
+[survey_scoring_section_based](survey_scoring_section_based/) | 14.0.1.0.0 | Survey success can depend on section-specific minimum scores
 [survey_scoring_type_hidden_scoring](survey_scoring_type_hidden_scoring/) | 14.0.1.0.0 | Hidden scoring type for surveys which is not shown to attendees
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 | Adds an option to show correct answers after the survey

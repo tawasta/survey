@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Any survey user can see the dynamically computed section scores -->
+    <record id="survey_user_input_page_score_user" model="ir.model.access">
+        <field name="name">survey_user_input_page_score_user</field>
+        <field name="model_id" ref="model_survey_user_input_page_score" />
+        <field name="group_id" ref="survey.group_survey_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>
