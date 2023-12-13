@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field name="name">survey.user.input.form.inherit</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="priority" eval="17" />
+        <field name="arch" type="xml">
+            <field name="user_input_line_ids" position="after">
+                <group string="Section-Specific Scores">
+                    <field name="user_input_page_score_ids" nolabel="1">
+                        <tree>
+                            <field name="page_id" />
+                            <field name="page_minimum_required_score" />
+                            <field name="page_achieved_score" />
+                            <field name="page_minimum_score_passed" />
+                        </tree>
+                    </field>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>
