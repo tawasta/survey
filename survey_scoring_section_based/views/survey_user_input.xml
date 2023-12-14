@@ -8,8 +8,16 @@
         <field name="arch" type="xml">
             <field name="user_input_line_ids" position="after">
                 <group string="Section-Specific Scores">
-                    <field name="user_input_page_score_ids" nolabel="1">
-                        <tree>
+                    <field
+                        name="user_input_page_score_ids"
+                        nolabel="1"
+                        readonly="1"
+                        options="{'no_open': True}"
+                    >
+                        <tree
+                            decoration-danger="page_minimum_score_passed == False"
+                            decoration-success="page_minimum_score_passed == True"
+                        >
                             <field name="page_id" />
                             <field name="page_minimum_required_score" />
                             <field name="page_achieved_score" />

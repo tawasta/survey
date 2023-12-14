@@ -5,16 +5,15 @@ class SurveyUserInputPageScore(models.Model):
 
     _name = "survey.user_input_page_score"
 
+    # if participation gets deleted, delete also the page score
     survey_user_input_id = fields.Many2one(
-        string="Participation", comodel_name="survey.user_input", required=True
+        string="Participation", comodel_name="survey.user_input", ondelete="cascade"
     )
 
     page_id = fields.Many2one(string="Section", comodel_name="survey.question")
 
     page_minimum_required_score = fields.Float(
-        string="Section Minimum Score",
-        related="page_id.page_minimum_required_score"
-        # store=True # TODO can be left out?
+        string="Section Minimum Score", related="page_id.page_minimum_required_score"
     )
 
     page_achieved_score = fields.Float(
@@ -29,10 +28,17 @@ class SurveyUserInputPageScore(models.Model):
         store=True,
     )
 
-    @api.depends("page_id", "survey_user_input_id")
+    @api.depends(
+        "page_minimum_required_score",
+        "survey_user_input_id",
+        "survey_user_input_id.user_input_line_ids",
+        "survey_user_input_id.user_input_line_ids.answer_score",
+    )
     def _compute_page_achieved_score(self):
-        # Compute the total score of all the questions that are children of the
-        # section
+        """
+        Compute the total score of all the questions that are children of the
+        section
+        """
         for record in self:
 
             user_input_lines = self.env["survey.user_input.line"].search(
