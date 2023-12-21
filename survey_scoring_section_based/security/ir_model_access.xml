@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Any survey user can see the dynamically computed section scores -->
+    <!-- Any survey user can see the section scores -->
     <record id="survey_user_input_page_score_user" model="ir.model.access">
         <field name="name">survey_user_input_page_score_user</field>
         <field name="model_id" ref="model_survey_user_input_page_score" />

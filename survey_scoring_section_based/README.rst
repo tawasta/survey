@@ -15,17 +15,22 @@ Configuration
 * When creating a new Survey, set Scoring to be something else than "No Scoring". Afterwards,
   check the "Use Section-specific Score Limits" checkbox that appears.
 * Start adding the Sections and Questions. For each section, click the small "i" icon, and
-  in the modal window that opens, fill in the "Section Minimum Score" field.
+  in the modal window that opens, and fill in the "Section Minimum Score" field.
+* For the questions, use the type "Numerical value", check the "Scored" checkbox and set 
+  the max points in the "Score" field (e.g. "5")
 
 Usage
 =====
-* Answer the survey as usual. On the Participation page, the "Quizz passed" field will 
+* Answer the survey as usual. On the Participation page, the "Quizz passed" checkbox will 
   take into account if the Section-specific minimums were met.
 * Additionally, the Participation page shows for each Section what the minimum score was
   and did the participant achieve that score.
 
+
 Known issues / Roadmap
 ======================
+* Built for a specific use case that uses only questions that are all a) scored and
+  2) of type "Numerical value". Other scenarios likely require tweaking of the module.
 * UI improvement: in the Survey question view, somehow show each Section's minimum
   score without having to click on the small "i" icon.
 

@@ -22,7 +22,7 @@
     "name": "Survey: section-based scoring",
     "summary": "Survey success can depend on section-specific minimum scores",
     "category": "Survey",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
