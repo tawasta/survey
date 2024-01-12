@@ -104,7 +104,7 @@ class SurveyFilter(Survey):
     # flake8: noqa: C901
     @http.route(
         [
-            """/survey/results/<model("survey.survey"):survey>/<path:filters>""",
+            """/survey/results/<model("survey.survey"):survey>/<path:extrafilters>""",
             """/survey/results/<model("survey.survey"):survey>/event/<int:selected_events>""",
         ],
         type="http",
@@ -119,7 +119,7 @@ class SurveyFilter(Survey):
         selected_events=None,
         select_date=None,
         date_end=None,
-        filters=None,
+        extrafilters=None,
         answer_token=None,
         **post
     ):
@@ -127,8 +127,8 @@ class SurveyFilter(Survey):
             selected_events = str(selected_events)
         else:
             selected_events = None
-        if filters:
-            filter_list = filters.split("/")
+        if extrafilters:
+            filter_list = extrafilters.split("/")
             for i in range(0, len(filter_list) - 1, 2):
                 filter_name = filter_list[i]
                 filter_value = filter_list[i + 1]
@@ -141,8 +141,8 @@ class SurveyFilter(Survey):
                 elif filter_name == "date_end":
                     date_end = filter_value
 
-        logging.info("========COURSES==========")
-        logging.info(selected_events)
+        logging.info("========POST==========")
+        logging.info(post)
         user_input_lines, search_filters = self._extract_survey_data(
             survey,
             selected_courses,
@@ -169,7 +169,7 @@ class SurveyFilter(Survey):
             "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
-        user_input_lines, search_filters = self._extract_filters_data(survey, post)
+        #user_input_lines, search_filters = self._extract_filters_data(survey, post)
 
         if selected_courses:
             select_courses = (
@@ -281,8 +281,10 @@ class SurveyFilter(Survey):
         search,
         post,
     ):
+        logging.info("==================FILTTERI EXTRACT SURVEY DATA========================");
         search_filters = []
         line_filter_domain, line_choices = [], []
+        logging.info(post);
         for data in post.get("filters", "").split("|"):
             try:
                 row_id, answer_id = (int(item) for item in data.split(","))
@@ -300,10 +302,13 @@ class SurveyFilter(Survey):
                             line_filter_domain,
                         ]
                     )
+                    logging.info("=============FILTER LINE FILER DOMAIN==========");
+                    logging.info(line_filter_domain)
                     answers = request.env["survey.question.answer"].browse(
                         [row_id, answer_id]
                     )
                 elif answer_id:
+                    logging.info("====MENEEKO TANNE KUN FILTER VALITTU======");
                     line_choices.append(answer_id)
                     answers = request.env["survey.question.answer"].browse([answer_id])
                 if answer_id:
@@ -321,6 +326,8 @@ class SurveyFilter(Survey):
                         }
                     )
         if line_choices:
+            logging.info("=======LINE CHOICES=================");
+            logging.info(line_choices);
             # line_filter_domain = expression.AND([[('suggested_answer_id', '=', line_choices)], line_filter_domain])
             for lc in line_choices:
                 line_filter_domain += [
