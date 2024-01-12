@@ -371,6 +371,8 @@ class SurveyFilter(Survey):
                 ("create_date", ">=", select_date_start_obj),
                 ("create_date", "<=", date_end_obj),
             ]
+        logging.info(line_filter_domain);
+        logging.info(search_filters);
 
         user_input_lines = (
             request.env["survey.user_input"]
