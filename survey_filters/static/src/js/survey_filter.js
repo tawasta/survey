@@ -65,7 +65,6 @@ odoo.define("survey.survey_page_statistics_inner", function () {
                 defaultDate: newDateTime,
             });
         } else {
-            var dateNow = new Date();
             $("#datetimepicker-filter-date").datetimepicker({
                 format: "DD.MM.Y",
                 locale: moment.locale(),
@@ -74,28 +73,39 @@ odoo.define("survey.survey_page_statistics_inner", function () {
 
         $("#datetimepicker-filter-date").on("hide.datetimepicker", function () {
             var newStartDate = $(this).find(".datetimepicker-input").val();
-            var basePath = window.location.pathname.split("/date_start")[0].split("/date_end")[0];
-            var endDatePath = basePath + (window.location.pathname.indexOf("/date_end") >= 0 ? window.location.pathname.split("/date_end")[1] : "");
+            var basePath = window.location.pathname
+                .split("/date_start")[0]
+                .split("/date_end")[0];
+            var endDatePath =
+                basePath +
+                (window.location.pathname.indexOf("/date_end") >= 0
+                    ? window.location.pathname.split("/date_end")[1]
+                    : "");
 
             if (newStartDate) {
                 var newPath = basePath + "/date_start/" + newStartDate;
                 // Check if end_date exists and compare dates
                 if (endDatePath) {
-                    //console.log("=====TANNE MENENEE=====");
-                    var endDate = moment(window.location.pathname.split("/date_end/")[1], "DD.MM.YYYY");
+                    // Console.log("=====TANNE MENENEE=====");
+                    var endDate = moment(
+                        window.location.pathname.split("/date_end/")[1],
+                        "DD.MM.YYYY"
+                    );
                     var startDate = moment(newStartDate, "DD.MM.YYYY");
 
-                    //console.log(startDate);
-                    //console.log(endDate);
+                    // Console.log(startDate);
+                    // console.log(endDate);
                     if (startDate.isBefore(endDate)) {
-                        newPath += "/date_end/" + window.location.pathname.split("/date_end/")[1];
+                        newPath +=
+                            "/date_end/" +
+                            window.location.pathname.split("/date_end/")[1];
                     }
                 }
                 window.location.href = newPath;
-                //console.log(newPath);
+                // Console.log(newPath);
             } else {
                 window.location.href = basePath;
-                //console.log("basePath");
+                // Console.log("basePath");
             }
         });
 
@@ -122,7 +132,6 @@ odoo.define("survey.survey_page_statistics_inner", function () {
                 defaultDate: newDateTime,
             });
         } else {
-            var dateNow = new Date();
             $("#datetimepicker-filter-end-date").datetimepicker({
                 format: "DD.MM.Y",
                 locale: moment.locale(),

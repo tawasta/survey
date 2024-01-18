@@ -169,7 +169,7 @@ class SurveyFilter(Survey):
             "current_search": search,
             "search_finished": post.get("finished") == "true",
         }
-        #user_input_lines, search_filters = self._extract_filters_data(survey, post)
+        # user_input_lines, search_filters = self._extract_filters_data(survey, post)
 
         if selected_courses:
             select_courses = (
@@ -281,10 +281,12 @@ class SurveyFilter(Survey):
         search,
         post,
     ):
-        logging.info("==================FILTTERI EXTRACT SURVEY DATA========================");
+        logging.info(
+            "==================FILTTERI EXTRACT SURVEY DATA========================"
+        )
         search_filters = []
         line_filter_domain, line_choices = [], []
-        logging.info(post);
+        logging.info(post)
         for data in post.get("filters", "").split("|"):
             try:
                 row_id, answer_id = (int(item) for item in data.split(","))
@@ -302,13 +304,13 @@ class SurveyFilter(Survey):
                             line_filter_domain,
                         ]
                     )
-                    logging.info("=============FILTER LINE FILER DOMAIN==========");
+                    logging.info("=============FILTER LINE FILER DOMAIN==========")
                     logging.info(line_filter_domain)
                     answers = request.env["survey.question.answer"].browse(
                         [row_id, answer_id]
                     )
                 elif answer_id:
-                    logging.info("====MENEEKO TANNE KUN FILTER VALITTU======");
+                    logging.info("====MENEEKO TANNE KUN FILTER VALITTU======")
                     line_choices.append(answer_id)
                     answers = request.env["survey.question.answer"].browse([answer_id])
                 if answer_id:
@@ -326,8 +328,8 @@ class SurveyFilter(Survey):
                         }
                     )
         if line_choices:
-            logging.info("=======LINE CHOICES=================");
-            logging.info(line_choices);
+            logging.info("=======LINE CHOICES=================")
+            logging.info(line_choices)
             # line_filter_domain = expression.AND([[('suggested_answer_id', '=', line_choices)], line_filter_domain])
             for lc in line_choices:
                 line_filter_domain += [
@@ -378,8 +380,8 @@ class SurveyFilter(Survey):
                 ("create_date", ">=", select_date_start_obj),
                 ("create_date", "<=", date_end_obj),
             ]
-        logging.info(line_filter_domain);
-        logging.info(search_filters);
+        logging.info(line_filter_domain)
+        logging.info(search_filters)
 
         user_input_lines = (
             request.env["survey.user_input"]
