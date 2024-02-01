@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<odoo noupdate="1">
-    <record id="seq_survey_user_input" model="ir.sequence">
-        <field name="name">Survey Answer Ref</field>
-        <field name="code">survey.user_input</field>
-        <field name="prefix">REF/%(year)s/</field>
-        <field name="padding">5</field>
-    </record>
-</odoo>

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey String Answer",
-    "version": "14.0.1.0.0",
+    "version": "17.0.1.0",
     "category": "Marketing/Surveys",
     "summary": "Save each answer value as string",
     "website": "https://gitlab.com/tawasta/odoo/survey",
