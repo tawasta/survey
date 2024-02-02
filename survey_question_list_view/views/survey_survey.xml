@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_form" model="ir.ui.view">
+        <field name="name">Form view for survey: show questions in a list</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_survey_user_input_completed']" position="after">
+                <button name="action_survey_questions" type="object" class="oe_stat_button" icon="fa-question-circle">
+                    <field string="Questions" name="question_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
