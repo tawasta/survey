@@ -25,7 +25,10 @@
     <record id="survey_question_tree_input" model="ir.ui.view">
         <field name="name">Tree view for survey question char box answer</field>
         <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey_question_list_view.survey_question_tree_input" />
+        <field
+            name="inherit_id"
+            ref="survey_question_list_view.survey_question_tree_input"
+        />
         <field name="arch" type="xml">
             <field name="question_type" position="after">
                 <field name="answer_char_box" string="Correct Answer" optional="hide" />

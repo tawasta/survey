@@ -15,8 +15,10 @@ class SurveySurvey(models.Model):
             record.question_count = len(record.question_ids)
 
     def action_survey_questions(self):
-        action = self.env['ir.actions.act_window']._for_xml_id('survey_question_list_view.survey_question_action')
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "survey_question_list_view.survey_question_action"
+        )
         ctx = dict(self.env.context)
-        ctx.update({'search_default_survey_id': self.ids[0]})
-        action['context'] = ctx
+        ctx.update({"search_default_survey_id": self.ids[0]})
+        action["context"] = ctx
         return action
