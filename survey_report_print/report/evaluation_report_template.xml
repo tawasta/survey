@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="print_report_action"
+        string="Competence demonstration evaluation report"
+        model="survey.survey"
+        report_type="qweb-pdf"
+        name="survey_report_print.print_report_action_document"
+        file="survey_report_print.print_report_action_document"
+        paperformat="web_report_sfs.report_paperformat_fi"/>
+
+    <!-- PDF -->
+    <template id="print_report_action_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="report_title">Competence demonstration evaluation report</t>
+                <t t-foreach="docs" t-as="survey">
+                    <t t-call="survey.survey_page_statistics" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
