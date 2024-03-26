@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="survey_form_inherit_hide_create_session" model="ir.ui.view">
         <field name="name">survey.survey.form.inherit.hide.create.session</field>
         <field name="model">survey.survey</field>
-        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="inherit_id" ref="survey.survey_form" />
         <field name="arch" type="xml">
             <!-- Piilotetaan "Create Live Session" -painike -->
             <xpath expr="//button[@name='action_start_session']" position="attributes">

@@ -21,12 +21,14 @@
     "name": "Survey Hide Live",
     "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": 'Hide live button',
+    "summary": "Hide live button",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": ["views/survey_survey_views.xml",],
+    "data": [
+        "views/survey_survey_views.xml",
+    ],
 }

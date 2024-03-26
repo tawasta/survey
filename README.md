@@ -22,6 +22,7 @@ addon | version | summary
 [survey_contact_ids_save_street](survey_contact_ids_save_street/) | 14.0.1.0.0 | Save survey answer as partner or contact street
 [survey_contact_ids_save_zip](survey_contact_ids_save_zip/) | 14.0.1.0.0 | Save survey answer as partner or contact zip
 [survey_filters](survey_filters/) | 14.0.1.0.1 | Order Surveys by sequence
+[survey_hide_live](survey_hide_live/) | 14.0.1.0.0 | Hide live button
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 | Ability to hide "Retry" button after Survey completion
 [survey_invite_sender_email_from_email_template](survey_invite_sender_email_from_email_template/) | 14.0.1.0.0 | Enable configuring sender e-mail address in e-mail template
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 | Send emails to survey user partners via chatter
