@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_show_numeric_score_after_answering
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230925\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-26 09:48+0000\n"
+"PO-Revision-Date: 2024-03-26 09:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model.fields,field_description:survey_show_numeric_score_after_answering.field_survey_survey__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model.fields,field_description:survey_show_numeric_score_after_answering.field_survey_survey__id
+msgid "ID"
+msgstr "Tunniste (ID)"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model.fields,field_description:survey_show_numeric_score_after_answering.field_survey_survey____last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model.fields,field_description:survey_show_numeric_score_after_answering.field_survey_survey__show_numeric_score_to_participant
+msgid "Show Numeric Score to Participant"
+msgstr "Näytä pistemäärä osallistujalle"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model,name:survey_show_numeric_score_after_answering.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
+
+#. module: survey_show_numeric_score_after_answering
+#: model:ir.model.fields,help:survey_show_numeric_score_after_answering.field_survey_survey__show_numeric_score_to_participant
+msgid ""
+"The participant can see their numeric score on the screen after answering"
+msgstr ""
+"Osallistuja näkee ruudulla numeerisen pistemääränsä kyselyyn vastaamisen jälkeen"
+
+#. module: survey_show_numeric_score_after_answering
+#: model_terms:ir.ui.view,arch_db:survey_show_numeric_score_after_answering.survey_fill_form_done
+msgid "Your score:"
+msgstr "Saamasi pisteet:"

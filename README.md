@@ -37,12 +37,14 @@ addon | version | summary
 [survey_scoring_type_hidden_scoring](survey_scoring_type_hidden_scoring/) | 14.0.1.0.0 | Hidden scoring type for surveys which is not shown to attendees
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 | Adds an option to show correct answers after the survey
+[survey_show_numeric_score_after_answering](survey_show_numeric_score_after_answering/) | 14.0.1.0.1 | Adds an option to show achieved score after the survey
 [survey_slug_support](survey_slug_support/) | 14.0.1.0.0 | Support for legacy slug survey URLs
 [survey_stages](survey_stages/) | 14.0.1.2.0 | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 | Save each answer value as string
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 14.0.1.1.0 | Give survey answers a unique reference with sequence
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.1.0 | Print an xlsx report from survey user inputs
 [survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 14.0.1.2.0 | Show user input report scores in XLSX report
+[survey_user_input_show_scoring_total](survey_user_input_show_scoring_total/) | 14.0.1.0.0 | Shows the numeric total score field that is by default hidden
 [survey_validity_period](survey_validity_period/) | 14.0.1.0.1 | Survey: period of qualification
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 14.0.1.0.0 | Ability to align survey choice buttons vertically
 
