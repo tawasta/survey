@@ -37,7 +37,7 @@ addon | version | summary
 [survey_scoring_type_hidden_scoring](survey_scoring_type_hidden_scoring/) | 14.0.1.0.0 | Hidden scoring type for surveys which is not shown to attendees
 [survey_sequence](survey_sequence/) | 14.0.1.0.0 | Order Surveys by sequence
 [survey_show_correct_answer](survey_show_correct_answer/) | 14.0.1.0.1 | Adds an option to show correct answers after the survey
-[survey_show_numeric_score_after_answering](survey_show_numeric_score_after_answering/) | 14.0.1.0.0 | Adds an option to show achieved score after the survey
+[survey_show_numeric_score_after_answering](survey_show_numeric_score_after_answering/) | 14.0.1.0.1 | Adds an option to show achieved score after the survey
 [survey_slug_support](survey_slug_support/) | 14.0.1.0.0 | Support for legacy slug survey URLs
 [survey_stages](survey_stages/) | 14.0.1.2.0 | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 | Save each answer value as string

@@ -5,7 +5,9 @@
             expr="(//div[hasclass('o_survey_finished')]/div[hasclass('row')]/div[hasclass('col')])[1]"
             position="before"
         >
-            <t t-if="survey.show_numeric_score_to_participant">
+            <t
+                t-if="survey.scoring_type != 'no_scoring' and survey.show_numeric_score_to_participant"
+            >
                 <!-- no styling included in module, use IDs to customize SCSS as needed -->
                 <div id="survey-answer-numeric-score-container" class="col col-12">
                     <p>Your score: <span

@@ -22,7 +22,7 @@
     "name": "Survey: Show Numeric Score After Answering",
     "summary": "Adds an option to show achieved score after the survey",
     "category": "Survey",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",

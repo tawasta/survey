@@ -11,17 +11,15 @@ class Survey(Survey):
             survey, answer, token
         )
 
-        if survey.show_numeric_score_to_participant:
-
-            numeric_score = sum(
-                user_input_line.answer_score
-                for user_input_line in answer.user_input_line_ids
-            )
+        if (
+            survey.scoring_type != "no_scoring"
+            and survey.show_numeric_score_to_participant
+        ):
 
             # Trim trailing .0 from the shown score
-            if numeric_score.is_integer():
-                result["numeric_score"] = int(numeric_score)
+            if answer.scoring_total.is_integer():
+                result["numeric_score"] = int(answer.scoring_total)
             else:
-                result["numeric_score"] = numeric_score
+                result["numeric_score"] = answer.scoring_total
 
         return result
