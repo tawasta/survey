@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2022 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
+#    Copyright 2024 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,21 +19,15 @@
 ##############################################################################
 
 {
-    "name": "Survey: correct answer for single line text box",
-    "summary": "Allows scoring a single line text answer",
+    "name": "Survey: Invite Sender's E-mail from E-mail Template",
+    "summary": "Enable configuring sender e-mail address in e-mail template",
     "category": "Survey",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.0.0",
     "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        "python": ["difflib"],
-        "bin": [],
-    },
-    "depends": ["survey", "survey_question_list_view"],
-    "data": [
-        "views/survey_question.xml",
-    ],
+    "depends": ["survey"],
+    "data": [],
 }
