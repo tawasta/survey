@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_form" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.survey.view.form.inherit.numeric.score.after.answering</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <field name="scoring_type" position="after">
+                <field
+                    name="show_numeric_score_to_participant"
+                    attrs="{'invisible': [('scoring_type', '=', 'no_scoring')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

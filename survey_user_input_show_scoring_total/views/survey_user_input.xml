@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field name="name">survey.user.input.form.inherit.show.scoring.total</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="priority" eval="17" />
+        <field name="arch" type="xml">
+            <field name="scoring_percentage" position="before">
+                <field
+                    name="scoring_total"
+                    attrs="{'invisible': [('scoring_type', '=', 'no_scoring')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
