@@ -299,7 +299,11 @@ class SurveyFilter(Survey):
                             [
                                 "&",
                                 ("user_input_line_ids.matrix_row_id", "=", row_id),
-                                ("user_input_line_ids.suggested_answer_id", "=", answer_id),
+                                (
+                                    "user_input_line_ids.suggested_answer_id",
+                                    "=",
+                                    answer_id,
+                                ),
                             ],
                             line_filter_domain,
                         ]
