@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_tree_sequence" model="ir.ui.view">
+        <field name="name">survey.tree.sequence</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_tree" />
+        <field name="arch" type="xml">
+            <field name="active" position="before">
+                <field name="sequence" widget="handle" />
+            </field>
+        </field>
+    </record>
+</odoo>
