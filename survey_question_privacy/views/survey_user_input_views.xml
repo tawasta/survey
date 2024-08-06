@@ -8,7 +8,8 @@
             <field name="suggested_answer_id" position="after">
                 <field
                     name="value_privacy_consent"
-                    invisible="answer_type != 'privacy'"/>
+                    invisible="answer_type != 'privacy'"
+                />
             </field>
         </field>
     </record>

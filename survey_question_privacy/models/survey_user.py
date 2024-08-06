@@ -59,11 +59,11 @@ class SurveyUserInput(models.Model):
             )
             self._save_line_privacy(question, old_answers, answer, comment)
         else:
-            return super(SurveyUserInput, self)._save_lines(question, answer, comment, overwrite_existing)
+            return super(SurveyUserInput, self)._save_lines(
+                question, answer, comment, overwrite_existing
+            )
 
     def _save_line_privacy(self, question, old_answers, answer, comment):
-        logging.info("===PRIVACY QUESTION====");
-        logging.info(answer);
         vals = {
             "user_input_id": self.id,
             "question_id": question.id,

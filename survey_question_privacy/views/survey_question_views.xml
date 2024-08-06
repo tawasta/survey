@@ -15,9 +15,10 @@
             <xpath expr="//page[@name='answers']" position="inside">
                     <group invisible="question_type != 'privacy'">
                         <field
-                            name="privacy_activity_id"
-                            required="question_type == 'privacy'"
-                            options="{'no_create': True}"/>
+                        name="privacy_activity_id"
+                        required="question_type == 'privacy'"
+                        options="{'no_create': True}"
+                    />
                     </group>
             </xpath>
         </field>
