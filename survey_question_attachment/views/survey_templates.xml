@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="question_container_attachment" inherit_id="survey.question_container">
+        <xpath expr="//t[@t-call='survey.question_matrix']//.." position="after">
+            <t t-if="question.question_type == 'attachment'"><t
+                    t-call="survey_question_attachment.question_attachment"
+                /></t>
+        </xpath>
+    </template>
+    <template id="survey_page_print" inherit_id="survey.survey_page_print">
+        <xpath expr="//div[hasclass('o_survey_question_error')]" position="before">
+            <t t-if="question.question_type == 'attachment'">
+                <t t-call="survey_question_attachment.review_attachment" />
+            </t>
+        </xpath>
+    </template>
+    <template id="question_attachment" name="Question: Attachment">
+        <div class="o_survey_comment_container p-0">
+            <input
+                type="file"
+                t-att-data-name="question.id"
+                t-att-id="'file_name_%d' % question.id"
+                t-att-data-question-type="question.question_type"
+                t-att-validation-size-max="question.validation_max_attachment_filesize"
+                t-att-multiple="None if not question.is_multiple_attachments else 'multiple'"
+                t-att-accept="None if not question.validation_attachment_file_type else ('application/pdf' if question.validation_attachment_file_type == 'pdf' else ('image/*' if question.validation_attachment_file_type == 'image' else ('application/pdf,image/*' if question.validation_attachment_file_type == 'image-pdf' else None)))"
+                class="form_control o_survey_question_attachment bg_transparent text-dark rounded-0 p-0"
+            />
+            <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
+                <div class="o_survey_attachment_answer" t-att-id="file.id">
+                    <a
+                        t-att-href="file.link_url"
+                        aria-label="Download"
+                        title="Download"
+                        target="_blank"
+                    >
+                        <i class="fa fa-download" />
+                        <span>
+                            <t t-esc="file.name" />
+                        </span>
+                    </a>
+                </div>
+            </t>
+        </div>
+    </template>
+    <template id="review_attachment" name="Review: Attachment">
+        <div class="o_survey_attachment_container">
+            <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
+                <div>
+                    <a
+                        t-att-href="file.link_url"
+                        aria-label="Download"
+                        title="Download"
+                        target="_blank"
+                    >
+                        <i class="fa fa-download" />
+                        <span>
+                            <t t-esc="file.name" />
+                        </span>
+                    </a>
+                </div>
+            </t>
+        </div>
+    </template>
+</odoo>
