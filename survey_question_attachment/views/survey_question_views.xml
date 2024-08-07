@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+ <record model="ir.ui.view" id="survey_question_form">
+        <field name="name">Form view for survey question</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_preview_questions')]" position="inside">
+                <div invisible="question_type != 'attachment'">
+                    <p class="o_upload_attachment">
+                        Upload Attachments
+                        <i
+                            class="fa fa-upload fa-2x"
+                            role="img"
+                            aria-label="Attachment"
+                            title="Attachment"
+                        />
+                    </p>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='answers']" position="inside">
+                <group invisible="question_type != 'attachment'">
+                    <field name="validation_max_attachment_filesize" />
+                    <field name="is_multiple_attachments" />
+                    <field name="validation_attachment_file_type" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
