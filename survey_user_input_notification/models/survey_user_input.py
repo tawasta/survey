@@ -21,10 +21,11 @@
 # 1. Standard library imports:
 import logging
 
+# 3. Odoo imports (openerp):
+from odoo import _, models
+
 # 2. Known third party imports:
 
-# 3. Odoo imports (openerp):
-from odoo import models, _
 
 
 # 4. Imports from Odoo modules:
@@ -51,18 +52,28 @@ class SurveyUserInput(models.Model):
 
     # 6. CRUD methods
     def _mark_done(self):
-        """ Check if notifications are enabled and create if they are present """
+        """Check if notifications are enabled and create if they are present"""
         res = super()._mark_done()
         notif_partners = self.survey_id.notify_partner_ids
         if notif_partners:
-            lead = self.env["crm.lead"].sudo().create({
-                "name": _("New lead from survey %s", self.survey_id.title),
-                "partner_id": self.partner_id,
-            })
+            lead = (
+                self.env["crm.lead"]
+                .sudo()
+                .create(
+                    {
+                        "name": _("New lead from survey %s", self.survey_id.title),
+                        "partner_id": self.partner_id,
+                    }
+                )
+            )
             # Send notifications to partners
             lead.message_subscribe(notif_partners.ids)
             body = _("This lead was created automatically from survey answer:\n\n")
-            body += "<a href='/web?#id={}&model=survey.user_input&view_type=form'>".format(self.id)
+            body += (
+                "<a href='/web?#id={}&model=survey.user_input&view_type=form'>".format(
+                    self.id
+                )
+            )
             body += _("Link to survey answer</a>")
             lead.message_post(
                 subject=_("New lead from survey"),

@@ -1,1 +1,3 @@
-from . import res_partner, survey_question, survey_survey, survey_user
+from . import survey_question
+from . import survey_survey
+from . import survey_user
