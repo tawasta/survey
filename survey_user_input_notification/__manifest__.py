@@ -23,7 +23,7 @@
     "summary": "Get notifications when new answers for survey array",
     "version": "14.0.1.0.0",
     "category": "Survey",
-    "website": "https://gitlab.com/tawasta/odoo/survey/",
+    "website": "https://gitlab.com/tawasta/odoo/survey",
     "author": "Tawasta",
     "license": "AGPL-3",
     "data": [

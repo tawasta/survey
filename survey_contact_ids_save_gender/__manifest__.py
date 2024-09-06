@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Contacts Save Gender",
-    "version": "14.0.1.0.1",
+    "version": "14.0.2.0.1",
     "category": "Marketing/Surveys",
     "summary": "Save survey answer as partner or contact gender",
     "website": "https://gitlab.com/tawasta/odoo/survey",
@@ -27,6 +27,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_contact_ids"],
+    "depends": ["partner_contact_gender", "survey_contact_ids"],
     "data": ["views/survey_question_views.xml", "views/res_partner.xml"],
 }

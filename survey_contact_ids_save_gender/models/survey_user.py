@@ -80,6 +80,11 @@ class SurveyUserInput(models.Model):
     def _save_partner_gender(self, gender):
         """Saves gender to partner"""
         self.write({"partner_gender": gender})
+
+        # Map gender with OCA's gender selection on partner
+        gender_map = {"m": "male", "f": "female", "o": "other"}
+        gender = gender_map.get(gender) or gender
+
         self.partner_id.write({"gender": gender})
         _logger.debug("Partner's %s gender saved." % self.partner_id)
 
@@ -105,6 +110,10 @@ class SurveyUserInput(models.Model):
             and not question.comment_count_as_answer
         ):
             gender_opt = self._get_partner_gender(answer)
+
+            gender_map = {"m": "male", "f": "female", "o": "other"}
+            gender_opt = gender_map.get(gender_opt) or gender_opt
+
             if gender_opt:
                 self._save_contact_field(question, gender_opt, "gender")
         return res

@@ -21,10 +21,10 @@
 # 1. Standard library imports:
 import logging
 
-# 2. Known third party imports:
-
 # 3. Odoo imports (openerp):
-from odoo import models, fields
+from odoo import fields, models
+
+# 2. Known third party imports:
 
 
 # 4. Imports from Odoo modules:

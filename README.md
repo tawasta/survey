@@ -18,7 +18,7 @@ addon | version | summary
 [survey_contact_ids](survey_contact_ids/) | 14.0.2.0.1 | Add multiple contacts to view and receive mails from survey answer
 [survey_contact_ids_save_birth_date](survey_contact_ids_save_birth_date/) | 14.0.1.0.1 | Save survey answer as partner or contact birth date
 [survey_contact_ids_save_city](survey_contact_ids_save_city/) | 14.0.1.0.0 | Save survey answer as partner or contact city
-[survey_contact_ids_save_gender](survey_contact_ids_save_gender/) | 14.0.1.0.1 | Save survey answer as partner or contact gender
+[survey_contact_ids_save_gender](survey_contact_ids_save_gender/) | 14.0.2.0.1 | Save survey answer as partner or contact gender
 [survey_contact_ids_save_street](survey_contact_ids_save_street/) | 14.0.1.0.0 | Save survey answer as partner or contact street
 [survey_contact_ids_save_zip](survey_contact_ids_save_zip/) | 14.0.1.0.0 | Save survey answer as partner or contact zip
 [survey_filters](survey_filters/) | 14.0.1.0.1 | Order Surveys by sequence
@@ -41,6 +41,7 @@ addon | version | summary
 [survey_slug_support](survey_slug_support/) | 14.0.1.0.0 | Support for legacy slug survey URLs
 [survey_stages](survey_stages/) | 14.0.1.2.0 | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 | Save each answer value as string
+[survey_user_input_notification](survey_user_input_notification/) | 14.0.1.0.0 | Get notifications when new answers for survey array
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 14.0.1.1.0 | Give survey answers a unique reference with sequence
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.1.0 | Print an xlsx report from survey user inputs
 [survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 14.0.1.2.0 | Show user input report scores in XLSX report
