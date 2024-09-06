@@ -27,7 +27,6 @@ from odoo import _, models
 # 2. Known third party imports:
 
 
-
 # 4. Imports from Odoo modules:
 
 # 5. Local imports in the relative form:
