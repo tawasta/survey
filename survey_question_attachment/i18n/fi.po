@@ -1,0 +1,145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_attachment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240603\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-07 11:34+0000\n"
+"PO-Revision-Date: 2024-08-07 11:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__is_multiple_attachments
+msgid "Allow Multiple Attachments"
+msgstr "Salli usean liitetiedoston lataus"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__answer_type
+msgid "Answer Type"
+msgstr "Vastauksen tyyppi"
+
+#. module: survey_question_attachment
+#. odoo-python
+#: code:addons/survey_question_attachment/models/survey_user_input_line.py:0
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__question_type__attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_user_input_line__answer_type__attachment
+#, python-format
+msgid "Attachment"
+msgstr "Liitetiedosto"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_user_input_line__value_attachment_ids
+msgid "Attachments Answer"
+msgstr "Liitetiedoston vastaus"
+
+#. module: survey_question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.review_attachment
+msgid "Download"
+msgstr "Lataa"
+
+#. module: survey_question_attachment
+#. odoo-javascript
+#: code:addons/survey_question_attachment/static/src/js/survey.esm.js:0
+#, python-format
+msgid "File upload"
+msgstr "Liitetiedoston lataus"
+
+#. module: survey_question_attachment
+#. odoo-python
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be PDFs."
+msgstr "Tiedostojen pitää olla PDF:iä."
+
+#. module: survey_question_attachment
+#. odoo-python
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be images or PDFs."
+msgstr "Tiedostojen pitää olla kuvia tai PDF:iä."
+
+#. module: survey_question_attachment
+#. odoo-python
+#: code:addons/survey_question_attachment/models/survey_question.py:0
+#, python-format
+msgid "Files must be images."
+msgstr "Tiedostojen pitää olla kuvia."
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__image
+msgid "Image"
+msgstr "Kuva"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__image-pdf
+msgid "Image and PDF"
+msgstr "Kuva ja PDF"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__validation_attachment_file_type
+msgid "Limit Attachment File Type"
+msgstr "Rajoita liitteen tiedostotyyppi"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__validation_max_attachment_filesize
+msgid "Maximum filesize (MB)"
+msgstr "Tiedoston maksimikoko (MB)"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields.selection,name:survey_question_attachment.selection__survey_question__validation_attachment_file_type__pdf
+msgid "PDF"
+msgstr ""
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,field_description:survey_question_attachment.field_survey_question__question_type
+msgid "Question Type"
+msgstr "Kysymyksen tyyppi"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Käyttäjäsyöte kyselyssä"
+
+#. module: survey_question_attachment
+#: model:ir.model,name:survey_question_attachment.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Kyselyn käyttäjän syöttörivi"
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,help:survey_question_attachment.field_survey_question__validation_max_attachment_filesize
+msgid "The maximum filesize for the attachment answer in Megabytes"
+msgstr "Vastauksen liitetiedoston maksimikoko megatavuina"
+
+#. module: survey_question_attachment
+#. odoo-javascript
+#: code:addons/survey_question_attachment/static/src/js/survey.esm.js:0
+#, python-format
+msgid "The selected attachment exceeds the maximum file size of %s."
+msgstr "Valittu liitetiedosto ylittää tiedoston maksimikoon %s."
+
+#. module: survey_question_attachment
+#: model:ir.model.fields,help:survey_question_attachment.field_survey_question__validation_attachment_file_type
+msgid "This field limits the accepted file type for attachments."
+msgstr "Tämä kenttä rajoittaa sallitut tiedostotyypit liitetiedostoille."
+
+#. module: survey_question_attachment
+#: model_terms:ir.ui.view,arch_db:survey_question_attachment.survey_question_form
+msgid ""
+"Upload Attachments\n"
+"                        <i class=\"fa fa-upload fa-2x\" role=\"img\" aria-label=\"Attachment\" title=\"Attachment\"/>"
+msgstr ""
+"Lataa liitetidostoja\n"
+"                        <i class=\"fa fa-upload fa-2x\" role=\"img\" aria-label=\"Liitetiedosto\" title=\"Liitetiedosto\"/>"
