@@ -24,7 +24,7 @@
     "version": "14.0.1.0.0",
     "category": "Marketing/Surveys",
     "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Futural",
+    "author": "Tawasta",
     "license": "AGPL-3",
     "depends": [
         "survey",
