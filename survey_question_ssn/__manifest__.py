@@ -23,7 +23,7 @@
     "category": "Survey",
     "summary": "Ability to add ssn as questions to survey",
     "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,

@@ -5,7 +5,7 @@
 ===================
 Survey Question SSN
 ===================
-\-
+* This module adds a new question type for social security number (SSN) handling to Odoo's survey module. It enables the collection and validation of social security numbers within surveys and applies access restrictions, ensuring that only specified user groups can view SSN information.
 
 Configuration
 =============

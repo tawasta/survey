@@ -12,25 +12,15 @@ class SurveyQuestion(models.Model):
     )
 
     def validate_question(self, answer, comment=None):
-        """
-        Laajennettu validate_question-metodi, joka tarkistaa,
-        että SSN-kenttä ei ole tyhjä, jos se on pakollinen ja onko muoto oikea.
-        """
         self.ensure_one()
 
         # Tarkista, onko SSN-kysymys
         if self.question_type == 'ssn':
             return self._validate_ssn(answer)
 
-        # Jos kyseessä on muu kysymystyyppi, käytetään core-logiikkaa
         return super(SurveyQuestion, self).validate_question(answer, comment)
 
     def _validate_ssn(self, answer):
-        """
-        Tarkistaa, että henkilötunnus (SSN) on oikeassa muodossa.
-        Suomen henkilötunnuksen perusmuoto on 6 merkkiä (ppkkvv), välimerkki (-,+ tai A)
-        ja neljä merkkiä, esimerkiksi: 010101-123A.
-        """
 
         # Tarkistetaan pakollisuus
         if self.constr_mandatory and not answer:
