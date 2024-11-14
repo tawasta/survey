@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="survey_question_form" model="ir.ui.view">
         <field name="name">survey.question.view.form.inherit.survey.ssn</field>
         <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="inherit_id" ref="survey.survey_question_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('o_preview_questions')]" position="inside">
                 <div invisible="question_type != 'ssn'">
                     <p class="o_ssn_question">SSN (Social security number)
-                        <i class="fa fa-id-card"/>
+                        <i class="fa fa-id-card" />
                     </p>
                 </div>
             </xpath>

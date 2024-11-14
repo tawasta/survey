@@ -3,20 +3,22 @@
     <template id="question_page_ssn_answer" inherit_id="survey.question_container">
         <xpath expr="//div[@role='alert']" position="before">
             <t t-if="question.question_type == 'ssn'">
-                <t t-call="survey_question_ssn.ssn_input_field"/>
+                <t t-call="survey_question_ssn.ssn_input_field" />
             </t>
         </xpath>
     </template>
 
     <template id="ssn_input_field" name="Question: SSN">
         <div class="o_survey_comment_container p-0">
-            <input type="text"
-                   class="form-control o_survey_question_text_box bg-transparent rounded-0 p-0"
-                   t-att-name="question.id"
-                   t-att-placeholder="question.question_placeholder or 'Enter SSN'"
-                   t-att-required="question.validation_required"
-                   t-att-data-question-type="question.question_type"
-                   t-att-value="answer_lines[0].value_ssn if answer_lines else ''"/>
+            <input
+                type="text"
+                class="form-control o_survey_question_text_box bg-transparent rounded-0 p-0"
+                t-att-name="question.id"
+                t-att-placeholder="question.question_placeholder or 'Enter SSN'"
+                t-att-required="question.validation_required"
+                t-att-data-question-type="question.question_type"
+                t-att-value="answer_lines[0].value_ssn if answer_lines else ''"
+            />
         </div>
     </template>
 </odoo>

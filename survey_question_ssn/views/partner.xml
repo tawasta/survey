@@ -6,7 +6,10 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <field name="category_id" position="after">
-                <field name="social_security_number" groups="survey_question_ssn.group_social_security_number" />
+                <field
+                    name="social_security_number"
+                    groups="survey_question_ssn.group_social_security_number"
+                />
             </field>
         </field>
     </record>
