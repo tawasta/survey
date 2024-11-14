@@ -32,7 +32,7 @@
         "security/rule.xml",
         "views/partner.xml",
         "views/survey_question_views.xml",
-        #"views/survey_user_input_views.xml",
+        "views/survey_user_input_views.xml",
         "views/survey_templates.xml",
     ],
     "assets": {

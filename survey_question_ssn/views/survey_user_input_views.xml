@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='suggested_answer_id']" position="after">
-                <field name="value_text" invisible="answer_type != 'ssn'"/>
+                <field name="value_ssn" invisible="answer_type != 'ssn'" groups="survey_question_ssn.group_social_security_number"/>
             </xpath>
         </field>
     </record>

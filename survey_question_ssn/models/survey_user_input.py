@@ -23,8 +23,8 @@ class SurveyUserInput(models.Model):
             'user_input_id': self.id,
             'question_id': question.id,
             'skipped': not answer,
-            'answer_type': 'char_box',
-            'value_char_box': answer,
+            'answer_type': 'ssn',
+            'value_ssn': answer,
         }
 
         if old_answers:

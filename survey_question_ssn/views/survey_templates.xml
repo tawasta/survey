@@ -16,7 +16,7 @@
                    t-att-placeholder="question.question_placeholder or 'Enter SSN'"
                    t-att-required="question.validation_required"
                    t-att-data-question-type="question.question_type"
-                   t-att-value="answer_lines[0].value_char_box if answer_lines else ''"/>
+                   t-att-value="answer_lines[0].value_ssn if answer_lines else ''"/>
         </div>
     </template>
 </odoo>
