@@ -22,6 +22,16 @@ class SurveyUserInput(models.Model):
         readonly=True,
     )
 
+class SurveyQuestionAnswer(models.Model):
+    _inherit = 'survey.question.answer'
+
+    company_id = fields.Many2one(
+        'res.company',
+        related='question_id.company_id',
+        store=True,
+        readonly=True,
+    )
+
 
 class SurveyUserInputLine(models.Model):
     _inherit = 'survey.user_input.line'
