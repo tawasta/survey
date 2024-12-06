@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_survey_rule_survey_manager')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_survey_rule_survey_manager" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_question_rule_survey_manager')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_question_rule_survey_manager" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_question_answer_rule_survey_manager')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_question_answer_rule_survey_manager" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_user_input_rule_survey_manager')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_user_input_rule_survey_manager" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_user_input_line_rule_survey_manager')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_user_input_line_rule_survey_manager" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <!-- GROUP USER MULTI COMPANY -->
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_survey_rule_survey_user_read')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_survey_rule_survey_user_read" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_question_rule_survey_user_read')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_question_rule_survey_user_read" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_question_answer_rule_survey_user_read')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_question_answer_rule_survey_user_read" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_user_input_rule_survey_user_read')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_user_input_rule_survey_user_read" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'survey'), ('name', '=', 'survey_user_input_line_rule_survey_user_read')]" />
+            </function>
+            <value eval="{'noupdate': False}" />
+        </function>
+
+        <record id="survey.survey_user_input_line_rule_survey_user_read" model="ir.rule">
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<odoo>
+   <data noupdate="1">
+      <record id="mail_template_survey_file_upload" model="mail.template">
+         <field name="name">Survey File Upload Notification</field>
+         <field name="model_id" ref="survey.model_survey_user_input"/>
+         <field name="subject">File Uploaded in Survey: ${object.survey_id.title}</field>
+         <field name="email_from">${user.email | safe}</field>
+         <field name="email_to">${', '.join(object.survey_id.notification_user_ids.mapped('partner_id.email'))}</field>
+         <field name="body_html" type="html">
+<p>Hello,</p>
+<p>The following files have been uploaded for the survey <b>${object.title}</b>:</p>
+<p>${body_html}</p>
+
+         </field>
+         <field name="auto_delete" eval="True"/>
+      </record>
+
+      <record id="mail_template_survey_response_submission" model="mail.template">
+         <field name="name">Survey Response Submission Notification</field>
+         <field name="model_id" ref="survey.model_survey_user_input"/>
+         <field name="subject">New Response Submitted for Survey: ${object.survey_id.title}</field>
+         <field name="email_from">${user.email | safe}</field>
+         <field name="email_to">${', '.join(object.survey_id.notification_user_ids.mapped('partner_id.email'))}</field>
+         <field name="body_html" type="html">
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%; margin:0 auto; font-family:Arial, sans-serif;">
+    <tbody>
+        <tr>
+            <td style="text-align: left; padding: 16px; font-size: 14px;">
+                <p>Hello,</p>
+                <p>A new response has been submitted for the survey <b>${object.survey_id.title}</b>.</p>
+                <p><b>Responder:</b> ${object.partner_id.name or object.email}</p>
+                <p><b>Submission Time:</b> ${object.write_date}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+         </field>
+         <field name="auto_delete" eval="True"/>
+      </record>
+   </data>
+</odoo>
