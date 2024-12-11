@@ -1,5 +1,5 @@
-from odoo import http
-from odoo.http import request, _
+from odoo import http, _
+from odoo.http import request
 from odoo.addons.survey_portal_upload_attachments.controllers.main import SurveyAttachments
 import logging
 
