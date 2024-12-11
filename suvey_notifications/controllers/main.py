@@ -1,5 +1,5 @@
-from odoo import http
-from odoo.http import request, _
+from odoo import http, _
+from odoo.http import request
 import logging
 # 4. Imports from Odoo modules:
 from odoo.addons.survey_contact_ids.controllers.main import SurveyContacts
