@@ -56,9 +56,13 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
             return  # Ei tehdä mitään, jos ilmoitukset on pois päältä
 
         # Sähköpostin runko
-        email_body = _("Attachments have been added to the survey response:") + "<br><ul>"
+        email_body = (
+            _("Attachments have been added to the survey response:") 
+            + f" {answer_sudo.ref}" 
+            + "<br><ul>"
+        )
         for file_info in uploaded_files:
-            email_body += f"<li><b>{_('Question')}:</b> {file_info['question']} - <b>{_('File')}:</b> {file_info['file_name']}</li>"
+            email_body += f"<li>{file_info['question']} : {file_info['file_name']}</li>"
         email_body += "</ul>"
 
         # Hae sähköpostipohja
