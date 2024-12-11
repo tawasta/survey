@@ -54,10 +54,13 @@ class SurveyUserInput(models.Model):
         attachment = self.env['ir.attachment'].browse(attachment_id)
 
         # Create email body
-        email_body = _(
-            "Attachment added to the application:"
-        ) + f"<br><ul><li><b>{_('Answer')}:</b> {self.ref} - <b>{_('File')}:</b> {attachment.name}</li></ul>"
-
+        email_body = (
+            _("Attachment added to the application:")
+            + f" {self.ref}"
+            + "<br><ul>"
+            + f"<li>{attachment.name}</li>"
+            + "</ul>"
+        )
 
         # Send notification emails
         email_template = self.env.ref(

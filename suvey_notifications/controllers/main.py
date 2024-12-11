@@ -49,9 +49,13 @@ class SurveyFile(SurveyContacts):
             return  # No files uploaded, skip notifications
 
         # Create email body
-        email_body = _("Attachment(s) added to the survey responses:") + "<br><ul>"
+        email_body = (
+            _("Attachment(s) added to the survey responses:") 
+            + f" {answer_sudo.ref}" 
+            + "<br><ul>"
+        )
         for file_info in uploaded_files:
-            email_body += f"<li><b>{_('Question')}:</b> {file_info['question']} - <b>{_('File')}:</b> {file_info['file_name']}</li>"
+            email_body += f"<li>{file_info['question']} : {file_info['file_name']}</li>"
         email_body += "</ul>"
 
         # Send notification emails
