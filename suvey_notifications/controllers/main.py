@@ -1,5 +1,5 @@
 from odoo import http
-from odoo.http import request
+from odoo.http import request, _
 import logging
 # 4. Imports from Odoo modules:
 from odoo.addons.survey_contact_ids.controllers.main import SurveyContacts
@@ -49,9 +49,9 @@ class SurveyFile(SurveyContacts):
             return  # No files uploaded, skip notifications
 
         # Create email body
-        email_body = "Attachment(s) added to the survey responses:<br><ul>"
+        email_body = _("Attachment(s) added to the survey responses:") + "<br><ul>"
         for file_info in uploaded_files:
-            email_body += f"<li><b>Question:</b> {file_info['question']} - <b>File:</b> {file_info['file_name']}</li>"
+            email_body += f"<li><b>{_('Question')}:</b> {file_info['question']} - <b>{_('File')}:</b> {file_info['file_name']}</li>"
         email_body += "</ul>"
 
         # Send notification emails

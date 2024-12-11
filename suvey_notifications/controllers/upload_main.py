@@ -1,5 +1,5 @@
 from odoo import http
-from odoo.http import request
+from odoo.http import request, _
 from odoo.addons.survey_portal_upload_attachments.controllers.main import SurveyAttachments
 import logging
 
@@ -56,9 +56,9 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
             return  # Ei tehdä mitään, jos ilmoitukset on pois päältä
 
         # Sähköpostin runko
-        email_body = "Attachments have been added to the survey response:<br><ul>"
+        email_body = _("Attachments have been added to the survey response:") + "<br><ul>"
         for file_info in uploaded_files:
-            email_body += f"<li><b>Question:</b> {file_info['question']} - <b>File:</b> {file_info['file_name']}</li>"
+            email_body += f"<li><b>{_('Question')}:</b> {file_info['question']} - <b>{_('File')}:</b> {file_info['file_name']}</li>"
         email_body += "</ul>"
 
         # Hae sähköpostipohja
