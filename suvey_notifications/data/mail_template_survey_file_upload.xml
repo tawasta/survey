@@ -29,8 +29,8 @@
             <td style="text-align: left; padding: 16px; font-size: 14px;">
                 <p>Hello,</p>
                 <p>A new response has been submitted for the survey <b>${object.survey_id.title}</b>.</p>
-                <p><b>Responder:</b> ${object.partner_id.name or object.email}</p>
-                <p><b>Submission Time:</b> ${object.write_date}</p>
+                <p><b>Responder:</b> ${object.partner_id.name}(${object.partner_id.parent_id.name})</p>
+                <p><b>Application:</b> ${object.ref}</p>
             </td>
         </tr>
     </tbody>
