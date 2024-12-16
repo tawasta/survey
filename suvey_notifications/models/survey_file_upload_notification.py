@@ -57,10 +57,18 @@ class SurveyUserInput(models.Model):
         email_body = (
             _("Attachment added to the application:")
             + f" {self.ref}"
-            + "<br><ul>"
-            + f"<li>{attachment.name}</li>"
-            + "</ul>"
+            + "<br>"
         )
+
+        # Lisää vastaajan ja organisaation tiedot, jos saatavilla
+        respondent_info = f"{self.partner_id.name}" if self.partner_id else _("")
+        organization_info = f" ({self.partner_id.parent_id.name})" if self.partner_id and self.partner_id.parent_id else ""
+        email_body += _("Respondent:") + f" {respondent_info}{organization_info}<br>"
+
+        # Liitetiedoston nimi
+        email_body += "<ul>"
+        email_body += f"<li>{attachment.name}</li>"
+        email_body += "</ul>"
 
         # Send notification emails
         email_template = self.env.ref(

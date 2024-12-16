@@ -54,6 +54,9 @@ class SurveyFile(SurveyContacts):
             + f" {answer_sudo.ref}" 
             + "<br><ul>"
         )
+        respondent_info = f"{answer_sudo.partner_id.name}" if answer_sudo.partner_id else _("")
+        organization_info = f" ({answer_sudo.partner_id.parent_id.name})" if answer_sudo.partner_id and answer_sudo.partner_id.parent_id else ""
+        email_body += _("Respondent:") + f" {respondent_info}{organization_info}<br>"
         for file_info in uploaded_files:
             email_body += f"<li>{file_info['question']} : {file_info['file_name']}</li>"
         email_body += "</ul>"
