@@ -75,7 +75,6 @@
                     </select>
                 </div>
 
-                <t t-esc="selected_events" />
                 <div class="col-sm-4 mt-1 mb-1">
                     <select
                         class="form-control input-lg"
