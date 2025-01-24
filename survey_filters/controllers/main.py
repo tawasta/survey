@@ -100,24 +100,24 @@ class SurveyFilter(Survey):
         extrafilters=None,
         **post
     ):
-        logging.info("====MEEEKO TANNE NAIN==================");
+
         # Alustetaan suodattimien muuttujat oletusarvoilla
         selected_courses, selected_events, select_date, date_end = None, None, None, None
 
         # Parsitaan extrafilters-parametri
         if extrafilters:
             filter_list = extrafilters.split("/")
-            for i in range(0, len(filter_list) - 1, 2):  # Luetaan kaksi osaa kerrallaan
-                filter_name = filter_list[i]
-                filter_value = filter_list[i + 1]
-                if filter_name == "course":
-                    selected_courses = filter_value  # Kurssit pilkulla eroteltuna
-                elif filter_name == "event":
-                    selected_events = filter_value  # Tapahtumat pilkulla eroteltuna
-                elif filter_name == "date_start":
-                    select_date = filter_value  # Aloituspäivämäärä
-                elif filter_name == "date_end":
-                    date_end = filter_value  # Loppupäivämäärä
+            for filter_item in filter_list:
+                if "=" in filter_item:
+                    filter_name, filter_value = filter_item.split("=", 1)
+                    if filter_name == "course":
+                        selected_courses = filter_value  # Kurssit pilkulla eroteltuna
+                    elif filter_name == "event":
+                        selected_events = filter_value  # Tapahtumat pilkulla eroteltuna
+                    elif filter_name == "date_start":
+                        select_date = filter_value  # Aloituspäivämäärä
+                    elif filter_name == "date_end":
+                        date_end = filter_value  # Loppupäivämäärä
 
         if isinstance(selected_events, str):
             selected_events = selected_events.split(",")

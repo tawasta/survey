@@ -25,8 +25,9 @@ odoo.define("survey.survey_page_statistics_inner", function () {
 
         // Päivitä-painikkeen toiminnallisuus
         $("#apply_filters").on("click", function () {
-            const selectedCourses = $("#select_course").val();
-            const selectedEvents = $("#selectevent").val();
+            // Kerätään valitut arvot tai asetetaan tyhjä lista oletuksena
+            const selectedCourses = $("#select_course").val() || [];
+            const selectedEvents = $("#selectevent").val() || [];
             const startDate = $("#filter-date").val();
             const endDate = $("#filter-end-date").val();
 
@@ -41,24 +42,29 @@ odoo.define("survey.survey_page_statistics_inner", function () {
 
             // Luo URL-suodatinpolku vain valituista arvoista
             const filters = [];
-            if (selectedCourses && selectedCourses.length > 0) {
-                filters.push("course/" + selectedCourses.join(","));
+            if (selectedCourses.length > 0) {
+                filters.push(`course=${selectedCourses.join(",")}`);
             }
-            if (selectedEvents && selectedEvents.length > 0) {
-                filters.push("event/" + selectedEvents.join(","));
+            if (selectedEvents.length > 0) {
+                filters.push(`event=${selectedEvents.join(",")}`);
             }
             if (startDate) {
-                filters.push("date_start/" + encodeURIComponent(startDate));
+                filters.push(`date_start=${encodeURIComponent(startDate)}`);
             }
             if (endDate) {
-                filters.push("date_end/" + encodeURIComponent(endDate));
+                filters.push(`date_end=${encodeURIComponent(endDate)}`);
             }
 
             // Rakennetaan uusi URL
             let newPath = `/survey/results/${surveyPath}`; // Säilytetään survey ID tai nimi
             if (filters.length > 0) {
-                newPath += `/${filters.join("/")}`; // Lisätään valitut suodattimet
+                newPath += `/${filters.join("/")}`; // Lisätään valitut suodattimet avain=arvo-parina
+            } else {
+                console.warn("No filters selected, defaulting to survey path.");
             }
+
+            // Tarkistetaan, että URL rakentuu oikein debug-logilla
+            console.log("Generated URL:", newPath);
 
             // Päivitä sivu suodattimien mukaan
             window.location.href = newPath;
