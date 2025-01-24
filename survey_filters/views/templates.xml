@@ -67,7 +67,7 @@
                         <t t-foreach="courses" t-as="c">
                             <option
                                 t-att-value="c.id"
-                                t-att-selected="'selected' if selected_courses and str(c.id) in selected_courses.split(',') else ''"
+                                t-att-selected="None if not selected_courses else e.id in selected_courses.ids"
                             >
                                 <t t-esc="c.name" />
                             </option>
@@ -75,6 +75,7 @@
                     </select>
                 </div>
 
+                <t t-esc="selected_events" />
                 <div class="col-sm-4 mt-1 mb-1">
                     <select
                         class="form-control input-lg"
@@ -83,13 +84,13 @@
                         multiple="multiple"
                     >
                         <t t-foreach="events" t-as="e">
-                            <option
-                                t-att-value="e.id"
-                                t-att-selected="'selected' if selected_events and str(e.id) in selected_events.split(',') else ''"
-                            >
-                                <t t-esc="e.name" />
-                            </option>
-                        </t>
+    <option
+        t-att-value="e.id"
+        t-att-selected="None if not selected_events else e.id in selected_events.ids"
+    >
+        <t t-esc="e.name" />
+    </option>
+</t>
                     </select>
                 </div>
 

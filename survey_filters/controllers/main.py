@@ -29,6 +29,7 @@ class SurveyFilter(Survey):
         answer_token=None,
         **post
     ):
+        logging.info("====VAI TAMAKO?????????");
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
@@ -99,6 +100,7 @@ class SurveyFilter(Survey):
         extrafilters=None,
         **post
     ):
+        logging.info("====MEEEKO TANNE NAIN==================");
         # Alustetaan suodattimien muuttujat oletusarvoilla
         selected_courses, selected_events, select_date, date_end = None, None, None, None
 
@@ -116,6 +118,24 @@ class SurveyFilter(Survey):
                     select_date = filter_value  # Aloituspäivämäärä
                 elif filter_name == "date_end":
                     date_end = filter_value  # Loppupäivämäärä
+
+        if isinstance(selected_events, str):
+            selected_events = selected_events.split(",")
+        elif not selected_events:
+            selected_events = []
+
+        select_events = request.env["event.event"].sudo().search([
+            ('id', 'in', list(map(int, selected_events)))
+        ]) if selected_events else request.env["event.event"]
+
+        if isinstance(selected_courses, str):
+            selected_courses = selected_courses.split(",")
+        elif not selected_courses:
+            selected_courses = []
+
+        select_courses = request.env["op.course"].sudo().search([
+            ('id', 'in', list(map(int, selected_courses)))
+        ]) if selected_courses else request.env["op.course"]
 
         # Haetaan alkuperäiset vastaukset ilman filttereitä
         all_user_input_lines = request.env["survey.user_input.line"].sudo().search(
@@ -160,8 +180,8 @@ class SurveyFilter(Survey):
             "question_and_page_data": question_and_page_data,
             "survey_data": survey_data,
             "search_filters": search_filters,
-            "selected_courses": selected_courses,
-            "selected_events": selected_events,
+            "selected_courses": select_courses,
+            "selected_events": select_events,
             "select_date": select_date,
             "date_end": date_end,
             "courses": all_courses,  # Alkuperäiset kurssit
@@ -255,13 +275,11 @@ class SurveyFilter(Survey):
         # Kurssi- ja tapahtumasuodatus yhdistetään yhteen tietokantakyselyyn
         course_ids, event_ids = [], []
         if selected_courses:
-            course_ids = list(map(int, selected_courses.split(",")))
-            courses = request.env["op.course"].sudo().search([("id", "in", course_ids)], fields=["id"])
+            courses = request.env["op.course"].sudo().search([("id", "in", selected_courses)])
             line_filter_domain.append(("event_id.course_id", "in", courses.ids))
 
         if selected_events:
-            event_ids = list(map(int, selected_events.split(",")))
-            events = request.env["event.event"].sudo().search([("id", "in", event_ids)], fields=["id"])
+            events = request.env["event.event"].sudo().search([("id", "in", selected_events)])
             line_filter_domain.append(("event_id", "in", events.ids))
 
         # Hakusuodatus

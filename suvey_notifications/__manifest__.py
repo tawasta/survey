@@ -30,6 +30,7 @@
     "depends": ["survey_question_attachment", "survey"],
     "data": [
         "data/mail_template_survey_file_upload.xml",
+        "views/assets.xml",
         "views/survey_view.xml",
     ],
 }
