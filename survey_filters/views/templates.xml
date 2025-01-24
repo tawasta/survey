@@ -10,56 +10,56 @@
     <template id="survey_page_statistics_inner" inherit_id="survey.survey_page_statistics_inner">
     <xpath expr="//div[@class='card d-print-none']" position="before">
         <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
-        <div class="container pb-2 pt-2">
-            <div class="row">
-                <!-- Suodatinvalikot -->
-                <div class="col-sm-4 mt-1 mb-1">
+        <div class="container py-5 bg-white">
+            <h2 class="text-center text-primary mb-5">Survey Filters</h2>
+            <div class="row gy-4 align-items-center">
+                <!-- Date Start Filter -->
+                <div class="col-md-6">
+                    <label for="filter-date" class="form-label fw-bold">Start Date</label>
                     <div class="input-group date" id="datetimepicker-filter-date" data-target-input="nearest">
                         <input
                             type="text"
                             data-date-format="yyyy/mm/dd"
                             name="filter_date"
                             id="filter-date"
-                            class="form-control datetimepicker-input"
+                            class="form-control datetimepicker-input shadow-sm"
                             data-target="#datetimepicker-filter-date"
                             t-att-value="select_date or ''"
                         />
-                        <div
-                            class="input-group-append"
-                            data-date-format="yyyy/mm/dd"
-                            data-target="#datetimepicker-filter-date"
-                            data-toggle="datetimepicker"
-                        >
-                            <div class="input-group-text"><i class="fa fa-calendar" /></div>
+                        <div class="input-group-append" data-target="#datetimepicker-filter-date" data-toggle="datetimepicker">
+                            <span class="input-group-text bg-primary text-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-4 mt-1 mb-1">
+                <!-- Date End Filter -->
+                <div class="col-md-6">
+                    <label for="filter-end-date" class="form-label fw-bold">End Date</label>
                     <div class="input-group date" id="datetimepicker-filter-end-date" data-target-input="nearest">
                         <input
                             type="text"
                             data-date-format="yyyy/mm/dd"
                             name="filter_end_date"
                             id="filter-end-date"
-                            class="form-control datetimepicker-input"
+                            class="form-control datetimepicker-input shadow-sm"
                             data-target="#datetimepicker-filter-end-date"
                             t-att-value="date_end or ''"
                         />
-                        <div
-                            class="input-group-append"
-                            data-date-format="yyyy/mm/dd"
-                            data-target="#datetimepicker-filter-end-date"
-                            data-toggle="datetimepicker"
-                        >
-                            <div class="input-group-text"><i class="fa fa-calendar" /></div>
+                        <div class="input-group-append" data-target="#datetimepicker-filter-end-date" data-toggle="datetimepicker">
+                            <span class="input-group-text bg-primary text-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-4 mt-1 mb-1">
+                <!-- Course Filter -->
+                <div class="col-md-6">
+                    <label for="select_course" class="form-label fw-bold">Select Courses</label>
                     <select
-                        class="form-control input-lg"
+                        class="form-control select2 shadow-sm"
                         name="select_course"
                         id="select_course"
                         multiple="multiple"
@@ -75,27 +75,29 @@
                     </select>
                 </div>
 
-                <div class="col-sm-4 mt-1 mb-1">
+                <!-- Event Filter -->
+                <div class="col-md-6">
+                    <label for="selectevent" class="form-label fw-bold">Select Events</label>
                     <select
-                        class="form-control input-lg"
+                        class="form-control select2 shadow-sm"
                         name="selectevent"
                         id="selectevent"
                         multiple="multiple"
                     >
                         <t t-foreach="events" t-as="e">
-    <option
-        t-att-value="e.id"
-        t-att-selected="None if not selected_events else e.id in selected_events.ids"
-    >
-        <t t-esc="e.name" />
-    </option>
-</t>
+                            <option
+                                t-att-value="e.id"
+                                t-att-selected="None if not selected_events else e.id in selected_events.ids"
+                            >
+                                <t t-esc="e.name" />
+                            </option>
+                        </t>
                     </select>
                 </div>
 
-                <!-- Päivitä-painike -->
-                <div class="col-sm-4 mt-1 mb-1">
-                    <button id="apply_filters" class="btn btn-primary w-100">Päivitä/aktivoi</button>
+                <!-- Apply Filters Button -->
+                <div class="col-12 d-flex justify-content-center mt-4">
+                    <button id="apply_filters" class="btn btn-success btn-lg px-5 shadow">Apply Filters</button>
                 </div>
             </div>
         </div>
