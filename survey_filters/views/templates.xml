@@ -67,7 +67,7 @@
                         <t t-foreach="courses" t-as="c">
                             <option
                                 t-att-value="c.id"
-                                t-att-selected="None if not selected_courses else e.id in selected_courses.ids"
+                                t-att-selected="None if not selected_courses else c.id in selected_courses.ids"
                             >
                                 <t t-esc="c.name" />
                             </option>
