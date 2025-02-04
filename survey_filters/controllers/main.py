@@ -245,11 +245,11 @@ class SurveyFilter(Survey):
                 continue
 
             if row_id and answer_id:
-                line_filter_domain.append((
+                line_filter_domain += [
                     "&",
                     ("user_input_line_ids.matrix_row_id", "=", row_id),
                     ("user_input_line_ids.suggested_answer_id", "=", answer_id),
-                ))
+                ]
                 answers = request.env["survey.question.answer"].sudo().browse([row_id, answer_id])
                 logging.debug("Adding matrix filter for row: %s, answer: %s", row_id, answer_id)
             elif answer_id:
