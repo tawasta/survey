@@ -22,9 +22,9 @@ Usage
 Known issues / Roadmap
 ======================
 * When getting reports for event attendees (society_event_core), each attendee can have
-  multiple survey answers (ie. basic information survey, allergy information survey) - 
+  multiple survey answers (ie. basic information survey, allergy information survey) -
   In this case attendees will have multiple rows in XLSX report. Find a way to combine
-  these in one row. 
+  these in one row.
 
 Credits
 =======
@@ -32,13 +32,13 @@ Credits
 Contributors
 ------------
 
-* Miika Nissi <miika.nissi@tawasta.fi>
+* Miika Nissi <miika.nissi@futural.fi>
 
 Maintainer
 ----------
 
-.. image:: http://tawasta.fi/templates/tawastrap/images/logo.png
-        :alt: Oy Tawasta OS Technologies Ltd.
-        :target: http://tawasta.fi/
+.. image:: http://futural.fi/templates/tawastrap/images/logo.png
+        :alt: Futural Oy
+        :target: http://futural.fi/
 
-This module is maintained by Oy Tawasta OS Technologies Ltd.
+This module is maintained by Futural Oy
