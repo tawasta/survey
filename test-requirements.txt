@@ -1,1 +1,1 @@
-https://github.com/tawasta/partner
+git+https://github.com/tawasta/partner.git#subdirectory=partner_privacy_consent
