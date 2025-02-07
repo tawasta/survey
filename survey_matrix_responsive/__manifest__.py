@@ -28,5 +28,8 @@
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": ["views/survey_templates.xml", "views/assets.xml",],
+    "data": [
+        "views/survey_templates.xml",
+        "views/assets.xml",
+    ],
 }

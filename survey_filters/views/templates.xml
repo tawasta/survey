@@ -7,7 +7,10 @@
         />
     </template>
 
-    <template id="survey_page_statistics_inner" inherit_id="survey.survey_page_statistics_inner">
+    <template
+        id="survey_page_statistics_inner"
+        inherit_id="survey.survey_page_statistics_inner"
+    >
     <xpath expr="//div[@class='card d-print-none']" position="before">
         <t t-call-assets="survey_filters.survey_filter_assets" lazy_load="True" />
         <div class="container py-5 bg-white">
@@ -15,20 +18,31 @@
             <div class="row gy-4 align-items-center">
                 <!-- Date Start Filter -->
                 <div class="col-md-6">
-                    <label for="filter-date" class="form-label fw-bold">Start Date</label>
-                    <div class="input-group date" id="datetimepicker-filter-date" data-target-input="nearest">
+                    <label
+                            for="filter-date"
+                            class="form-label fw-bold"
+                        >Start Date</label>
+                    <div
+                            class="input-group date"
+                            id="datetimepicker-filter-date"
+                            data-target-input="nearest"
+                        >
                         <input
-                            type="text"
-                            data-date-format="yyyy/mm/dd"
-                            name="filter_date"
-                            id="filter-date"
-                            class="form-control datetimepicker-input shadow-sm"
-                            data-target="#datetimepicker-filter-date"
-                            t-att-value="select_date or ''"
-                        />
-                        <div class="input-group-append" data-target="#datetimepicker-filter-date" data-toggle="datetimepicker">
+                                type="text"
+                                data-date-format="yyyy/mm/dd"
+                                name="filter_date"
+                                id="filter-date"
+                                class="form-control datetimepicker-input shadow-sm"
+                                data-target="#datetimepicker-filter-date"
+                                t-att-value="select_date or ''"
+                            />
+                        <div
+                                class="input-group-append"
+                                data-target="#datetimepicker-filter-date"
+                                data-toggle="datetimepicker"
+                            >
                             <span class="input-group-text bg-primary text-white">
-                                <i class="fa fa-calendar"></i>
+                                <i class="fa fa-calendar" />
                             </span>
                         </div>
                     </div>
@@ -36,20 +50,31 @@
 
                 <!-- Date End Filter -->
                 <div class="col-md-6">
-                    <label for="filter-end-date" class="form-label fw-bold">End Date</label>
-                    <div class="input-group date" id="datetimepicker-filter-end-date" data-target-input="nearest">
+                    <label
+                            for="filter-end-date"
+                            class="form-label fw-bold"
+                        >End Date</label>
+                    <div
+                            class="input-group date"
+                            id="datetimepicker-filter-end-date"
+                            data-target-input="nearest"
+                        >
                         <input
-                            type="text"
-                            data-date-format="yyyy/mm/dd"
-                            name="filter_end_date"
-                            id="filter-end-date"
-                            class="form-control datetimepicker-input shadow-sm"
-                            data-target="#datetimepicker-filter-end-date"
-                            t-att-value="date_end or ''"
-                        />
-                        <div class="input-group-append" data-target="#datetimepicker-filter-end-date" data-toggle="datetimepicker">
+                                type="text"
+                                data-date-format="yyyy/mm/dd"
+                                name="filter_end_date"
+                                id="filter-end-date"
+                                class="form-control datetimepicker-input shadow-sm"
+                                data-target="#datetimepicker-filter-end-date"
+                                t-att-value="date_end or ''"
+                            />
+                        <div
+                                class="input-group-append"
+                                data-target="#datetimepicker-filter-end-date"
+                                data-toggle="datetimepicker"
+                            >
                             <span class="input-group-text bg-primary text-white">
-                                <i class="fa fa-calendar"></i>
+                                <i class="fa fa-calendar" />
                             </span>
                         </div>
                     </div>
@@ -57,18 +82,21 @@
 
                 <!-- Course Filter -->
                 <div class="col-md-6">
-                    <label for="select_course" class="form-label fw-bold">Select Courses</label>
+                    <label
+                            for="select_course"
+                            class="form-label fw-bold"
+                        >Select Courses</label>
                     <select
-                        class="form-control select2 shadow-sm"
-                        name="select_course"
-                        id="select_course"
-                        multiple="multiple"
-                    >
+                            class="form-control select2 shadow-sm"
+                            name="select_course"
+                            id="select_course"
+                            multiple="multiple"
+                        >
                         <t t-foreach="courses" t-as="c">
                             <option
-                                t-att-value="c.id"
-                                t-att-selected="None if not selected_courses else c.id in selected_courses.ids"
-                            >
+                                    t-att-value="c.id"
+                                    t-att-selected="None if not selected_courses else c.id in selected_courses.ids"
+                                >
                                 <t t-esc="c.name" />
                             </option>
                         </t>
@@ -77,18 +105,21 @@
 
                 <!-- Event Filter -->
                 <div class="col-md-6">
-                    <label for="selectevent" class="form-label fw-bold">Select Events</label>
+                    <label
+                            for="selectevent"
+                            class="form-label fw-bold"
+                        >Select Events</label>
                     <select
-                        class="form-control select2 shadow-sm"
-                        name="selectevent"
-                        id="selectevent"
-                        multiple="multiple"
-                    >
+                            class="form-control select2 shadow-sm"
+                            name="selectevent"
+                            id="selectevent"
+                            multiple="multiple"
+                        >
                         <t t-foreach="events" t-as="e">
                             <option
-                                t-att-value="e.id"
-                                t-att-selected="None if not selected_events else e.id in selected_events.ids"
-                            >
+                                    t-att-value="e.id"
+                                    t-att-selected="None if not selected_events else e.id in selected_events.ids"
+                                >
                                 <t t-esc="e.name" />
                             </option>
                         </t>
@@ -97,7 +128,10 @@
 
                 <!-- Apply Filters Button -->
                 <div class="col-12 d-flex justify-content-center mt-4">
-                    <button id="apply_filters" class="btn btn-success btn-lg px-5 shadow">Apply Filters</button>
+                    <button
+                            id="apply_filters"
+                            class="btn btn-success btn-lg px-5 shadow"
+                        >Apply Filters</button>
                 </div>
             </div>
         </div>

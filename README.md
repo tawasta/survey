@@ -22,10 +22,13 @@ addon | version | summary
 [survey_contact_ids_save_street](survey_contact_ids_save_street/) | 14.0.1.0.0 | Save survey answer as partner or contact street
 [survey_contact_ids_save_zip](survey_contact_ids_save_zip/) | 14.0.1.0.0 | Save survey answer as partner or contact zip
 [survey_filters](survey_filters/) | 14.0.1.0.1 | Order Surveys by sequence
+[survey_grade_notification](survey_grade_notification/) | 14.0.1.0.0 | Survey grade Notifications
 [survey_hide_live](survey_hide_live/) | 14.0.1.0.0 | Hide live button
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 | Ability to hide "Retry" button after Survey completion
 [survey_invite_sender_email_from_email_template](survey_invite_sender_email_from_email_template/) | 14.0.1.0.0 | Enable configuring sender e-mail address in e-mail template
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 | Send emails to survey user partners via chatter
+[survey_matrix_responsive](survey_matrix_responsive/) | 14.0.1.0.0 | Order Surveys by sequence
+[survey_multi_company](survey_multi_company/) | 14.0.1.0.0 | Survey multi company
 [survey_portal](survey_portal/) | 14.0.1.1.2 | Ability to view survey answers in portal
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.3 | Adds a new question type 'attachment' to survey
@@ -49,5 +52,6 @@ addon | version | summary
 [survey_user_input_show_scoring_total](survey_user_input_show_scoring_total/) | 14.0.1.0.0 | Shows the numeric total score field that is by default hidden
 [survey_validity_period](survey_validity_period/) | 14.0.1.0.1 | Survey: period of qualification
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 14.0.1.0.0 | Ability to align survey choice buttons vertically
+[suvey_notifications](suvey_notifications/) | 14.0.1.0.0 | Survey File Upload Notifications
 
 [//]: # (end addons)

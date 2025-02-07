@@ -32,7 +32,9 @@ odoo.define("survey.survey_page_statistics_inner", function () {
             const endDate = $("#filter-end-date").val();
 
             // Poimitaan nykyisestä URL:sta survey-tieto (esim. "testi-1")
-            const surveyPathMatch = window.location.pathname.match(/\/survey\/results\/([^\/]+)/);
+            const surveyPathMatch = window.location.pathname.match(
+                /\/survey\/results\/([^\/]+)/
+            );
             const surveyPath = surveyPathMatch ? surveyPathMatch[1] : null;
 
             if (!surveyPath) {

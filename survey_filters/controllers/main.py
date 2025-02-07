@@ -27,9 +27,9 @@ class SurveyFilter(Survey):
         select_date=None,
         date_end=None,
         answer_token=None,
-        **post
+        **post,
     ):
-        logging.info("====VAI TAMAKO?????????");
+        logging.info("====VAI TAMAKO?????????")
         res = super(SurveyFilter, self).survey_report(
             survey,
             answer_token,
@@ -94,15 +94,15 @@ class SurveyFilter(Survey):
         auth="user",
         website=True,
     )
-    def survey_report_filter(
-        self,
-        survey,
-        extrafilters=None,
-        **post
-    ):
+    def survey_report_filter(self, survey, extrafilters=None, **post):
 
         # Alustetaan suodattimien muuttujat oletusarvoilla
-        selected_courses, selected_events, select_date, date_end = None, None, None, None
+        selected_courses, selected_events, select_date, date_end = (
+            None,
+            None,
+            None,
+            None,
+        )
 
         # Parsitaan extrafilters-parametri
         if extrafilters:
@@ -124,22 +124,32 @@ class SurveyFilter(Survey):
         elif not selected_events:
             selected_events = []
 
-        select_events = request.env["event.event"].sudo().search([
-            ('id', 'in', list(map(int, selected_events)))
-        ]) if selected_events else request.env["event.event"]
+        select_events = (
+            request.env["event.event"]
+            .sudo()
+            .search([("id", "in", list(map(int, selected_events)))])
+            if selected_events
+            else request.env["event.event"]
+        )
 
         if isinstance(selected_courses, str):
             selected_courses = selected_courses.split(",")
         elif not selected_courses:
             selected_courses = []
 
-        select_courses = request.env["op.course"].sudo().search([
-            ('id', 'in', list(map(int, selected_courses)))
-        ]) if selected_courses else request.env["op.course"]
+        select_courses = (
+            request.env["op.course"]
+            .sudo()
+            .search([("id", "in", list(map(int, selected_courses)))])
+            if selected_courses
+            else request.env["op.course"]
+        )
 
         # Haetaan alkuperäiset vastaukset ilman filttereitä
-        all_user_input_lines = request.env["survey.user_input.line"].sudo().search(
-            [("survey_id", "=", survey.id)]
+        all_user_input_lines = (
+            request.env["survey.user_input.line"]
+            .sudo()
+            .search([("survey_id", "=", survey.id)])
         )
         all_user_input_ids = all_user_input_lines.mapped("user_input_id")
 
@@ -185,12 +195,11 @@ class SurveyFilter(Survey):
             "select_date": select_date,
             "date_end": date_end,
             "courses": all_courses,  # Alkuperäiset kurssit
-            "events": all_events,    # Alkuperäiset tapahtumat
+            "events": all_events,  # Alkuperäiset tapahtumat
         }
 
         # Palautetaan suodatettu näkymä
         return request.render("survey.survey_page_statistics", template_values)
-
 
     def _get_user_input_domain(self, survey, line_filter_domain, **post):
         user_input_domain = [
@@ -231,7 +240,7 @@ class SurveyFilter(Survey):
         post,
     ):
         logging.info("=========== EXTRACTING SURVEY DATA ===========")
-        
+
         search_filters = []
         line_filter_domain = [("test_entry", "=", False), ("survey_id", "=", survey.id)]
         line_choices = []
@@ -250,21 +259,33 @@ class SurveyFilter(Survey):
                     ("user_input_line_ids.matrix_row_id", "=", row_id),
                     ("user_input_line_ids.suggested_answer_id", "=", answer_id),
                 ]
-                answers = request.env["survey.question.answer"].sudo().browse([row_id, answer_id])
-                logging.debug("Adding matrix filter for row: %s, answer: %s", row_id, answer_id)
+                answers = (
+                    request.env["survey.question.answer"]
+                    .sudo()
+                    .browse([row_id, answer_id])
+                )
+                logging.debug(
+                    "Adding matrix filter for row: %s, answer: %s", row_id, answer_id
+                )
             elif answer_id:
                 line_choices.append(answer_id)
-                answers = request.env["survey.question.answer"].sudo().browse([answer_id])
+                answers = (
+                    request.env["survey.question.answer"].sudo().browse([answer_id])
+                )
 
             if answer_id:
                 question_id = answers[0].matrix_question_id or answers[0].question_id
-                search_filters.append({
-                    "question": question_id.title,
-                    "answers": f"{answers[0].value}{': ' + answers[1].value if len(answers) > 1 else ''}",
-                })
+                search_filters.append(
+                    {
+                        "question": question_id.title,
+                        "answers": f"{answers[0].value}{': ' + answers[1].value if len(answers) > 1 else ''}",
+                    }
+                )
 
         if line_choices:
-            line_filter_domain.append(("user_input_line_ids.suggested_answer_id", "in", line_choices))
+            line_filter_domain.append(
+                ("user_input_line_ids.suggested_answer_id", "in", line_choices)
+            )
 
         # Tila-suodatus
         if post.get("finished"):
@@ -275,11 +296,17 @@ class SurveyFilter(Survey):
         # Kurssi- ja tapahtumasuodatus yhdistetään yhteen tietokantakyselyyn
         course_ids, event_ids = [], []
         if selected_courses:
-            courses = request.env["op.course"].sudo().search([("id", "in", selected_courses)])
+            courses = (
+                request.env["op.course"].sudo().search([("id", "in", selected_courses)])
+            )
             line_filter_domain.append(("event_id.course_id", "in", courses.ids))
 
         if selected_events:
-            events = request.env["event.event"].sudo().search([("id", "in", selected_events)])
+            events = (
+                request.env["event.event"]
+                .sudo()
+                .search([("id", "in", selected_events)])
+            )
             line_filter_domain.append(("event_id", "in", events.ids))
 
         # Hakusuodatus
@@ -314,7 +341,6 @@ class SurveyFilter(Survey):
         logging.info("User input lines: %s", user_input_lines)
 
         return user_input_lines, search_filters
-
 
     # def _extract_survey_data(
     #     self,
