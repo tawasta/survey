@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="survey_question_form_inherit" model="ir.ui.view">
+            <field name="name">survey.question.form.inherit.min_value</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form" />
+            <field name="arch" type="xml">
+                <xpath
+                expr="//page[@name='answers']/div[@class='row']"
+                position="inside"
+            >
+                    <field name="notification_recipients" widget="many2many_tags" />
+                    <field name="min_acceptable_value" />
+                </xpath>
+            </field>
+        </record>
+</odoo>

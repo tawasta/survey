@@ -1,0 +1,63 @@
+/* Perusasettelu: Taulukko toimii normaalisti isommilla näytöillä */
+.o_survey_question_matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Mobiilissa muutetaan taulukko responsiiviseksi */
+@media screen and (max-width: 768px) {
+    .o_survey_question_matrix thead {
+        display: none; /* Piilotetaan otsikot mobiilissa */
+    }
+
+    .o_survey_question_matrix tbody,
+    .o_survey_question_matrix tr {
+        display: block;
+        width: 100%;
+    }
+
+    .o_survey_question_matrix tr {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Kysymysteksti näkyy aina ensin */
+    .o_survey_question_matrix th {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    /* Muokataan vastausrivejä niin, että ne näkyvät pystysuunnassa */
+    .o_survey_question_matrix td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+    }
+
+    /* Näytetään data-label-arvo mobiilissa */
+    .o_survey_question_matrix td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Radiopainikkeiden tyyli mobiilissa */
+    .o_survey_matrix_btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .o_survey_matrix_btn input {
+        margin-right: 8px;
+    }
+}

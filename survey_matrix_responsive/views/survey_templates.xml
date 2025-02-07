@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <!-- Inherit the matrix question template to add data-label attribute -->
+        <template
+        id="question_matrix_inherit"
+        inherit_id="survey.question_matrix"
+        name="Survey Matrix Question Enhancement"
+    >
+            <xpath expr="//td" position="attributes">
+                <attribute name="t-att-data-label">col_label.value</attribute>
+            </xpath>
+        </template>
+</odoo>
