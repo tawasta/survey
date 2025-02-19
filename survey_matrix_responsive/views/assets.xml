@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="0">
+    <template
+        id="assets_frontend"
+        name="Matrix question assets"
+        inherit_id="website.assets_frontend"
+    >
+
+        <xpath expr="//link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/survey_matrix_responsive/static/src/scss/matrix.scss"
+            />
+        </xpath>
+    </template>
+</odoo>
