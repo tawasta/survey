@@ -27,7 +27,13 @@ odoo.define("survey.survey_page_statistics_inner", function () {
 
         function applyFiltersFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has("filters")) {
+            if (
+                urlParams.has("filters") ||
+                urlParams.has("course") ||
+                urlParams.has("event") ||
+                urlParams.has("date_start") ||
+                urlParams.has("date_end")
+            ) {
                 _showAnswers();
             }
         }
