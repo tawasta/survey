@@ -23,6 +23,29 @@ odoo.define("survey.survey_page_statistics_inner", function () {
         initSelect2("#select_course", "Select courses");
         initSelect2("#selectevent", "Select events");
 
+        applyFiltersFromURL();
+
+        function applyFiltersFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has("filters")) {
+                _showAnswers();
+            }
+        }
+
+        function _showAnswers() {
+            $("table[id^='survey_table_question_']").each(function () {
+                var $table = $(this);
+                var $tbody = $table.find("tbody");
+                var limit = parseInt($table.closest("div").find(".pagination").data("record_limit"), 10) || 10;
+                // Näytetään vain ensimmäiset 'limit' määrän vastauksia
+                $tbody.find("tr").addClass("d-none");
+                $tbody.find("tr").slice(0, limit).removeClass("d-none");
+
+            });
+        }
+
+
+
         // Päivitä-painikkeen toiminnallisuus
         $("#apply_filters").on("click", function () {
             // Kerätään valitut arvot tai asetetaan tyhjä lista oletuksena
