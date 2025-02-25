@@ -243,7 +243,6 @@ class SurveyFilter(Survey):
 
         search_filters = []
         line_filter_domain = [("test_entry", "=", False), ("survey_id", "=", survey.id)]
-        line_choices = []
 
         # Parsitaan suodattimet POST-data
         filters = post.get("filters", "")
@@ -254,24 +253,15 @@ class SurveyFilter(Survey):
                 continue
 
             if row_id and answer_id:
-                line_filter_domain += [
-                    "&",
-                    ("user_input_line_ids.matrix_row_id", "=", row_id),
-                    ("user_input_line_ids.suggested_answer_id", "=", answer_id),
-                ]
-                answers = (
-                    request.env["survey.question.answer"]
-                    .sudo()
-                    .browse([row_id, answer_id])
-                )
-                logging.debug(
-                    "Adding matrix filter for row: %s, answer: %s", row_id, answer_id
-                )
+                line_filter_domain.append(("user_input_line_ids.matrix_row_id", "=", row_id))
+                line_filter_domain.append(("user_input_line_ids.suggested_answer_id", "=", answer_id))
+
+                answers = request.env["survey.question.answer"].sudo().browse([row_id, answer_id])
+                logging.debug("Adding matrix filter for row: %s, answer: %s", row_id, answer_id)
+
             elif answer_id:
-                line_choices.append(answer_id)
-                answers = (
-                    request.env["survey.question.answer"].sudo().browse([answer_id])
-                )
+                line_filter_domain.append(("user_input_line_ids.suggested_answer_id", "=", answer_id))
+                answers = request.env["survey.question.answer"].sudo().browse([answer_id])
 
             if answer_id:
                 question_id = answers[0].matrix_question_id or answers[0].question_id
@@ -282,32 +272,22 @@ class SurveyFilter(Survey):
                     }
                 )
 
-        if line_choices:
-            line_filter_domain.append(
-                ("user_input_line_ids.suggested_answer_id", "in", line_choices)
-            )
-
         # Tila-suodatus
         if post.get("finished"):
             line_filter_domain.append(("state", "=", "done"))
         else:
             line_filter_domain.append(("state", "!=", "new"))
 
-        # Kurssi- ja tapahtumasuodatus yhdistetään yhteen tietokantakyselyyn
-        course_ids, event_ids = [], []
+        # Kurssi- ja tapahtumasuodatus
         if selected_courses:
-            courses = (
-                request.env["op.course"].sudo().search([("id", "in", selected_courses)])
-            )
-            line_filter_domain.append(("event_id.course_id", "in", courses.ids))
+            courses = request.env["op.course"].sudo().search([("id", "in", selected_courses)])
+            for course_id in courses.ids:
+                line_filter_domain.append(("event_id.course_id", "=", course_id))
 
         if selected_events:
-            events = (
-                request.env["event.event"]
-                .sudo()
-                .search([("id", "in", selected_events)])
-            )
-            line_filter_domain.append(("event_id", "in", events.ids))
+            events = request.env["event.event"].sudo().search([("id", "in", selected_events)])
+            for event_id in events.ids:
+                line_filter_domain.append(("event_id", "=", event_id))
 
         # Hakusuodatus
         if search:
@@ -320,10 +300,8 @@ class SurveyFilter(Survey):
                 date_end_obj = datetime.strptime(date_end, "%d.%m.%Y") + timedelta(
                     hours=23, minutes=59, seconds=59
                 )
-                line_filter_domain += [
-                    ("create_date", ">=", select_date_obj),
-                    ("create_date", "<=", date_end_obj),
-                ]
+                line_filter_domain.append(("create_date", ">=", select_date_obj))
+                line_filter_domain.append(("create_date", "<=", date_end_obj))
             else:
                 line_filter_domain.append(("create_date", ">=", select_date_obj))
 
@@ -341,6 +319,7 @@ class SurveyFilter(Survey):
         logging.info("User input lines: %s", user_input_lines)
 
         return user_input_lines, search_filters
+
 
     # def _extract_survey_data(
     #     self,
