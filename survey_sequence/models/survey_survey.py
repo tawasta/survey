@@ -5,6 +5,4 @@ class Survey(models.Model):
     _inherit = "survey.survey"
     _order = "sequence, id"
 
-    sequence = fields.Integer(
-        "Sequence", default=1, help="Gives the sequence order for Surveys"
-    )
+    sequence = fields.Integer(default=1, help="Gives the sequence order for Surveys")

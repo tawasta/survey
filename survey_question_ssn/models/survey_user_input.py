@@ -1,5 +1,4 @@
 from odoo import models
-import logging
 
 
 class SurveyUserInput(models.Model):

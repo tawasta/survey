@@ -1,7 +1,7 @@
 ##############################################################################
 #
-#    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2022- Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
+#    Author: Futural Oy
+#    Copyright 2022- Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -81,10 +81,12 @@ class SurveyUserInputLine(models.Model):
         "matrix_row_id.value",
     )
     def _compute_display_name(self):
-        super()._compute_display_name()
+        res = super()._compute_display_name()
         for line in self:
             if line.answer_type == "attachment" and line.value_attachment_ids:
                 line.display_name = _("Attachment")
+
+        return res
 
     # 5. Constraints and onchanges
     @api.constrains("skipped", "answer_type")
