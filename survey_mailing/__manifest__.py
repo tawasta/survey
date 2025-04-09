@@ -31,7 +31,6 @@
     "data": [
         "data/mail_template_data.xml",
         "wizard/survey_mailing.xml",
-        #"views/survey_user_views.xml",
         "security/ir.model.access.csv",
     ],
 }
