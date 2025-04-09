@@ -55,6 +55,7 @@ Contributors
 ------------
 
 * Miika Nissi <miika.nissi@tawasta.fi>
+* Valtteri Lattu <valtteri.lattu@futural.fi>
 
 Maintainer
 ----------
