@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_user_input_view_search_reference" model="ir.ui.view">
+        <field name="name">survey.user_input.view.search.reference</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search" />
+        <field name="arch" type="xml">
+            <field name="survey_id" position="before">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_view_form_reference" model="ir.ui.view">
+        <field name="name">survey.user_input.view.form.reference</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <field name="survey_id" position="before">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_view_tree_reference" model="ir.ui.view">
+        <field name="name">survey.user_input.view.tree.reference</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+            <field name="survey_id" position="before">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+    <record id="survey_user_input_view_kanban_reference" model="ir.ui.view">
+        <field name="name">survey.user_input.view.kanban.reference</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_viuew_kanban" />
+        <field name="arch" type="xml">
+            <field name="survey_id" position="before">
+                <field name="ref" />
+            </field>
+        </field>
+    </record>
+</odoo>
