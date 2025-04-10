@@ -6,25 +6,17 @@
         <field name="inherit_id" ref="survey.survey_question_form" />
         <field name="arch" type="xml">
             <field name="validation_email" position="before">
-                <label
-                    for="contact_number"
-                    invisible="not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email"/>
                 <field
                     name="contact_number"
                     nolabel="1"
                     invisible="not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email"
                     required="save_as_contact_name or save_as_contact_phone or save_as_contact_email"/>
-                <br
-                    invisible="not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email"/>
             </field>
             <field name="save_as_nickname" position="after">
-                <br />
                 <field name="save_as_contact_name" />
-                <br />
                 <field name="save_as_contact_phone"  />
             </field>
             <field name="save_as_email" position="after">
-                <br invisible="not validation_email" />
                 <field
                     name="save_as_contact_email"
                     invisible="not validation_email"/>
