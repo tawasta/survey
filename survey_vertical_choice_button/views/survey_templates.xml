@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="question_simple_choice_vertical_choice_buttons"
+        inherit_id="survey.question_simple_choice"
+    >
+        <xpath
+            expr="//label[contains(@t-attf-class,'o_survey_choice_btn')]"
+            position="attributes"
+        >
+            <attribute name="t-attf-class">
+        o_survey_choice_btn py-1 px-3 h-100 w-100 rounded #{'o_survey_selected' if comment_line else ''} #{'o_survey_choice_btn_vertical' if question.vertical_choice_buttons else ''}
+    </attribute>
+        </xpath>
+    </template>
+    <template
+        id="question_multiple_choice_vertical_choice_buttons"
+        inherit_id="survey.question_multiple_choice"
+    >
+        <xpath
+            expr="//label[contains(@t-attf-class,'o_survey_choice_btn')]"
+            position="attributes"
+        >
+            <attribute name="t-attf-class">
+        o_survey_choice_btn py-1 px-3 h-100 w-100 rounded #{answer_class} #{'o_survey_selected' if answer_selected else ''} #{'o_survey_choice_btn_vertical' if question.vertical_choice_buttons else ''}
+    </attribute>
+        </xpath>
+    </template>
+</odoo>
