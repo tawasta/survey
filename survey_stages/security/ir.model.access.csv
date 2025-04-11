@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_survey_user_input_stage_all,survey.user.input.stage.all,model_survey_user_input_stage,,1,0,0,0
+access_survey_user_input_stage_manager,survey.user.input.stage.manager,model_survey_user_input_stage,survey.group_survey_manager,1,1,1,1
