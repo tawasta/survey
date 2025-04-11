@@ -79,14 +79,14 @@ class SurveyUserInput(models.Model):
 
         if email_template:
             for user in survey.notification_user_ids:
-                email_template.send_mail(
+                email_template._send_mail(
                     self.id,
                     email_values={
                         'email_to': user.partner_id.email,
                         'email_from': email_from,
                         'body_html': email_body,
                     },
-                    notif_layout='mail.mail_notification_light'
+                    #notif_layout='mail.mail_notification_light'
                 )
 
 
@@ -113,7 +113,7 @@ class SurveyUserInput(models.Model):
                         'email_to': user.partner_id.email,
                         'email_from': email_from,
                     },
-                    notif_layout='mail.mail_notification_light'
+                    #notif_layout='mail.mail_notification_light'
                 )
 
 

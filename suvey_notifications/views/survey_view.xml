@@ -3,7 +3,7 @@
     <record id="survey_form_users" model="ir.ui.view">
         <field name="name">survey.survey.form.users</field>
         <field name="model">survey.survey</field>
-        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
         <field name="arch" type="xml">
             <notebook position="before">
                 <group>
