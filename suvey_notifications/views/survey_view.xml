@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_form_users" model="ir.ui.view">
+        <field name="name">survey.survey.form.users</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+            <notebook position="before">
+                <group>
+                    <group>
+                        <field name="notification_user_ids" widget="many2many_tags" />
+                        <field name="notify_file_upload" />
+                        <field name="notify_response_submission" />
+                    </group>
+                </group>
+            </notebook>
+        </field>
+    </record>
+</odoo>
