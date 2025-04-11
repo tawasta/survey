@@ -2,6 +2,7 @@ from odoo import http, _
 from odoo.http import request
 from odoo.addons.survey_portal_upload_attachments.controllers.main import SurveyAttachments
 import logging
+import json
 
 _logger = logging.getLogger(__name__)
 
@@ -10,21 +11,42 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
     @http.route(
         ["/survey/attachments/<string:survey_token>/<string:answer_token>/post"],
         type="http",
-        auth="public",
+        auth="user",
         methods=["POST"],
         website=True,
     )
     def survey_attachments_post(self, survey_token, answer_token, **post):
         """Kutsutaan peruslogiikka ja lisätään tiedoston liittämisestä notifikaatiotoiminnallisuus."""
-        # Kutsutaan alkuperäistä funktiota
-        response = super(SurveyAttachmentsEnhanced, self).survey_attachments_post(survey_token, answer_token, **post)
 
-        # Haetaan tarvittavat tiedot
+        response = super().survey_attachments_post(survey_token, answer_token, **post)
+
+        # 🔍 Puritaan mahdollinen response.data sisältö JSONiksi
+        if hasattr(response, "data"):  # werkzeug Response
+            try:
+                response_data = json.loads(response.data.decode())
+            except Exception as e:
+                _logger.warning("Could not decode JSON from Response object: %s", e)
+                return response
+        elif isinstance(response, str):
+            try:
+                response_data = json.loads(response)
+            except Exception as e:
+                _logger.warning("Could not decode JSON from response string: %s", e)
+                return response
+        elif isinstance(response, dict):
+            response_data = response
+        else:
+            return response  # Tuntematon muoto, palautetaan sellaisenaan
+
+        # ❌ Jos virhe jo olemassa, lopetetaan tähän
+        if response_data.get("error"):
+            return response
+
+        # ✅ Hae vastaus ja tee varmistukset
         access_data = self._get_access_data(
             survey_token, answer_token, ensure_token=False, check_partner=False
         )
 
-        # Jos pääsyyn liittyvät ongelmat, ohitetaan lisätoiminnot
         if access_data["validity_code"] is not True:
             return response
 
@@ -32,7 +54,7 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
         if not answer_sudo or request.env.user.partner_id not in answer_sudo.contact_ids:
             return response
 
-        # Liitetiedostojen käsittely
+        # 🗂️ Käsittele ladatut tiedostot ja kerää ne ilmoitusta varten
         request_files = request.httprequest.files
         uploaded_files = []
         for file_input in request_files.items(multi=True):
@@ -43,7 +65,7 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
                 "file_name": file_name,
             })
 
-        # Lähetetään notifikaatio, jos liitteitä on lisätty
+        # 📬 Lähetä notifikaatio jos tiedostoja on
         if uploaded_files:
             self._notify_uploaded_files(answer_sudo, uploaded_files)
 
@@ -53,12 +75,11 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
         """Lähetä ilmoitus sähköpostitse, kun tiedostoja lisätään."""
         survey = answer_sudo.survey_id
         if not survey.notify_file_upload:
-            return  # Ei tehdä mitään, jos ilmoitukset on pois päältä
+            return
 
-        # Sähköpostin runko
         email_body = (
-            _("Attachments have been added to the survey response:") 
-            + f" {answer_sudo.ref}" 
+            _("Attachments have been added to the survey response:")
+            + f" {answer_sudo.ref}"
             + "<br><ul>"
         )
         respondent_info = f"{answer_sudo.partner_id.name}" if answer_sudo.partner_id else _("")
@@ -68,7 +89,6 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
             email_body += f"<li>{file_info['question']} : {file_info['file_name']}</li>"
         email_body += "</ul>"
 
-        # Hae sähköpostipohja
         email_template = request.env.ref(
             'suvey_notifications.mail_template_survey_file_upload',
             raise_if_not_found=False
@@ -84,5 +104,4 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
                         "email_from": email_from,
                         "body_html": email_body,
                     },
-                    notif_layout="mail.mail_notification_light",
                 )

@@ -76,5 +76,5 @@ class SurveyFile(SurveyContacts):
                         'email_from': email_from,
                         'body_html': email_body,
                     },
-                    notif_layout='mail.mail_notification_light'
+                    #notif_layout='mail.mail_notification_light'
                 )
