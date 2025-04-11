@@ -105,19 +105,25 @@ class SurveyUserInput(models.Model):
         if old_answers and not overwrite_existing and not self.is_editable:
             raise UserError(_("This answer cannot be overwritten."))
 
-        # Kaikki muu kopioidaan coresta
         if question.question_type in ['char_box', 'text_box', 'numerical_box', 'date', 'datetime']:
             self._save_line_simple_answer(question, old_answers, answer)
             if question.save_as_email and answer:
                 self.write({'email': answer})
             if question.save_as_nickname and answer:
                 self.write({'nickname': answer})
-
         elif question.question_type in ['simple_choice', 'multiple_choice']:
             self._save_line_choice(question, old_answers, answer, comment)
         elif question.question_type == 'matrix':
             self._save_line_matrix(question, old_answers, answer, comment)
+
         else:
-            raise AttributeError(question.question_type + ": This type of question has no saving function")
+            # Tätä EI ollut aiemmin → nyt testataan, jos joku muu moduuli hoitaa sen
+            try:
+                return super()._save_lines(question, answer, comment, overwrite_existing)
+            except AttributeError:
+                raise AttributeError(question.question_type + ": This type of question has no saving function")
+
+        return True
+
 
     # 8. Business methods
