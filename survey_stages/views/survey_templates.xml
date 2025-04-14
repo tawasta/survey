@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="survey_fill_form_done_edit" inherit_id="survey.survey_fill_form_done">
+        <xpath expr="//t[@t-call='survey.survey_button_retake']" position="after">
+            <t t-call="survey_stages.survey_button_edit" />
+        </xpath>
+    </template>
+    <template
+        id="survey_fill_form_in_progress_draft"
+        inherit_id="survey.survey_fill_form_in_progress"
+    >
+        <xpath
+            expr="//t[@t-if=&quot;survey.questions_layout == 'one_page'&quot;]//button[@type='submit']"
+            position="after"
+        >
+            <button type="submit" value="draft" class="btn btn-primary">
+                    Submit as a Draft</button>
+        </xpath>
+        <xpath
+            expr="//t[@t-if=&quot;survey.questions_layout == 'page_per_section'&quot;]//button[@type='submit']"
+            position="after"
+        >
+            <t t-if="survey_last">
+                <button type="submit" value="draft" class="btn btn-primary">
+                        Submit as a Draft</button>
+            </t>
+        </xpath>
+        <xpath
+            expr="//div[@t-if=&quot;survey.questions_layout == 'page_per_question'&quot;]//button[@type='submit']"
+            position="after"
+        >
+            <t t-if="answer.is_session_answer or survey_last">
+                <button type="submit" value="draft" class="btn btn-primary">
+                        Submit as a Draft</button>
+            </t>
+        </xpath>
+    </template>
+</odoo>

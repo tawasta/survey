@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_survey_user_invite_public,access_survey_user_invite_public,survey_contact_ids.model_survey_user_invite,,1,0,1,0
+access_survey_user_invite_admin,access_survey_user_invite_admin,survey_contact_ids.model_survey_user_invite,base.group_erp_manager,1,1,1,1
