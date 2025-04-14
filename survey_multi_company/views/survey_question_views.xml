@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+ <record model="ir.ui.view" id="survey_question_form_privacy">
+        <field name="name">Form view for survey question privacy</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <field name="suggested_answer_ids" position="after">
+                <field name="company_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
