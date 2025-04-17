@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="survey_registry_page" name="Survey Registry Page">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <section class="container my-4">
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">
+                        <h2 class="fw-bold mb-4">Survey Registry</h2>
+                    </t>
+                </t>
+
+                <t t-if="not inputs">
+                    <div class="alert alert-warning shadow-sm rounded text-center py-4" role="alert">
+                        <i class="fa fa-info-circle me-2 text-muted"></i>
+                        No completed survey results are available.
+                    </div>
+                </t>
+
+                <t t-if="inputs">
+                    <div class="table-responsive shadow-sm rounded overflow-hidden">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Respondent</th>
+                                    <th>Date</th>
+                                    <th>Survey</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="inputs" t-as="input">
+                                    <tr>
+                                        <td><t t-out="input.partner_id.name or 'Anonymous'"/></td>
+                                        <td>
+                                            <span t-field="input.create_date" t-options="{'widget': 'date'}"/>
+                                        </td>
+                                        <td><t t-out="input.survey_id.title"/></td>
+                                        <td class="text-end">
+                                            <a class="btn btn-outline-primary btn-sm" t-attf-href="/surveys/registry/{{ input.id }}">
+                                                <i class="fa fa-eye me-1"></i> View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                   <!--  <div class="mt-4">
+                        <t t-call="portal.portal_pager"/>
+                    </div> -->
+                </t>
+            </section>
+        </t>
+    </template>
+
+    <template id="survey_registry_detail" name="Survey Registry Detail">
+        <t t-call="portal.portal_layout">
+
+            <section class="container my-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold">Survey Response Details</h2>
+                    <a href="/surveys/registry" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left me-1"></i> Back to list
+                    </a>
+                </div>
+
+                <div class="card shadow-lg rounded overflow-hidden">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h5 class="text-muted">Respondent</h5>
+                                <p class="fs-5 fw-semibold">
+                                    <t t-out="input.partner_id.name or 'Anonymous'"/>
+                                </p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <h5 class="text-muted">Submission Date</h5>
+                                <p class="fs-5">
+                                    <span t-field="input.create_date" t-options="{'widget': 'date'}"/>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr class="my-4"/>
+
+                        <div class="mb-4">
+                            <h5 class="text-muted">Survey</h5>
+                            <p class="fs-5 fw-bold"><t t-out="input.survey_id.title"/></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-muted">Answers</h5>
+                            <ul class="list-group list-group-flush">
+                                <t t-foreach="input.user_input_line_ids" t-as="line">
+                                    <li class="list-group-item px-0">
+                                        <strong><t t-out="line.question_id.title"/></strong><br/>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+
+                        <div class="mt-5 d-flex justify-content-end">
+                            <a class="btn btn-outline-primary" href="/surveys/registry">
+                                <i class="fa fa-chevron-left me-1"></i> Return to Registry
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </t>
+    </template>
+
+</odoo>
