@@ -8,15 +8,8 @@ from odoo.osv.expression import OR
 
 class SurveyRegistryPortal(CustomerPortal):
 
-    # def _prepare_home_portal_values(self, counters):
-    #     values = super()._prepare_home_portal_values(counters)
-    #     if 'survey_registry_count' in counters:
-    #         values['survey_registry_count'] = request.env['survey.user_input'].search_count([('state', '=', 'done')]) \
-    #             if request.env['survey.user_input'].check_access_rights('read', raise_exception=False) else 0
-    #     return values
-
     def _get_survey_registry_domain(self):
-        return [('state', '=', 'done')]
+        return [('state', '=', 'done'), ("show_in_registry", '=', True)]
 
     def _get_survey_registry_sortings(self):
         return {

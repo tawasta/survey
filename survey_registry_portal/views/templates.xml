@@ -48,15 +48,10 @@
                         </table>
                     </div>
                     <div t-if="pager" class="o_portal_pager d-flex justify-content-center">
-    <t t-call="website.pager">
-        <t t-set="pager" t-value="pager"/>
-    </t>
-</div>
-
-
-                   <!--  <div class="mt-4">
-                        <t t-call="portal.portal_pager"/>
-                    </div> -->
+                        <t t-call="website.pager">
+                            <t t-set="pager" t-value="pager"/>
+                        </t>
+                    </div>
                 </t>
             </section>
         </t>

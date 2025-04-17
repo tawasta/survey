@@ -20,6 +20,11 @@ Survey Registry Portal
   * Detailed answers provided by the respondent
 * Integrated neatly within the default Odoo portal layout
 
+- `survey.question` has field `save_as_registry_visibility`
+- If a user answers **yes/true/1/kyllä** to such a question, then:
+  - `survey.user_input.show_in_registry = True`
+- Only those marked `True` are visible in registry
+
 Configuration
 =============
 

@@ -31,5 +31,6 @@
     "data": [
         "data/menu.xml",
         "views/templates.xml",
+        "views/user_input.xml",
     ],
 }
