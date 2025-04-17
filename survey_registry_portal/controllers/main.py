@@ -62,10 +62,10 @@ class SurveyRegistryPortal(CustomerPortal):
             url_args={'search': search, 'search_in': search_in, 'sortby': sortby},
             total=total,
             page=page,
-            step=self._items_per_page
+            step=10  # Tässä asetetaan sivutuksen arvoksi kiinteästi 10
         )
 
-        user_inputs = SurveyInput.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
+        user_inputs = SurveyInput.search(domain, order=order, limit=10, offset=pager['offset'])
 
         values.update({
             'inputs': user_inputs,
