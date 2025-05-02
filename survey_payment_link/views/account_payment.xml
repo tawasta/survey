@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_account_payment_form" />
         <field name="arch" type="xml">
             <group name="group2" position="after">
-                <field name="survey_user_input_id"/>
+                <field name="survey_user_input_id" />
             </group>
         </field>
     </record>

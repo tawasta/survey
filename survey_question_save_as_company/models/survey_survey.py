@@ -59,7 +59,7 @@ class Survey(models.Model):
         email=False,
         test_entry=False,
         check_attempts=True,
-        **additional_vals
+        **additional_vals,
     ):
         """Saves company name from answer"""
         res = super(Survey, self)._create_answer(

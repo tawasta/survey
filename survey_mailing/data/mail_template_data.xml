@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data noupdate="0">
+<odoo noupdate="0">
         <!-- Survey mailing template -->
         <record id="survey_mailing_template" model="mail.template">
             <field name="name">Survey: Empty Mail Template</field>
@@ -11,5 +10,4 @@
             <field name="subject" />
             <field name="body_html" />
         </record>
-    </data>
 </odoo>

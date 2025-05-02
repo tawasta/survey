@@ -27,27 +27,19 @@
         </xpath>
         <xpath expr="//a[@id='button-review-answer']" position="before">
             <button
-                    type="button"
-                    id="modal_invite_contacts"
-                    class="btn btn-primary btn-sm"
-                    t-att-answer-id="answer.id"
-                    t-att-data-token="answer.access_token"
-                    t-att-data-survey="answer.survey_id.access_token"
-                >
+                type="button"
+                id="modal_invite_contacts"
+                class="btn btn-primary btn-sm"
+                t-att-answer-id="answer.id"
+                t-att-data-token="answer.access_token"
+                t-att-data-survey="answer.survey_id.access_token"
+            >
                     <i class="fa fa-address-book" /> Add Contacts
                 </button>
         </xpath>
     </template>
-    <template
-        id="invite_contacts_modal"
-        name="Invite Contacts Modal"
-    >
-        <div
-            id="modal_invite_contacts"
-            class="modal fade"
-            tabindex="-1"
-            role="dialog"
-        >
+    <template id="invite_contacts_modal" name="Invite Contacts Modal">
+        <div id="modal_invite_contacts" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <form
                     id="survey_invite_form"
@@ -57,19 +49,29 @@
                     enctype="multipart/form-data"
                 >
                   <input
-                      type="hidden"
-                      name="csrf_token"
-                      t-att-value="request.csrf_token(time_limit=False)"
-                  />
+                        type="hidden"
+                        name="csrf_token"
+                        t-att-value="request.csrf_token(time_limit=False)"
+                    />
                   <div class="modal-content">
                     <div class="modal-header align-items-center">
                       <h4 class="modal-title">Add Contacts</h4>
-                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" />
+                      <button
+                                type="button"
+                                class="btn-close btn-close-white"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            />
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input name="email" class="form-control" type="email" required="required" />
+                        <input
+                                    name="email"
+                                    class="form-control"
+                                    type="email"
+                                    required="required"
+                                />
                       </div>
                       <div class="alert alert-info mt-3">
                         <i class="fa fa-info-circle" />
@@ -77,7 +79,11 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >Cancel</button>
                       <button type="submit" class="btn btn-primary">Add Contact</button>
                     </div>
                   </div>
@@ -159,10 +165,7 @@
         </xpath>
     </template>
 
-    <template
-        id="show_invites_modal"
-        name="Invite Contacts Modal"
-    >
+    <template id="show_invites_modal" name="Invite Contacts Modal">
         <div
             id="modal_survey_contact_invites"
             class="modal fade"
@@ -223,7 +226,11 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >Cancel</button>
                     </div>
                 </div>
             </div>

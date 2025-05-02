@@ -23,8 +23,8 @@
     "summary": "Changes question titles to be untranslated",
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
-    "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "website": "https://github.com/tawasta/survey",
+    "author": "Futural",
     "license": "AGPL-3",
     "depends": [
         "survey",

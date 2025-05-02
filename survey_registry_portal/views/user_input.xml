@@ -14,10 +14,10 @@
     <record model="ir.ui.view" id="survey_question_form_inherit_registry_visibility">
         <field name="name">survey.question.form.inherit.registry.visibility</field>
         <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="inherit_id" ref="survey.survey_question_form" />
         <field name="arch" type="xml">
             <field name="comments_allowed" position="after">
-                <field name="save_as_registry_visibility"/>
+                <field name="save_as_registry_visibility" />
             </field>
         </field>
     </record>

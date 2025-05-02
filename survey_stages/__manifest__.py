@@ -22,8 +22,8 @@
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
     "summary": "Ability to edit survey answers and send mail based on stages",
-    "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "website": "https://github.com/tawasta/survey",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -42,9 +42,9 @@
         "views/survey_templates_print.xml",
         "views/survey_templates.xml",
     ],
-    'assets': {
-        'survey.survey_assets': [
-            'survey_stages/static/src/js/survey.esm.js',
+    "assets": {
+        "survey.survey_assets": [
+            "survey_stages/static/src/js/survey.esm.js",
         ],
     },
 }

@@ -23,7 +23,6 @@
 # 3. Odoo imports (openerp):
 from odoo import http
 from odoo.http import request
-import logging
 
 # 4. Imports from Odoo modules:
 from odoo.addons.survey_contact_ids.controllers.main import SurveyContacts
@@ -87,7 +86,9 @@ class SurveyStages(SurveyContacts):
         website=True,
     )
     def survey_submit(self, survey_token, answer_token, **post):
-        access_data = self._get_access_data(survey_token, answer_token, ensure_token=True)
+        access_data = self._get_access_data(
+            survey_token, answer_token, ensure_token=True
+        )
         if access_data["validity_code"] is not True:
             return {"error": access_data["validity_code"]}
 
@@ -96,23 +97,28 @@ class SurveyStages(SurveyContacts):
 
         # Aseta draft-tila ENNEN super(), että save_lines toimii
         if post.get("isFinish") and post.get("isDraft"):
-            draft_stage = request.env["survey.user_input.stage"].search([("is_editable", "=", True)], limit=1)
+            draft_stage = request.env["survey.user_input.stage"].search(
+                [("is_editable", "=", True)], limit=1
+            )
             if draft_stage:
                 answer_sudo.write({"stage_id": draft_stage.id})
 
         # Aja core submit
-        res = super(SurveyStages, self).survey_submit(survey_token, answer_token, **post)
+        res = super(SurveyStages, self).survey_submit(
+            survey_token, answer_token, **post
+        )
 
         # Jos lopullinen lähetys, merkkaa is_editable=False
         if post.get("isFinish") and not post.get("isDraft"):
-            sent_stage = request.env["survey.user_input.stage"].search([("is_sent", "=", True)], limit=1)
+            sent_stage = request.env["survey.user_input.stage"].search(
+                [("is_sent", "=", True)], limit=1
+            )
             if sent_stage:
                 answer_sudo.write({"stage_id": sent_stage.id, "is_editable": False})
 
             # Jos palaamme valmisnäkymään, palautetaan se uudelleen käsin
-            if answer_sudo.state == 'done':
+            if answer_sudo.state == "done":
                 return {}, self._prepare_question_html(survey_sudo, answer_sudo, **post)
 
         # Muussa tapauksessa palautetaan core-vastaus
         return res
-

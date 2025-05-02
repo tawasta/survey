@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="mail_template_survey_invite" model="mail.template">
             <field name="name">Survey Answer Invite</field>
             <field name="model_id" ref="survey_contact_ids.model_survey_user_invite" />
             <field
-                name="subject"
-            >{{object.create_uid.name}} invites you to participate</field>
+            name="subject"
+        >{{object.create_uid.name}} invites you to participate</field>
             <field name="email_to">{{object.email | safe}}</field>
             <field name="body_html" type="xml">
                 <table
-                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                >
+                style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+            >
                     <tbody>
                         <tr>
                             <td align="center">
                                 <table
-                                    style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;"
-                                    width="590"
-                                    cellspacing="0"
-                                    cellpadding="0"
-                                    border="0"
-                                >
+                                style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;"
+                                width="590"
+                                cellspacing="0"
+                                cellpadding="0"
+                                border="0"
+                            >
                                     <tbody>
                                         <tr>
                                             <td
-                                                style="min-width: 590px;"
-                                                align="center"
-                                            >
+                                            style="min-width: 590px;"
+                                            align="center"
+                                        >
                                                 <table
-                                                    style="background-color: white; padding: 0; border-collapse:separate;"
-                                                    width="100%"
-                                                    cellspacing="0"
-                                                    cellpadding="0"
-                                                    border="0"
-                                                >
+                                                style="background-color: white; padding: 0; border-collapse:separate;"
+                                                width="100%"
+                                                cellspacing="0"
+                                                cellpadding="0"
+                                                border="0"
+                                            >
                                                     <tbody>
                                                         <tr>
                                                             <td valign="middle">
                                                                 <span
-                                                                    style="font-size: 10px;"
-                                                                >Survey User Input</span><br
-                                                                />
+                                                                style="font-size: 10px;"
+                                                            >Survey User Input</span><br
+                                                            />
                                                                 <span
-                                                                    style="font-size: 20px; font-weight: bold;"
-                                                                >
-                                                                    <t t-out="object.survey_user_input_id.survey_id.title or ''"/>
+                                                                style="font-size: 20px; font-weight: bold;"
+                                                            >
+                                                                    <t
+                                                                    t-out="object.survey_user_input_id.survey_id.title or ''"
+                                                                />
                                                                 </span>
                                                             </td>
                                                             <td
-                                                                valign="middle"
-                                                                align="right"
-                                                            >
+                                                            valign="middle"
+                                                            align="right"
+                                                        >
                                                                 <img
-                                                                    style="padding: 0px; margin: 0px; height: 48px;"
-                                                                    src="http://0.0.0.0:8069/logo.png?company=1"
-                                                                    alt="${object.env.company.name}"
-                                                                    loading="lazy"
-                                                                />
+                                                                style="padding: 0px; margin: 0px; height: 48px;"
+                                                                src="http://0.0.0.0:8069/logo.png?company=1"
+                                                                alt="${object.env.company.name}"
+                                                                loading="lazy"
+                                                            />
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td
-                                                                colspan="2"
-                                                                style="text-align:center;"
-                                                            >
+                                                            colspan="2"
+                                                            style="text-align:center;"
+                                                        >
                                                                 <hr
-                                                                    style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px 0px 32px 0px;"
-                                                                    width="100%"
-                                                                />
+                                                                style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:4px 0px 32px 0px;"
+                                                                width="100%"
+                                                            />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -81,17 +82,18 @@
 
                                         <tr>
                                             <td
-                                                style="min-width: 590px; text-align:center;"
-                                            >
+                                            style="min-width: 590px; text-align:center;"
+                                        >
                                                 <div>
-                                                    You have been invited to participate in survey answer by <t t-out="object.create_uid.name or ''"/>.<br
-                                                    />
+                                                    You have been invited to participate in survey answer by <t
+                                                    t-out="object.create_uid.name or ''"
+                                                />.<br />
                                                     To accept the invitation please click the link below:
                                                     <br /><br /><br /><br />
                                                     <a
-                                                        t-att-href="'/survey/invite/code/%s' % object.code"
-                                                        style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px"
-                                                    >
+                                                    t-att-href="'/survey/invite/code/%s' % object.code"
+                                                    style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #0A2E59; border: 0px solid #0A2E59; border-radius:3px"
+                                                >
                                                         Accept invitation
                                                     </a>
                                                     <br /><br /><br />
@@ -101,27 +103,35 @@
 
                                         <tr>
                                             <td
-                                                style="min-width: 590px; padding: 0 8px 0 8px; font-size:11px;"
-                                                align="center"
-                                            >
+                                            style="min-width: 590px; padding: 0 8px 0 8px; font-size:11px;"
+                                            align="center"
+                                        >
                                                 <hr
-                                                    style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"
-                                                    width="100%"
-                                                />
-                                                <b><t t-out="object.env.company.name or ''"/></b><br />
+                                                style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"
+                                                width="100%"
+                                            />
+                                                <b><t
+                                                    t-out="object.env.company.name or ''"
+                                                /></b><br />
                                                 <div style="color: #999999;">
-                                                    <t t-out="object.env.company.phone or ''"/>
+                                                    <t
+                                                    t-out="object.env.company.phone or ''"
+                                                />
                                                     |
                                                     <a
-                                                        style="text-decoration:none; color: #999999;"
-                                                        href="mailto:${object.env.company.email}"
-                                                    ><t t-out="object.env.company.email or ''"/></a>
+                                                    style="text-decoration:none; color: #999999;"
+                                                    href="mailto:${object.env.company.email}"
+                                                ><t
+                                                        t-out="object.env.company.email or ''"
+                                                    /></a>
                                                     |
                                                     <a
-                                                        style="text-decoration:none; color: #999999;"
-                                                        href="${object.env.company.website}"
-                                                    >
-                                                        <t t-out="object.env.company.website or ''"/>
+                                                    style="text-decoration:none; color: #999999;"
+                                                    href="${object.env.company.website}"
+                                                >
+                                                        <t
+                                                        t-out="object.env.company.website or ''"
+                                                    />
                                                     </a>
                                                 </div>
                                             </td>
@@ -133,10 +143,10 @@
                         <tr>
                             <td style="min-width: 590px;" align="center">
                                 Powered by <a
-                                    target="_blank"
-                                    href="https://futural.fi?utm_source=db&amp;utm_medium=email"
-                                    style="color: #ff7e16;"
-                                >Futural</a>
+                                target="_blank"
+                                href="https://futural.fi?utm_source=db&amp;utm_medium=email"
+                                style="color: #ff7e16;"
+                            >Futural</a>
                             </td>
                         </tr>
                     </tbody>
@@ -145,5 +155,4 @@
             <field name="lang">{{object.create_uid.partner_id.lang}}</field>
             <field name="auto_delete" eval="True" />
         </record>
-    </data>
 </odoo>

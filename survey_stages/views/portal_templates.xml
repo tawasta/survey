@@ -35,9 +35,7 @@
 <!--             <t
                 t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft']"
             > -->
-            <t
-                t-if="answer.is_editable"
-            >
+            <t t-if="answer.is_editable">
                 <a
                     id="button-edit-answers"
                     t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
@@ -79,9 +77,7 @@
 <!--             <t
                 t-if="answer.is_editable and answer.survey_id.state not in ['closed', 'draft']"
             > -->
-            <t
-                t-if="answer.is_editable"
-            >
+            <t t-if="answer.is_editable">
                 <div class="btn-group flex-grow-1 mr-1 mb-1">
                     <a
                         class="btn btn-secondary btn-block o_edit_survey_btn"

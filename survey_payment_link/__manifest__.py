@@ -28,5 +28,5 @@
     "application": False,
     "installable": True,
     "depends": ["survey", "account"],
-    "data": ["views/account_payment.xml","views/survey_survey_views.xml"],
+    "data": ["views/account_payment.xml", "views/survey_survey_views.xml"],
 }

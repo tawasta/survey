@@ -49,7 +49,7 @@ class SurveySurvey(models.Model):
         string="Organizer",
         tracking=True,
         default=lambda self: self.env.company.partner_id,
-        #domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        # domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
 
     # 3. Default methods
