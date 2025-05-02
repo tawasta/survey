@@ -112,7 +112,9 @@ class SurveyMailingWizard(models.TransientModel):
         self.ensure_one()
 
         if not self.env.user.email:
-            raise UserError(_("Please configure your user email address to send messages."))
+            raise UserError(
+                _("Please configure your user email address to send messages.")
+            )
 
         if not self.subject or not self.body:
             raise UserError(_("Subject and body are required to send a message."))
@@ -126,34 +128,32 @@ class SurveyMailingWizard(models.TransientModel):
                 continue  # skip if no partner or email
 
             # Create message in chatter
-            message = recipient.message_post(
+            recipient.message_post(
                 body=self.body,
                 subject=self.subject,
-                message_type='email',
+                message_type="email",
                 email_from=self.env.user.email_formatted,
                 partner_ids=[recipient.partner_id.id],
                 attachment_ids=self.attachment_ids.ids,
-                subtype_xmlid='mail.mt_comment',
+                subtype_xmlid="mail.mt_comment",
             )
 
             # Send email from template to the same partner
             template.with_context(
                 default_model="survey.user_input",
                 default_res_id=recipient.id,
-                default_composition_mode='comment',
+                default_composition_mode="comment",
                 force_send=True,
             ).send_mail(
                 recipient.id,
                 force_send=True,
                 email_values={
-                    'email_to': recipient.partner_id.email,
-                    'email_from': self.env.user.email_formatted,
-                    'body_html': self.body,
-                    'subject': self.subject,
-                    'attachment_ids': [(6, 0, self.attachment_ids.ids)],
+                    "email_to": recipient.partner_id.email,
+                    "email_from": self.env.user.email_formatted,
+                    "body_html": self.body,
+                    "subject": self.subject,
+                    "attachment_ids": [(6, 0, self.attachment_ids.ids)],
                 },
             )
-
-
 
     # 8. Business methods

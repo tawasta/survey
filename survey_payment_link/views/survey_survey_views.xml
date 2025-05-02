@@ -9,14 +9,19 @@
                 <page string="Payments">
                     <field name="payment_ids">
                         <tree>
-                            <field name="name"/>
-                            <field name="date"/>
-                            <field name="amount"/>
-                            <field name="currency_id"/>
-                            <field name="state"/>
+                            <field name="name" />
+                            <field name="date" />
+                            <field name="amount" />
+                            <field name="currency_id" />
+                            <field name="state" />
                         </tree>
                     </field>
-                    <button name="action_create_payment" type="object" string="Create Payment" class="btn btn-primary"/>
+                    <button
+                        name="action_create_payment"
+                        type="object"
+                        string="Create Payment"
+                        class="btn btn-primary"
+                    />
                 </page>
             </notebook>
         </field>

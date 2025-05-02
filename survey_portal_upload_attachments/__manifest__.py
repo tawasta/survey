@@ -22,8 +22,8 @@
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
     "summary": "Upload attachments to surveys from portal",
-    "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "website": "https://github.com/tawasta/survey",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -31,8 +31,8 @@
     "data": [
         "views/survey_question_views.xml",
         "views/portal_templates.xml",
-        #"views/survey_templates_attachments.xml",
-        #"views/assets.xml",
+        # "views/survey_templates_attachments.xml",
+        # "views/assets.xml",
     ],
     "assets": {
         "web.assets_frontend": [
