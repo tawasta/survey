@@ -50,12 +50,12 @@ class SurveyUserInput(models.Model):
     def create(self, vals):
         if not vals.get("ref"):
             vals["ref"] = self._get_next_ref(vals=vals)
-        return super(SurveyUserInput, self).create(vals)
+        return super().create(vals)
 
     def copy(self, default=None):
         default = default or {}
         default["ref"] = self._get_next_ref()
-        return super(SurveyUserInput, self).copy(default=default)
+        return super().copy(default=default)
 
     def write(self, vals):
         for user_input in self:

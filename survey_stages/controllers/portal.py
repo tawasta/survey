@@ -45,16 +45,12 @@ class PortalSurveyAnswersStages(PortalSurveyAnswersContacts):
         ]
 
     def _get_survey_answers_searchbar_sortings(self):
-        vals = super(
-            PortalSurveyAnswersStages, self
-        )._get_survey_answers_searchbar_sortings()
+        vals = super()._get_survey_answers_searchbar_sortings()
         vals.update({"stage": {"label": _("Stage"), "order": "stage_id desc"}})
         return vals
 
     def _get_survey_answers_searchbar_filters(self):
-        vals = super(
-            PortalSurveyAnswersStages, self
-        )._get_survey_answers_searchbar_filters()
+        vals = super()._get_survey_answers_searchbar_filters()
         vals.update(
             {
                 "draft": {

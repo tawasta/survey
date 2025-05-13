@@ -1,5 +1,6 @@
-from odoo import fields, models, _
 import re
+
+from odoo import _, fields, models
 
 
 class SurveyQuestion(models.Model):
@@ -18,7 +19,7 @@ class SurveyQuestion(models.Model):
         if self.question_type == "ssn":
             return self._validate_ssn(answer)
 
-        return super(SurveyQuestion, self).validate_question(answer, comment)
+        return super().validate_question(answer, comment)
 
     def _validate_ssn(self, answer):
         # Tarkistetaan pakollisuus

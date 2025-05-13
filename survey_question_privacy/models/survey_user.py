@@ -50,7 +50,8 @@ class SurveyUserInput(models.Model):
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
-        overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
+        overwritten (or deleted for 'choice' questions) (in order to maintain
+        data consistency).
         """
         if question.question_type == "privacy":
             old_answers = self.env["survey.user_input.line"].search(
@@ -58,9 +59,7 @@ class SurveyUserInput(models.Model):
             )
             self._save_line_privacy(question, old_answers, answer, comment)
         else:
-            return super(SurveyUserInput, self)._save_lines(
-                question, answer, comment, overwrite_existing
-            )
+            return super()._save_lines(question, answer, comment, overwrite_existing)
 
     def _save_line_privacy(self, question, old_answers, answer, comment):
         vals = {
@@ -128,7 +127,7 @@ class SurveyUserInputLine(models.Model):
         "matrix_row_id",
     )
     def _compute_string_answer(self):
-        res = super(SurveyUserInputLine, self)._compute_string_answer()
+        res = super()._compute_string_answer()
         for line in self:
             if line.answer_type == "privacy" and line.value_privacy_consent:
                 line.string_answer = line.value_privacy_consent.activity_id.name

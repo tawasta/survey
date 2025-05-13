@@ -51,7 +51,8 @@ class SurveyQuestion(models.Model):
         readonly=False,
         store=True,
         copy=True,
-        help="If checked, this option will save the user's answer as its company street.",
+        help="If checked, this option will save the "
+        "user's answer as its company street.",
     )
     save_as_company_zip = fields.Boolean(
         "Save as user company zip",
@@ -75,7 +76,8 @@ class SurveyQuestion(models.Model):
         readonly=False,
         store=True,
         copy=True,
-        help="If checked, this option will save the user's answer as its company website.",
+        help="If checked, this option will save the "
+        "user's answer as its company website.",
     )
 
     # 3. Default methods

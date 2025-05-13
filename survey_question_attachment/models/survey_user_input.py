@@ -52,7 +52,8 @@ class SurveyUserInput(models.Model):
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
-        overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
+        overwritten (or deleted for 'choice' questions) (in order to maintain
+        data consistency).
         """
         if question.question_type == "attachment":
             old_answers = self.env["survey.user_input.line"].search(
@@ -60,9 +61,7 @@ class SurveyUserInput(models.Model):
             )
             self._save_line_attachment(question, old_answers, answer, comment)
         else:
-            return super(SurveyUserInput, self)._save_lines(
-                question, answer, comment, overwrite_existing
-            )
+            return super()._save_lines(question, answer, comment, overwrite_existing)
 
     def _save_line_attachment(self, question, old_answers, answer, comment):
         vals = {
@@ -90,17 +89,18 @@ class SurveyUserInput(models.Model):
             vals.update({"value_attachment_ids": attachment_data_lines})
             vals.update({"skipped": False})
         if old_answers:
-            # If answer is skipped but it wasn't skipped previously mark answer as not skipped
+            # If answer is skipped but it wasn't skipped previously mark
+            # answer as not skipped
             if vals.get("skipped") and not old_answers.skipped:
                 vals.update({"skipped": False})
             old_answers.write(vals)
             _logger.debug(
-                "Old answer %s updated with values:\n%s" % (old_answers, vals)
+                "Old answer %s updated with values:\n%s" % (old_answers, vals)  # noqa: E501, UP031
             )
             return old_answers
         else:
             new_answer = self.env["survey.user_input.line"].create(vals)
-            _logger.debug("New answer %s created with values:\n%s" % (new_answer, vals))
+            _logger.debug("New answer %s created with values:\n%s" % (new_answer, vals))  # noqa: E501, UP031
             return new_answer
 
     # 8. Business methods
