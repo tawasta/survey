@@ -22,7 +22,8 @@ class SurveyFile(SurveyContacts):
     )
     def survey_submit(self, survey_token, answer_token, **post):
         """
-        Override the survey_submit to handle file upload notifications for specific changes.
+        Override the survey_submit to handle file upload
+        notifications for specific changes.
         """
         # Call the original survey_submit to handle core logic
         original_response = super(SurveyFile, self).survey_submit(

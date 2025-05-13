@@ -104,9 +104,7 @@ class SurveyStages(SurveyContacts):
                 answer_sudo.write({"stage_id": draft_stage.id})
 
         # Aja core submit
-        res = super(SurveyStages, self).survey_submit(
-            survey_token, answer_token, **post
-        )
+        res = super().survey_submit(survey_token, answer_token, **post)
 
         # Jos lopullinen lähetys, merkkaa is_editable=False
         if post.get("isFinish") and not post.get("isDraft"):

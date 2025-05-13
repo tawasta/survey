@@ -27,7 +27,8 @@ from odoo import _, http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
-from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
+from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 # 5. Local imports in the relative form:
 

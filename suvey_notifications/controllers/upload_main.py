@@ -1,10 +1,12 @@
-from odoo import http, _
+import json
+import logging
+
+from odoo import _, http
 from odoo.http import request
+
 from odoo.addons.survey_portal_upload_attachments.controllers.main import (
     SurveyAttachments,
 )
-import logging
-import json
 
 _logger = logging.getLogger(__name__)
 
@@ -18,7 +20,8 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
         website=True,
     )
     def survey_attachments_post(self, survey_token, answer_token, **post):
-        """Kutsutaan peruslogiikka ja lisätään tiedoston liittämisestä notifikaatiotoiminnallisuus."""
+        """Kutsutaan peruslogiikka ja lisätään tiedoston
+        liittämisestä notifikaatiotoiminnallisuus."""
 
         response = super().survey_attachments_post(survey_token, answer_token, **post)
 

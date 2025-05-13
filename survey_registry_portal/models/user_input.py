@@ -1,5 +1,6 @@
-from odoo import models, fields
 import logging
+
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -10,7 +11,8 @@ class SurveyUserInput(models.Model):
     show_in_registry = fields.Boolean(
         string="Show in Registry",
         default=False,
-        help="Indicates whether this survey response can be shown in the public registry.",
+        help="Indicates whether this survey response "
+        "can be shown in the public registry.",
     )
 
     def _save_line_choice(self, question, old_answers, answers, comment):

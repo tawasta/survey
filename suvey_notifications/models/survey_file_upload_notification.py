@@ -1,4 +1,4 @@
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class SurveySurvey(models.Model):
@@ -92,7 +92,7 @@ class SurveyUserInput(models.Model):
 
     def _mark_done(self):
         """Override to send notification when a response is marked as done."""
-        res = super(SurveyUserInput, self)._mark_done()
+        res = super()._mark_done()
         self._notify_response_submission()
         return res
 

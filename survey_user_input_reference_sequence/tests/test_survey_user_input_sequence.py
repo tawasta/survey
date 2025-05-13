@@ -36,7 +36,7 @@ from odoo.tests import tagged
 @tagged("standard", "at_install", "sequence")
 class TestSurveyUserInputSequence(common.TransactionCase):
     def setUp(self):
-        super(TestSurveyUserInputSequence, self).setUp()
+        super().setUp()
 
         self.res_partner = self.env["res.partner"]
         self.partner = self.res_partner.create(

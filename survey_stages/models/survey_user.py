@@ -23,7 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 # 4. Imports from Odoo modules:
@@ -71,7 +71,7 @@ class SurveyUserInput(models.Model):
 
     # 7. Action methods
     def _track_template(self, changes):
-        res = super(SurveyUserInput, self)._track_template(changes)
+        res = super()._track_template(changes)
         answer = self[0]
         if "stage_id" in changes and answer.stage_id.mail_template_id:
             res["stage_id"] = (
@@ -126,11 +126,11 @@ class SurveyUserInput(models.Model):
                 return super()._save_lines(
                     question, answer, comment, overwrite_existing
                 )
-            except AttributeError:
+            except AttributeError as err:
                 raise AttributeError(
                     question.question_type
                     + ": This type of question has no saving function"
-                )
+                ) from err
 
         return True
 

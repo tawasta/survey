@@ -20,8 +20,8 @@
 
 # 1. Standard library imports:
 import base64
-import logging
 import json
+import logging
 
 # 2. Known third party imports:
 # 3. Odoo imports (openerp):
