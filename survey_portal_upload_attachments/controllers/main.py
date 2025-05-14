@@ -20,8 +20,8 @@
 
 # 1. Standard library imports:
 import base64
-import logging
 import json
+import logging
 
 # 2. Known third party imports:
 # 3. Odoo imports (openerp):
@@ -49,8 +49,8 @@ class SurveyAttachments(Survey):
         return True
 
     def _save_line_attachment(self, answer_sudo, file_input):
-        question_id = request.env["survey.question"].sudo().search(
-            [("id", "=", file_input[0])]
+        question_id = (
+            request.env["survey.question"].sudo().search([("id", "=", file_input[0])])
         )
         file = file_input[1]
         file_data = file.read()
@@ -77,12 +77,16 @@ class SurveyAttachments(Survey):
                 ],
             }
             # _logger.debug(vals)
-            answer_line = request.env["survey.user_input.line"].sudo().search(
-                [
-                    ("user_input_id", "=", answer_sudo.id),
-                    ("question_id", "=", question_id.id),
-                ],
-                limit=1,
+            answer_line = (
+                request.env["survey.user_input.line"]
+                .sudo()
+                .search(
+                    [
+                        ("user_input_id", "=", answer_sudo.id),
+                        ("question_id", "=", question_id.id),
+                    ],
+                    limit=1,
+                )
             )
             answer_line.write(vals)
             _logger.info(
@@ -90,6 +94,7 @@ class SurveyAttachments(Survey):
                     file=file.filename, line=answer_line
                 ),
             )
+
     @http.route(
         "/survey/attachments/<string:survey_token>/<string:answer_token>",
         type="json",
@@ -134,7 +139,6 @@ class SurveyAttachments(Survey):
                     },
                 )
             )
-            
 
     @http.route(
         ["/survey/attachments/<string:survey_token>/<string:answer_token>/post"],
@@ -149,7 +153,9 @@ class SurveyAttachments(Survey):
         try:
             answer_from_cookie = False
             if not answer_token:
-                answer_token = request.httprequest.cookies.get("survey_%s" % survey_token)
+                answer_token = request.httprequest.cookies.get(
+                    "survey_%s" % survey_token
+                )
                 answer_from_cookie = bool(answer_token)
 
             access_data = self._get_access_data(
@@ -160,43 +166,51 @@ class SurveyAttachments(Survey):
                 "answer_wrong_user",
                 "token_wrong",
             ):
-                access_data = self._get_access_data(survey_token, None, ensure_token=False)
+                access_data = self._get_access_data(
+                    survey_token, None, ensure_token=False
+                )
 
             if access_data["validity_code"] is not True:
-                response.update({
-                    "error": True,
-                    "msg": _("Invalid access: %s") % access_data["validity_code"],
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("Invalid access: %s") % access_data["validity_code"],
+                    }
+                )
                 return json.dumps(response)
 
             answer_sudo = access_data["answer_sudo"]
             if not answer_sudo:
-                response.update({
-                    "error": True,
-                    "msg": _("Answer not found."),
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("Answer not found."),
+                    }
+                )
                 return json.dumps(response)
 
             if request.env.user.partner_id not in answer_sudo.contact_ids:
-                response.update({
-                    "error": True,
-                    "msg": _("You are not allowed to modify this answer."),
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("You are not allowed to modify this answer."),
+                    }
+                )
                 return json.dumps(response)
 
             request_files = request.httprequest.files
             for file_input in request_files.items(multi=True):
                 self._save_line_attachment(answer_sudo, file_input)
 
-            _logger.info(
-                "Uploaded attachments to survey answer %s", answer_sudo.id
-            )
+            _logger.info("Uploaded attachments to survey answer %s", answer_sudo.id)
 
         except Exception as e:
             _logger.error("Error while uploading attachments: %s", str(e))
-            response.update({
-                "error": True,
-                "msg": _("An unexpected error occurred."),
-            })
+            response.update(
+                {
+                    "error": True,
+                    "msg": _("An unexpected error occurred."),
+                }
+            )
 
         return json.dumps(response)

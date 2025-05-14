@@ -72,13 +72,13 @@
                     >Upload Attachments</button>
                 </form> -->
                 <button
-                        type="button"
-                        id="modal_upload_attachment"
-                        class="btn btn-secondary btn-block"
-                        t-att-answer-id="answer.id"
-                        t-att-data-token="answer.access_token"
-                        t-att-data-survey="answer.survey_id.access_token"
-                    >
+                    type="button"
+                    id="modal_upload_attachment"
+                    class="btn btn-secondary btn-block"
+                    t-att-answer-id="answer.id"
+                    t-att-data-token="answer.access_token"
+                    t-att-data-survey="answer.survey_id.access_token"
+                >
                         <i class="fa fa-address-book" /> Upload Attachments
                     </button>
             </t>
@@ -134,10 +134,7 @@
         </xpath>
     </template>
 
-    <template
-        id="upload_attachment_modal"
-        name="Upload Attachment Modal"
-    >
+    <template id="upload_attachment_modal" name="Upload Attachment Modal">
         <div
             id="modal_upload_attachment"
             class="modal fade"
@@ -211,7 +208,11 @@
                             </p>
                         </div>
                         <div class="modal-footer border-0 justify-content-between">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >Cancel</button>
                             <button
                                 type="submit"
                                 id="contact-submit-button"

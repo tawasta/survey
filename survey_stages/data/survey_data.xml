@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <!-- EMAIL TEMPLATES -->
         <record id="mail_template_data_participation_draft" model="mail.template">
             <field name="name">Participation: Draft</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
             <field
-                name="subject"
-            >Your draft application on {{object.survey_id.title}}</field>
+            name="subject"
+        >Your draft application on {{object.survey_id.title}}</field>
             <field name="use_default_to" eval="True" />
             <field
-                name="email_from"
-            >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
+            name="email_from"
+        >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
             <field name="body_html" type="xml">
                 <table
-                    border="0"
-                    cellpadding="0"
-                    cellspacing="0"
-                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
-                ><tr><td align="center">
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+            ><tr><td align="center">
                     <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                width="590"
-                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
-                            >
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="590"
+                            style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                        >
                         <tbody>
                             <!-- HEADER -->
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="middle">
                                                 <span
-                                                            style="font-size: 10px;"
-                                                        >Your application</span><br />
+                                                        style="font-size: 10px;"
+                                                    >Your application</span><br />
                                                 <span
-                                                            style="font-size: 20px; font-weight: bold;"
-                                                        >
-                                                    <t t-out="object.survey_id.title or ''"/>
+                                                        style="font-size: 20px; font-weight: bold;"
+                                                    >
+                                                    <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        />
                                                 </span>
                                             </td>
                                             <td valign="middle" align="right">
                                                 <a
-                                                            t-att-href="'my/surveys/%s' % object.id"
-                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
-                                                        >
+                                                        t-att-href="'my/surveys/%s' % object.id"
+                                                        style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                    >
                                                     View Application
                                                 </a>
                                             </td>
@@ -60,9 +61,9 @@
                                         <tr>
                                             <td colspan="2" style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -72,30 +73,33 @@
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="top" style="font-size: 14px;">
                                                 <div>
-                                                    Hello <t t-out="object.partner_id.name or ''"/>,<br
-                                                            /><br />
-                                                    Your application for <t t-out="object.survey_id.title or ''"/> has been saved as a draft. Please remember to submit the application or it will not be reviewed.
+                                                    Hello <t
+                                                            t-out="object.partner_id.name or ''"
+                                                        />,<br /><br />
+                                                    Your application for <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        /> has been saved as a draft. Please remember to submit the application or it will not be reviewed.
                                                     <br /><br />
                                                     To submit your application, follow the link below:
                                                     <a
-                                                                t-att-href="'my/surveys/%s' % object.id"
-                                                            />
+                                                            t-att-href="'my/surveys/%s' % object.id"
+                                                        />
                                                     <div
-                                                                style="margin: 16px 0px 16px 0px;"
-                                                            >
+                                                            style="margin: 16px 0px 16px 0px;"
+                                                        >
                                                         <a
-                                                                    t-att-href="'my/surveys/%s' % object.id"
-                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
-                                                                >
+                                                                t-att-href="'my/surveys/%s' % object.id"
+                                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                            >
                                                             View Application
                                                         </a>
                                                     </div>
@@ -104,11 +108,17 @@
                                                     Thank you,<br />
                                                     <span style="color: #454748;">
                                                         -- <br />
-                                                        <t t-if="object.survey_id.organizer_id">
-                                                            <t t-out="object.survey_id.organizer_id.name or ''"/>
+                                                        <t
+                                                                t-if="object.survey_id.organizer_id"
+                                                            >
+                                                            <t
+                                                                    t-out="object.survey_id.organizer_id.name or ''"
+                                                                />
                                                         </t>
                                                         <t t-else="">
-                                                            The <t t-out="object.survey_id.title or ''"/> Team
+                                                            The <t
+                                                                    t-out="object.survey_id.title or ''"
+                                                                /> Team
                                                         </t>
                                                     </span>
                                                 </div>
@@ -117,9 +127,9 @@
                                         <tr>
                                             <td style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -144,7 +154,9 @@
                                             target="_blank"
                                             href="${survey.company_id.website}"
                                             style="color: #875A7B;"
-                                        ><t t-out="object.survey_id.company_id.name or ''"/></a>
+                                        ><t
+                                                t-out="object.survey_id.company_id.name or ''"
+                                            /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -160,53 +172,55 @@
             <field name="name">Participation: Sent</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
             <field
-                name="subject"
-            >Your application on {{object.survey_id.title}} has been sent</field>
+            name="subject"
+        >Your application on {{object.survey_id.title}} has been sent</field>
             <field
-                name="email_from"
-            >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
+            name="email_from"
+        >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
                 <table
-                    border="0"
-                    cellpadding="0"
-                    cellspacing="0"
-                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
-                ><tr><td align="center">
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+            ><tr><td align="center">
                     <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                width="590"
-                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
-                            >
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="590"
+                            style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                        >
                         <tbody>
                             <!-- HEADER -->
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="middle">
                                                 <span
-                                                            style="font-size: 10px;"
-                                                        >Your application</span><br />
+                                                        style="font-size: 10px;"
+                                                    >Your application</span><br />
                                                 <span
-                                                            style="font-size: 20px; font-weight: bold;"
-                                                        >
-                                                    <t t-out="object.survey_id.title or ''"/>
+                                                        style="font-size: 20px; font-weight: bold;"
+                                                    >
+                                                    <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        />
                                                 </span>
                                             </td>
                                             <td valign="middle" align="right">
                                                 <a
-                                                            t-att-href="'my/surveys/%s' % object.id"
-                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
-                                                        >
+                                                        t-att-href="'my/surveys/%s' % object.id"
+                                                        style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                    >
                                                     View Application
                                                 </a>
                                             </td>
@@ -214,9 +228,9 @@
                                         <tr>
                                             <td colspan="2" style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -226,30 +240,33 @@
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="top" style="font-size: 14px;">
                                                 <div>
-                                                    Hello <t t-out="object.partner_id.name or ''"/>,<br
-                                                            /><br />
-                                                    Your application for <t t-out="object.survey_id.title or ''"/> has been sent and received.
+                                                    Hello <t
+                                                            t-out="object.partner_id.name or ''"
+                                                        />,<br /><br />
+                                                    Your application for <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        /> has been sent and received.
                                                     <br /><br />
                                                     To view your application, follow the link below:
                                                     <a
-                                                                t-att-href="'my/surveys/%s' % object.id"
-                                                            />
+                                                            t-att-href="'my/surveys/%s' % object.id"
+                                                        />
                                                     <div
-                                                                style="margin: 16px 0px 16px 0px;"
-                                                            >
+                                                            style="margin: 16px 0px 16px 0px;"
+                                                        >
                                                         <a
-                                                                    t-att-href="'my/surveys/%s' % object.id"
-                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
-                                                                >
+                                                                t-att-href="'my/surveys/%s' % object.id"
+                                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                            >
                                                             View Application
                                                         </a>
                                                     </div>
@@ -258,11 +275,17 @@
                                                     Thank you,<br />
                                                     <span style="color: #454748;">
                                                         -- <br />
-                                                        <t t-if="object.survey_id.organizer_id">
-                                                            <t t-out="object.survey_id.organizer_id.name or ''"/>
+                                                        <t
+                                                                t-if="object.survey_id.organizer_id"
+                                                            >
+                                                            <t
+                                                                    t-out="object.survey_id.organizer_id.name or ''"
+                                                                />
                                                         </t>
                                                         <t t-else="">
-                                                            The <t t-out="object.survey_id.title or ''"/> Team
+                                                            The <t
+                                                                    t-out="object.survey_id.title or ''"
+                                                                /> Team
                                                         </t>
                                                     </span>
                                                 </div>
@@ -271,9 +294,9 @@
                                         <tr>
                                             <td style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -298,7 +321,9 @@
                                             target="_blank"
                                             href="${survey.company_id.website}"
                                             style="color: #875A7B;"
-                                        ><t t-out="object.survey_id.company_id.name or ''"/></a>
+                                        ><t
+                                                t-out="object.survey_id.company_id.name or ''"
+                                            /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -311,59 +336,61 @@
             <field name="auto_delete" eval="True" />
         </record>
         <record
-            id="mail_template_data_participation_confirmation"
-            model="mail.template"
-        >
+        id="mail_template_data_participation_confirmation"
+        model="mail.template"
+    >
             <field name="name">Participation: Confirmation</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
             <field
-                name="subject"
-            >Your application on {{object.survey_id.title}} has been accepted</field>
+            name="subject"
+        >Your application on {{object.survey_id.title}} has been accepted</field>
             <field
-                name="email_from"
-            >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
+            name="email_from"
+        >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
                 <table
-                    border="0"
-                    cellpadding="0"
-                    cellspacing="0"
-                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
-                ><tr><td align="center">
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+            ><tr><td align="center">
                     <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                width="590"
-                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
-                            >
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="590"
+                            style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                        >
                         <tbody>
                             <!-- HEADER -->
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="middle">
                                                 <span
-                                                            style="font-size: 10px;"
-                                                        >Your application</span><br />
+                                                        style="font-size: 10px;"
+                                                    >Your application</span><br />
                                                 <span
-                                                            style="font-size: 20px; font-weight: bold;"
-                                                        >
-                                                    <t t-out="object.survey_id.title or ''"/>
+                                                        style="font-size: 20px; font-weight: bold;"
+                                                    >
+                                                    <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        />
                                                 </span>
                                             </td>
                                             <td valign="middle" align="right">
                                                 <a
-                                                            t-att-href="'my/surveys/%s' % object.id"
-                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
-                                                        >
+                                                        t-att-href="'my/surveys/%s' % object.id"
+                                                        style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                    >
                                                     View Application
                                                 </a>
                                             </td>
@@ -371,9 +398,9 @@
                                         <tr>
                                             <td colspan="2" style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -383,30 +410,33 @@
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="top" style="font-size: 14px;">
                                                 <div>
-                                                    Hello <t t-out="object.partner_id.name or ''"/>,<br
-                                                            /><br />
-                                                    Your application for <t t-out="object.survey_id.title or ''"/> has been confirmed and accepted.
+                                                    Hello <t
+                                                            t-out="object.partner_id.name or ''"
+                                                        />,<br /><br />
+                                                    Your application for <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        /> has been confirmed and accepted.
                                                     <br /><br />
                                                     To view your application, follow the link below:
                                                     <a
-                                                                t-att-href="'my/surveys/%s' % object.id"
-                                                            />
+                                                            t-att-href="'my/surveys/%s' % object.id"
+                                                        />
                                                     <div
-                                                                style="margin: 16px 0px 16px 0px;"
-                                                            >
+                                                            style="margin: 16px 0px 16px 0px;"
+                                                        >
                                                         <a
-                                                                    t-att-href="'my/surveys/%s' % object.id"
-                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
-                                                                >
+                                                                t-att-href="'my/surveys/%s' % object.id"
+                                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                            >
                                                             View Application
                                                         </a>
                                                     </div>
@@ -415,11 +445,17 @@
                                                     Thank you,<br />
                                                     <span style="color: #454748;">
                                                         -- <br />
-                                                        <t t-if="object.survey_id.organizer_id">
-                                                            <t t-out="object.survey_id.organizer_id.name or ''"/>
+                                                        <t
+                                                                t-if="object.survey_id.organizer_id"
+                                                            >
+                                                            <t
+                                                                    t-out="object.survey_id.organizer_id.name or ''"
+                                                                />
                                                         </t>
                                                         <t t-else="">
-                                                            The <t t-out="object.survey_id.title or ''"/> Team
+                                                            The <t
+                                                                    t-out="object.survey_id.title or ''"
+                                                                /> Team
                                                         </t>
                                                     </span>
                                                 </div>
@@ -428,9 +464,9 @@
                                         <tr>
                                             <td style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -455,7 +491,9 @@
                                             target="_blank"
                                             href="${survey.company_id.website}"
                                             style="color: #875A7B;"
-                                        ><t t-out="object.survey_id.company_id.name or ''"/></a>
+                                        ><t
+                                                t-out="object.survey_id.company_id.name or ''"
+                                            /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -471,53 +509,55 @@
             <field name="name">Participation: Cancelation</field>
             <field name="model_id" ref="survey.model_survey_user_input" />
             <field
-                name="subject"
-            >Your application on {{object.survey_id.title}} has been canceled</field>
+            name="subject"
+        >Your application on {{object.survey_id.title}} has been canceled</field>
             <field
-                name="email_from"
-            >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
+            name="email_from"
+        >{{object.survey_id.organizer_id.email_formatted or object.survey_id.company_id.email_formatted}}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="xml">
                 <table
-                    border="0"
-                    cellpadding="0"
-                    cellspacing="0"
-                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
-                ><tr><td align="center">
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+            ><tr><td align="center">
                     <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                width="590"
-                                style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
-                            >
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="590"
+                            style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                        >
                         <tbody>
                             <!-- HEADER -->
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="middle">
                                                 <span
-                                                            style="font-size: 10px;"
-                                                        >Your application</span><br />
+                                                        style="font-size: 10px;"
+                                                    >Your application</span><br />
                                                 <span
-                                                            style="font-size: 20px; font-weight: bold;"
-                                                        >
-                                                    <t t-out="object.survey_id.title or ''"/>
+                                                        style="font-size: 20px; font-weight: bold;"
+                                                    >
+                                                    <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        />
                                                 </span>
                                             </td>
                                             <td valign="middle" align="right">
                                                 <a
-                                                            t-att-href="'my/surveys/%s' % object.id"
-                                                            style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
-                                                        >
+                                                        t-att-href="'my/surveys/%s' % object.id"
+                                                        style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"
+                                                    >
                                                     View Application
                                                 </a>
                                             </td>
@@ -525,9 +565,9 @@
                                         <tr>
                                             <td colspan="2" style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -537,30 +577,33 @@
                             <tr>
                                 <td align="center" style="min-width: 590px;">
                                     <table
-                                                width="590"
-                                                border="0"
-                                                cellpadding="0"
-                                                cellspacing="0"
-                                                style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
-                                            >
+                                            width="590"
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                                         <tr>
                                             <td valign="top" style="font-size: 14px;">
                                                 <div>
-                                                    Hello <t t-out="object.partner_id.name or ''"/>,<br
-                                                            /><br />
-                                                    Your application for <t t-out="object.survey_id.title or ''"/> has been canceled.
+                                                    Hello <t
+                                                            t-out="object.partner_id.name or ''"
+                                                        />,<br /><br />
+                                                    Your application for <t
+                                                            t-out="object.survey_id.title or ''"
+                                                        /> has been canceled.
                                                     <br /><br />
                                                     To view your application, follow the link below:
                                                     <a
-                                                                t-att-href="'my/surveys/%s' % object.id"
-                                                            />
+                                                            t-att-href="'my/surveys/%s' % object.id"
+                                                        />
                                                     <div
-                                                                style="margin: 16px 0px 16px 0px;"
-                                                            >
+                                                            style="margin: 16px 0px 16px 0px;"
+                                                        >
                                                         <a
-                                                                    t-att-href="'my/surveys/%s' % object.id"
-                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
-                                                                >
+                                                                t-att-href="'my/surveys/%s' % object.id"
+                                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                            >
                                                             View Application
                                                         </a>
                                                     </div>
@@ -569,11 +612,17 @@
                                                     Thank you,<br />
                                                     <span style="color: #454748;">
                                                         -- <br />
-                                                        <t t-if="object.survey_id.organizer_id">
-                                                            <t t-out="object.survey_id.organizer_id.name or ''"/>
+                                                        <t
+                                                                t-if="object.survey_id.organizer_id"
+                                                            >
+                                                            <t
+                                                                    t-out="object.survey_id.organizer_id.name or ''"
+                                                                />
                                                         </t>
                                                         <t t-else="">
-                                                            The <t t-out="object.survey_id.title or ''"/> Team
+                                                            The <t
+                                                                    t-out="object.survey_id.title or ''"
+                                                                /> Team
                                                         </t>
                                                     </span>
                                                 </div>
@@ -582,9 +631,9 @@
                                         <tr>
                                             <td style="text-align:center;">
                                                 <hr
-                                                            width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
-                                                        />
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                                             </td>
                                         </tr>
                                     </table>
@@ -609,7 +658,9 @@
                                             target="_blank"
                                             href="${survey.company_id.website}"
                                             style="color: #875A7B;"
-                                        ><t t-out="object.survey_id.company_id.name or ''"/></a>
+                                        ><t
+                                                t-out="object.survey_id.company_id.name or ''"
+                                            /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -631,9 +682,9 @@
             <field name="name">Draft</field>
             <field name="sequence">2</field>
             <field
-                name="mail_template_id"
-                ref="mail_template_data_participation_draft"
-            />
+            name="mail_template_id"
+            ref="mail_template_data_participation_draft"
+        />
             <field name="color">3</field>
             <field name="is_editable" eval="True" />
         </record>
@@ -641,9 +692,9 @@
             <field name="name">Sent</field>
             <field name="sequence">3</field>
             <field
-                name="mail_template_id"
-                ref="mail_template_data_participation_sent"
-            />
+            name="mail_template_id"
+            ref="mail_template_data_participation_sent"
+        />
             <field name="color">4</field>
             <field name="is_sent" eval="True" />
         </record>
@@ -651,9 +702,9 @@
             <field name="name">Confirmed</field>
             <field name="sequence">4</field>
             <field
-                name="mail_template_id"
-                ref="mail_template_data_participation_confirmation"
-            />
+            name="mail_template_id"
+            ref="mail_template_data_participation_confirmation"
+        />
             <field name="color">10</field>
             <field name="is_accepted" eval="True" />
         </record>
@@ -661,11 +712,10 @@
             <field name="name">Canceled</field>
             <field name="sequence">5</field>
             <field
-                name="mail_template_id"
-                ref="mail_template_data_participation_cancelation"
-            />
+            name="mail_template_id"
+            ref="mail_template_data_participation_cancelation"
+        />
             <field name="color">1</field>
             <field name="is_cancel" eval="True" />
         </record>
-    </data>
 </odoo>

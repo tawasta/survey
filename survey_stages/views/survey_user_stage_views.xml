@@ -40,7 +40,7 @@
         <field name="name">survey.user.input.stage.view.tree</field>
         <field name="model">survey.user_input.stage</field>
         <field name="arch" type="xml">
-            <tree string="Participation Stage">
+            <tree>
                 <field
                     name="sequence"
                     widget="handle"

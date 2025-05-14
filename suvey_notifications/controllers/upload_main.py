@@ -1,13 +1,17 @@
-from odoo import http, _
-from odoo.http import request
-from odoo.addons.survey_portal_upload_attachments.controllers.main import SurveyAttachments
-import logging
 import json
+import logging
+
+from odoo import _, http
+from odoo.http import request
+
+from odoo.addons.survey_portal_upload_attachments.controllers.main import (
+    SurveyAttachments,
+)
 
 _logger = logging.getLogger(__name__)
 
-class SurveyAttachmentsEnhanced(SurveyAttachments):
 
+class SurveyAttachmentsEnhanced(SurveyAttachments):
     @http.route(
         ["/survey/attachments/<string:survey_token>/<string:answer_token>/post"],
         type="http",
@@ -16,7 +20,8 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
         website=True,
     )
     def survey_attachments_post(self, survey_token, answer_token, **post):
-        """Kutsutaan peruslogiikka ja lisätään tiedoston liittämisestä notifikaatiotoiminnallisuus."""
+        """Kutsutaan peruslogiikka ja lisätään tiedoston
+        liittämisestä notifikaatiotoiminnallisuus."""
 
         response = super().survey_attachments_post(survey_token, answer_token, **post)
 
@@ -51,7 +56,10 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
             return response
 
         answer_sudo = access_data["answer_sudo"]
-        if not answer_sudo or request.env.user.partner_id not in answer_sudo.contact_ids:
+        if (
+            not answer_sudo
+            or request.env.user.partner_id not in answer_sudo.contact_ids
+        ):
             return response
 
         # 🗂️ Käsittele ladatut tiedostot ja kerää ne ilmoitusta varten
@@ -60,10 +68,12 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
         for file_input in request_files.items(multi=True):
             file_name = file_input[1].filename
             question_id = request.env["survey.question"].browse(int(file_input[0]))
-            uploaded_files.append({
-                "question": question_id.title,
-                "file_name": file_name,
-            })
+            uploaded_files.append(
+                {
+                    "question": question_id.title,
+                    "file_name": file_name,
+                }
+            )
 
         # 📬 Lähetä notifikaatio jos tiedostoja on
         if uploaded_files:
@@ -82,16 +92,22 @@ class SurveyAttachmentsEnhanced(SurveyAttachments):
             + f" {answer_sudo.ref}"
             + "<br><ul>"
         )
-        respondent_info = f"{answer_sudo.partner_id.name}" if answer_sudo.partner_id else _("")
-        organization_info = f" ({answer_sudo.partner_id.parent_id.name})" if answer_sudo.partner_id and answer_sudo.partner_id.parent_id else ""
+        respondent_info = (
+            f"{answer_sudo.partner_id.name}" if answer_sudo.partner_id else _("")
+        )
+        organization_info = (
+            f" ({answer_sudo.partner_id.parent_id.name})"
+            if answer_sudo.partner_id and answer_sudo.partner_id.parent_id
+            else ""
+        )
         email_body += _("Respondent:") + f" {respondent_info}{organization_info}<br>"
         for file_info in uploaded_files:
             email_body += f"<li>{file_info['question']} : {file_info['file_name']}</li>"
         email_body += "</ul>"
 
         email_template = request.env.ref(
-            'suvey_notifications.mail_template_survey_file_upload',
-            raise_if_not_found=False
+            "suvey_notifications.mail_template_survey_file_upload",
+            raise_if_not_found=False,
         ).sudo()
         email_from = request.env.company.email
 

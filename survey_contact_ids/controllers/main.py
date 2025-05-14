@@ -19,10 +19,10 @@
 ##############################################################################
 
 # 1. Standard library imports:
+import json
 import logging
 
 from werkzeug import exceptions
-import json
 
 # 3. Odoo imports (openerp):
 from odoo import _, http
@@ -51,7 +51,7 @@ class SurveyContacts(Survey):
         """
         Override to check for contact_ids instead of partner_id
         """
-        res = super(SurveyContacts, self)._check_validity(
+        res = super()._check_validity(
             survey_token, answer_token, ensure_token, check_partner
         )
         if res == "answer_wrong_user":
@@ -220,7 +220,9 @@ class SurveyContacts(Survey):
         try:
             answer_from_cookie = False
             if not answer_token:
-                answer_token = request.httprequest.cookies.get("survey_%s" % survey_token)
+                answer_token = request.httprequest.cookies.get(
+                    "survey_%s" % survey_token
+                )
                 answer_from_cookie = bool(answer_token)
 
             access_data = self._get_access_data(
@@ -231,42 +233,54 @@ class SurveyContacts(Survey):
                 "answer_wrong_user",
                 "token_wrong",
             ):
-                access_data = self._get_access_data(survey_token, None, ensure_token=False)
+                access_data = self._get_access_data(
+                    survey_token, None, ensure_token=False
+                )
 
             if access_data["validity_code"] is not True:
-                response.update({
-                    "error": True,
-                    "msg": _("Invalid access: %s") % access_data["validity_code"],
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("Invalid access: %s") % access_data["validity_code"],
+                    }
+                )
                 return json.dumps(response)
 
             answer_sudo = access_data["answer_sudo"]
             if not answer_sudo:
-                response.update({
-                    "error": True,
-                    "msg": _("Answer not found."),
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("Answer not found."),
+                    }
+                )
                 return json.dumps(response)
 
             if request.env.user.partner_id not in answer_sudo.contact_ids:
-                response.update({
-                    "error": True,
-                    "msg": _("You are not allowed to modify this answer."),
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("You are not allowed to modify this answer."),
+                    }
+                )
                 return json.dumps(response)
 
             email = post.get("email")
             if not email:
-                response.update({
-                    "error": True,
-                    "msg": _("Email is required."),
-                })
+                response.update(
+                    {
+                        "error": True,
+                        "msg": _("Email is required."),
+                    }
+                )
                 return json.dumps(response)
 
-            request.env["survey.user.invite"].sudo().create({
-                "survey_user_input_id": answer_sudo.id,
-                "email": email,
-            })
+            request.env["survey.user.invite"].sudo().create(
+                {
+                    "survey_user_input_id": answer_sudo.id,
+                    "email": email,
+                }
+            )
 
             _logger.info(
                 "Created invitation link for email %s on answer %s",
@@ -276,13 +290,14 @@ class SurveyContacts(Survey):
 
         except Exception as e:
             _logger.error("Error while creating contact invite: %s", str(e))
-            response.update({
-                "error": True,
-                "msg": _("An unexpected error occurred."),
-            })
+            response.update(
+                {
+                    "error": True,
+                    "msg": _("An unexpected error occurred."),
+                }
+            )
 
         return json.dumps(response)
-
 
     @http.route(
         ["/survey/invite/code/<string:code>"],
@@ -329,6 +344,4 @@ class SurveyContacts(Survey):
                     user.partner_id.id, invitation.survey_user_input_id.id
                 )
             )
-        return request.redirect(
-            "/my/surveys/{}".format(invitation.survey_user_input_id.id)
-        )
+        return request.redirect(f"/my/surveys/{invitation.survey_user_input_id.id}")

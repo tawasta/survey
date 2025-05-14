@@ -22,8 +22,8 @@
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
     "summary": "Ability to align survey choice buttons vertically",
-    "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "website": "https://github.com/tawasta/survey",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -32,9 +32,9 @@
         "views/survey_question_views.xml",
         "views/survey_templates.xml",
     ],
-    'assets': {
-        'web.assets_frontend': [
-            'survey_vertical_choice_button/static/src/scss/survey_form.scss',
+    "assets": {
+        "web.assets_frontend": [
+            "survey_vertical_choice_button/static/src/scss/survey_form.scss",
         ],
     },
 }

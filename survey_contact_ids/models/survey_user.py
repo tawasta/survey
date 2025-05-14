@@ -62,7 +62,7 @@ class SurveyUserInput(models.Model):
     def create(self, vals):
         if vals.get("partner_id"):
             vals["contact_ids"] = [(4, vals.get("partner_id"), 0)]
-        return super(SurveyUserInput, self).create(vals)
+        return super().create(vals)
 
     # 7. Action methods
     def _create_new_contact(self, vals_list):
@@ -87,7 +87,7 @@ class SurveyUserInput(models.Model):
             for contact in contacts:
                 contact.write({field: answer})
                 _logger.debug(
-                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)
+                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)  # noqa: E501, UP031
                 )
         else:
             self._create_new_contact(
@@ -102,9 +102,10 @@ class SurveyUserInput(models.Model):
     def _save_lines(self, question, answer, comment=None, overwrite_existing=False):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
-        overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
+        overwritten (or deleted for 'choice' questions) (in order to maintain
+        data consistency).
         """
-        res = super(SurveyUserInput, self)._save_lines(question, answer, comment, overwrite_existing)
+        res = super()._save_lines(question, answer, comment, overwrite_existing)
         if (
             question.question_type == "char_box"
             and question.save_as_contact_name

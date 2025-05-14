@@ -8,7 +8,8 @@
             <field name="suggested_answer_ids" position="after">
                 <field
                     name="vertical_choice_buttons"
-                    invisible="question_type not in ['simple_choice', 'multiple_choice']"/>
+                    invisible="question_type not in ['simple_choice', 'multiple_choice']"
+                />
             </field>
         </field>
     </record>

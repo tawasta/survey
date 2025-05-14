@@ -10,16 +10,15 @@
                     name="contact_number"
                     nolabel="1"
                     invisible="not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email"
-                    required="save_as_contact_name or save_as_contact_phone or save_as_contact_email"/>
+                    required="save_as_contact_name or save_as_contact_phone or save_as_contact_email"
+                />
             </field>
             <field name="save_as_nickname" position="after">
                 <field name="save_as_contact_name" />
-                <field name="save_as_contact_phone"  />
+                <field name="save_as_contact_phone" />
             </field>
             <field name="save_as_email" position="after">
-                <field
-                    name="save_as_contact_email"
-                    invisible="not validation_email"/>
+                <field name="save_as_contact_email" invisible="not validation_email" />
             </field>
         </field>
     </record>

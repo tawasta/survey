@@ -1,9 +1,9 @@
 /** @odoo-module **/
 
 import publicWidget from "@web/legacy/js/public/public_widget";
-import { jsonrpc } from "@web/core/network/rpc_service";
+import {jsonrpc} from "@web/core/network/rpc_service";
 import Dialog from "@web/legacy/js/core/dialog";
-import { _t } from "@web/core/l10n/translation";
+import {_t} from "@web/core/l10n/translation";
 
 const SurveyContactInvite = publicWidget.Widget.extend({
     selector: ".o_portal_wrap",
@@ -14,11 +14,7 @@ const SurveyContactInvite = publicWidget.Widget.extend({
 
     start: function () {
         this._super.apply(this, arguments);
-        $(document).on(
-            "submit",
-            "#survey_invite_form",
-            this._onFormSubmit.bind(this)
-        );
+        $(document).on("submit", "#survey_invite_form", this._onFormSubmit.bind(this));
     },
 
     _showInvites: function (ev) {

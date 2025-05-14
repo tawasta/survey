@@ -1,5 +1,6 @@
-from odoo import api, fields, models, _
 import textwrap
+
+from odoo import _, api, fields, models
 
 
 class SurveyUserInputLine(models.Model):

@@ -15,10 +15,10 @@ SurveyFormWidget.include({
 
             if (!this.preventEnterSubmit) {
                 if (this.$('button[value="draft"]').length !== 0) {
-                    this._submitForm({ isFinish: true, isDraft: true });
+                    this._submitForm({isFinish: true, isDraft: true});
                 } else {
                     const isFinish = this.$('button[value="finish"]').length !== 0;
-                    this._submitForm({ isFinish });
+                    this._submitForm({isFinish});
                 }
             }
         }
@@ -75,9 +75,7 @@ SurveyFormWidget.include({
             this.readonly = true;
         }
 
-        const route = this.options.isStartScreen
-            ? "/survey/begin"
-            : "/survey/submit";
+        const route = this.options.isStartScreen ? "/survey/begin" : "/survey/submit";
 
         const submitPromise = this.rpc(
             `${route}/${this.options.surveyToken}/${this.options.answerToken}`,

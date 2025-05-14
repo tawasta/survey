@@ -40,7 +40,8 @@ class Survey(models.Model):
     attach_contacts_to_company = fields.Boolean(
         copy=True,
         default=True,
-        help="If checked, this option will attach all new contacts to partner's company.",
+        help="If checked, this option will attach "
+        "all new contacts to partner's company.",
     )
 
     # 3. Default methods
@@ -59,10 +60,10 @@ class Survey(models.Model):
         email=False,
         test_entry=False,
         check_attempts=True,
-        **additional_vals
+        **additional_vals,
     ):
         """Saves company name from answer"""
-        res = super(Survey, self)._create_answer(
+        res = super()._create_answer(
             user, partner, email, test_entry, check_attempts, **additional_vals
         )
         for question in self.mapped("question_ids").filtered(

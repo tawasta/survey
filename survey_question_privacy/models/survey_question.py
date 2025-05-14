@@ -54,6 +54,6 @@ class SurveyQuestion(models.Model):
             if not answer:
                 return {self.id: self.constr_error_msg}
             return {}
-        return super(SurveyQuestion, self).validate_question(answer, comment)
+        return super().validate_question(answer, comment)
 
     # 8. Business methods

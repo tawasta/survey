@@ -1,11 +1,11 @@
 /** @odoo-module **/
 
 import publicWidget from "@web/legacy/js/public/public_widget";
-import { jsonrpc } from "@web/core/network/rpc_service";
-import { _t } from "@web/core/l10n/translation";
-import { getDataURLFromFile } from "@web/core/utils/urls";
-import { humanSize } from "@web/core/utils/binary";
-import { uniqueId } from "@web/core/utils/functions";
+import {jsonrpc} from "@web/core/network/rpc_service";
+import {_t} from "@web/core/l10n/translation";
+import {getDataURLFromFile} from "@web/core/utils/urls";
+// Import {humanSize} from "@web/core/utils/binary";
+// import {uniqueId} from "@web/core/utils/functions";
 import Dialog from "@web/legacy/js/core/dialog";
 
 const SurveyAttachmentsForm = publicWidget.Widget.extend({
@@ -51,7 +51,9 @@ const SurveyAttachmentsForm = publicWidget.Widget.extend({
 
                 $modal.on("change", ".portal_question_attachment", (e) => {
                     const fileInput = e.target;
-                    const maxSizeMB = parseFloat(fileInput.getAttribute("validation-size-max") || "0");
+                    const maxSizeMB = parseFloat(
+                        fileInput.getAttribute("validation-size-max") || "0"
+                    );
                     const maxSizeBytes = maxSizeMB * 1024 * 1024;
 
                     if (this.useFileAPI && fileInput.files.length) {
@@ -63,8 +65,8 @@ const SurveyAttachmentsForm = publicWidget.Widget.extend({
                                 this._showWarning(
                                     _t("Tiedosto on liian suuri"),
                                     _t(
-                                        "Valittu liite ylittää suurimman sallitun tiedostokoon (%s)",
-                                        human_size(maxSizeBytes)
+                                        "Valittu liite ylittää suurimman sallitun tiedostokoon (%s)"
+                                        // Human_size(maxSizeBytes)
                                     )
                                 );
                                 return;
@@ -78,7 +80,9 @@ const SurveyAttachmentsForm = publicWidget.Widget.extend({
                                 });
 
                                 this.file_value[$(fileInput).data("name")] = filesList;
-                                this.file_value[$(fileInput).data("name")].is_answer_update = true;
+                                this.file_value[
+                                    $(fileInput).data("name")
+                                ].is_answer_update = true;
                             });
                         }
                     }
@@ -94,7 +98,6 @@ const SurveyAttachmentsForm = publicWidget.Widget.extend({
             .catch(function (err) {
                 console.error("Failed to load modal content", err);
             });
-
     },
 
     _onFormSubmit: function (ev) {

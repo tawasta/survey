@@ -8,11 +8,11 @@
             <field name="save_as_nickname" position="after">
                 <field name="save_as_company_name" />
 
-                <field name="save_as_company_street"  />
+                <field name="save_as_company_street" />
 
-                <field name="save_as_company_zip"  />
+                <field name="save_as_company_zip" />
 
-                <field name="save_as_company_city"  />
+                <field name="save_as_company_city" />
 
                 <field name="save_as_company_website" />
             </field>

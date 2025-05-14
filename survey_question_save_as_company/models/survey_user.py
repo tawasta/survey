@@ -65,7 +65,7 @@ class SurveyUserInput(models.Model):
         :returns: res.partner company: Created company
         """
         company = self.env["res.partner"].sudo().create(vals_list)
-        _logger.debug("Created a new company %s." % company)
+        _logger.debug("Created a new company %s." % company)  # noqa: UP031
         return company
 
     def _save_company_contact(self, contact):
@@ -75,10 +75,10 @@ class SurveyUserInput(models.Model):
             and contact not in self.partner_company_id.contact_ids
         ):
             self.partner_company_id.write({"contact_ids": [(4, contact.id, 0)]})
-            _logger.debug(
-                "Added a new partner %s for partner company %s."
-                % (contact, self.partner_company_id)
-            )
+            # _logger.debug(
+            #     "Added a new partner %s for partner company %s."
+            #     % (contact, self.partner_company_id)
+            # )
         else:
             self._create_new_company(
                 {
@@ -102,7 +102,7 @@ class SurveyUserInput(models.Model):
             for contact in contacts:
                 contact.write({field: answer})
                 _logger.debug(
-                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)
+                    "Wrote new partner %s %s for contact %s." % (field, answer, contact)  # noqa: E501, UP031
                 )
                 if self.survey_id.attach_contacts_to_company:
                     self._save_company_contact(contact)
@@ -123,10 +123,10 @@ class SurveyUserInput(models.Model):
         If company does not exist we create a new one."""
         if self.partner_company_id:
             self.partner_company_id.write({field: answer})
-            _logger.debug(
-                "Wrote new company %s %s for partner company %s."
-                % (field, answer, self.partner_company_id)
-            )
+            # _logger.debug(
+            #     "Wrote new company %s %s for partner company %s."
+            #     % (field, answer, self.partner_company_id)
+            # )
         else:
             self._create_new_company(
                 {
@@ -145,9 +145,10 @@ class SurveyUserInput(models.Model):
     def _save_lines(self, question, answer, comment=None, overwrite_existing=False):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
-        overwritten (or deleted for 'choice' questions) (in order to maintain data consistency).
+        overwritten (or deleted for 'choice' questions) (in order to maintain
+        data consistency).
         """
-        res = super(SurveyUserInput, self)._save_lines(question, answer, comment, overwrite_existing)
+        res = super()._save_lines(question, answer, comment, overwrite_existing)
         if (
             question.question_type == "char_box"
             and question.save_as_company_name

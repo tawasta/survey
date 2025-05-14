@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_survey_user_input_form_inherit_payments" model="ir.ui.view">
+        <field name="name">survey.user_input.form.inherit.payments</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Payments">
+                    <field name="payment_ids">
+                        <tree>
+                            <field name="name" />
+                            <field name="date" />
+                            <field name="amount" />
+                            <field name="currency_id" />
+                            <field name="state" />
+                        </tree>
+                    </field>
+                    <button
+                        name="action_create_payment"
+                        type="object"
+                        string="Create Payment"
+                        class="btn btn-primary"
+                    />
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

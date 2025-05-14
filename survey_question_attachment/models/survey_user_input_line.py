@@ -23,7 +23,7 @@ import logging
 
 # 2. Known third party imports:
 # 3. Odoo imports (openerp):
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -62,7 +62,7 @@ class SurveyUserInputLine(models.Model):
         "matrix_row_id",
     )
     def _compute_string_answer(self):
-        res = super(SurveyUserInputLine, self)._compute_string_answer()
+        res = super()._compute_string_answer()
         for line in self:
             if line.answer_type == "attachment" and line.value_attachment_ids:
                 line.string_answer = ", ".join(

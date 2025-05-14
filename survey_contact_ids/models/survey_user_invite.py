@@ -35,7 +35,6 @@ from odoo import _, api, fields, models
 
 
 class SurveyUserInvite(models.Model):
-
     # 1. Private attributes
     _name = "survey.user.invite"
     _description = "Unique invites to survey"
