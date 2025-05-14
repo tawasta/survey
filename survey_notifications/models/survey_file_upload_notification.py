@@ -73,7 +73,7 @@ class SurveyUserInput(models.Model):
 
         # Send notification emails
         email_template = self.env.ref(
-            "suvey_notifications.mail_template_survey_file_upload",
+            "survey_notifications.mail_template_survey_file_upload",
             raise_if_not_found=False,
         ).sudo()
         email_from = self.env.company.email
@@ -104,7 +104,7 @@ class SurveyUserInput(models.Model):
 
         notification_users = survey.notification_user_ids
         email_template = self.env.ref(
-            "suvey_notifications.mail_template_survey_response_submission",
+            "survey_notifications.mail_template_survey_response_submission",
             raise_if_not_found=False,
         ).sudo()
         email_from = self.env.company.email
