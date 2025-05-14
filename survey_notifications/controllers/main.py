@@ -87,7 +87,7 @@ class SurveyFile(SurveyContacts):
 
         # Send notification emails
         email_template = request.env.ref(
-            "suvey_notifications.mail_template_survey_file_upload",
+            "survey_notifications.mail_template_survey_file_upload",
             raise_if_not_found=False,
         ).sudo()
         email_from = request.env.company.email
