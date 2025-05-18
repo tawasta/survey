@@ -1,0 +1,70 @@
+<odoo>
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.user_input.form.inherit.funding.application.base</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Funding Information" name="funding_information">
+
+                    <!-- Application Info -->
+                     <group>
+                        <group string="Internal Information">
+                            <field name="service_identifier" />
+                            <field name="user_id" options="{'no_create': True}" />
+                        </group>
+                        <group string="Completion Details">
+                            <field name="date_finished" />
+                            <field name="date_cancelled" />
+                        </group>
+                    </group>
+
+                    <!-- Funding Decision -->
+                    <group string="Funding Decision Basic Info">
+                        <field name="funding_decision_date" />
+                        <field
+                            name="funding_decision_amount"
+                            widget="monetary"
+                            options="{'currency_field': 'funding_decision_currency_id'}"
+                        />
+                        <field name="tax_id" options="{'no_create': True}" />
+                        <field name="funding_decision_currency_id" invisible="1" />
+                        <field name="funding_decision_terms" />
+                    </group>
+
+                    <!-- Variance -->
+                    <group>
+
+                        <group string="Underspending">
+                            <field
+                                name="funding_underspent_amount"
+                                widget="monetary"
+                                options="{'currency_field': 'funding_underspent_currency_id'}"
+                            />
+                            <field
+                                name="funding_underspent_currency_id"
+                                invisible="1"
+                            />
+                        </group>
+
+                        <group string="Overspending">
+                            <field
+                                name="funding_overspent_amount"
+                                widget="monetary"
+                                options="{'currency_field': 'funding_overspent_currency_id'}"
+                            />
+                            <field name="funding_overspent_currency_id" invisible="1" />
+                            <field name="funding_overspent_date" />
+                        </group>
+                    </group>
+
+                    <!-- Completion -->
+
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
