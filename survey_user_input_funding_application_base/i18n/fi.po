@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_user_input_funding_application_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-18 16:29+0000\n"
+"PO-Revision-Date: 2025-05-18 16:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_amount
+msgid "Amount Funded"
+msgstr "Rahoituspäätös"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Completion Details"
+msgstr "Valmistumistiedot"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_currency_id
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_overspent_currency_id
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_underspent_currency_id
+msgid "Currency"
+msgstr "Valuutta"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__date_cancelled
+msgid "Date Cancelled"
+msgstr "Perumispäivä"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__date_finished
+msgid "Date Finished"
+msgstr "Valmistumispäivä"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_overspent_amount
+msgid "Funding Amount Overspent"
+msgstr "Rahoituspäätöksen ylitys"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_underspent_amount
+msgid "Funding Amount Underspent"
+msgstr "Rahoituspäätöksen alitus"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Funding Decision Basic Info"
+msgstr "Rahoituspäätöksen perustiedot"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_date
+msgid "Funding Decision Date"
+msgstr "Rahoituspäätöksen päiväys"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Funding Information"
+msgstr "Rahoituspäätöksen tiedot"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_overspent_date
+msgid "Funding Overspending Decision Date"
+msgstr "Rahoituspäätöksen ylityspäätöksen päiväys"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Internal Information"
+msgstr "Sisäiset tiedot"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Overspending"
+msgstr "Rahoituksen ylitys"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,help:survey_user_input_funding_application_base.field_survey_user_input__user_id
+msgid "Person internally responsible for this application"
+msgstr "Henkilö, joka sisäisesti vastuussa tästä hakemuksesta"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__user_id
+msgid "Responsible"
+msgstr "Hankevastaava"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__service_identifier
+msgid "Service Identifier"
+msgstr "Palvelutunnus"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model,name:survey_user_input_funding_application_base.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Käyttäjäsyöte kyselyssä"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__tax_id
+msgid "Tax Rate on the Day of Funding Decision"
+msgstr "Verokanta rahoituspäätöspäivänä"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_terms
+msgid "Terms of Funding Decision"
+msgstr "Rahoituspäätöksen ehdot"
+
+#. module: survey_user_input_funding_application_base
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form
+msgid "Underspending"
+msgstr "Rahoituksen alitus"
