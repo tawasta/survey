@@ -1,0 +1,30 @@
+<odoo>
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field name="name">survey.user_input.form.inherit.parent.child.link</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Participation Follow-up Information">
+                    <group>
+                        <field
+                            name="parent_survey_user_input_id"
+                            options="{ 'no_create': 1}"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="child_survey_user_input_ids"
+                            options="{ 'no_create': 1}"
+                        >
+                            <tree>
+                                <field name="survey_id" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
