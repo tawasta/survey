@@ -1,26 +1,4 @@
-from odoo import _, api, fields, models
-
-
-class SurveySurvey(models.Model):
-    _inherit = "survey.survey"
-
-    notification_user_ids = fields.Many2many(
-        "res.users",
-        string="Notification Users",
-        help="Users who will receive notifications for this survey.",
-    )
-
-    notify_file_upload = fields.Boolean(
-        string="Notify on File Upload",
-        default=True,
-        help="Send notifications to users when a file is uploaded to a question.",
-    )
-
-    notify_response_submission = fields.Boolean(
-        string="Notify on Response Submission",
-        default=True,
-        help="Send notifications to users when a survey response is submitted.",
-    )
+from odoo import _, api, models
 
 
 class SurveyUserInput(models.Model):
@@ -44,6 +22,12 @@ class SurveyUserInput(models.Model):
             *args,
             **kwargs,
         )
+
+    def _mark_done(self):
+        """Override to send notification when a response is marked as done."""
+        res = super()._mark_done()
+        self._notify_response_submission()
+        return res
 
     def _notify_file_uploads(self, attachment_id):
         """Send notifications when a file is uploaded to the chatter."""
@@ -89,12 +73,6 @@ class SurveyUserInput(models.Model):
                     },
                     # notif_layout='mail.mail_notification_light'
                 )
-
-    def _mark_done(self):
-        """Override to send notification when a response is marked as done."""
-        res = super()._mark_done()
-        self._notify_response_submission()
-        return res
 
     def _notify_response_submission(self):
         """Send notification when a survey response is submitted."""
