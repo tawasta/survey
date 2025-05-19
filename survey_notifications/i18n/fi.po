@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_notifications
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-19 17:22+0000\n"
+"PO-Revision-Date: 2025-05-19 17:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_notifications
+#: model:mail.template,body_html:survey_notifications.mail_template_survey_file_upload
+msgid ""
+"<p>Hello,</p>\n"
+"<p>The following files have been uploaded for the survey <b><t t-out=\"object.title or ''\"></t></b>:</p>\n"
+"<p>${body_html}</p>\n"
+"\n"
+"         "
+msgstr ""
+
+#. module: survey_notifications
+#: model:mail.template,body_html:survey_notifications.mail_template_survey_response_submission
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%; margin:0 auto; font-family:Arial, sans-serif;\">\n"
+"    <tbody>\n"
+"        <tr>\n"
+"            <td style=\"text-align: left; padding: 16px; font-size: 14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <p>A new response has been submitted for the survey <b><t t-out=\"object.survey_id.title or ''\"></t></b>.</p>\n"
+"                <p><b>Responder:</b> <t t-out=\"object.partner_id.name or ''\"></t>(<t t-out=\"object.partner_id.parent_id.name or ''\"></t>)</p>\n"
+"                <p><b>Application:</b> <t t-out=\"object.ref or ''\"></t></p>\n"
+"            </td>\n"
+"        </tr>\n"
+"    </tbody>\n"
+"</table>\n"
+"         "
+msgstr ""
+
+#. module: survey_notifications
+#. odoo-python
+#: code:addons/survey_notifications/models/survey_file_upload_notification.py:0
+#, python-format
+msgid "Attachment added to the application:"
+msgstr ""
+
+#. module: survey_notifications
+#. odoo-python
+#: code:addons/survey_notifications/controllers/main.py:0
+#, python-format
+msgid "Attachment(s) added to the survey responses:"
+msgstr ""
+
+#. module: survey_notifications
+#. odoo-python
+#: code:addons/survey_notifications/controllers/upload_main.py:0
+#, python-format
+msgid "Attachments have been added to the survey response:"
+msgstr ""
+
+#. module: survey_notifications
+#: model:mail.template,subject:survey_notifications.mail_template_survey_file_upload
+msgid "File Uploaded in Survey: {{object.survey_id.title}}"
+msgstr ""
+
+#. module: survey_notifications
+#: model:mail.template,subject:survey_notifications.mail_template_survey_response_submission
+msgid "New Response Submitted for Survey: {{object.survey_id.title}}"
+msgstr ""
+
+#. module: survey_notifications
+#: model_terms:ir.ui.view,arch_db:survey_notifications.survey_form_users
+msgid "Notifications"
+msgstr "Notifikaatiot"
+
+#. module: survey_notifications
+#: model:ir.model.fields,field_description:survey_notifications.field_survey_survey__notification_user_ids
+msgid "Notified Users"
+msgstr "Käyttäjät"
+
+#. module: survey_notifications
+#: model:ir.model.fields,field_description:survey_notifications.field_survey_survey__notify_file_upload
+msgid "Notify on File Upload"
+msgstr "Lähetä notifikaatio tiedostoista"
+
+#. module: survey_notifications
+#: model:ir.model.fields,field_description:survey_notifications.field_survey_survey__notify_response_submission
+msgid "Notify on Response Submission"
+msgstr "Lähetä notifikaatio vastauksista"
+
+#. module: survey_notifications
+#. odoo-python
+#: code:addons/survey_notifications/controllers/main.py:0
+#: code:addons/survey_notifications/controllers/upload_main.py:0
+#: code:addons/survey_notifications/models/survey_file_upload_notification.py:0
+#, python-format
+msgid "Respondent:"
+msgstr ""
+
+#. module: survey_notifications
+#: model:ir.model.fields,help:survey_notifications.field_survey_survey__notify_file_upload
+msgid "Send notifications to users when a file is uploaded to a question."
+msgstr "Lähetä notifikaatiot käyttäjille, kun vastauksiin liitetään tiedosto."
+
+#. module: survey_notifications
+#: model:ir.model.fields,help:survey_notifications.field_survey_survey__notify_response_submission
+msgid "Send notifications to users when a survey response is submitted."
+msgstr "Lähetä notifikaatio käyttäjille, kun kyselyyn lähetetään vastaus."
+
+#. module: survey_notifications
+#: model:ir.model,name:survey_notifications.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
+
+#. module: survey_notifications
+#: model:mail.template,name:survey_notifications.mail_template_survey_file_upload
+msgid "Survey File Upload Notification"
+msgstr ""
+
+#. module: survey_notifications
+#: model:mail.template,name:survey_notifications.mail_template_survey_response_submission
+msgid "Survey Response Submission Notification"
+msgstr ""
+
+#. module: survey_notifications
+#: model:ir.model,name:survey_notifications.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Käyttäjäsyöte kyselyssä"
+
+#. module: survey_notifications
+#: model:ir.model.fields,help:survey_notifications.field_survey_survey__notification_user_ids
+msgid "Users who will receive notifications for this survey."
+msgstr "Käyttäjät, jotka saavat notifikaatioita tästä kyselystä."

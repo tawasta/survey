@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Portal",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Ability to view survey answers in portal",
     "website": "https://github.com/tawasta/survey",
@@ -33,5 +33,6 @@
         "views/survey_templates_management.xml",
         "views/survey_templates_print.xml",
         "views/survey_templates.xml",
+        "views/survey_survey_views.xml",
     ],
 }
