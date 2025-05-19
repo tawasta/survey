@@ -18,7 +18,7 @@ Configuration
 =============
 
 1. Go to **Surveys > Survey** and open a survey form.
-2. In the *Notifications* section (new tab or group), configure:
+2. In the *Notifications* tab, configure:
    - **Notification Users**: Users who will receive email notifications.
    - **Notify on File Upload**: Enable to send notifications when attachments are uploaded.
    - **Notify on Response Submission**: Enable to send notifications when responses are submitted.
@@ -64,6 +64,7 @@ Contributors
 ------------
 
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------

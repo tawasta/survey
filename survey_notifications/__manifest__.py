@@ -18,10 +18,10 @@
 #
 ##############################################################################
 {
-    "name": "Survey File Upload Notifications",
-    "version": "17.0.1.0.0",
+    "name": "Survey Notifications",
+    "version": "17.0.1.0.1",
     "category": "Survey",
-    "summary": "Survey File Upload Notifications",
+    "summary": "Notify users on survey submission or file upload",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
