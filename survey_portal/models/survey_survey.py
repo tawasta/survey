@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2021- Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#    Copyright 2022- Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,22 +17,39 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-{
-    "name": "Survey Portal",
-    "version": "17.0.1.0.1",
-    "category": "Marketing/Surveys",
-    "summary": "Ability to view survey answers in portal",
-    "website": "https://github.com/tawasta/survey",
-    "author": "Futural",
-    "license": "AGPL-3",
-    "application": False,
-    "installable": True,
-    "depends": ["survey_mailing", "survey_user_input_reference_sequence"],
-    "data": [
-        "views/portal_templates.xml",
-        "views/survey_templates_management.xml",
-        "views/survey_templates_print.xml",
-        "views/survey_templates.xml",
-        "views/survey_survey_views.xml",
-    ],
-}
+
+# 1. Standard library imports:
+
+# 2. Known third party imports:
+
+# 3. Odoo imports (openerp):
+from odoo import fields, models
+
+# 4. Imports from Odoo modules:
+
+# 5. Local imports in the relative form:
+
+# 6. Unknown third party imports:
+
+
+class Survey(models.Model):
+    # 1. Private attributes
+    _inherit = "survey.survey"
+
+    # 2. Fields declaration
+    hide_show_in_portal = fields.Boolean(
+        string="Hide 'Show in Portal' Button",
+        help="Hides the portal button after survey completion.",
+    )
+
+    # 3. Default methods
+
+    # 4. Compute and search fields, in the same order that fields declaration
+
+    # 5. Constraints and onchanges
+
+    # 6. CRUD methods
+
+    # 7. Action methods
+
+    # 8. Business methods

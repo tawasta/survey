@@ -16,6 +16,7 @@ Survey Portal
 * Adds **chatter to portal view**, allowing users to send messages
 * Survey answers are visible only if linked to the logged-in user's partner (`partner_id`)
 * After submission, a **"View in Portal"** button is added to the thank-you screen and PDF view
+  * This can be toggled on/off in backend survey form.
 
 
 Configuration
@@ -43,6 +44,7 @@ Contributors
 
 * Miika Nissi <miika.nissi@tawasta.fi>
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_survey_view_form_inherit">
+        <field name="name">survey.survey.form.inherit.hide.show.in.portal</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <field name="access_mode" position="after">
+                <field name="hide_show_in_portal" />
+            </field>
+        </field>
+    </record>
+</odoo>
