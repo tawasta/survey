@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* survey_portal
+# 	* survey_registry_portal
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 17:31+0000\n"
-"PO-Revision-Date: 2022-09-14 17:31+0000\n"
+"POT-Creation-Date: 2025-05-20 06:07+0000\n"
+"PO-Revision-Date: 2025-05-20 06:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,87 +15,174 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_home_menu_survey_answer
-msgid "<em>Draft Answer</em>"
-msgstr "<em>Vastausluonnos</em>"
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid ""
+"<i class=\"fa fa-info-circle me-2 text-muted\"/>\n"
+"                        No completed survey results are available."
+msgstr ""
+"<i class=\"fa fa-info-circle me-2 text-muted\"/>\n"
+"                        Hankerekisterissä ei ole vielä julkista sisältöä."
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_answer_page
-msgid "<i class=\"fa fa-eye\"/> Review"
-msgstr "<i class=\"fa fa-eye\"/> Katsele"
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__save_as_registry_visibility
+msgid "Answer Controls Registry Visibility"
+msgstr "Vastaus asettaa hankerekisterinäkyvyyden"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_answer_page
-msgid "<strong class=\"text-muted\">Partner</strong>"
-msgstr "<strong class=\"text-muted\">Kumppani</strong>"
-
-#. module: survey_portal
-#: code:addons/survey_portal/controllers/portal.py:0
-#, python-format
-msgid "All"
-msgstr "Kaikki"
-
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_answer_page
-msgid "Contact"
-msgstr "Yhteystieto"
-
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
-msgid "Create Date"
-msgstr "Luontipäivä"
-
-#. module: survey_portal
-#: code:addons/survey_portal/controllers/portal.py:0
-#, python-format
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 msgid "Date"
-msgstr "Päivämäärä"
+msgstr "Päiväys"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_answer_page
-msgid "History"
-msgstr "Historia"
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Details"
+msgstr "Lisätiedot"
 
-#. module: survey_portal
-#: code:addons/survey_portal/controllers/portal.py:0
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__save_as_registry_visibility
+msgid ""
+"If checked and the question is a simple choice, the answer 'Yes' will "
+"automatically set the participation to be visible in the survey registry."
+msgstr ""
+"Jos rastitettu ja kysymys on tyyppiä 'Monivalinta (yksi valinta sallittu)', "
+"kyllä-vastaus asettaa osallistumisen automaattisesti näkymään "
+"hankerekisterissä."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__show_answer_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be shown on the website in the "
+"survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be used as the title in the "
+"survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä otsikkotietona."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__show_in_registry
+msgid ""
+"Indicates whether this survey response can be shown in the public registry."
+msgstr ""
+"Näytetäänkö tämä osallistuminen julkisessa hankerekisterissä verkkosivuilla."
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
+msgid "Individual answer visibility"
+msgstr "Yksittäisen vastauksen näkyvyys"
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
 #, python-format
-msgid "Name"
-msgstr "Nimi"
+msgid "Newest"
+msgstr "Uusimmat"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
-msgid "Reference"
-msgstr "Viite"
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/models/survey_question.py:0
+#, python-format
+msgid ""
+"Only one question per survey can be marked with 'Use Answer as Title in "
+"Survey Registry'."
+msgstr ""
+"Vain yhdellä kysymyksellä per kysely voi olla merkattuna 'Käytä vastausta "
+"otsikkona hankerekisterissä'"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_answer_page
-msgid "Review"
-msgstr "Katsele"
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
+msgid "Participation visibility trigger"
+msgstr "Osallistumisen näkyvyysehto"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
-msgid "Review Answers"
-msgstr "Katsele vastauksia"
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Partner"
+msgstr "Toteuttaja"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
+msgid "Respondent"
+msgstr "Vastaaja"
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
+msgid "Search in All"
+msgstr "Hae kaikista"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__show_answer_in_survey_registry
+msgid "Show Answer In Survey Registry"
+msgstr "Näytä vastaus hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__show_in_registry
+msgid "Show Answers in Survey Registry"
+msgstr "Näytä vastaukset hankerekisterissä"
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
 msgid "Survey"
 msgstr "Kysely"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_home_menu_survey_answer
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_home_survey_answers
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
-msgid "Survey Answers"
-msgstr "Kyselyn vastaukset"
+#. module: survey_registry_portal
+#: model:ir.model,name:survey_registry_portal.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.portal_my_survey_answers
-msgid "There are currently no survey answers for your account."
-msgstr "Tililläsi ei ole tällä hetkellä kyselyn vastauksia. "
+#. module: survey_registry_portal
+#: model:website.menu,name:survey_registry_portal.menu_survey_registry
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.portal_breadcrumbs
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_user_input_view_form
+msgid "Survey Registry"
+msgstr "Hankerekisteri"
 
-#. module: survey_portal
-#: model_terms:ir.ui.view,arch_db:survey_portal.survey_button_view_portal
-msgid "View in Portal"
-msgstr "Näytä portaalissa"
+#. module: survey_registry_portal
+#: model:ir.model,name:survey_registry_portal.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Käyttäjäsyöte kyselyssä"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Title"
+msgstr "Hanke"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__title_in_survey_registry
+msgid "Title In Survey Registry"
+msgstr "Otsikko hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__title_in_survey_registry
+msgid ""
+"Title in survey registry, computed based on survey question configuration"
+msgstr ""
+"Hankerekisterissä näytettävä otsikko, muodostetaan kysymysten konfiguraation"
+" pohjalta."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
+msgid "Use Answer As Title In Survey Registry"
+msgstr "Käytä vastausta otsikkona hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_user_input_view_form
+msgid "Visibility"
+msgstr "Näkyvyys"

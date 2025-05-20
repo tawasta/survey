@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_question_form" model="ir.ui.view">
+        <field name="name">survey.question.form.inherit.survey.registry</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Survey Registry">
+                    <group
+                        string="Individual answer visibility"
+                        name="survey_registry_answer_visibility"
+                    >
+                        <field name="show_answer_in_survey_registry" />
+                        <field
+                            name="use_answer_as_title_in_survey_registry"
+                            invisible="not show_answer_in_survey_registry or question_type != 'char_box'"
+                        />
+                    </group>
+
+                    <group
+                        string="Participation visibility trigger"
+                        name="participation_visibility_trigger"
+                        invisible="question_type != 'simple_choice'"
+                    >
+                        <field name="save_as_registry_visibility" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+
+</odoo>

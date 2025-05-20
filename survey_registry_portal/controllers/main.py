@@ -105,6 +105,6 @@ class SurveyRegistryPortal(CustomerPortal):
             "survey_registry_portal.survey_registry_detail",
             {
                 "input": survey_input,
-                "page_name": "survey_registry_detail",
+                "page_name": "survey_registry",
             },
         )
