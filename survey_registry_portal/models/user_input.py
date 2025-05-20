@@ -1,6 +1,6 @@
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -9,11 +9,49 @@ class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
 
     show_in_registry = fields.Boolean(
-        string="Show in Registry",
+        string="Show Answers in Survey Registry",
         default=False,
         help="Indicates whether this survey response "
         "can be shown in the public registry.",
     )
+
+    title_in_survey_registry = fields.Char(
+        compute="_compute_title_in_survey_registry",
+        store=True,
+        copy=False,
+        help="Title in survey registry, computed based on survey "
+        "question configuration",
+    )
+
+    @api.depends(
+        "user_input_line_ids",
+        "user_input_line_ids.question_id.show_answer_in_survey_registry",
+        "user_input_line_ids.question_id.use_answer_as_title_in_survey_registry",
+        "user_input_line_ids.question_id.question_type",
+        "user_input_line_ids.value_char_box",
+    )
+    def _compute_title_in_survey_registry(self):
+        # Check which user input line contains the survey registry title and store it,
+        # to be shown in website and used in backend search
+        survey_user_input_line_obj = self.env["survey.user_input.line"]
+
+        for user_input in self:
+            title_user_input_lines = survey_user_input_line_obj.sudo().search(
+                [
+                    ("question_id.show_answer_in_survey_registry", "=", True),
+                    ("question_id.use_answer_as_title_in_survey_registry", "=", True),
+                    ("question_id.question_type", "=", "char_box"),
+                    ("user_input_id", "=", user_input.id),
+                ],
+                limit=1,
+            )
+
+            if title_user_input_lines:
+                user_input.title_in_survey_registry = title_user_input_lines[
+                    0
+                ].value_char_box
+            else:
+                user_input.title_in_survey_registry = "-"
 
     def _save_line_choice(self, question, old_answers, answers, comment):
         # Ota raakavastaus talteen ennen kuin super() muokkaa sitä

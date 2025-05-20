@@ -5,20 +5,13 @@
         <field name="model">survey.user_input</field>
         <field name="inherit_id" ref="survey.survey_user_input_view_form" />
         <field name="arch" type="xml">
-            <field name="survey_id" position="before">
-                <field name="show_in_registry" />
-            </field>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="survey_question_form_inherit_registry_visibility">
-        <field name="name">survey.question.form.inherit.registry.visibility</field>
-        <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey.survey_question_form" />
-        <field name="arch" type="xml">
-            <field name="comments_allowed" position="after">
-                <field name="save_as_registry_visibility" />
-            </field>
+            <notebook position="inside">
+                <page string="Survey Registry" name="page_survey_registry">
+                    <group string="Visibility" name="group_survey_registry_visibility">
+                        <field name="show_in_registry" />
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 

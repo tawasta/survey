@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
+    <!-- TODO customize home icon so that it points to /, not to /my/home -->
+    <!-- TODO fix search and dropdowns in search bar -->
+    <template
+        id="portal_breadcrumbs"
+        name="Survey registry breadcrumbs"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="35"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'survey_registry'"
+                t-attf-class="breadcrumb-item #{'active ' if not input else ''}"
+            >
+                <a
+                    t-if="input"
+                    t-attf-href="/surveys/registry?{{ keep_query() }}"
+                >Survey Registry</a>
+                <t t-else="">Survey Registry</t>
+            </li>
+            <li t-if="input" class="breadcrumb-item active">
+                <t t-esc="input.title_in_survey_registry" />
+            </li>
+        </xpath>
+    </template>
+
+
+
     <template id="survey_registry_page" name="Survey Registry Page">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
 
-            <section class="container my-4">
+            <section class="container">
                 <t t-call="portal.portal_searchbar">
                     <t t-set="title">
                         <h2 class="fw-bold mb-4">Survey Registry</h2>
@@ -26,31 +54,40 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Respondent</th>
+                                    <th>Title</th>
+                                    <th>Partner</th>
                                     <th>Date</th>
-                                    <th>Survey</th>
-                                    <th class="text-end">Actions</th>
+                                    <!-- <th>Survey</th> -->
+                                    <th />
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="inputs" t-as="input">
                                     <tr>
-                                        <td><t
-                                                t-out="input.partner_id.name or 'Anonymous'"
-                                            /></td>
+
+                                        <td>
+                                            <t t-out="input.title_in_survey_registry" />
+                                        </td>
+
+                                        <!-- TODO get partner name automatically to user.input record -->
+                                        <td><t t-out="input.partner_id.name or '-'" />
+                                        </td>
                                         <td>
                                             <span
                                                 t-field="input.create_date"
                                                 t-options="{'widget': 'date'}"
                                             />
                                         </td>
+                                        <!-- TODO maybe make configurable to show/hide
                                         <td><t t-out="input.survey_id.title" /></td>
+                                        -->
+
+
                                         <td class="text-end">
                                             <a
-                                                class="btn btn-outline-primary btn-sm"
                                                 t-attf-href="/surveys/registry/{{ input.id }}"
                                             >
-                                                <i class="fa fa-eye me-1" /> View
+                                                Details
                                             </a>
                                         </td>
                                     </tr>
@@ -75,60 +112,64 @@
         <t t-call="portal.portal_layout">
 
             <section class="container my-5">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="fw-bold">Survey Response Details</h2>
-                    <a href="/surveys/registry" class="btn btn-secondary">
-                        <i class="fa fa-arrow-left me-1" /> Back to list
-                    </a>
-                </div>
 
-                <div class="card shadow-lg rounded overflow-hidden">
+                <div class="card">
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <h5 class="text-muted">Respondent</h5>
-                                <p class="fs-5 fw-semibold">
-                                    <t t-out="input.partner_id.name or 'Anonymous'" />
-                                </p>
-                            </div>
-                            <div class="col-md-6 text-md-end">
-                                <h5 class="text-muted">Submission Date</h5>
-                                <p class="fs-5">
-                                    <span
-                                        t-field="input.create_date"
-                                        t-options="{'widget': 'date'}"
-                                    />
-                                </p>
-                            </div>
-                        </div>
 
-                        <hr class="my-4" />
 
                         <div class="mb-4">
-                            <h5 class="text-muted">Survey</h5>
-                            <p class="fs-5 fw-bold"><t
-                                    t-out="input.survey_id.title"
-                                /></p>
+                            <h3 class="text-muted"><t
+                                    t-out="input.title_in_survey_registry"
+                                /></h3>
                         </div>
 
-                        <div class="mb-4">
-                            <h5 class="text-muted">Answers</h5>
-                            <ul class="list-group list-group-flush">
-                                <t t-foreach="input.user_input_line_ids" t-as="line">
-                                    <li class="list-group-item px-0">
-                                        <strong><t
-                                                t-out="line.question_id.title"
-                                            /></strong><br />
-                                    </li>
+                        <!-- mobile friendly table, collapses on smaller screens -->
+                        <table
+                            class="table table-striped table-hover table-sm"
+                            style="table-layout: fixed; width: 100%;"
+                        >
+                            <tbody>
+                                <t
+                                    t-foreach="input.user_input_line_ids.filtered(lambda l: l.question_id.show_answer_in_survey_registry)"
+                                    t-as="user_input_line"
+                                >
+                                    <tr class="d-block d-md-table-row">
+
+                                        <td
+                                            class="fw-bold d-block d-md-table-cell w-100 w-md-50"
+                                        >
+                                            <span>
+                                                <t
+                                                    t-out="user_input_line.question_id.title"
+                                                />
+                                            </span>
+                                        </td>
+
+                                        <!-- Render answer according to question type. TODO: handle rest of types-->
+                                        <td
+                                            class="d-block d-md-table-cell w-100 w-md-50"
+                                        >
+                                            <t
+                                                t-if="user_input_line.answer_type == 'char_box'"
+                                                t-out="user_input_line.value_char_box"
+                                            />
+                                            <t
+                                                t-if="user_input_line.answer_type == 'numerical_box'"
+                                                t-out="user_input_line.value_numerical_box"
+                                            />
+                                            <t
+                                                t-if="user_input_line.answer_type == 'text_box'"
+                                                t-out="user_input_line.value_text_box"
+                                            />
+                                            <t
+                                                t-if="user_input_line.answer_type == 'suggestion'"
+                                                t-out="user_input_line.suggested_answer_id.value"
+                                            />
+                                        </td>
+                                    </tr>
                                 </t>
-                            </ul>
-                        </div>
-
-                        <div class="mt-5 d-flex justify-content-end">
-                            <a class="btn btn-outline-primary" href="/surveys/registry">
-                                <i class="fa fa-chevron-left me-1" /> Return to Registry
-                            </a>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>

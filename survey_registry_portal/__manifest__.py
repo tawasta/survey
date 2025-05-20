@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Registry Portal",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Marketing/Surveys",
     "summary": "Survey Registry Portal",
     "website": "https://github.com/tawasta/survey",
@@ -32,5 +32,6 @@
         "data/menu.xml",
         "views/templates.xml",
         "views/user_input.xml",
+        "views/survey_question.xml",
     ],
 }
