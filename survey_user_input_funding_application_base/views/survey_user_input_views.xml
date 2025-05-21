@@ -1,4 +1,78 @@
 <odoo>
+
+    <record id="survey_user_input_view_search" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.user_input.search.inherit.funding.application.base</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search" />
+        <field name="arch" type="xml">
+            <field name="email" position="before">
+                <field name="service_identifier" />
+                <field name="user_id" />
+            </field>
+
+            <filter name="group_by_email" position="before">
+                <filter
+                    string="Responsible"
+                    name="group_by_user_id"
+                    domain="[]"
+                    context="{'group_by': 'user_id'}"
+                />
+                <filter
+                    string="Funding Decision Date"
+                    name="group_by_funding_decision_date"
+                    domain="[]"
+                    context="{'group_by': 'funding_decision_date'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+
+    <record id="survey_user_input_view_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.user_input.tree.inherit.funding.application.base</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+
+            <field name="survey_id" position="before">
+                <field name="service_identifier" optional="show" />
+                <field name="user_id" optional="show" />
+                <field name="funding_decision_date" optional="show" />
+                <field
+                    name="funding_decision_amount"
+                    optional="show"
+                    widget="monetary"
+                    options="{'currency_field': 'funding_decision_currency_id'}"
+                />
+                <field name="funding_decision_currency_id" column_invisible="1" />
+                <field name="tax_id" optional="hide" />
+                <field
+                    name="funding_underspent_amount"
+                    widget="monetary"
+                    options="{'currency_field': 'funding_underspent_currency_id'}"
+                    optional="hide"
+                />
+                <field name="funding_underspent_currency_id" column_invisible="1" />
+                <field
+                    name="funding_overspent_amount"
+                    widget="monetary"
+                    options="{'currency_field': 'funding_overspent_currency_id'}"
+                    optional="hide"
+                />
+                <field name="funding_overspent_currency_id" column_invisible="1" />
+                <field name="funding_overspent_date" optional="hide" />
+
+                <field name="date_finished" optional="show" />
+                <field name="date_cancelled" optional="hide" />
+            </field>
+
+        </field>
+    </record>
+
     <record id="survey_user_input_view_form" model="ir.ui.view">
         <field
             name="name"
@@ -59,8 +133,6 @@
                             <field name="funding_overspent_date" />
                         </group>
                     </group>
-
-                    <!-- Completion -->
 
 
                 </page>
