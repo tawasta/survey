@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 16:29+0000\n"
-"PO-Revision-Date: 2025-05-18 16:29+0000\n"
+"POT-Creation-Date: 2025-05-21 13:09+0000\n"
+"PO-Revision-Date: 2025-05-21 13:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -59,6 +59,7 @@ msgstr "Rahoituspäätöksen perustiedot"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_date
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_search
 msgid "Funding Decision Date"
 msgstr "Rahoituspäätöksen päiväys"
 
@@ -89,6 +90,7 @@ msgstr "Henkilö, joka sisäisesti vastuussa tästä hakemuksesta"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__user_id
+#: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_search
 msgid "Responsible"
 msgstr "Hankevastaava"
 
@@ -105,7 +107,7 @@ msgstr "Käyttäjäsyöte kyselyssä"
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__tax_id
 msgid "Tax Rate on the Day of Funding Decision"
-msgstr "Verokanta rahoituspäätöspäivänä"
+msgstr "Verokanta"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_terms
