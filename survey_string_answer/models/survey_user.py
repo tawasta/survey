@@ -58,6 +58,9 @@ class SurveyUserInputLine(models.Model):
     )
     def _compute_string_answer(self):
         for line in self:
+            lang = "fi_FI"
+            ctx = dict(self._context, lang=lang)
+
             if line.answer_type == "char_box" and line.value_char_box:
                 line.string_answer = line.value_char_box
                 _logger.info(f"String answer set to: {line.string_answer} for char_box")
@@ -72,7 +75,9 @@ class SurveyUserInputLine(models.Model):
             if line.answer_type == "datetime" and line.value_datetime:
                 line.string_answer = str(format_datetime(self.env, line.value_datetime))
             if line.answer_type == "suggestion" and line.suggested_answer_id:
-                line.string_answer = str(line.suggested_answer_id.value)
+                #line.string_answer = str(line.suggested_answer_id.value)
+                value = line.suggested_answer_id.with_context(ctx).value
+                line.string_answer = str(value)
                 _logger.info(f"String answer set to: {line.string_answer} for suggestion")
 
     # 5. Constraints and onchanges
