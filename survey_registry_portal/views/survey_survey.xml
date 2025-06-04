@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_survey_survey_form_inherit_registry_fields" model="ir.ui.view">
+        <field name="name">survey.survey.form.inherit.registry.fields</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Survey Registry">
+
+                    <group string="Displayed Administrative Fields">
+                        <field name="survey_registry_field_line_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle" />
+                                <field name="title_on_website" />
+                                <field name="field_id" options="{'no_create': True}" />
+                                <field name="value_suffix_on_website" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
