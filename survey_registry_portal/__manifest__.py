@@ -21,7 +21,7 @@
     "name": "Survey Registry Portal",
     "version": "17.0.1.1.0",
     "category": "Marketing/Surveys",
-    "summary": "Survey Registry Portal",
+    "summary": "Show surveys' answers on website",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
@@ -30,8 +30,10 @@
     "depends": ["survey", "portal", "website"],
     "data": [
         "data/menu.xml",
+        "security/ir.model.access.csv",
         "views/templates.xml",
         "views/user_input.xml",
         "views/survey_question.xml",
+        "views/survey_survey.xml",
     ],
 }

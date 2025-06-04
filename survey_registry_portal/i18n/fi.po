@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-20 06:07+0000\n"
-"PO-Revision-Date: 2025-05-20 06:07+0000\n"
+"POT-Creation-Date: 2025-06-04 06:59+0000\n"
+"PO-Revision-Date: 2025-06-04 06:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,16 @@ msgid "Answer Controls Registry Visibility"
 msgstr "Vastaus asettaa hankerekisterinäkyvyyden"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__create_uid
+msgid "Created by"
+msgstr "Luonut"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__create_date
+msgid "Created on"
+msgstr "Luotu"
+
+#. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 msgid "Date"
 msgstr "Päiväys"
@@ -38,6 +48,21 @@ msgstr "Päiväys"
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 msgid "Details"
 msgstr "Lisätiedot"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__display_name
+msgid "Display Name"
+msgstr "Näyttönimi"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.view_survey_survey_form_inherit_registry_fields
+msgid "Displayed Administrative Fields"
+msgstr "Näytettävät hallinnolliset kentät"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__id
+msgid "ID"
+msgstr ""
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_question__save_as_registry_visibility
@@ -68,6 +93,16 @@ msgstr ""
 "hankerekisterissä otsikkotietona."
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_survey__survey_registry_field_line_ids
+msgid ""
+"If this survey's answers are shown in the Survey Registry, you can select "
+"what fields (in addition to the actual answers) gets shown there, e.g. the "
+"status of the answer."
+msgstr ""
+"Jos tämän kyselyn vastauksia näytetään hankerekisterissä, voit valita mitä lisäkenttiä (varsinaisten "
+"vastausten lisäksi) siellä näytetään, esimerkiksi vastauksen tila."
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__show_in_registry
 msgid ""
 "Indicates whether this survey response can be shown in the public registry."
@@ -78,6 +113,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
 msgid "Individual answer visibility"
 msgstr "Yksittäisen vastauksen näkyvyys"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_detail
+msgid "Information provided by the applicant"
+msgstr "Hakijan toimittamat tiedot"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__write_date
+msgid "Last Updated on"
+msgstr ""
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -123,6 +173,11 @@ msgid "Search in All"
 msgstr "Hae kaikista"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__sequence
+msgid "Sequence"
+msgstr "Järjestys"
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__show_answer_in_survey_registry
 msgid "Show Answer In Survey Registry"
 msgstr "Näytä vastaus hankerekisterissä"
@@ -130,12 +185,14 @@ msgstr "Näytä vastaus hankerekisterissä"
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__show_in_registry
 msgid "Show Answers in Survey Registry"
-msgstr "Näytä vastaukset hankerekisterissä"
+msgstr "Näytä hankerekisterissä"
 
 #. module: survey_registry_portal
 #. odoo-python
 #: code:addons/survey_registry_portal/controllers/main.py:0
 #: code:addons/survey_registry_portal/controllers/main.py:0
+#: model:ir.model,name:survey_registry_portal.model_survey_survey
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__survey_id
 #, python-format
 msgid "Survey"
 msgstr "Kysely"
@@ -151,8 +208,14 @@ msgstr "Kyselyn kysymykset"
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_user_input_view_form
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.view_survey_survey_form_inherit_registry_fields
 msgid "Survey Registry"
 msgstr "Hankerekisteri"
+
+#. module: survey_registry_portal
+#: model:ir.model,name:survey_registry_portal.model_survey_registry_field_line
+msgid "Survey Registry Field Line"
+msgstr ""
 
 #. module: survey_registry_portal
 #: model:ir.model,name:survey_registry_portal.model_survey_user_input
@@ -170,6 +233,11 @@ msgid "Title In Survey Registry"
 msgstr "Otsikko hankerekisterissä"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__title_on_website
+msgid "Title On Website"
+msgstr "Kentän otsikko verkkosivulla"
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__title_in_survey_registry
 msgid ""
 "Title in survey registry, computed based on survey question configuration"
@@ -181,6 +249,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
 msgid "Use Answer As Title In Survey Registry"
 msgstr "Käytä vastausta otsikkona hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_survey__survey_registry_field_line_ids
+msgid "User Input Fields to Show in Survey Registry"
+msgstr "Osallistumistietueen kentät, jotka näytetään hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__field_id
+msgid "User Input Record's Field"
+msgstr "Osallistumistietueen kenttä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__value_suffix_on_website
+msgid "Value Suffix On Website"
+msgstr "Pääte verkkosivulla"
 
 #. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_user_input_view_form

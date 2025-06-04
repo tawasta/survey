@@ -24,12 +24,16 @@ Survey Registry Portal
 - If a user answers **yes/true/1/kyllä** to such a question, then:
   - `survey.user_input.show_in_registry = True`
 - Only those marked `True` are visible in registry
+* Also any backend fields of Survey User Input fields can be shown in frontend,
+  if you have some info that is e.g. added to custom fields by the administrator after they 
+  have checked the survey submission
 
 Configuration
 =============
-
-- No additional configuration is required  
+  
 - Ensure `survey.user_input` records have a `partner_id` assigned for visibility
+- If you wish to show Survey User Input records' backend custom fields in the portal,
+  select which ones to show in the "Survey Registry" tab of the survey
 
 Usage
 =====
@@ -49,6 +53,7 @@ Contributors
 ------------
 
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------
