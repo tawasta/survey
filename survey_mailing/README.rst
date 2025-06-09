@@ -5,38 +5,28 @@
 ==============
 Survey Mailing
 ==============
-This module allows sending emails to survey participants (`survey.user_input`) using a simple wizard interface.
-It posts the message into the chatter and sends the message via email to each participant.
 
-Features
-========
-
-- Compose a message with subject, HTML body, and attachments
-- Automatically fetch default values from a template
-- Sends the message as email to each survey participant (`res.partner`)
-- Posts the message into the chatter (mail.message) of each survey answer
-- Uses `mail.template` to control layout and content
-- Works with multi-record selection in `survey.user_input`
-
-
+* Send emails to survey user inputs' partners using core's mail.compose.message wizard
+* Supports using variables in the email templates, i.e. you can send message
+  to multiple participants each with message showing fields of their own
+  participation record.
 
 Configuration
 =============
-No special configuration required.  
-Optional: Customize the template `survey_mailing.survey_mailing_template`.
+* Optional: Customize the empty template `survey_mailing.survey_mailing_template`.
 
 
 Usage
 =====
-1. Go to **Survey > Answers**
-2. Select one or multiple survey answers
-3. From the action menu, choose **Send message to user input**
-4. Fill in subject, body, attachments, and click **Send**
-5. Message is sent by email and saved to chatter
+* Go to Survey's Participations list or form view and click Send E-mail
+* Select template and send
 
 Known issues / Roadmap
 ======================
-\-
+* Note: refactored in 17.0 to call the core email wizard instead of setting up a 
+  custom model as was in 14.0. This enables the embedding of user input based
+  variables into the templates. Some changes to modules depending on this module
+  may still be needed, especially if you need to add additional email recipients.
 
 Credits
 =======
@@ -44,8 +34,10 @@ Credits
 Contributors
 ------------
 
-* Miika Nissi <miika.nissi@tawasta.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Miika Nissi <miika.nissi@tawasta.fi>
+
 
 Maintainer
 ----------
