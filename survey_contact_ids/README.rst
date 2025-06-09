@@ -26,7 +26,8 @@ Usage
 - Supports up to **9 distinct contacts** per answer, via `survey_contact_number`.
 Known issues / Roadmap
 ======================
-\-
+* survey.mailing.wizard does not exist anymore, core's mail.compose.message is used instead. This module still needs
+  modifications to call the core wizard.
 
 Credits
 =======
@@ -36,6 +37,7 @@ Contributors
 
 * Miika Nissi <miika.nissi@tawasta.fi>
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------
