@@ -21,16 +21,13 @@
     "name": "Survey Mailing",
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Send emails to survey user partners via chatter",
+    "summary": "Send emails to survey user partners using core's "
+    "mail.compose.message wizard",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": [
-        "data/mail_template_data.xml",
-        "wizard/survey_mailing.xml",
-        "security/ir.model.access.csv",
-    ],
+    "data": ["data/mail_template_data.xml", "views/survey_user_input.xml"],
 }

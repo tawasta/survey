@@ -47,10 +47,10 @@ class SurveyMailingWizardContacts(models.TransientModel):
     # 6. CRUD methods
 
     # 7. Action methods
-    def _get_email_values(self, recipient):
-        mail_values = super()._get_email_values(recipient)
-        emails = {r.email for r in recipient.contact_ids if r.email}
-        mail_values["email_to"] = ",".join(emails)
-        return mail_values
+    # def _get_email_values(self, recipient):
+    #     mail_values = super()._get_email_values(recipient)
+    #     emails = {r.email for r in recipient.contact_ids if r.email}
+    #     mail_values["email_to"] = ",".join(emails)
+    #     return mail_values
 
     # 8. Business methods
