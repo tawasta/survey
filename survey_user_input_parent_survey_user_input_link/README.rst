@@ -7,11 +7,12 @@ Survey Participation: Child-Parent Participation Link
 =====================================================
 
 * Enables forming relations between child and parent survey.user_input objects
+  as well as survey objects.
 * Intended for situations where you e.g. programmatically create follow-up 
   surveys, and you want to know which origin participation the follow-up participation
   is related to.
 * The module does nothing else on its own and should be used as a dependency
-  for other functional modules that make use of the participation relationship.
+  for other functional modules that make use of the parent/child relationships.
 
 Configuration
 =============
@@ -19,7 +20,7 @@ Configuration
 
 Usage
 =====
-* Survey participation form contains the new fields in a new notebook tab
+* Survey and survey participation forms contain the new fields in a new notebook tab
 
 Known issues / Roadmap
 ======================
