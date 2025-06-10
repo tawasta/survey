@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Contacts",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Add multiple contacts to view and receive mails from survey answer",
     "website": "https://github.com/tawasta/survey",
