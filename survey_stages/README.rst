@@ -31,7 +31,8 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+* Still in alpha state after 17.0 migration. Check at least _save_lines()
+  and its super calls
 
 Credits
 =======
@@ -40,6 +41,8 @@ Contributors
 ------------
 
 * Miika Nissi <miika.nissi@tawasta.fi>
+* Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------

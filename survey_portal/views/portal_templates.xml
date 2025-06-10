@@ -92,7 +92,7 @@
                                 <a
                                     id="button-review-answer"
                                     t-att-href="'/survey/print/%s?answer_token=%s&amp;review=True' % (answer.survey_id.access_token, answer.access_token)"
-                                    class="btn btn-link float-right no-decoration"
+                                    class="btn btn-primary btn-sm m-2 d-block"
                                 >Review Answers</a>
                             </td>
                          </tr>

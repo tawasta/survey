@@ -71,10 +71,11 @@
                         aria-label="Upload Attachments"
                     >Upload Attachments</button>
                 </form> -->
+                <br />
                 <button
                     type="button"
                     id="modal_upload_attachment"
-                    class="btn btn-secondary btn-block"
+                    class="btn btn-secondary btn-sm m-2 d-block"
                     t-att-answer-id="answer.id"
                     t-att-data-token="answer.access_token"
                     t-att-data-survey="answer.survey_id.access_token"

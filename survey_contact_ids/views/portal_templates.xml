@@ -26,16 +26,16 @@
             </td>
         </xpath>
         <xpath expr="//a[@id='button-review-answer']" position="before">
-            <button
+            <a
                 type="button"
                 id="modal_invite_contacts"
-                class="btn btn-primary btn-sm"
+                class="btn btn-primary btn-sm m-2 d-block"
                 t-att-answer-id="answer.id"
                 t-att-data-token="answer.access_token"
                 t-att-data-survey="answer.survey_id.access_token"
             >
                     <i class="fa fa-address-book" /> Add Contacts
-                </button>
+                </a>
         </xpath>
     </template>
     <template id="invite_contacts_modal" name="Invite Contacts Modal">
