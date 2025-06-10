@@ -8,7 +8,6 @@
             <field name="validation_email" position="before">
                 <field
                     name="contact_number"
-                    nolabel="1"
                     invisible="not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email"
                     required="save_as_contact_name or save_as_contact_phone or save_as_contact_email"
                 />
