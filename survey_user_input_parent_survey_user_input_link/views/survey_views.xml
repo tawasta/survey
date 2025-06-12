@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_survey_survey_form_inherit_parent_child" model="ir.ui.view">
+        <field name="name">survey.survey.form.inherit.parent.child</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Survey Follow-up Information">
+                    <group>
+                        <field name="parent_survey_id" options="{ 'no_create': 1}" />
+                    </group>
+                    <group>
+                        <field
+                            name="child_survey_ids"
+                            options="{ 'no_create': 1}"
+                            widget="many2many_tags"
+                        />
+                    </group>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
