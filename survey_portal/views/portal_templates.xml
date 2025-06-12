@@ -35,7 +35,12 @@
     >
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
-                <t t-set="title">Survey Answers</t>
+                <t t-set="title" name="survey-answers-title">Survey Answers</t>
+                <t t-set="icon" t-value="'/project/static/src/img/folder.svg'" />
+                <t
+                    t-set="text"
+                    name="survey-answers-text"
+                >View your survey submissions</t>
                 <t t-set="url" t-value="'/my/surveys'" />
                 <t t-set="placeholder_count" t-value="'survey_answer_count'" />
             </t>
@@ -53,16 +58,16 @@
             <t t-if="survey_answers" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
-                        <th id="th-reference">Reference</th>
-                        <th id="th-survey">Survey</th>
-                        <th id="th-create-date">Create Date</th>
-                        <th id="td-buttons" />
+                        <th class="th-reference">Reference</th>
+                        <th class="th-survey">Survey</th>
+                        <th class="th-create-date">Create Date</th>
+                        <th class="th-buttons" />
                     </tr>
                 </thead>
                 <tbody>
                     <t t-foreach="survey_answers" t-as="answer">
                         <tr>
-                            <td id="td-reference">
+                            <td class="td-reference">
                                 <a
                                     t-att-href="'/my/surveys/%d' % answer.id"
                                     t-att-title="answer.ref"
@@ -73,14 +78,14 @@
                                     />
                                 </a>
                             </td>
-                            <td id="td-survey">
+                            <td class="td-survey">
                                 <span
                                     t-field="answer.survey_id.title"
                                     data-toggle="tooltip"
                                     t-att-title="answer.survey_id.title"
                                 />
                             </td>
-                            <td id="td-create-date">
+                            <td class="td-create-date">
                                 <span
                                     t-field="answer.create_date"
                                     data-toggle="tooltip"
@@ -88,7 +93,7 @@
                                     t-options="{'widget': 'datetime'}"
                                 />
                             </td>
-                            <td id="td-buttons">
+                            <td class="td-buttons">
                                 <a
                                     id="button-review-answer"
                                     t-att-href="'/survey/print/%s?answer_token=%s&amp;review=True' % (answer.survey_id.access_token, answer.access_token)"

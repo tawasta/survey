@@ -5,10 +5,10 @@
         inherit_id="survey_portal.portal_my_survey_answers"
         name="My Survey Answers"
     >
-        <xpath expr="//th[@id='th-create-date']" position="after">
+        <xpath expr="//th[hasclass('th-create-date')]" position="after">
             <th id="th-contacts">Contacts</th>
         </xpath>
-        <xpath expr="//td[@id='td-create-date']" position="after">
+        <xpath expr="//td[hasclass('td-create-date')]" position="after">
             <td id="td-contacts">
                 <t t-set="contact_count" t-value="len(answer.contact_ids)" />
                 <t t-set="current_count" t-value="0" />
