@@ -23,8 +23,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -94,44 +93,47 @@ class SurveyUserInput(models.Model):
         """Always display all stages"""
         return stages.search([], order=order)
 
-    def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
-        """Override to allow saving if the answer is editable (draft mode)."""
-        old_answers = self.env["survey.user_input.line"].search(
-            [("user_input_id", "=", self.id), ("question_id", "=", question.id)]
-        )
+    # TODO: check is this function needed? Currently does not call super everywhere,
+    # so e.g. contact_ids creation gets skipped in survey_contact_ids
+    #
+    # def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
+    #     """Override to allow saving if the answer is editable (draft mode)."""
+    #     old_answers = self.env["survey.user_input.line"].search(
+    #         [("user_input_id", "=", self.id), ("question_id", "=", question.id)]
+    #     )
 
-        if old_answers and not overwrite_existing and not self.is_editable:
-            raise UserError(_("This answer cannot be overwritten."))
+    #     if old_answers and not overwrite_existing and not self.is_editable:
+    #         raise UserError(_("This answer cannot be overwritten."))
 
-        if question.question_type in [
-            "char_box",
-            "text_box",
-            "numerical_box",
-            "date",
-            "datetime",
-        ]:
-            self._save_line_simple_answer(question, old_answers, answer)
-            if question.save_as_email and answer:
-                self.write({"email": answer})
-            if question.save_as_nickname and answer:
-                self.write({"nickname": answer})
-        elif question.question_type in ["simple_choice", "multiple_choice"]:
-            self._save_line_choice(question, old_answers, answer, comment)
-        elif question.question_type == "matrix":
-            self._save_line_matrix(question, old_answers, answer, comment)
+    #     if question.question_type in [
+    #         "char_box",
+    #         "text_box",
+    #         "numerical_box",
+    #         "date",
+    #         "datetime",
+    #     ]:
+    #         self._save_line_simple_answer(question, old_answers, answer)
+    #         if question.save_as_email and answer:
+    #             self.write({"email": answer})
+    #         if question.save_as_nickname and answer:
+    #             self.write({"nickname": answer})
+    #     elif question.question_type in ["simple_choice", "multiple_choice"]:
+    #         self._save_line_choice(question, old_answers, answer, comment)
+    #     elif question.question_type == "matrix":
+    #         self._save_line_matrix(question, old_answers, answer, comment)
 
-        else:
-            # Tätä EI ollut aiemmin → nyt testataan, jos joku muu moduuli hoitaa sen
-            try:
-                return super()._save_lines(
-                    question, answer, comment, overwrite_existing
-                )
-            except AttributeError as err:
-                raise AttributeError(
-                    question.question_type
-                    + ": This type of question has no saving function"
-                ) from err
+    #     else:
+    #         # Tätä EI ollut aiemmin → nyt testataan, jos joku muu moduuli hoitaa sen
+    #         try:
+    #             return super()._save_lines(
+    #                 question, answer, comment, overwrite_existing
+    #             )
+    #         except AttributeError as err:
+    #             raise AttributeError(
+    #                 question.question_type
+    #                 + ": This type of question has no saving function"
+    #             ) from err
 
-        return True
+    #     return True
 
     # 8. Business methods

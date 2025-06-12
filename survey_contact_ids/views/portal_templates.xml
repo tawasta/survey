@@ -5,10 +5,10 @@
         inherit_id="survey_portal.portal_my_survey_answers"
         name="My Survey Answers"
     >
-        <xpath expr="//th[@id='th-create-date']" position="after">
+        <xpath expr="//th[hasclass('th-create-date')]" position="after">
             <th id="th-contacts">Contacts</th>
         </xpath>
-        <xpath expr="//td[@id='td-create-date']" position="after">
+        <xpath expr="//td[hasclass('td-create-date')]" position="after">
             <td id="td-contacts">
                 <t t-set="contact_count" t-value="len(answer.contact_ids)" />
                 <t t-set="current_count" t-value="0" />
@@ -26,16 +26,16 @@
             </td>
         </xpath>
         <xpath expr="//a[@id='button-review-answer']" position="before">
-            <button
+            <a
                 type="button"
                 id="modal_invite_contacts"
-                class="btn btn-primary btn-sm"
+                class="btn btn-primary btn-sm m-2 d-block"
                 t-att-answer-id="answer.id"
                 t-att-data-token="answer.access_token"
                 t-att-data-survey="answer.survey_id.access_token"
             >
                     <i class="fa fa-address-book" /> Add Contacts
-                </button>
+                </a>
         </xpath>
     </template>
     <template id="invite_contacts_modal" name="Invite Contacts Modal">

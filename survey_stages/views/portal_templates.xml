@@ -10,18 +10,18 @@
         </xpath>
         <xpath expr="//td[@id='td-contacts']" position="after">
             <td id="td-stage">
-                <t t-set="answer_state">badge-default</t>
+                <t t-set="answer_state">bg-default</t>
                 <t t-if="answer.stage_id.is_editable">
-                    <t t-set="answer_state">badge-warning</t>
+                    <t t-set="answer_state">bg-warning</t>
                 </t>
                 <t t-if="answer.stage_id.is_accepted">
-                    <t t-set="answer_state">badge-success</t>
+                    <t t-set="answer_state">bg-success</t>
                 </t>
                 <t t-if="answer.stage_id.is_cancel">
-                    <t t-set="answer_state">badge-danger</t>
+                    <t t-set="answer_state">bg-danger</t>
                 </t>
                 <t t-if="answer.stage_id.is_sent">
-                    <t t-set="answer_state">badge-info</t>
+                    <t t-set="answer_state">bg-info</t>
                 </t>
                  <span
                     t-field="answer.stage_id.name"
@@ -39,7 +39,7 @@
                 <a
                     id="button-edit-answers"
                     t-att-href="'/survey/edit/%s/%s' % (answer.survey_id.access_token, answer.access_token)"
-                    class="btn btn-link float-right no-decoration"
+                    class="btn btn-primary btn-sm m-2 d-block"
                 >Edit Answers</a>
             </t>
         </xpath>

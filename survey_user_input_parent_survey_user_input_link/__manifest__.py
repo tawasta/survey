@@ -28,5 +28,5 @@
     "application": False,
     "installable": True,
     "depends": ["survey"],
-    "data": ["views/survey_user_input_views.xml"],
+    "data": ["views/survey_user_input_views.xml", "views/survey_views.xml"],
 }
