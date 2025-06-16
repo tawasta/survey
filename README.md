@@ -26,6 +26,8 @@ addon | version | summary
 [survey_hide_retry](survey_hide_retry/) | 14.0.1.0.0 | Ability to hide "Retry" button after Survey completion
 [survey_invite_sender_email_from_email_template](survey_invite_sender_email_from_email_template/) | 14.0.1.0.0 | Enable configuring sender e-mail address in e-mail template
 [survey_mailing](survey_mailing/) | 14.0.1.1.1 | Send emails to survey user partners via chatter
+[survey_matrix_responsive](survey_matrix_responsive/) | 14.0.1.0.0 | Order Surveys by sequence
+[survey_multi_company](survey_multi_company/) | 14.0.1.0.0 | Survey multi company
 [survey_portal](survey_portal/) | 14.0.1.1.2 | Ability to view survey answers in portal
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.3 | Adds a new question type 'attachment' to survey
@@ -44,10 +46,12 @@ addon | version | summary
 [survey_string_answer](survey_string_answer/) | 14.0.1.0.0 | Save each answer value as string
 [survey_user_input_notification](survey_user_input_notification/) | 14.0.1.0.0 | Get notifications when new answers for survey array
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 14.0.1.1.0 | Give survey answers a unique reference with sequence
+[survey_user_input_report_combine_surveys](survey_user_input_report_combine_surveys/) | 14.0.1.0.0 | Print xlsx report from combined survey user inputs
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 14.0.1.1.0 | Print an xlsx report from survey user inputs
 [survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 14.0.1.2.0 | Show user input report scores in XLSX report
 [survey_user_input_show_scoring_total](survey_user_input_show_scoring_total/) | 14.0.1.0.0 | Shows the numeric total score field that is by default hidden
 [survey_validity_period](survey_validity_period/) | 14.0.1.0.1 | Survey: period of qualification
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 14.0.1.0.0 | Ability to align survey choice buttons vertically
+[suvey_notifications](suvey_notifications/) | 14.0.1.0.0 | Survey File Upload Notifications
 
 [//]: # (end addons)
