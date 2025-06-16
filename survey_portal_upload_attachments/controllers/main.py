@@ -48,8 +48,8 @@ class SurveyAttachments(Survey):
         return True
 
     def _save_line_attachment(self, answer_sudo, file_input):
-        question_id = request.env["survey.question"].sudo().search(
-            [("id", "=", file_input[0])]
+        question_id = (
+            request.env["survey.question"].sudo().search([("id", "=", file_input[0])])
         )
         file = file_input[1]
         file_data = file.read()
@@ -76,12 +76,16 @@ class SurveyAttachments(Survey):
                 ],
             }
             # _logger.debug(vals)
-            answer_line = request.env["survey.user_input.line"].sudo().search(
-                [
-                    ("user_input_id", "=", answer_sudo.id),
-                    ("question_id", "=", question_id.id),
-                ],
-                limit=1,
+            answer_line = (
+                request.env["survey.user_input.line"]
+                .sudo()
+                .search(
+                    [
+                        ("user_input_id", "=", answer_sudo.id),
+                        ("question_id", "=", question_id.id),
+                    ],
+                    limit=1,
+                )
             )
             answer_line.write(vals)
             _logger.info(

@@ -1,44 +1,45 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
 class SurveyQuestion(models.Model):
-    _inherit = 'survey.question'
+    _inherit = "survey.question"
 
     company_id = fields.Many2one(
-        'res.company',
-        related='survey_id.company_id',
+        "res.company",
+        related="survey_id.company_id",
         store=True,
         readonly=True,
     )
 
 
 class SurveyUserInput(models.Model):
-    _inherit = 'survey.user_input'
+    _inherit = "survey.user_input"
 
     company_id = fields.Many2one(
-        'res.company',
-        related='survey_id.company_id',
+        "res.company",
+        related="survey_id.company_id",
         store=True,
         readonly=True,
     )
 
+
 class SurveyQuestionAnswer(models.Model):
-    _inherit = 'survey.question.answer'
+    _inherit = "survey.question.answer"
 
     company_id = fields.Many2one(
-        'res.company',
-        related='question_id.company_id',
+        "res.company",
+        related="question_id.company_id",
         store=True,
         readonly=True,
     )
 
 
 class SurveyUserInputLine(models.Model):
-    _inherit = 'survey.user_input.line'
+    _inherit = "survey.user_input.line"
 
     company_id = fields.Many2one(
-        'res.company',
-        related='user_input_id.survey_id.company_id',
+        "res.company",
+        related="user_input_id.survey_id.company_id",
         store=True,
         readonly=True,
     )
