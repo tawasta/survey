@@ -29,6 +29,8 @@
     "installable": True,
     "depends": ["survey_mailing", "survey_user_input_reference_sequence"],
     "data": [
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
         "views/portal_templates.xml",
         "views/survey_templates_management.xml",
         "views/survey_templates_print.xml",
