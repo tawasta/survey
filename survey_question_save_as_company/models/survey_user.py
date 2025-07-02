@@ -142,7 +142,7 @@ class SurveyUserInput(models.Model):
                 }
             )
 
-    def _save_lines(self, question, answer, comment=None, overwrite_existing=False):
+    def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
         overwritten (or deleted for 'choice' questions) (in order to maintain
