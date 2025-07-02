@@ -54,9 +54,9 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Partner</th>
-                                    <th>Date</th>
+                                    <th class="th-title">Title</th>
+                                    <th class="th-partner">Partner</th>
+                                    <th class="th-date">Date</th>
                                     <!-- <th>Survey</th> -->
                                     <th />
                                 </tr>
@@ -65,14 +65,16 @@
                                 <t t-foreach="inputs" t-as="input">
                                     <tr>
 
-                                        <td>
+                                        <td class="td-title">
                                             <t t-out="input.title_in_survey_registry" />
                                         </td>
 
                                         <!-- TODO get partner name automatically to user.input record -->
-                                        <td><t t-out="input.partner_id.name or '-'" />
+                                        <td class="td-partner"><t
+                                                t-out="input.partner_id.name or '-'"
+                                            />
                                         </td>
-                                        <td>
+                                        <td class="td-date">
                                             <span
                                                 t-field="input.create_date"
                                                 t-options="{'widget': 'date'}"

@@ -73,7 +73,7 @@ class SurveyUserInput(models.Model):
         :returns: res.partner: Newly created partner
         """
         contact = self.env["res.partner"].sudo().create(vals_list)
-        self.write({"contact_ids": [(4, contact.id, 0)]})
+        self.sudo().write({"contact_ids": [(4, contact.id, 0)]})
         _logger.debug("Created a new contact %s." % contact)
         return contact
 
@@ -85,7 +85,7 @@ class SurveyUserInput(models.Model):
         )
         if contacts:
             for contact in contacts:
-                contact.write({field: answer})
+                contact.sudo().write({field: answer})
                 _logger.debug(
                     "Wrote new partner %s %s for contact %s." % (field, answer, contact)  # noqa: E501, UP031
                 )
@@ -94,12 +94,12 @@ class SurveyUserInput(models.Model):
                 {
                     field: answer,
                     "survey_contact_number": question.contact_number,
-                    "type": "invoice",
+                    "type": "contact",
                     "company_type": "person",
                 }
             )
 
-    def _save_lines(self, question, answer, comment=None, overwrite_existing=False):
+    def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         """Save answers to questions, depending on question type
         If an answer already exists for question and user_input_id, it will be
         overwritten (or deleted for 'choice' questions) (in order to maintain
@@ -124,6 +124,7 @@ class SurveyUserInput(models.Model):
             and answer
         ):
             self._save_contact_field(question, answer, "email")
+
         return res
 
     # 8. Business methods

@@ -10,7 +10,7 @@ from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 class SurveyRegistryPortal(CustomerPortal):
     def _get_survey_registry_domain(self):
-        return [("state", "=", "done"), ("show_in_registry", "=", True)]
+        return [("show_in_registry", "=", True)]
 
     def _get_survey_registry_sortings(self):
         return {
@@ -58,11 +58,11 @@ class SurveyRegistryPortal(CustomerPortal):
             url_args={"search": search, "search_in": search_in, "sortby": sortby},
             total=total,
             page=page,
-            step=10,  # Tässä asetetaan sivutuksen arvoksi kiinteästi 10
+            step=30,  # Tässä asetetaan sivutuksen arvoksi kiinteästi 30
         )
 
         user_inputs = SurveyInput.search(
-            domain, order=order, limit=10, offset=pager["offset"]
+            domain, order=order, limit=30, offset=pager["offset"]
         )
 
         values.update(
@@ -99,7 +99,7 @@ class SurveyRegistryPortal(CustomerPortal):
     )
     def portal_survey_registry_detail(self, input_id, **kw):
         survey_input = request.env["survey.user_input"].sudo().browse(input_id)
-        if not survey_input.exists() or survey_input.state != "done":
+        if not survey_input.exists() or not survey_input.show_in_registry:
             return request.render("website.404")
         return request.render(
             "survey_registry_portal.survey_registry_detail",
