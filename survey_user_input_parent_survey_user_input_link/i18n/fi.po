@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-10 12:29+0000\n"
-"PO-Revision-Date: 2025-06-10 12:29+0000\n"
+"POT-Creation-Date: 2025-07-02 09:52+0000\n"
+"PO-Revision-Date: 2025-07-02 09:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: survey_user_input_parent_survey_user_input_link
+#: model_terms:ir.ui.view,arch_db:survey_user_input_parent_survey_user_input_link.survey_user_input_view_form
+msgid "Answer"
+msgstr "Vastaus"
 
 #. module: survey_user_input_parent_survey_user_input_link
 #: model:ir.model.fields,field_description:survey_user_input_parent_survey_user_input_link.field_survey_user_input__child_survey_user_input_ids
@@ -26,9 +31,14 @@ msgid "Follow-Up Surveys"
 msgstr "Jatkokyselyt"
 
 #. module: survey_user_input_parent_survey_user_input_link
-#: model_terms:ir.ui.view,arch_db:survey_user_input_parent_survey_user_input_link.view_survey_survey_form_inherit_parent_child
-msgid "Survey Follow-up Information"
-msgstr "Alkuperäisen ja jatkokyselyiden tiedot"
+#: model_terms:ir.ui.view,arch_db:survey_user_input_parent_survey_user_input_link.survey_user_input_view_form
+msgid "Follow-up Answers"
+msgstr "Jatkokyselyn vastaukset"
+
+#. module: survey_user_input_parent_survey_user_input_link
+#: model:ir.model.fields,field_description:survey_user_input_parent_survey_user_input_link.field_survey_user_input__child_survey_user_input_line_ids
+msgid "Follow-up's Survey Response Lines"
+msgstr "Jatkokyselyn vastausrivit"
 
 #. module: survey_user_input_parent_survey_user_input_link
 #: model:ir.model.fields,field_description:survey_user_input_parent_survey_user_input_link.field_survey_survey__parent_survey_id
@@ -46,9 +56,19 @@ msgid "Participation Follow-up Information"
 msgstr "Alkuperäisen ja jatkokyselyiden tiedot"
 
 #. module: survey_user_input_parent_survey_user_input_link
+#: model_terms:ir.ui.view,arch_db:survey_user_input_parent_survey_user_input_link.survey_user_input_view_form
+msgid "Score"
+msgstr "Pistemäärä"
+
+#. module: survey_user_input_parent_survey_user_input_link
 #: model:ir.model,name:survey_user_input_parent_survey_user_input_link.model_survey_survey
 msgid "Survey"
 msgstr "Kysely"
+
+#. module: survey_user_input_parent_survey_user_input_link
+#: model_terms:ir.ui.view,arch_db:survey_user_input_parent_survey_user_input_link.view_survey_survey_form_inherit_parent_child
+msgid "Survey Follow-up Information"
+msgstr "Alkuperäisen ja jatkokyselyiden tiedot"
 
 #. module: survey_user_input_parent_survey_user_input_link
 #: model:ir.model,name:survey_user_input_parent_survey_user_input_link.model_survey_user_input
