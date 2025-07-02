@@ -11,6 +11,8 @@ Survey Participation: Child-Parent Participation Link
 * Intended for situations where you e.g. programmatically create follow-up 
   surveys, and you want to know which origin participation the follow-up participation
   is related to.
+* If a child survey.user_input record exists, its answers are also shown on the parent
+  record's Answers notebook tab.
 * The module does nothing else on its own and should be used as a dependency
   for other functional modules that make use of the parent/child relationships.
 
@@ -24,7 +26,8 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+* Consider making it configurable whether to show the child survey.user_input record's
+  answers on the parent form or not.
 
 Credits
 =======

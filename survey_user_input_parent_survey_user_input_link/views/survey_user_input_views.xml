@@ -24,7 +24,34 @@
                         </field>
                     </group>
                 </page>
+
             </xpath>
+                <field name="user_input_line_ids" position="after">
+                    <separator
+                    string="Follow-up Answers"
+                    name="separator_followup_answers"
+                    invisible="not child_survey_user_input_ids"
+                />
+                    <field
+                    name="child_survey_user_input_line_ids"
+                    mode="tree"
+                    readonly="True"
+                    no_label="1"
+                    invisible="not child_survey_user_input_ids"
+                >
+                        <tree child_survey_user_input_line_ids-muted="skipped == True">
+                            <field name="question_sequence" column_invisible="True" />
+                            <field name="create_date" optional="hidden" />
+                            <field name="page_id" optional="hidden" />
+                            <field name="question_id" />
+                            <field name="answer_type" optional="hidden" />
+                            <field name="skipped" hide="1" />
+                            <field name="display_name" string="Answer" />
+                            <field name="answer_is_correct" />
+                            <field name="answer_score" sum="Score" />
+                        </tree>
+                    </field>
+                </field>
         </field>
     </record>
 </odoo>
