@@ -5,10 +5,13 @@
         inherit_id="survey.survey_fill_form_start"
         priority="100"
     >
-        <xpath expr="//button[@class='btn btn-primary btn-lg disabled']" position="replace">
+        <xpath
+            expr="//button[@class='btn btn-primary btn-lg disabled']"
+            position="replace"
+        >
             <button type="submit" value="start" class="btn btn-primary btn-lg disabled">
                 <t t-if="survey.answer_button_text">
-                    <t t-esc="survey.answer_button_text"/>
+                    <t t-esc="survey.answer_button_text" />
                 </t>
                 <t t-else="">
                     <t t-if="survey.certification">
