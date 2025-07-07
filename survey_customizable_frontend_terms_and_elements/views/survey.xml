@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="survey_form_users" model="ir.ui.view">
+        <field name="name">survey.survey.form.text</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Asnwer settings" name="answer_settings">
+                    <group>
+                        <field name="answer_button_text" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
