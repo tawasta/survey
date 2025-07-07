@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_customizable_frontend_terms_and_elements
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240711\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-07 08:41+0000\n"
+"PO-Revision-Date: 2025-07-07 08:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:survey_customizable_frontend_terms_and_elements.field_survey_survey__answer_button_text
+msgid "Answer Button Text"
+msgstr "Aloita painikkeen teksti"
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:survey_customizable_frontend_terms_and_elements.survey_form_users
+msgid "Asnwer Button Settings"
+msgstr "Aloita painikkeen asetukset"
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:survey_customizable_frontend_terms_and_elements.field_survey_survey__answer_button_text
+msgid ""
+"Enter a custom label for the 'Start Survey' or 'Start Certification' button."
+" Leave empty to use the default text."
+msgstr ""
+"Anna mukautettu teksti 'Aloita kysely' -painikkeelle."
+" Jätä tyhjäksi käyttääksesi oletustekstiä."
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:survey_customizable_frontend_terms_and_elements.survey_fill_form_start
+msgid "Start Certification"
+msgstr "Aloita sertifikaatti"
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:survey_customizable_frontend_terms_and_elements.survey_fill_form_start
+msgid "Start Survey"
+msgstr "Aloita kysely"
+
+#. module: survey_customizable_frontend_terms_and_elements
+#: model:ir.model,name:survey_customizable_frontend_terms_and_elements.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
