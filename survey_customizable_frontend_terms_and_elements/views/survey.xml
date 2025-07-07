@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="survey.survey_survey_view_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Asnwer settings" name="answer_settings">
+                <page string="Asnwer Button Settings" name="answer_settings">
                     <group>
                         <field name="answer_button_text" />
                     </group>
