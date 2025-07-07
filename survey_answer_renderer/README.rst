@@ -19,11 +19,12 @@ Usage
 
 Example of embedding in an email template:
 
-```xml
-<div>
-    <h4>Your Answers:</h4>
-    <t t-raw="object.render_answers_html()"/>
-</div>
+::
+
+    <div>
+        <h4>Your Answers:</h4>
+        <t t-raw="object.render_answers_html()"/>
+    </div>
 
 Known issues / Roadmap
 ======================
