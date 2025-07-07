@@ -21,7 +21,7 @@
     "name": "Survey Answer Renderer",
     "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Adds formatted survey answers rendering for use in email templates or reports.",
+    "summary": "Adds formatted survey answers rendering.",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
