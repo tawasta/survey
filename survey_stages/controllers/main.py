@@ -21,14 +21,16 @@
 # 1. Standard library imports:
 
 # 3. Odoo imports (openerp):
+# 2. Known third party imports:
+import logging
+
 from odoo import http
 from odoo.http import request
 
 # 4. Imports from Odoo modules:
 from odoo.addons.survey_contact_ids.controllers.main import SurveyContacts
 
-# 2. Known third party imports:
-
+_logger = logging.getLogger(__name__)
 
 # 5. Local imports in the relative form:
 
@@ -36,6 +38,20 @@ from odoo.addons.survey_contact_ids.controllers.main import SurveyContacts
 
 
 class SurveyStages(SurveyContacts):
+    def _get_draft_stage(self, survey_sudo, answer_sudo):
+        draft_stage = request.env["survey.user_input.stage"].search(
+            [("is_editable", "=", True)], limit=1
+        )
+
+        return draft_stage
+
+    def _get_sent_stage(self, survey_sudo, answer_sudo):
+        sent_stage = request.env["survey.user_input.stage"].search(
+            [("is_sent", "=", True)], limit=1
+        )
+
+        return sent_stage
+
     @http.route(
         "/survey/edit/<string:survey_token>/<string:answer_token>",
         type="http",
@@ -97,9 +113,7 @@ class SurveyStages(SurveyContacts):
 
         # Aseta draft-tila ENNEN super(), että save_lines toimii
         if post.get("isFinish") and post.get("isDraft"):
-            draft_stage = request.env["survey.user_input.stage"].search(
-                [("is_editable", "=", True)], limit=1
-            )
+            draft_stage = self._get_draft_stage(survey_sudo, answer_sudo)
             if draft_stage:
                 answer_sudo.write({"stage_id": draft_stage.id})
 
@@ -108,9 +122,7 @@ class SurveyStages(SurveyContacts):
 
         # Jos lopullinen lähetys, merkkaa is_editable=False
         if post.get("isFinish") and not post.get("isDraft"):
-            sent_stage = request.env["survey.user_input.stage"].search(
-                [("is_sent", "=", True)], limit=1
-            )
+            sent_stage = self._get_sent_stage(survey_sudo, answer_sudo)
             if sent_stage:
                 answer_sudo.write({"stage_id": sent_stage.id, "is_editable": False})
 
