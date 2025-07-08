@@ -28,32 +28,35 @@
             />
             <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
                 <div
-                    class="o_survey_attachment_answer d-flex align-items-center gap-2"
+                    class="o_survey_attachment_answer d-flex align-items-center gap-3 py-1"
                     t-att-id="file.id"
                 >
-                    <label class="d-flex align-items-center gap-1">
-                        <input
-                            type="checkbox"
-                            t-att-name="'delete_attachment_%d' % file.id"
-                            t-att-value="file.id"
-                            class="o_survey_attachment_delete_checkbox"
-                        />
-                        <span>Delete</span>
+                    <input
+                        type="checkbox"
+                        class="form-check-input mt-0 o_survey_attachment_delete_checkbox"
+                        t-att-name="'delete_attachment_%d' % file.id"
+                        t-att-value="file.id"
+                        id="delete_attachment_#{file.id}"
+                    />
+                    <label
+                        class="form-check-label text-nowrap"
+                        t-att-for="'delete_attachment_%d' % file.id"
+                    >
+                        Delete
                     </label>
                     <a
                         t-att-href="file.link_url"
+                        class="text-decoration-none d-flex align-items-center gap-2"
                         aria-label="Download"
                         title="Download"
                         target="_blank"
-                        class="d-flex align-items-center gap-1"
                     >
-                        <i class="fa fa-download" />
-                        <span>
-                            <t t-esc="file.name" />
-                        </span>
+                        <i class="fa fa-download text-secondary" />
+                        <span><t t-esc="file.name" /></span>
                     </a>
                 </div>
             </t>
+
 
         </div>
     </template>
