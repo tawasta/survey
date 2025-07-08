@@ -24,6 +24,16 @@
                 <t t-esc="input.title_in_survey_registry" />
             </li>
         </xpath>
+        <xpath expr="//li[a[@href='/my/home']]/a" position="replace">
+            <a
+                t-attf-href="{{ '/' if page_name == 'survey_registry' else '/my/home' }}"
+                aria-label="Home"
+                title="Home"
+            >
+                <i class="fa fa-home"/>
+            </a>
+        </xpath>
+        
     </template>
 
 
