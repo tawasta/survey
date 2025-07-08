@@ -99,7 +99,7 @@ SurveyFormWidget.include({
         this.$("input.o_survey_attachment_delete_checkbox:checked").each(function () {
             const checkbox = $(this);
             const deleteId = checkbox.val();
-            const fieldName = checkbox.attr("name"); // e.g., delete_attachment_123
+            const fieldName = checkbox.attr("name"); // E.g., delete_attachment_123
             params[fieldName] = deleteId;
         });
     },

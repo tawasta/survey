@@ -27,19 +27,26 @@
                 class="form_control o_survey_question_attachment bg_transparent text-dark rounded-0 p-0"
             />
             <t t-foreach="answer_lines.value_attachment_ids" t-as="file">
-                <div class="o_survey_attachment_answer d-flex align-items-center gap-2" t-att-id="file.id">
+                <div
+                    class="o_survey_attachment_answer d-flex align-items-center gap-2"
+                    t-att-id="file.id"
+                >
                     <label class="d-flex align-items-center gap-1">
-                        <input type="checkbox"
-                               t-att-name="'delete_attachment_%d' % file.id"
-                               t-att-value="file.id"
-                               class="o_survey_attachment_delete_checkbox" />
+                        <input
+                            type="checkbox"
+                            t-att-name="'delete_attachment_%d' % file.id"
+                            t-att-value="file.id"
+                            class="o_survey_attachment_delete_checkbox"
+                        />
                         <span>Delete</span>
                     </label>
-                    <a t-att-href="file.link_url"
-                       aria-label="Download"
-                       title="Download"
-                       target="_blank"
-                       class="d-flex align-items-center gap-1">
+                    <a
+                        t-att-href="file.link_url"
+                        aria-label="Download"
+                        title="Download"
+                        target="_blank"
+                        class="d-flex align-items-center gap-1"
+                    >
                         <i class="fa fa-download" />
                         <span>
                             <t t-esc="file.name" />
