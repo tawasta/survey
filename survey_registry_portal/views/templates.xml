@@ -7,7 +7,7 @@
         id="portal_breadcrumbs"
         name="Survey registry breadcrumbs"
         inherit_id="portal.portal_breadcrumbs"
-        priority="35"
+        priority="100"
     >
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li
@@ -30,10 +30,10 @@
                 aria-label="Home"
                 title="Home"
             >
-                <i class="fa fa-home"/>
+                <i class="fa fa-home" />
             </a>
         </xpath>
-        
+
     </template>
 
 
