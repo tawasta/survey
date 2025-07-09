@@ -6,23 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-04 06:59+0000\n"
-"PO-Revision-Date: 2025-06-04 06:59+0000\n"
+"POT-Creation-Date: 2025-07-09 06:41+0000\n"
+"PO-Revision-Date: 2025-07-09 06:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: survey_registry_portal
-#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
-msgid ""
-"<i class=\"fa fa-info-circle me-2 text-muted\"/>\n"
-"                        No completed survey results are available."
-msgstr ""
-"<i class=\"fa fa-info-circle me-2 text-muted\"/>\n"
-"                        Hankerekisterissä ei ole vielä julkista sisältöä."
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__save_as_registry_visibility
@@ -45,11 +36,6 @@ msgid "Date"
 msgstr "Päiväys"
 
 #. module: survey_registry_portal
-#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
-msgid "Details"
-msgstr "Lisätiedot"
-
-#. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__display_name
 msgid "Display Name"
 msgstr "Näyttönimi"
@@ -58,6 +44,11 @@ msgstr "Näyttönimi"
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.view_survey_survey_form_inherit_registry_fields
 msgid "Displayed Administrative Fields"
 msgstr "Näytettävät hallinnolliset kentät"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.portal_breadcrumbs
+msgid "Home"
+msgstr "Etusivu"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__id
@@ -99,8 +90,9 @@ msgid ""
 "what fields (in addition to the actual answers) gets shown there, e.g. the "
 "status of the answer."
 msgstr ""
-"Jos tämän kyselyn vastauksia näytetään hankerekisterissä, voit valita mitä lisäkenttiä (varsinaisten "
-"vastausten lisäksi) siellä näytetään, esimerkiksi vastauksen tila."
+"Jos tämän kyselyn vastauksia näytetään hankerekisterissä, voit valita mitä "
+"lisäkenttiä (varsinaisten vastausten lisäksi) siellä näytetään, esimerkiksi "
+"vastauksen tila."
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__show_in_registry
@@ -135,6 +127,11 @@ msgstr ""
 #, python-format
 msgid "Newest"
 msgstr "Uusimmat"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "No matches found."
+msgstr "Hakuehtoja vastaavia tuloksia ei löytynyt."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -185,7 +182,7 @@ msgstr "Näytä vastaus hankerekisterissä"
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__show_in_registry
 msgid "Show Answers in Survey Registry"
-msgstr "Näytä hankerekisterissä"
+msgstr "Näytä vastaukset hankerekisterissä"
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -193,6 +190,7 @@ msgstr "Näytä hankerekisterissä"
 #: code:addons/survey_registry_portal/controllers/main.py:0
 #: model:ir.model,name:survey_registry_portal.model_survey_survey
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__survey_id
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 #, python-format
 msgid "Survey"
 msgstr "Kysely"
@@ -224,6 +222,15 @@ msgstr "Käyttäjäsyöte kyselyssä"
 
 #. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Survey registry does not have any content yet."
+msgstr "Hankerekisterissä ei ole vielä sisältöä."
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+#, python-format
 msgid "Title"
 msgstr "Hanke"
 
