@@ -7,33 +7,36 @@ Survey Registry Portal
 ======================
 
 * Adds **"Survey Registry"** section to the portal (`/surveys/registry`)
-* Portal users can view and search through completed surveys
-* Surveys can be searched by respondent name and survey title
+* Public users can view and search through completed surveys
+* Surveys can be searched by respondent name, answer title and survey title
 * Sorting options:
   * Newest submissions first
   * Respondent name
   * Survey title
+  * Title in survey registry
 * Each survey submission has its own detailed page including:
   * Respondent name
   * Submission date
   * Survey title
   * Detailed answers provided by the respondent
-* Integrated neatly within the default Odoo portal layout
-
-- `survey.question` has field `save_as_registry_visibility`
-- If a user answers **yes/true/1/kyllä** to such a question, then:
-  - `survey.user_input.show_in_registry = True`
-- Only those marked `True` are visible in registry
 * Also any backend fields of Survey User Input fields can be shown in frontend,
   if you have some info that is e.g. added to custom fields by the administrator after they 
   have checked the survey submission
 
 Configuration
 =============
-  
-- Ensure `survey.user_input` records have a `partner_id` assigned for visibility
-- If you wish to show Survey User Input records' backend custom fields in the portal,
+
+* Mark public user input records by checking 'Show Answers in Survey Registry' field
+* If you wish to show Survey User Input records' backend custom fields in the portal,
   select which ones to show in the "Survey Registry" tab of the survey
+* In the survey questions, 
+
+  * configure one to have the 'Use answer as title in survey registry' checked
+  * configure the 'Show answer in survey registry', to show/hide specific questions as needed
+  * if wanted, check 'Answer Controls Registry Visibility' for one question. If a user answers 
+    **yes/true/1/kyllä** to such a question, then the user input record will get the 
+    field 'Show Answers in Survey Registry' automatically checked.
+
 
 Usage
 =====

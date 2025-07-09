@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!-- TODO customize home icon so that it points to /, not to /my/home -->
-    <!-- TODO fix search and dropdowns in search bar -->
     <template
         id="portal_breadcrumbs"
         name="Survey registry breadcrumbs"
@@ -40,6 +38,7 @@
 
     <template id="survey_registry_page" name="Survey Registry Page">
         <t t-call="portal.portal_layout">
+            <t t-set="additional_title">Survey Registry</t>
             <t t-set="breadcrumbs_searchbar" t-value="True" />
 
             <section class="container">
@@ -55,7 +54,12 @@
                         role="alert"
                     >
                         <i class="fa fa-info-circle me-2 text-muted" />
-                        No completed survey results are available.
+                        <t t-if="search">
+                            No matches found.
+                        </t>
+                        <t t-else="">
+                            Survey registry does not have any content yet.
+                        </t>
                     </div>
                 </t>
 
@@ -67,8 +71,7 @@
                                     <th class="th-title">Title</th>
                                     <th class="th-partner">Partner</th>
                                     <th class="th-date">Date</th>
-                                    <!-- <th>Survey</th> -->
-                                    <th />
+                                    <th class="th-survey">Survey</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,13 +79,17 @@
                                     <tr>
 
                                         <td class="td-title">
-                                            <t t-out="input.title_in_survey_registry" />
+                                            <a
+                                                t-attf-href="/surveys/registry/{{ input.id }}"
+                                            >
+                                                <t
+                                                    t-out="input.title_in_survey_registry or '-'"
+                                                />
+                                            </a>
                                         </td>
 
-                                        <!-- TODO get partner name automatically to user.input record -->
-                                        <td class="td-partner"><t
-                                                t-out="input.partner_id.name or '-'"
-                                            />
+                                        <td class="td-partner">
+                                            <t t-out="input.partner_id.name or '-'" />
                                         </td>
                                         <td class="td-date">
                                             <span
@@ -90,17 +97,9 @@
                                                 t-options="{'widget': 'date'}"
                                             />
                                         </td>
-                                        <!-- TODO maybe make configurable to show/hide
-                                        <td><t t-out="input.survey_id.title" /></td>
-                                        -->
 
-
-                                        <td class="text-end">
-                                            <a
-                                                t-attf-href="/surveys/registry/{{ input.id }}"
-                                            >
-                                                Details
-                                            </a>
+                                        <td>
+                                            <t t-out="input.survey_id.title" />
                                         </td>
                                     </tr>
                                 </t>
@@ -125,7 +124,6 @@
         id="survey_registry_single_user_input_field"
         name="Survey Registry: Single User Input Field"
     >
-
         <t t-set="field_name" t-value="survey_registry_field_line.field_id.name" />
         <t t-set="field_type" t-value="survey_registry_field_line.field_id.ttype" />
         <t
@@ -179,9 +177,6 @@
                                 /></h3>
                         </div>
 
-                        <!-- mobile friendly table, collapses on smaller screens -->
-
-
                         <t t-if="len(input.survey_id.survey_registry_field_line_ids)">
 
                                 <t
@@ -198,6 +193,8 @@
                         <h4
                             class="title-applicants-info mt-4"
                         >Information provided by the applicant</h4>
+
+                        <!-- mobile friendly table, collapses on smaller screens -->
                         <table
                             class="table table-striped table-hover table-sm"
                             style="table-layout: fixed; width: 100%;"

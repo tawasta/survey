@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+import logging
 
 from odoo import _, http
 from odoo.http import request
@@ -6,6 +6,8 @@ from odoo.osv.expression import OR
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
+
+_logger = logging.getLogger(__name__)
 
 
 class SurveyRegistryPortal(CustomerPortal):
@@ -15,6 +17,10 @@ class SurveyRegistryPortal(CustomerPortal):
     def _get_survey_registry_sortings(self):
         return {
             "date": {"label": _("Newest"), "order": "create_date desc"},
+            "title_in_survey_registry": {
+                "label": _("Title"),
+                "order": "title_in_survey_registry",
+            },
             "name": {"label": _("Respondent"), "order": "partner_id"},
             "survey": {"label": _("Survey"), "order": "survey_id"},
         }
@@ -22,6 +28,10 @@ class SurveyRegistryPortal(CustomerPortal):
     def _get_survey_registry_inputs(self):
         return {
             "all": {"label": _("Search in All"), "input": "all"},
+            "title_in_survey_registry": {
+                "label": _("Title"),
+                "input": "title_in_survey_registry",
+            },
             "name": {"label": _("Respondent"), "input": "name"},
             "survey": {"label": _("Survey"), "input": "survey"},
         }
@@ -30,8 +40,11 @@ class SurveyRegistryPortal(CustomerPortal):
         domain = []
         if search_in in ("name", "all"):
             domain.append([("partner_id.name", "ilike", search)])
+        if search_in in ("title_in_survey_registry", "all"):
+            domain.append([("title_in_survey_registry", "ilike", search)])
         if search_in in ("survey", "all"):
             domain.append([("survey_id.title", "ilike", search)])
+
         return OR(domain)
 
     def _prepare_survey_registry_values(
@@ -106,5 +119,6 @@ class SurveyRegistryPortal(CustomerPortal):
             {
                 "input": survey_input,
                 "page_name": "survey_registry",
+                "title": survey_input.title_in_survey_registry or "-",
             },
         )
