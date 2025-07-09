@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="survey_user_stage_view_form_inherit" model="ir.ui.view">
+        <field name="name">survey.user.stage.view.form.inherit.excluded.stages</field>
+        <field name="model">survey.user_input.stage</field>
+        <field name="inherit_id" ref="survey_stages.survey_user_stage_view_form" />
+        <field name="arch" type="xml">
+            <field name="is_sent" position="after">
+                <field name="survey_registry_entries_always_hidden" />
+            </field>
+        </field>
+    </record>
+
+
+    <record id="survey_user_input_stage_view_tree_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.user.input.stage.view.tree.inherit.excluded.stages</field>
+        <field name="model">survey.user_input.stage</field>
+        <field
+            name="inherit_id"
+            ref="survey_stages.survey_user_input_stage_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="is_sent" position="after">
+                <field name="survey_registry_entries_always_hidden" optional="show" />
+            </field>
+        </field>
+    </record>
+
+
+
+</odoo>
