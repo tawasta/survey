@@ -152,7 +152,10 @@
             />
 
         </t>
-        <t t-if="field_type not in ['selection', 'float']">
+        <t t-if="field_type == 'many2one'">
+            <t t-esc="input[survey_registry_field_line.field_id.name].name"/>
+        </t>
+        <t t-if="field_type not in ['selection', 'float', 'many2one']">
              <t t-esc="input[survey_registry_field_line.field_id.name]" />
         </t>
 

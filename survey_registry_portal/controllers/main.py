@@ -113,7 +113,7 @@ class SurveyRegistryPortal(CustomerPortal):
     def portal_survey_registry_detail(self, input_id, **kw):
         survey_input = request.env["survey.user_input"].sudo().browse(input_id)
         if not survey_input.exists() or not survey_input.show_in_registry:
-            return request.render("website.404")
+            return request.render("website.page_404")
         return request.render(
             "survey_registry_portal.survey_registry_detail",
             {
