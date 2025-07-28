@@ -9,7 +9,6 @@ odoo.define("survey_question_type_privacy", [], function () {
             "change .o_survey_form_privacy_item": "_onChangePrivacyItem",
         }),
         _onChangePrivacyItem: function (event) {
-            console.log("CHANGE");
             var self = this;
             var $target = $(event.currentTarget);
             var $label = $target.closest("label");
