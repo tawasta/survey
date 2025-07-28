@@ -7,9 +7,17 @@ SurveyFormWidget.include({
      * Override _onKeyDown to handle "draft" submit
      */
     _onKeyDown: function (event) {
+        // Re-use code from core to prevent multiline input enter press
+        // submitting the form:
+        if (
+            (this.$("textarea").is(":focus") || this.$("input").is(":focus")) &&
+            (!(event.ctrlKey || event.metaKey) || event.key !== "Enter")
+        ) {
+            return;
+        }
+
         const keyCode = event.keyCode;
-        console.log("=====KEYCODE======");
-        console.log(keyCode);
+
         if (keyCode === 13 || keyCode === 39) {
             event.preventDefault();
 
