@@ -52,15 +52,15 @@ class SurveyUserInput(models.Model):
             if question.question_type == "matrix" and user_input_line.matrix_row_id.check_min_value:
                 if (
                     question.min_acceptable_value
-                    and user_input_line.answer_score < question.min_acceptable_value
+                    and user_input_line.suggested_answer_id.answer_score < question.min_acceptable_value
                 ):
+
                     low_responses.append((question, user_input_line.answer_score))
                     for user in question.notification_recipients:
                         if user not in notifications:
                             notifications[user] = []
                         notifications[user].append((question, user_input_line.answer_score))
             if question.question_type != "matrix":
-
                 if (
                     question.min_acceptable_value
                     and user_input_line.answer_score < question.min_acceptable_value
