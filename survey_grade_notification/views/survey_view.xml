@@ -13,6 +13,12 @@
                     <field name="notification_recipients" widget="many2many_tags" />
                     <field name="min_acceptable_value" />
                 </xpath>
+                <xpath
+                    expr="//field[@name='matrix_row_ids']/tree"
+                    position="inside"
+                >
+                    <field name="check_min_value"/>
+                </xpath>
             </field>
         </record>
 </odoo>

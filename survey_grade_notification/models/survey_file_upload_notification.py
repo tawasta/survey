@@ -4,6 +4,14 @@ from odoo import _, fields, models
 
 _logger = logging.getLogger(__name__)
 
+class SurveyQuestionAnswer(models.Model):
+    _inherit = "survey.question.answer"
+
+    check_min_value = fields.Boolean(
+        string="Check minimum value",
+        help="If enabled, this matrix row will be checked for minimum acceptable value."
+    )
+
 
 class SurveyQuestion(models.Model):
     _inherit = "survey.question"
@@ -41,15 +49,30 @@ class SurveyUserInput(models.Model):
 
         for user_input_line in self.user_input_line_ids:
             question = user_input_line.question_id
-            if (
-                question.min_acceptable_value
-                and user_input_line.answer_score < question.min_acceptable_value
-            ):
-                low_responses.append((question, user_input_line.answer_score))
-                for user in question.notification_recipients:
-                    if user not in notifications:
-                        notifications[user] = []
-                    notifications[user].append((question, user_input_line.answer_score))
+            if question.question_type == "matrix" and user_input_line.matrix_row_id.check_min_value:
+                if (
+                    question.min_acceptable_value
+                    and user_input_line.suggested_answer_id.answer_score < question.min_acceptable_value
+                ):
+
+                    low_responses.append((question, user_input_line.answer_score))
+                    for user in question.notification_recipients:
+                        if user not in notifications:
+                            notifications[user] = []
+                        notifications[user].append((question, user_input_line.answer_score))
+            if question.question_type != "matrix":
+                if (
+                    question.min_acceptable_value
+                    and user_input_line.answer_score < question.min_acceptable_value
+                ):
+                    
+
+
+                    low_responses.append((question, user_input_line.answer_score))
+                    for user in question.notification_recipients:
+                        if user not in notifications:
+                            notifications[user] = []
+                        notifications[user].append((question, user_input_line.answer_score))
 
         for user, questions in notifications.items():
             logging.info(user)
