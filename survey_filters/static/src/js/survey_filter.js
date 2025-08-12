@@ -23,30 +23,33 @@ odoo.define("survey.survey_page_statistics_inner", function () {
         initSelect2("#select_course", "Select courses");
         initSelect2("#selectevent", "Select events");
 
-        applyFiltersFromURL();
+        function _showAnswers() {
+            $("table[id^='survey_table_question_']").each(function () {
+                var $table = $(this);
+                var $tbody = $table.find("tbody");
+                var limit =
+                    parseInt(
+                        $table.closest("div").find(".pagination").data("record_limit"),
+                        10
+                    ) || 10;
+                // Näytetään vain ensimmäiset 'limit' määrän vastauksia
+                $tbody.find("tr").addClass("d-none");
+                $tbody.find("tr").slice(0, limit).removeClass("d-none");
+            });
+        }
 
         function applyFiltersFromURL() {
             const urlPath = window.location.pathname;
-            const hasFilters = /course=|event=|date_start=|date_end=/.test(urlPath) || window.location.search.includes("filters");
-            
+            const hasFilters =
+                /course=|event=|date_start=|date_end=/.test(urlPath) ||
+                window.location.search.includes("filters");
+
             if (hasFilters) {
                 _showAnswers();
             }
         }
 
-        function _showAnswers() {
-            $("table[id^='survey_table_question_']").each(function () {
-                var $table = $(this);
-                var $tbody = $table.find("tbody");
-                var limit = parseInt($table.closest("div").find(".pagination").data("record_limit"), 10) || 10;
-                // Näytetään vain ensimmäiset 'limit' määrän vastauksia
-                $tbody.find("tr").addClass("d-none");
-                $tbody.find("tr").slice(0, limit).removeClass("d-none");
-
-            });
-        }
-
-
+        applyFiltersFromURL();
 
         // Päivitä-painikkeen toiminnallisuus
         $("#apply_filters").on("click", function () {
