@@ -20,6 +20,7 @@
 
 # 1. Standard library imports:
 import logging
+
 from markupsafe import Markup
 
 # 3. Odoo imports (openerp):
@@ -38,7 +39,6 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyUserInput(models.Model):
-
     # 1. Private attributes
     _inherit = "survey.user_input"
 
@@ -70,9 +70,7 @@ class SurveyUserInput(models.Model):
             lead.message_subscribe(notif_partners.ids)
             body = _("This lead was created automatically from survey answer:\n\n")
             body += (
-                "<a href='/web?#id={}&model=survey.user_input&view_type=form'>".format(
-                    self.id
-                )
+                f"<a href='/web?#id={self.id}&model=survey.user_input&view_type=form'>"
             )
             body += _("Link to survey answer</a>")
             lead.message_post(

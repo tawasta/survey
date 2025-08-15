@@ -37,7 +37,6 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveySurvey(models.Model):
-
     # 1. Private attributes
     _inherit = "survey.survey"
 

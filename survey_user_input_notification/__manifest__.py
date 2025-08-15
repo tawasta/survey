@@ -23,8 +23,8 @@
     "summary": "Get notifications when new answers for survey array",
     "version": "17.0.1.0.0",
     "category": "Survey",
-    "website": "https://gitlab.com/tawasta/odoo/survey",
-    "author": "Tawasta",
+    "website": "https://github.com/tawasta/survey",
+    "author": "Futural",
     "license": "AGPL-3",
     "data": [
         "views/survey_survey_views.xml",
