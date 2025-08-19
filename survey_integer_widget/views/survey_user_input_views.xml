@@ -1,43 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
         <!-- Lisätään uusi valinta Survey Question -lomakkeeseen -->
         <record id="view_survey_question_form_inherit_integer" model="ir.ui.view">
             <field name="name">survey.question.form.inherit.integer</field>
             <field name="model">survey.question</field>
-            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="inherit_id" ref="survey.survey_question_form" />
             <field name="arch" type="xml">
                 <page name="options" position="inside">
-                    <field name="is_integer_answer"/>
+                    <field name="is_integer_answer" />
                 </page>
             </field>
         </record>
 
-        <record id="survey_user_input_line_view_form_inherit_integer_qspecific" model="ir.ui.view">
-            <field name="name">survey.user_input.line.view.form.inherit.integer.qspecific</field>
+        <record
+        id="survey_user_input_line_view_form_inherit_integer_qspecific"
+        model="ir.ui.view"
+    >
+            <field
+            name="name"
+        >survey.user_input.line.view.form.inherit.integer.qspecific</field>
             <field name="model">survey.user_input.line</field>
-            <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
+            <field name="inherit_id" ref="survey.survey_user_input_line_view_form" />
+            <field eval="100" name="priority" />
             <field name="arch" type="xml">
                 <field name="answer_score" position="after">
-                    <field name="question_is_integer"/>
+                    <field name="question_is_integer" />
                 </field>
                 <!-- Integer widget näkyy vain jos kysymys on merkitty is_integer_answer -->
                 <field name="value_numerical_box" position="replace">
-                    <field name="value_numerical_box"
-                           widget="integer"
-                           colspan="2"
-                           invisible="answer_type != 'numerical_box' or not question_is_integer"/>
-                    <field name="value_numerical_box"
-                           colspan="2"
-                           invisible="answer_type != 'numerical_box' or question_is_integer"/>
+                    <field
+                    name="value_numerical_box"
+                    widget="integer"
+                    colspan="2"
+                    invisible="answer_type != 'numerical_box' or not question_is_integer"
+                />
+                    <field
+                    name="value_numerical_box"
+                    colspan="2"
+                    invisible="answer_type != 'numerical_box' or question_is_integer"
+                />
                 </field>
             </field>
         </record>
 
-        <template id="question_numerical_box_inherit" inherit_id="survey.question_numerical_box">
+        <template
+        id="question_numerical_box_inherit"
+        inherit_id="survey.question_numerical_box"
+    >
             <xpath expr="//input[@type='number']" position="attributes">
                 <attribute name="t-att-value">
-            answer_lines and (int(answer_lines[0].value_numerical_box) 
-                              if answer_lines[0].question_is_integer 
+            answer_lines and (int(answer_lines[0].value_numerical_box)
+                              if answer_lines[0].question_is_integer
                               else answer_lines[0].value_numerical_box) or None
         </attribute>
             </xpath>

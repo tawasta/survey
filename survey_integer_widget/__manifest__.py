@@ -21,7 +21,10 @@
     "name": "Survey Integer Widget (Question Specific)",
     "version": "17.0.1.0.0",
     "category": "Surveys",
-    "summary": "Allow defining per survey question if numerical answers are rendered as integers.",
+    "summary": (
+        "Allow defining per survey question if numerical "
+        "answers are rendered as integers."
+    ),
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
