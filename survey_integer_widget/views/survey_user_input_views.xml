@@ -7,7 +7,13 @@
             <field name="inherit_id" ref="survey.survey_question_form" />
             <field name="arch" type="xml">
                 <page name="options" position="inside">
-                    <field name="is_integer_answer" />
+                    <group
+                    name="group_number_formatting"
+                    string="Number Formatting"
+                    invisible="question_type != 'numerical_box'"
+                >
+                        <field name="is_integer_answer" />
+                    </group>
                 </page>
             </field>
         </record>

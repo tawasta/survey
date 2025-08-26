@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_integer_widget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-26 13:04+0000\n"
+"PO-Revision-Date: 2025-08-26 13:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_integer_widget
+#: model:ir.model.fields,field_description:survey_integer_widget.field_survey_question__is_integer_answer
+#: model:ir.model.fields,field_description:survey_integer_widget.field_survey_user_input_line__question_is_integer
+msgid "Force Integer Answer"
+msgstr "Pakota kokonaisluvuksi"
+
+#. module: survey_integer_widget
+#: model:ir.model.fields,help:survey_integer_widget.field_survey_question__is_integer_answer
+#: model:ir.model.fields,help:survey_integer_widget.field_survey_user_input_line__question_is_integer
+msgid ""
+"If set, numerical answers to this question will be displayed as integers."
+msgstr "Jos asetettu, numeeriset vastaukset näytetään kokonaislukuina"
+
+#. module: survey_integer_widget
+#: model_terms:ir.ui.view,arch_db:survey_integer_widget.view_survey_question_form_inherit_integer
+msgid "Number Formatting"
+msgstr "Numeromuotoilut"
+
+#. module: survey_integer_widget
+#: model:ir.model,name:survey_integer_widget.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
+
+#. module: survey_integer_widget
+#: model:ir.model,name:survey_integer_widget.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Kyselyn käyttäjän syöttörivi"

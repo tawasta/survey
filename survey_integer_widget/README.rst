@@ -6,14 +6,15 @@
 Survey Integer Widget (Question Specific)
 =========================================
 
+* Allow defining per survey question if numerical answers are rendered as integers
 
 Configuration
 =============
-* None needed
+* Open a question whose type is Numerical Value, and check the new Force Integer Answer checkbox.
 
 Usage
 =====
-
+* View the survey answer in backend, and the value is shown as integer
 
 Known issues / Roadmap
 ======================
@@ -26,6 +27,7 @@ Contributors
 ------------
 
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------
