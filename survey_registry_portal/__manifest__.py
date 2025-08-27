@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Registry Portal",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.1.1",
     "category": "Marketing/Surveys",
     "summary": "Show surveys' answers on website",
     "website": "https://github.com/tawasta/survey",
