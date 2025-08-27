@@ -219,7 +219,7 @@
                                             </span>
                                         </td>
 
-                                        <!-- Render answer according to question type. TODO: handle rest of types-->
+                                        <!-- Render answer according to question type. TODO: handle rest of types if need arises -->
                                         <td
                                             class="d-block d-md-table-cell w-100 w-md-50"
                                         >
@@ -229,8 +229,20 @@
                                             />
                                             <t
                                                 t-if="user_input_line.answer_type == 'numerical_box'"
-                                                t-out="user_input_line.value_numerical_box"
-                                            />
+                                            >
+                                                <t
+                                                    t-if="user_input_line.question_id.format_as_monetary_in_survey_registry"
+                                                >
+                                                    <t
+                                                        t-out="format_amount(env, user_input_line.value_numerical_box, user_input_line.question_id.survey_registry_currency_id) or ''"
+                                                    />
+                                                </t>
+                                                <t t-else="">
+                                                    <t
+                                                        t-out="user_input_line.value_numerical_box"
+                                                    />
+                                                </t>
+                                            </t>
                                             <t
                                                 t-if="user_input_line.answer_type == 'text_box'"
                                                 t-out="user_input_line.value_text_box"
