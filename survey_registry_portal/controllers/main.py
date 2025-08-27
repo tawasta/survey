@@ -3,6 +3,7 @@ import logging
 from odoo import _, http
 from odoo.http import request
 from odoo.osv.expression import OR
+from odoo.tools.misc import format_amount
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
@@ -120,5 +121,6 @@ class SurveyRegistryPortal(CustomerPortal):
                 "input": survey_input,
                 "page_name": "survey_registry",
                 "title": survey_input.title_in_survey_registry or "-",
+                "format_amount": format_amount,
             },
         )

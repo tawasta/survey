@@ -23,6 +23,20 @@ class SurveyQuestion(models.Model):
         help="If checked, the answer to this question will be shown on the website "
         "in the survey registry."
     )
+
+    format_as_monetary_in_survey_registry = fields.Boolean(
+        help="If checked, a numeric amount will be formatted as a monetary amount, "
+        "e.g. 12.34 and be suffixed with a currency symbol"
+    )
+
+    # TODO: implement multicurrency support if needed. Currently just gets the
+    # company currency silently in the background
+    survey_registry_currency_id = fields.Many2one(
+        comodel_name="res.currency",
+        string="Currency",
+        default=lambda self: self.env.company.currency_id,
+    )
+
     use_answer_as_title_in_survey_registry = fields.Boolean(
         help="If checked, the answer to this question will be used as the title "
         "in the survey registry."
