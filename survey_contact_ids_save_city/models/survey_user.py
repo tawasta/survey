@@ -76,4 +76,13 @@ class SurveyUserInput(models.Model):
             self._save_contact_field(question, answer, "city")
         return res
 
+    def write(self, vals):
+        # Tarkistetaan partnerin asettuminen jälkikäteen
+        partner_was_set = "partner_id" in vals and vals["partner_id"]
+        res = super(SurveyUserInput, self).write(vals)
+        for rec in self:
+            if partner_was_set and rec.partner_id and rec.partner_city:
+                rec.partner_id.sudo().write({"city": rec.partner_city})
+        return res
+
     # 8. Business methods
