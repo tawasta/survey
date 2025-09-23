@@ -9,6 +9,8 @@ Survey Participation: Funding Application Base Fields
 * Adds basic backend fields for when survey participations are used for collecting funding applications
 * The fields are intended to be updated by the internal users managing the applications, not
   the applicants answering the survey.
+* Also installs as a dependency survey_payment_link, so account.payment records can be used for tracking
+  how much of the funding has actually been paid out
 
 Configuration
 =============
@@ -20,7 +22,8 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+* Make configurable if draft payments should be taken into account or not when showing how much of
+  funding has been paid out.
 
 Credits
 =======
