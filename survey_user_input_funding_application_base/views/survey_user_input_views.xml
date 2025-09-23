@@ -47,23 +47,21 @@
                     optional="show"
                     widget="monetary"
                     options="{'currency_field': 'funding_decision_currency_id'}"
+                    sum="Total (Funding Decision Amount)"
                 />
                 <field name="funding_decision_currency_id" column_invisible="1" />
                 <field name="tax_id" optional="hide" />
+
                 <field
-                    name="funding_underspent_amount"
+                    name="funding_left_amount"
                     widget="monetary"
-                    options="{'currency_field': 'funding_underspent_currency_id'}"
-                    optional="hide"
+                    options="{'currency_field': 'funding_left_currency_id'}"
+                    optional="show"
+                    decoration-success="funding_left_amount &gt;= 0"
+                    decoration-danger="funding_left_amount &lt; 0"
+                    sum="Total (Funding Left)"
                 />
-                <field name="funding_underspent_currency_id" column_invisible="1" />
-                <field
-                    name="funding_overspent_amount"
-                    widget="monetary"
-                    options="{'currency_field': 'funding_overspent_currency_id'}"
-                    optional="hide"
-                />
-                <field name="funding_overspent_currency_id" column_invisible="1" />
+                <field name="funding_left_currency_id" column_invisible="1" />
                 <field name="funding_overspent_date" optional="hide" />
 
                 <field name="date_finished" optional="show" />
@@ -73,30 +71,45 @@
         </field>
     </record>
 
-    <record id="survey_user_input_view_form" model="ir.ui.view">
+    <record
+        id="survey_user_input_view_form_inherit_survey_payment_link"
+        model="ir.ui.view"
+    >
         <field
             name="name"
-        >survey.user_input.form.inherit.funding.application.base</field>
+        >survey.user_input.form.survey.funding.application.base.inherit.survey.payment.link</field>
         <field name="model">survey.user_input</field>
-        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field
+            name="inherit_id"
+            ref="survey_payment_link.view_survey_user_input_form_inherit_payments"
+        />
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <page string="Funding Information" name="funding_information">
 
-                    <!-- Application Info -->
-                     <group>
-                        <group string="Internal Information">
-                            <field name="service_identifier" />
-                            <field name="user_id" options="{'no_create': True}" />
-                        </group>
-                        <group string="Completion Details">
-                            <field name="date_finished" />
-                            <field name="date_cancelled" />
-                        </group>
+            <!-- Use the Payments page from survey_payment_link, and add more fields into it -->
+            <xpath expr="//page[@name='page_payments']" position="attributes">
+                <attribute name="string">Funding Information &amp; Payments</attribute>
+            </xpath>
+
+            <group name="group_payments" position="before">
+                <group>
+                    <group
+                        string="Internal Information"
+                        name="group_internal_information"
+                    >
+                        <field name="service_identifier" />
+                        <field name="user_id" options="{'no_create': True}" />
                     </group>
+                    <group string="Completion Details" name="group_completion_details">
+                        <field name="date_finished" />
+                        <field name="date_cancelled" />
+                    </group>
+                </group>
 
-                    <!-- Funding Decision -->
-                    <group string="Funding Decision Basic Info">
+                 <group>
+                    <group
+                        string="Funding Decision Basic Info"
+                        name="group_funding_decision_basic_info"
+                    >
                         <field name="funding_decision_date" />
                         <field
                             name="funding_decision_amount"
@@ -107,36 +120,27 @@
                         <field name="funding_decision_currency_id" invisible="1" />
                         <field name="funding_decision_terms" />
                     </group>
+                </group>
+            </group>
 
-                    <!-- Variance -->
-                    <group>
-
-                        <group string="Underspending">
-                            <field
-                                name="funding_underspent_amount"
-                                widget="monetary"
-                                options="{'currency_field': 'funding_underspent_currency_id'}"
-                            />
-                            <field
-                                name="funding_underspent_currency_id"
-                                invisible="1"
-                            />
-                        </group>
-
-                        <group string="Overspending">
-                            <field
-                                name="funding_overspent_amount"
-                                widget="monetary"
-                                options="{'currency_field': 'funding_overspent_currency_id'}"
-                            />
-                            <field name="funding_overspent_currency_id" invisible="1" />
-                            <field name="funding_overspent_date" />
-                        </group>
+            <group name="group_payments" position="after">
+                <group>
+                    <group
+                        name="group_under_over_spending"
+                        string="Under-/Overspending"
+                    >
+                        <field
+                            name="funding_left_amount"
+                            widget="monetary"
+                            options="{'currency_field': 'funding_left_currency_id'}"
+                            decoration-success="funding_left_amount &gt;= 0"
+                            decoration-danger="funding_left_amount &lt; 0"
+                        />
+                        <field name="funding_left_currency_id" invisible="1" />
+                        <field name="funding_overspent_date" />
                     </group>
-
-
-                </page>
-            </xpath>
+                </group>
+            </group>
         </field>
     </record>
 </odoo>

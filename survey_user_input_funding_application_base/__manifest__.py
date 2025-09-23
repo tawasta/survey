@@ -28,6 +28,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "base", "account"],
+    "depends": ["survey", "base", "account", "survey_payment_link"],
     "data": ["views/survey_user_input_views.xml"],
 }
