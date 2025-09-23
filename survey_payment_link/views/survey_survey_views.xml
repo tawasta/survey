@@ -6,22 +6,24 @@
         <field name="inherit_id" ref="survey.survey_user_input_view_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Payments">
-                    <field name="payment_ids">
-                        <tree>
-                            <field name="name" />
-                            <field name="date" />
-                            <field name="amount" />
-                            <field name="currency_id" />
-                            <field name="state" />
-                        </tree>
-                    </field>
-                    <button
-                        name="action_create_payment"
-                        type="object"
-                        string="Create Payment"
-                        class="btn btn-primary"
-                    />
+                <page string="Payments" name="page_payments">
+
+                    <group string="Payments" colspan="4" name="group_payments">
+                        <field
+                            name="payment_ids"
+                            nolabel="1"
+                            colspan="2"
+                            context="{ 'default_payment_type': 'outbound', 'default_partner_id': partner_id}"
+                        >
+                            <tree>
+                                <field name="name" />
+                                <field name="date" />
+                                <field name="amount" />
+                                <field name="currency_id" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </notebook>
         </field>
