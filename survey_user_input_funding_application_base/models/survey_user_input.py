@@ -42,6 +42,7 @@ class SurveyUserInput(models.Model):
         tracking=True,
         compute="_compute_funding_left_amount",
         help="Calculated by comparing Amount Funded against Payments made.",
+        store=True,
     )
 
     funding_left_currency_id = fields.Many2one(
