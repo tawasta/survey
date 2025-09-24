@@ -98,7 +98,7 @@
                                             />
                                         </td>
 
-                                        <td>
+                                        <td class="td-survey">
                                             <t t-out="input.survey_id.title" />
                                         </td>
                                     </tr>

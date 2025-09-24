@@ -33,6 +33,10 @@ class SurveyRegistryPortal(CustomerPortal):
                 "label": _("Title"),
                 "input": "title_in_survey_registry",
             },
+            "tag_ids": {
+                "label": _("Tags"),
+                "input": "tag_ids",
+            },
             "name": {"label": _("Respondent"), "input": "name"},
             "survey": {"label": _("Survey"), "input": "survey"},
         }
@@ -43,6 +47,8 @@ class SurveyRegistryPortal(CustomerPortal):
             domain.append([("partner_id.name", "ilike", search)])
         if search_in in ("title_in_survey_registry", "all"):
             domain.append([("title_in_survey_registry", "ilike", search)])
+        if search_in in ("tag_ids", "all"):
+            domain.append([("tag_ids", "ilike", search)])
         if search_in in ("survey", "all"):
             domain.append([("survey_id.title", "ilike", search)])
 

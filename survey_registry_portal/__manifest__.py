@@ -27,7 +27,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey", "portal", "website"],
+    "depends": ["survey", "portal", "website", "survey_user_input_tags"],
     "data": [
         "data/menu.xml",
         "security/ir.model.access.csv",
