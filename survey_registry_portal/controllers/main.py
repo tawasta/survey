@@ -1,4 +1,5 @@
 import logging
+from collections import OrderedDict
 
 from odoo import _, http
 from odoo.http import request
@@ -23,8 +24,35 @@ class SurveyRegistryPortal(CustomerPortal):
                 "order": "title_in_survey_registry",
             },
             "name": {"label": _("Respondent"), "order": "partner_id"},
+            "primary_implementer_in_survey_registry": {
+                "label": _("Implementer Organization"),
+                "order": "primary_implementer_in_survey_registry",
+            },
             "survey": {"label": _("Survey"), "order": "survey_id"},
         }
+
+    def _get_survey_registry_searchbar_filters(self):
+        # Get all the possible Category selections that are defined in the related
+        # multiple choice question(s), and show them as filtering options
+        # in the filterby dropdown.
+
+        res = {"all": {"label": _("All"), "domain": []}}
+
+        survey_question_answer_obj = request.env["survey.question.answer"]
+        possible_category_answers = survey_question_answer_obj.sudo().search(
+            domain=[
+                ("question_id.use_answer_as_category_in_survey_registry", "=", True)
+            ],
+            order="value ASC",
+        )
+
+        for pca in possible_category_answers:
+            res[f"category_{pca.id}"] = {
+                "label": pca.value,
+                "domain": [("category_in_survey_registry", "=", pca.value)],
+            }
+
+        return res
 
     def _get_survey_registry_inputs(self):
         return {
@@ -32,6 +60,18 @@ class SurveyRegistryPortal(CustomerPortal):
             "title_in_survey_registry": {
                 "label": _("Title"),
                 "input": "title_in_survey_registry",
+            },
+            "primary_implementer_in_survey_registry": {
+                "label": _("Implementer Organization"),
+                "input": "primary_implementer_in_survey_registry",
+            },
+            "other_implementers_in_survey_registry": {
+                "label": _("Other Implementers"),
+                "input": "other_implementers_in_survey_registry",
+            },
+            "tag_ids": {
+                "label": _("Tags"),
+                "input": "tag_ids",
             },
             "name": {"label": _("Respondent"), "input": "name"},
             "survey": {"label": _("Survey"), "input": "survey"},
@@ -43,13 +83,60 @@ class SurveyRegistryPortal(CustomerPortal):
             domain.append([("partner_id.name", "ilike", search)])
         if search_in in ("title_in_survey_registry", "all"):
             domain.append([("title_in_survey_registry", "ilike", search)])
+        if search_in in ("primary_implementer_in_survey_registry", "all"):
+            domain.append([("primary_implementer_in_survey_registry", "ilike", search)])
+        if search_in in ("other_implementers_in_survey_registry", "all"):
+            domain.append([("other_implementers_in_survey_registry", "ilike", search)])
+        if search_in in ("tag_ids", "all"):
+            domain.append([("tag_ids", "ilike", search)])
         if search_in in ("survey", "all"):
             domain.append([("survey_id.title", "ilike", search)])
 
         return OR(domain)
 
+    def _get_show_partner_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
+    def _get_show_primary_implementer_column(self, user_inputs):
+        # Checks if any of the user inputs answered a primary implementer question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        primary_implementer_was_asked = bool(
+            asked_questions.filtered(
+                "use_answer_as_primary_implementer_in_survey_registry"
+            )
+        )
+
+        return primary_implementer_was_asked
+
+    def _get_show_date_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
+    def _get_show_category_column(self, user_inputs):
+        # Checks if any of the user inputs answered a category question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        category_was_asked = bool(
+            asked_questions.filtered("use_answer_as_category_in_survey_registry")
+        )
+
+        return category_was_asked
+
+    def _get_show_schedule_column(self, user_inputs):
+        # Checks if any of the user inputs answered a schedule question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        schedule_was_asked = bool(
+            asked_questions.filtered("use_answer_as_schedule_in_survey_registry")
+        )
+
+        return schedule_was_asked
+
+    def _get_show_survey_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
     def _prepare_survey_registry_values(
-        self, page, search=None, search_in="all", sortby=None, **kwargs
+        self, page, search=None, search_in="all", sortby=None, filterby=None, **kwargs
     ):
         SurveyInput = request.env["survey.user_input"].sudo()
         values = self._prepare_portal_layout_values()
@@ -62,6 +149,12 @@ class SurveyRegistryPortal(CustomerPortal):
             sortby = "date"
         order = sortings[sortby]["order"]
 
+        searchbar_filters = self._get_survey_registry_searchbar_filters()
+        # default filter by value
+        if not filterby:
+            filterby = "all"
+        domain += searchbar_filters[filterby]["domain"]
+
         if search:
             domain = domain + self._get_survey_registry_search_domain(search_in, search)
 
@@ -69,7 +162,12 @@ class SurveyRegistryPortal(CustomerPortal):
 
         pager = portal_pager(
             url="/surveys/registry",
-            url_args={"search": search, "search_in": search_in, "sortby": sortby},
+            url_args={
+                "search": search,
+                "search_in": search_in,
+                "sortby": sortby,
+                "filterby": filterby,
+            },
             total=total,
             page=page,
             step=30,  # Tässä asetetaan sivutuksen arvoksi kiinteästi 30
@@ -90,6 +188,16 @@ class SurveyRegistryPortal(CustomerPortal):
                 "sortby": sortby,
                 "searchbar_sortings": sortings,
                 "searchbar_inputs": inputs,
+                "searchbar_filters": OrderedDict(sorted(searchbar_filters.items())),
+                "filterby": filterby,
+                "show_partner_column": self._get_show_partner_column(user_inputs),
+                "show_primary_implementer_column": self._get_show_primary_implementer_column(  # noqa: E501,B950
+                    user_inputs
+                ),
+                "show_date_column": self._get_show_date_column(user_inputs),
+                "show_category_column": self._get_show_category_column(user_inputs),
+                "show_schedule_column": self._get_show_category_column(user_inputs),
+                "show_survey_column": self._get_show_survey_column(user_inputs),
             }
         )
         return values
@@ -101,10 +209,10 @@ class SurveyRegistryPortal(CustomerPortal):
         website=True,
     )
     def portal_survey_registry(
-        self, page=1, search=None, search_in="all", sortby=None, **kw
+        self, page=1, search=None, search_in="all", sortby=None, filterby=None, **kw
     ):
         values = self._prepare_survey_registry_values(
-            page, search=search, search_in=search_in, sortby=sortby
+            page, search=search, search_in=search_in, sortby=sortby, filterby=filterby
         )
         return request.render("survey_registry_portal.survey_registry_page", values)
 

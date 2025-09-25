@@ -37,9 +37,31 @@ class SurveyQuestion(models.Model):
         default=lambda self: self.env.company.currency_id,
     )
 
+    # Enable having some of the answers as stored columns at user input levels so they
+    # can be used for e.g. searching
     use_answer_as_title_in_survey_registry = fields.Boolean(
         help="If checked, the answer to this question will be used as the title "
         "in the survey registry."
+    )
+
+    use_answer_as_category_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be used as the category "
+        "in the survey registry."
+    )
+
+    use_answer_as_schedule_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be used as the schedule "
+        "in the survey registry."
+    )
+
+    use_answer_as_primary_implementer_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be used as the primary "
+        "implementer in the survey registry."
+    )
+
+    use_answer_as_other_implementers_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be used as the other "
+        "implementers in the survey registry."
     )
 
     # 3. Default methods
