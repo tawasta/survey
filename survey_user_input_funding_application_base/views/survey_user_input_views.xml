@@ -8,7 +8,6 @@
         <field name="inherit_id" ref="survey.survey_user_input_view_search" />
         <field name="arch" type="xml">
             <field name="email" position="before">
-                <field name="service_identifier" />
                 <field name="user_id" />
             </field>
 
@@ -96,6 +95,7 @@
                         string="Internal Information"
                         name="group_internal_information"
                     >
+                        <!-- TODO: can maybe be removed, just utilize the ref field -->
                         <field name="service_identifier" />
                         <field name="user_id" options="{'no_create': True}" />
                     </group>

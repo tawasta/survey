@@ -22,10 +22,24 @@
                         />
 
                         <field
+                            name="use_answer_as_schedule_in_survey_registry"
+                            invisible="not show_answer_in_survey_registry or question_type != 'char_box'"
+                        />
+
+                        <field
+                            name="use_answer_as_primary_implementer_in_survey_registry"
+                            invisible="not show_answer_in_survey_registry or question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_other_implementers_in_survey_registry"
+                            invisible="not show_answer_in_survey_registry or question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
                             name="format_as_monetary_in_survey_registry"
                             invisible="not show_answer_in_survey_registry or question_type != 'numerical_box'"
                         />
-
                     </group>
 
                     <group

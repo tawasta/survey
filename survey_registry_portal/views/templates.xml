@@ -72,8 +72,16 @@
                                     <t t-if="show_partner_column">
                                         <th class="th-partner">Partner</th>
                                     </t>
+                                    <t t-if="show_primary_implementer_column">
+                                        <th
+                                            class="th-primary-implementer"
+                                        >Implementer Organization</th>
+                                    </t>
                                     <t t-if="show_date_column">
                                         <th class="th-date">Date</th>
+                                    </t>
+                                    <t t-if="show_schedule_column">
+                                        <th class="th-schedule">Schedule</th>
                                     </t>
                                     <!-- Don't show if there's no category question -->
                                     <t t-if="show_category_column">
@@ -106,11 +114,25 @@
                                                 />
                                             </td>
                                         </t>
+                                        <t t-if="show_primary_implementer_column">
+                                            <td class="td-primary-implementer">
+                                                <t
+                                                    t-out="input.primary_implementer_in_survey_registry or '-'"
+                                                />
+                                            </td>
+                                        </t>
                                         <t t-if="show_date_column">
                                             <td class="td-date">
                                                 <span
                                                     t-field="input.create_date"
                                                     t-options="{'widget': 'date'}"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-if="show_schedule_column">
+                                            <td class="td-schedule">
+                                                <t
+                                                    t-out="input.schedule_in_survey_registry or '-'"
                                                 />
                                             </td>
                                         </t>
@@ -134,7 +156,7 @@
                     </div>
                     <div
                         t-if="pager"
-                        class="o_portal_pager d-flex justify-content-center"
+                        class="o_portal_pager d-flex justify-content-center mt-4 mb-4"
                     >
                         <t t-call="website.pager">
                             <t t-set="pager" t-value="pager" />

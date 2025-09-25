@@ -24,6 +24,10 @@ class SurveyRegistryPortal(CustomerPortal):
                 "order": "title_in_survey_registry",
             },
             "name": {"label": _("Respondent"), "order": "partner_id"},
+            "primary_implementer_in_survey_registry": {
+                "label": _("Implementer Organization"),
+                "order": "primary_implementer_in_survey_registry",
+            },
             "survey": {"label": _("Survey"), "order": "survey_id"},
         }
 
@@ -57,6 +61,14 @@ class SurveyRegistryPortal(CustomerPortal):
                 "label": _("Title"),
                 "input": "title_in_survey_registry",
             },
+            "primary_implementer_in_survey_registry": {
+                "label": _("Implementer Organization"),
+                "input": "primary_implementer_in_survey_registry",
+            },
+            "other_implementers_in_survey_registry": {
+                "label": _("Other Implementers"),
+                "input": "other_implementers_in_survey_registry",
+            },
             "tag_ids": {
                 "label": _("Tags"),
                 "input": "tag_ids",
@@ -71,6 +83,10 @@ class SurveyRegistryPortal(CustomerPortal):
             domain.append([("partner_id.name", "ilike", search)])
         if search_in in ("title_in_survey_registry", "all"):
             domain.append([("title_in_survey_registry", "ilike", search)])
+        if search_in in ("primary_implementer_in_survey_registry", "all"):
+            domain.append([("primary_implementer_in_survey_registry", "ilike", search)])
+        if search_in in ("other_implementers_in_survey_registry", "all"):
+            domain.append([("other_implementers_in_survey_registry", "ilike", search)])
         if search_in in ("tag_ids", "all"):
             domain.append([("tag_ids", "ilike", search)])
         if search_in in ("survey", "all"):
@@ -81,6 +97,17 @@ class SurveyRegistryPortal(CustomerPortal):
     def _get_show_partner_column(self, user_inputs):
         # Show by default but allow overriding
         return True
+
+    def _get_show_primary_implementer_column(self, user_inputs):
+        # Checks if any of the user inputs answered a primary implementer question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        primary_implementer_was_asked = bool(
+            asked_questions.filtered(
+                "use_answer_as_primary_implementer_in_survey_registry"
+            )
+        )
+
+        return primary_implementer_was_asked
 
     def _get_show_date_column(self, user_inputs):
         # Show by default but allow overriding
@@ -94,6 +121,15 @@ class SurveyRegistryPortal(CustomerPortal):
         )
 
         return category_was_asked
+
+    def _get_show_schedule_column(self, user_inputs):
+        # Checks if any of the user inputs answered a schedule question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        schedule_was_asked = bool(
+            asked_questions.filtered("use_answer_as_schedule_in_survey_registry")
+        )
+
+        return schedule_was_asked
 
     def _get_show_survey_column(self, user_inputs):
         # Show by default but allow overriding
@@ -155,8 +191,12 @@ class SurveyRegistryPortal(CustomerPortal):
                 "searchbar_filters": OrderedDict(sorted(searchbar_filters.items())),
                 "filterby": filterby,
                 "show_partner_column": self._get_show_partner_column(user_inputs),
+                "show_primary_implementer_column": self._get_show_primary_implementer_column(  # noqa: E501,B950
+                    user_inputs
+                ),
                 "show_date_column": self._get_show_date_column(user_inputs),
                 "show_category_column": self._get_show_category_column(user_inputs),
+                "show_schedule_column": self._get_show_category_column(user_inputs),
                 "show_survey_column": self._get_show_survey_column(user_inputs),
             }
         )
