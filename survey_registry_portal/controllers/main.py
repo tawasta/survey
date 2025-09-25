@@ -54,6 +54,27 @@ class SurveyRegistryPortal(CustomerPortal):
 
         return OR(domain)
 
+    def _get_show_partner_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
+    def _get_show_date_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
+    def _get_show_category_column(self, user_inputs):
+        # Checks if any of the user inputs answered a category question.
+        asked_questions = user_inputs.mapped("user_input_line_ids.question_id")
+        category_was_asked = bool(
+            asked_questions.filtered("use_answer_as_category_in_survey_registry")
+        )
+
+        return category_was_asked
+
+    def _get_show_survey_column(self, user_inputs):
+        # Show by default but allow overriding
+        return True
+
     def _prepare_survey_registry_values(
         self, page, search=None, search_in="all", sortby=None, **kwargs
     ):
@@ -96,6 +117,10 @@ class SurveyRegistryPortal(CustomerPortal):
                 "sortby": sortby,
                 "searchbar_sortings": sortings,
                 "searchbar_inputs": inputs,
+                "show_partner_column": self._get_show_partner_column(user_inputs),
+                "show_date_column": self._get_show_date_column(user_inputs),
+                "show_category_column": self._get_show_category_column(user_inputs),
+                "show_survey_column": self._get_show_survey_column(user_inputs),
             }
         )
         return values

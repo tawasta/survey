@@ -8,17 +8,13 @@ Survey Registry Portal
 
 * Adds **"Survey Registry"** section to the portal (`/surveys/registry`)
 * Public users can view and search through completed surveys
-* Surveys can be searched by respondent name, answer title and survey title
+* Surveys can be searched by respondent name, tags, answer title and survey title
 * Sorting options:
   * Newest submissions first
   * Respondent name
   * Survey title
   * Title in survey registry
-* Each survey submission has its own detailed page including:
-  * Respondent name
-  * Submission date
-  * Survey title
-  * Detailed answers provided by the respondent
+* Each survey submission has its own detailed page including detailed answers provided by the respondent
 * Also any backend fields of Survey User Input fields can be shown in frontend,
   if you have some info that is e.g. added to custom fields by the administrator after they 
   have checked the survey submission
@@ -32,8 +28,9 @@ Configuration
 * In the survey questions, 
 
   * configure one to have the 'Use answer as title in survey registry' checked
-  * configure the 'Show answer in survey registry', to show/hide specific questions as needed
-  * if wanted, check 'Answer Controls Registry Visibility' for one question. If a user answers 
+  * optionally, configure the 'Show answer in survey registry', to show/hide specific questions as needed
+  * optionally, configure one Multiple Choice question to have the 'Use answer as category in survey registry' checked
+  * optionally, check 'Answer Controls Registry Visibility' for one question. If a user answers 
     **yes/true/1/kyllä** to such a question, then the user input record will get the 
     field 'Show Answers in Survey Registry' automatically checked.
 

@@ -16,6 +16,10 @@
                             name="use_answer_as_title_in_survey_registry"
                             invisible="not show_answer_in_survey_registry or question_type != 'char_box'"
                         />
+                        <field
+                            name="use_answer_as_category_in_survey_registry"
+                            invisible="not show_answer_in_survey_registry or question_type != 'simple_choice'"
+                        />
 
                         <field
                             name="format_as_monetary_in_survey_registry"
