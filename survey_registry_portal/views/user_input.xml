@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
+
+    <record id="survey_user_input_view_search" model="ir.ui.view">
+        <field name="name">survey.user_input.view.search.registry</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search" />
+        <field name="arch" type="xml">
+            <field name="email" position="before">
+                <field name="title_in_survey_registry" />
+                <field name="primary_implementer_in_survey_registry" />
+                <field name="other_implementers_in_survey_registry" />
+                <field name="schedule_in_survey_registry" />
+                <field name="category_in_survey_registry" />
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_tree" model="ir.ui.view">
+        <field name="name">survey.user_input.view.tree.registry</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree" />
+        <field name="arch" type="xml">
+
+            <field name="create_date" position="after">
+                <field name="show_in_registry" optional="show" />
+                <field name="title_in_survey_registry" optional="show" />
+                <field name="primary_implementer_in_survey_registry" optional="show" />
+                <field name="other_implementers_in_survey_registry" optional="show" />
+                <field name="schedule_in_survey_registry" optional="show" />
+                <field name="category_in_survey_registry" optional="show" />
+            </field>
+
+        </field>
+    </record>
+
     <record id="survey_user_input_view_form" model="ir.ui.view">
         <field name="name">survey.user_input.view.form.registry</field>
         <field name="model">survey.user_input</field>

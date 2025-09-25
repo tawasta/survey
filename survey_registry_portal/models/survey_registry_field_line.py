@@ -2,6 +2,9 @@ from odoo import fields, models
 
 
 class SurveyRegistryFieldLine(models.Model):
+    # For defining which of the backend user input fields should be shown in the
+    # survey registry
+
     _name = "survey.registry.field.line"
     _description = "Survey Registry Field Line"
     _order = "survey_id, sequence, id"

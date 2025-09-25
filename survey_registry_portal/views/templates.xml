@@ -69,9 +69,28 @@
                             <thead class="table-light">
                                 <tr>
                                     <th class="th-title">Title</th>
-                                    <th class="th-partner">Partner</th>
-                                    <th class="th-date">Date</th>
-                                    <th class="th-survey">Survey</th>
+                                    <t t-if="show_partner_column">
+                                        <th class="th-partner">Partner</th>
+                                    </t>
+                                    <t t-if="show_primary_implementer_column">
+                                        <th
+                                            class="th-primary-implementer"
+                                        >Implementer Organization</th>
+                                    </t>
+                                    <t t-if="show_date_column">
+                                        <th class="th-date">Date</th>
+                                    </t>
+                                    <t t-if="show_schedule_column">
+                                        <th class="th-schedule">Schedule</th>
+                                    </t>
+                                    <!-- Don't show if there's no category question -->
+                                    <t t-if="show_category_column">
+                                        <th class="th-category">Category</th>
+                                    </t>
+
+                                    <t t-if="show_survey_column">
+                                        <th class="th-survey">Survey</th>
+                                    </t>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,19 +107,48 @@
                                             </a>
                                         </td>
 
-                                        <td class="td-partner">
-                                            <t t-out="input.partner_id.name or '-'" />
-                                        </td>
-                                        <td class="td-date">
-                                            <span
-                                                t-field="input.create_date"
-                                                t-options="{'widget': 'date'}"
-                                            />
-                                        </td>
+                                        <t t-if="show_partner_column">
+                                            <td class="td-partner">
+                                                <t
+                                                    t-out="input.partner_id.name or '-'"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-if="show_primary_implementer_column">
+                                            <td class="td-primary-implementer">
+                                                <t
+                                                    t-out="input.primary_implementer_in_survey_registry or '-'"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-if="show_date_column">
+                                            <td class="td-date">
+                                                <span
+                                                    t-field="input.create_date"
+                                                    t-options="{'widget': 'date'}"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-if="show_schedule_column">
+                                            <td class="td-schedule">
+                                                <t
+                                                    t-out="input.schedule_in_survey_registry or '-'"
+                                                />
+                                            </td>
+                                        </t>
+                                        <t t-if="show_category_column">
+                                            <td class="td-category">
+                                                <t
+                                                    t-out="input.category_in_survey_registry or '-'"
+                                                />
+                                            </td>
+                                        </t>
 
-                                        <td>
-                                            <t t-out="input.survey_id.title" />
-                                        </td>
+                                        <t t-if="show_survey_column">
+                                            <td class="td-survey">
+                                                <t t-out="input.survey_id.title" />
+                                            </td>
+                                        </t>
                                     </tr>
                                 </t>
                             </tbody>
@@ -108,7 +156,7 @@
                     </div>
                     <div
                         t-if="pager"
-                        class="o_portal_pager d-flex justify-content-center"
+                        class="o_portal_pager d-flex justify-content-center mt-4 mb-4"
                     >
                         <t t-call="website.pager">
                             <t t-set="pager" t-value="pager" />

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-27 06:35+0000\n"
-"PO-Revision-Date: 2025-08-27 06:35+0000\n"
+"POT-Creation-Date: 2025-09-25 09:10+0000\n"
+"PO-Revision-Date: 2025-09-25 09:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,34 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
+msgid "All"
+msgstr "Kaikki"
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__save_as_registry_visibility
 msgid "Answer Controls Registry Visibility"
 msgstr "Vastaus asettaa hankerekisterinäkyvyyden"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Category"
+msgstr "Aihepiiri"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__category_in_survey_registry
+msgid "Category In Survey Registry"
+msgstr "Aihepiiri hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__category_in_survey_registry
+msgid ""
+"Category in survey registry, computed based on survey question configuration"
+msgstr ""
+"Hankerekisterissä näytettävä aihepiiri, muodostetaan kysymysten konfiguraation"
+" pohjalta."
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__create_uid
@@ -93,6 +118,42 @@ msgstr ""
 "hankerekisterissä."
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_category_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be used as the category in the "
+"survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä aihepiiritietona."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_other_implementers_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be used as the other "
+"implementers in the survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä muut toteuttajat -tietona."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_primary_implementer_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be used as the primary "
+"implementer in the survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä toteuttajaorganisaatiotietona."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_schedule_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be used as the schedule in the "
+"survey registry."
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
+"hankerekisterissä hankkeen aikataulu -tietona."
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
 msgid ""
 "If checked, the answer to this question will be used as the title in the "
@@ -111,6 +172,15 @@ msgstr ""
 "Jos tämän kyselyn vastauksia näytetään hankerekisterissä, voit valita mitä "
 "lisäkenttiä (varsinaisten vastausten lisäksi) siellä näytetään, esimerkiksi "
 "vastauksen tila."
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+#, python-format
+msgid "Implementer Organization"
+msgstr "Toteuttajaorganisaatio"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__show_in_registry
@@ -132,12 +202,12 @@ msgstr "Hakijan toimittamat tiedot"
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Viimeksi päivittänyt"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Viimeksi päivitetty"
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -163,6 +233,27 @@ msgstr ""
 "otsikkona hankerekisterissä'"
 
 #. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
+msgid "Other Implementers"
+msgstr "Muut toteuttajat"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__other_implementers_in_survey_registry
+msgid "Other Implementers In Survey Registry"
+msgstr "Muut toteuttajat hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__other_implementers_in_survey_registry
+msgid ""
+"Other implementers in survey registry, computed based on survey question "
+"configuration"
+msgstr ""
+"Hankerekisterissä näytettävät muut toteuttajat, muodostetaan kysymysten konfiguraation"
+" pohjalta."
+
+#. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
 msgid "Participation visibility trigger"
 msgstr "Osallistumisen näkyvyysehto"
@@ -173,12 +264,44 @@ msgid "Partner"
 msgstr "Toteuttaja"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__primary_implementer_in_survey_registry
+msgid "Primary Implementer In Survey Registry"
+msgstr "Toteuttajaorganisaatio hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__primary_implementer_in_survey_registry
+msgid ""
+"Primary implementer in survey registry, computed based on survey question "
+"configuration"
+msgstr ""
+"Hankerekisterissä näytettävä toteuttajaorganisaatio, muodostetaan kysymysten konfiguraation"
+" pohjalta."
+
+#. module: survey_registry_portal
 #. odoo-python
 #: code:addons/survey_registry_portal/controllers/main.py:0
 #: code:addons/survey_registry_portal/controllers/main.py:0
 #, python-format
 msgid "Respondent"
 msgstr "Vastaaja"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
+msgid "Schedule"
+msgstr "Hankkeen aikataulu"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__schedule_in_survey_registry
+msgid "Schedule In Survey Registry"
+msgstr "Hankkeen aikataulu hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__schedule_in_survey_registry
+msgid ""
+"Schedule in survey registry, computed based on survey question configuration"
+msgstr ""
+"Hankerekisterissä näytettävä hankkeen aikataulu, muodostetaan kysymysten konfiguraation"
+" pohjalta."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -246,11 +369,18 @@ msgstr "Hankerekisterissä ei ole vielä sisältöä."
 #. module: survey_registry_portal
 #. odoo-python
 #: code:addons/survey_registry_portal/controllers/main.py:0
+#, python-format
+msgid "Tags"
+msgstr "Avainsanat"
+
+#. module: survey_registry_portal
+#. odoo-python
+#: code:addons/survey_registry_portal/controllers/main.py:0
 #: code:addons/survey_registry_portal/controllers/main.py:0
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 #, python-format
 msgid "Title"
-msgstr "Hanke"
+msgstr "Hankkeen otsikko"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__title_in_survey_registry
@@ -271,9 +401,29 @@ msgstr ""
 " pohjalta."
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_category_in_survey_registry
+msgid "Use Answer As Category In Survey Registry"
+msgstr "Käytä vastausta Aihepiiri-tietona hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_other_implementers_in_survey_registry
+msgid "Use Answer As Other Implementers In Survey Registry"
+msgstr "Käytä vastausta Muut toteuttajat -tietona hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_primary_implementer_in_survey_registry
+msgid "Use Answer As Primary Implementer In Survey Registry"
+msgstr "Käytä vastausta Toteuttajaorganisaatio-tietona hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_schedule_in_survey_registry
+msgid "Use Answer As Schedule In Survey Registry"
+msgstr "Käytä vastausta Aikataulu-tietona hankerekisterissä"
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
 msgid "Use Answer As Title In Survey Registry"
-msgstr "Käytä vastausta otsikkona hankerekisterissä"
+msgstr "Käytä vastausta Hankkeen otsikko -tietona hankerekisterissä"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_survey__survey_registry_field_line_ids
