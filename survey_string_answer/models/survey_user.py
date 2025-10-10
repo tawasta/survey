@@ -22,10 +22,11 @@
 
 # 2. Known third party imports:
 
+import logging
+
 # 3. Odoo imports (openerp):
 from odoo import api, fields, models
 from odoo.tools import format_date, format_datetime
-import logging
 
 # 4. Imports from Odoo modules:
 
@@ -69,16 +70,20 @@ class SurveyUserInputLine(models.Model):
                 _logger.info(f"String answer set to: {line.string_answer} for text_box")
             if line.answer_type == "numerical_box" and line.value_numerical_box:
                 line.string_answer = str(line.value_numerical_box)
-                _logger.info(f"String answer set to: {line.string_answer} for numerical_box")
+                _logger.info(
+                    f"String answer set to: {line.string_answer} for numerical_box"
+                )
             if line.answer_type == "date" and line.value_date:
                 line.string_answer = str(format_date(self.env, line.value_date))
             if line.answer_type == "datetime" and line.value_datetime:
                 line.string_answer = str(format_datetime(self.env, line.value_datetime))
             if line.answer_type == "suggestion" and line.suggested_answer_id:
-                #line.string_answer = str(line.suggested_answer_id.value)
+                # line.string_answer = str(line.suggested_answer_id.value)
                 value = line.suggested_answer_id.with_context(ctx).value
                 line.string_answer = str(value)
-                _logger.info(f"String answer set to: {line.string_answer} for suggestion")
+                _logger.info(
+                    f"String answer set to: {line.string_answer} for suggestion"
+                )
 
     # 5. Constraints and onchanges
 
