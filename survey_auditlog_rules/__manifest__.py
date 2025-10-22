@@ -21,7 +21,7 @@
 {
     "name": "Audit Log Rules - Survey",
     "summary": "Adds audit log rules for surveys",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Marketing/Surveys",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
