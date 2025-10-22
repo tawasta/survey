@@ -41,7 +41,11 @@
             <t t-set="additional_title">Survey Registry</t>
             <t t-set="breadcrumbs_searchbar" t-value="True" />
 
-            <section class="container">
+            <section class="container survey-registry-container">
+
+                <!-- User-editable section at the top of the list -->
+                <div class="oe_structure" />
+
                 <t t-call="portal.portal_searchbar">
                     <t t-set="title">
                         <h2 class="fw-bold mb-4">Survey Registry</h2>
