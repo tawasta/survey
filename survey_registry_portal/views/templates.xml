@@ -258,7 +258,7 @@
                                     <tr class="d-block d-md-table-row">
 
                                         <td
-                                            class="fw-bold d-block d-md-table-cell w-100 w-md-50"
+                                            class="fw-bold d-block d-md-table-cell w-100 w-md-25"
                                         >
                                             <span>
                                                 <t
@@ -269,7 +269,7 @@
 
                                         <!-- Render answer according to question type. TODO: handle rest of types if need arises -->
                                         <td
-                                            class="d-block d-md-table-cell w-100 w-md-50"
+                                            class="d-block d-md-table-cell w-100 w-md-75"
                                         >
                                             <t
                                                 t-if="user_input_line.answer_type == 'char_box'"
