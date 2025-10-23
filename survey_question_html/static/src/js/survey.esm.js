@@ -4,8 +4,11 @@ import SurveyFormWidget from "@survey/js/survey_form";
 
 /* --- helpers --- */
 function cssEscape(str) {
-    if (window.CSS?.escape) return window.CSS.escape(str);
-    return String(str).replace(/[^a-zA-Z0-9_\-]/g, s => "\\" + s);
+    var hasCSS = window.CSS && typeof window.CSS.escape === "function";
+    if (hasCSS) return window.CSS.escape(str);
+    return String(str).replace(/[^a-zA-Z0-9_\-]/g, function (s) {
+        return "\\" + s;
+    });
 }
 function isHtmlEmpty(html) {
     if (!html) return true;
@@ -31,9 +34,26 @@ function syncCkToTextareas($root, formData) {
     });
 }
 function createEditorFor($textarea) {
-    if (!$textarea?.length || $textarea.data("ckeditorInstance") || !window.ClassicEditor) return Promise.resolve();
+    if (
+        !$textarea?.length ||
+        $textarea.data("ckeditorInstance") ||
+        !window.ClassicEditor
+    )
+        return Promise.resolve();
     return window.ClassicEditor.create($textarea[0], {
-        toolbar: ["heading","|","bold","italic","link","bulletedList","numberedList","blockQuote","|","undo","redo"],
+        toolbar: [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+            "|",
+            "undo",
+            "redo",
+        ],
     }).then((editor) => {
         $textarea.data("ckeditorInstance", editor).attr("data-ckeditor", "1");
         $textarea.css("height", "auto");
@@ -43,7 +63,9 @@ function createEditorFor($textarea) {
 }
 function initEditorsIn($root) {
     const tasks = [];
-    $root.find("textarea.o_survey_question_html:visible").each(function () { tasks.push(createEditorFor($(this))); });
+    $root.find("textarea.o_survey_question_html:visible").each(function () {
+        tasks.push(createEditorFor($(this)));
+    });
     return Promise.all(tasks);
 }
 
@@ -53,23 +75,31 @@ SurveyFormWidget.include({
         const observer = new MutationObserver((muts) => {
             for (const m of muts) {
                 for (const n of m.addedNodes || []) {
-                    if (n instanceof HTMLElement && (n.matches?.("textarea.o_survey_question_html") || n.querySelector?.("textarea.o_survey_question_html"))) {
+                    if (
+                        n instanceof HTMLElement &&
+                        (n.matches?.("textarea.o_survey_question_html") ||
+                            n.querySelector?.("textarea.o_survey_question_html"))
+                    ) {
                         initEditorsIn(this.$el);
                         return;
                     }
                 }
             }
         });
-        observer.observe(this.el, { childList: true, subtree: true });
+        observer.observe(this.el, {childList: true, subtree: true});
         this._ckObserver = observer;
         return Promise.resolve(_super).then(() => initEditorsIn(this.$el));
     },
 
     destroy() {
-        if (this._ckObserver) { this._ckObserver.disconnect(); this._ckObserver = null; }
+        if (this._ckObserver) {
+            this._ckObserver.disconnect();
+            this._ckObserver = null;
+        }
         this.$("textarea.o_survey_question_html").each(function () {
             const ed = $(this).data("ckeditorInstance");
-            if (ed?.destroy) ed.destroy().then(() => $(this).removeData("ckeditorInstance"));
+            if (ed?.destroy)
+                ed.destroy().then(() => $(this).removeData("ckeditorInstance"));
         });
         return this._super.apply(this, arguments);
     },
@@ -90,8 +120,12 @@ SurveyFormWidget.include({
                 if (!$wrapper.length) $wrapper = $ta.closest(".js_question-wrapper");
 
                 const qid = $wrapper.attr("id") || name;
-                const reqAttr = ($wrapper.attr("data-required") ?? "").toString().trim().toLowerCase();
-                const required = reqAttr === "true" || reqAttr === "1" || reqAttr === "yes";
+                const reqAttr = ($wrapper.attr("data-required") ?? "")
+                    .toString()
+                    .trim()
+                    .toLowerCase();
+                const required =
+                    reqAttr === "true" || reqAttr === "1" || reqAttr === "yes";
                 const val = $ta.val();
                 const empty = isHtmlEmpty(val);
 
@@ -104,7 +138,9 @@ SurveyFormWidget.include({
                 });
 
                 if (required && empty) {
-                    const msg = $wrapper.data("constrErrorMsg") || "This question requires an answer.";
+                    const msg =
+                        $wrapper.data("constrErrorMsg") ||
+                        "This question requires an answer.";
                     errors[qid] = msg;
                 }
             });
@@ -113,7 +149,10 @@ SurveyFormWidget.include({
                 this._resetErrors();
                 this._showErrors(errors);
                 const firstKey = Object.keys(errors)[0];
-                if (firstKey) this._scrollToError(this.$(`.js_question-wrapper#${cssEscape(firstKey)}`));
+                if (firstKey)
+                    this._scrollToError(
+                        this.$(`.js_question-wrapper#${cssEscape(firstKey)}`)
+                    );
                 return;
             }
         }
@@ -130,7 +169,7 @@ SurveyFormWidget.include({
             const qid = $ta.attr("name");
             if (!qid) return;
             const val = $ta.val() || "";
-            params[qid] = { value: val, value_html: val };
+            params[qid] = {value: val, value_html: val};
         });
 
         return params;

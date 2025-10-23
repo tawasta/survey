@@ -19,15 +19,12 @@
 ##############################################################################
 
 # 1. Standard library imports:
-import base64
-import re
 
 # 3. Odoo imports (openerp):
 from odoo import _, fields, models
 from odoo.tools import html2plaintext
 
 # 4. Imports from Odoo modules:
-from odoo.tools.mimetypes import guess_mimetype
 
 # 2. Known third party imports:
 
@@ -50,9 +47,13 @@ class SurveyQuestion(models.Model):
         self.ensure_one()
         if self.question_type == "html":
             if self.constr_mandatory:
-                content = (answer or {}).get("value") if isinstance(answer, dict) else answer
+                content = (
+                    (answer or {}).get("value") if isinstance(answer, dict) else answer
+                )
                 if not content or not html2plaintext(content or "").strip():
-                    return {self.id: self.constr_error_msg or _("This field is required.")}
+                    return {
+                        self.id: self.constr_error_msg or _("This field is required.")
+                    }
             return {}
         return super().validate_question(answer, comment)
 

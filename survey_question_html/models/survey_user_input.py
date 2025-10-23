@@ -51,10 +51,12 @@ class SurveyUserInput(models.Model):
     # 7. Action methods
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         if question.question_type == "html":
-            old = self.env["survey.user_input.line"].search([
-                ("user_input_id", "=", self.id),
-                ("question_id", "=", question.id),
-            ])
+            old = self.env["survey.user_input.line"].search(
+                [
+                    ("user_input_id", "=", self.id),
+                    ("question_id", "=", question.id),
+                ]
+            )
             vals = {
                 "user_input_id": self.id,
                 "question_id": question.id,
@@ -70,4 +72,5 @@ class SurveyUserInput(models.Model):
                 return old
             return self.env["survey.user_input.line"].create(vals)
         return super()._save_lines(question, answer, comment, overwrite_existing)
+
     # 8. Business methods

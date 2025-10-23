@@ -80,7 +80,6 @@ class SurveyUserInputLine(models.Model):
             if line.answer_type != "html":
                 return super(SurveyUserInputLine, line)._check_answer_type_skipped()
 
-
     # 6. CRUD methods
 
     # 7. Action methods
