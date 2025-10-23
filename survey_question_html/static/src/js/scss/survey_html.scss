@@ -1,0 +1,29 @@
+.o_survey_html_container {
+    display: flow-root;
+    margin-bottom: 1rem;
+}
+
+.o_wysiwyg_textarea_wrapper {
+    height: auto !important;
+}
+
+.ck.ck-editor {
+    display: block;
+    width: 100%;
+}
+
+.ck.ck-editor__editable,
+.ck.ck-content {
+    min-height: 260px;
+    max-height: 60vh;
+    overflow: auto;
+    box-sizing: border-box;
+    padding-bottom: 8px;
+}
+
+@media (max-width: 576px) {
+    .ck.ck-editor__editable,
+    .ck.ck-content {
+        min-height: 200px;
+    }
+}

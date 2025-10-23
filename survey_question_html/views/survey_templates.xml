@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="question_container_html" inherit_id="survey.question_container">
+        <xpath expr="//t[@t-call='survey.question_matrix']//.." position="after">
+            <t t-if="question.question_type == 'html'">
+                <t t-call="survey_question_html.question_html"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="survey_page_print_html" inherit_id="survey.survey_page_print">
+        <xpath expr="//div[hasclass('o_survey_question_error')]" position="before">
+            <t t-if="question.question_type == 'html'">
+                <t t-call="survey_question_html.review_html"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="question_html" name="Question: HTML">
+        <div class="o_survey_comment_container h-auto p-0">
+            <div class="o_survey_html_container position-relative o_wysiwyg_textarea_wrapper">
+                <textarea
+                    t-att-name="question.id"
+                    t-att-data-question-type="question.question_type"
+                    class="form-control bg-transparent rounded-0 p-0 o_wysiwyg_loader o_survey_question_html"
+                    rows="6"
+                    placeholder="Write your answer..."
+                ><t t-if="answer_lines" t-raw="answer_lines[0].value_html or ''"/></textarea>
+                <div class="o_wysiwyg_loading position-absolute top-0 end-0 p-2" style="display:none">
+                    <i class="fa fa-spinner fa-spin"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="review_html" name="Review: HTML">
+        <div class="o_survey_html_answer">
+            <t t-foreach="answer_lines" t-as="line">
+                <t t-if="line.answer_type == 'html' and line.value_html">
+                    <div class="border rounded p-2">
+                        <t t-raw="line.value_html"/>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </template>
+</odoo>
