@@ -60,7 +60,7 @@ msgstr "Rahoituspäätöksen päiväys"
 #. module: survey_user_input_funding_application_base
 #: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form_inherit_survey_payment_link
 msgid "Funding Information &amp; Payments"
-msgstr "Rahoituspäätöksen tiedot &amp; maksut"
+msgstr "Kehittämisrahaston päätös ja seuranta"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_left_amount
