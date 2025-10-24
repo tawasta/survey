@@ -40,6 +40,12 @@
         <field name="model">survey.user_input</field>
         <field name="inherit_id" ref="survey.survey_user_input_view_form" />
         <field name="arch" type="xml">
+            <field name="survey_id" position="after">
+                <field name="survey_has_registry_fields" invisible="1"/>
+            </field>
+            <field name="survey_id" position="attributes">
+                <attribute name="invisible">survey_has_registry_fields</attribute>
+            </field>
             <notebook position="inside">
                 <page string="Survey Registry" name="page_survey_registry">
                     <group string="Visibility" name="group_survey_registry_visibility">

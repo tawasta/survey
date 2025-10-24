@@ -14,3 +14,12 @@ class SurveySurvey(models.Model):
         "select what fields (in addition to the actual answers) gets shown there, "
         "e.g. the status of the answer.",
     )
+
+    has_registry_fields = fields.Boolean(
+        compute=lambda self: [
+            setattr(rec, 'has_registry_fields', bool(rec.survey_registry_field_line_ids))
+            for rec in self
+        ],
+        string="Has Registry Fields",
+        store=False,
+    )
