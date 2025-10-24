@@ -43,7 +43,6 @@ class SurveyQuestion(models.Model):
     )
 
     def validate_question(self, answer, comment=None):
-        """Validate HTML question when mandatory and optional word limit."""
         self.ensure_one()
         if self.question_type == "html":
             if self.constr_mandatory:

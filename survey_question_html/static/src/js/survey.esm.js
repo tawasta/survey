@@ -2,7 +2,10 @@
 
 import SurveyFormWidget from "@survey/js/survey_form";
 
-/* --- helpers --- */
+/*
+ * CssEscape(str)
+ * Tekee merkkijonosta turvallisen CSS-selektorin (esim. jos ID:ssä on erikoismerkkejä).
+ */
 function cssEscape(str) {
     var hasCSS = window.CSS && typeof window.CSS.escape === "function";
     if (hasCSS) return window.CSS.escape(str);
@@ -10,6 +13,10 @@ function cssEscape(str) {
         return "\\" + s;
     });
 }
+/*
+ * IsHtmlEmpty(html)
+ * Palauttaa true, jos HTML-kenttä on käytännössä tyhjä (vain tageja, välilyöntejä tai &nbsp;).
+ */
 function isHtmlEmpty(html) {
     if (!html) return true;
     const text = String(html)
@@ -21,6 +28,10 @@ function isHtmlEmpty(html) {
         .trim();
     return text.length === 0;
 }
+/*
+ * SyncCkToTextareas($root, formData)
+ * Synkronoi CKEditorin sisällön takaisin textarea-elementteihin ja tarvittaessa myös FormDataan.
+ */
 function syncCkToTextareas($root, formData) {
     $root.find("textarea.o_survey_question_html").each(function () {
         const $ta = $(this);
@@ -30,16 +41,24 @@ function syncCkToTextareas($root, formData) {
         const raw = editor ? editor.getData() : $ta.val();
         const normalized = isHtmlEmpty(raw) ? "" : raw;
         $ta.val(normalized);
-        if (formData?.set) formData.set(name, normalized);
+        if (formData && typeof formData.set === "function") {
+            formData.set(name, normalized);
+        }
     });
 }
+/*
+ * CreateEditorFor($textarea)
+ * Luo CKEditor-instanssin annetulle textarea-elementille (jos sitä ei vielä ole).
+ */
 function createEditorFor($textarea) {
     if (
-        !$textarea?.length ||
+        !$textarea ||
+        !$textarea.length ||
         $textarea.data("ckeditorInstance") ||
         !window.ClassicEditor
-    )
+    ) {
         return Promise.resolve();
+    }
     return window.ClassicEditor.create($textarea[0], {
         toolbar: [
             "heading",
@@ -61,6 +80,10 @@ function createEditorFor($textarea) {
         $textarea.closest(".position-relative").find(".o_wysiwyg_loading").hide();
     });
 }
+/*
+ * InitEditorsIn($root)
+ * Käynnistää CKEditorin kaikille näkyville textarea.o_survey_question_html -kentille.
+ */
 function initEditorsIn($root) {
     const tasks = [];
     $root.find("textarea.o_survey_question_html:visible").each(function () {
@@ -69,6 +92,10 @@ function initEditorsIn($root) {
     return Promise.all(tasks);
 }
 
+/*
+ * SurveyFormWidget override
+ * Lisää CKEditor-tuen, required-validoinnin ja synkronoinnin Odoon survey-lomakkeeseen.
+ */
 SurveyFormWidget.include({
     start() {
         const _super = this._super.apply(this, arguments);
@@ -77,8 +104,9 @@ SurveyFormWidget.include({
                 for (const n of m.addedNodes || []) {
                     if (
                         n instanceof HTMLElement &&
-                        (n.matches?.("textarea.o_survey_question_html") ||
-                            n.querySelector?.("textarea.o_survey_question_html"))
+                        ((n.matches && n.matches("textarea.o_survey_question_html")) ||
+                            (n.querySelector &&
+                                n.querySelector("textarea.o_survey_question_html")))
                     ) {
                         initEditorsIn(this.$el);
                         return;
@@ -98,12 +126,13 @@ SurveyFormWidget.include({
         }
         this.$("textarea.o_survey_question_html").each(function () {
             const ed = $(this).data("ckeditorInstance");
-            if (ed?.destroy)
+            if (ed && ed.destroy)
                 ed.destroy().then(() => $(this).removeData("ckeditorInstance"));
         });
         return this._super.apply(this, arguments);
     },
 
+    // eslint-disable-next-line no-unused-vars
     _submitForm: async function (options) {
         if (!this.options.isStartScreen) {
             syncCkToTextareas(this.$el);
@@ -115,13 +144,15 @@ SurveyFormWidget.include({
             $form.find("textarea.o_survey_question_html").each((_, el) => {
                 const $ta = $(el);
                 const name = $ta.attr("name") || "";
-                // wrapper can be separate from textarea → resolve by id=name
+                // Wrapper can be separate from textarea → resolve by id=name
                 let $wrapper = this.$(`.js_question-wrapper#${cssEscape(name)}`);
                 if (!$wrapper.length) $wrapper = $ta.closest(".js_question-wrapper");
 
                 const qid = $wrapper.attr("id") || name;
-                const reqAttr = ($wrapper.attr("data-required") ?? "")
-                    .toString()
+                const rawReq = $wrapper.attr("data-required");
+                const reqAttr = (
+                    rawReq === undefined || rawReq === null ? "" : String(rawReq)
+                )
                     .trim()
                     .toLowerCase();
                 const required =
@@ -159,7 +190,10 @@ SurveyFormWidget.include({
 
         return this._super.apply(this, arguments);
     },
-
+    /*
+     * _prepareSubmitValues(formData, params)
+     * Lisää HTML-vastausten arvot params-objektiin ennen lomakkeen lähettämistä.
+     */
     _prepareSubmitValues(formData, params) {
         this._super.apply(this, arguments);
         syncCkToTextareas(this.$el, formData);
