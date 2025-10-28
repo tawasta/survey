@@ -5,7 +5,10 @@
         <field name="inherit_id" ref="survey.survey_user_input_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Participation Follow-up Information" groups="base.group_no_one">
+                <page
+                    string="Participation Follow-up Information"
+                    groups="base.group_no_one"
+                >
                     <group>
                         <field
                             name="parent_survey_user_input_id"
