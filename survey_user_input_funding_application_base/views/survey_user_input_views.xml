@@ -98,7 +98,6 @@
                         <!-- TODO: can maybe be removed, just utilize the ref field -->
                         <field name="service_identifier" />
                         <field name="user_id" options="{'no_create': True}" />
-                        <field name="show_in_registry"/>
                     </group>
                     <group string="Completion Details" name="group_completion_details">
                         <field name="date_finished" />
@@ -142,22 +141,6 @@
                     </group>
                 </group>
             </group>
-        </field>
-    </record>
-
-    <record id="survey_user_input_view_form_registry" model="ir.ui.view">
-        <field
-            name="name"
-        >survey.user_input.tree.inherit.registry.base</field>
-        <field name="model">survey.user_input</field>
-        <field name="inherit_id" ref="survey_registry_portal.survey_user_input_view_form" />
-        <field name="arch" type="xml">
-
-            <!-- 1) Piilota survey_registry_portal-moduulin lisäämä välilehti -->
-            <xpath expr="//page[@name='page_survey_registry']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-
         </field>
     </record>
 </odoo>

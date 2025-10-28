@@ -55,12 +55,6 @@ class SurveyUserInput(models.Model):
         "question configuration",
     )
 
-    survey_has_registry_fields = fields.Boolean(
-        related='survey_id.has_registry_fields',
-        store=False,
-        readonly=True,
-    )
-
     @api.depends(
         "user_input_line_ids",
         "user_input_line_ids.question_id.show_answer_in_survey_registry",
