@@ -1,0 +1,28 @@
+<odoo>
+    <record id="survey_user_input_view_form_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.user_input.form.inherit.quick.link.to.edit.parent.support</field>
+        <field name="model">survey.user_input</field>
+        <field
+            name="inherit_id"
+            ref="survey_user_input_parent_survey_user_input_link.survey_user_input_view_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='child_survey_user_input_line_ids']/tree/field[@name='answer_score']"
+                position="after"
+            >
+                <button
+                    name="action_open_line_form"
+                    type="object"
+                    string="Edit Answer"
+                    groups="survey.group_survey_manager"
+                    icon="fa-external-link"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
