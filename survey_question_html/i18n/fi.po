@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_html
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-28 12:05+0000\n"
+"PO-Revision-Date: 2025-10-28 12:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_question_html
+#: model:ir.model.fields,field_description:survey_question_html.field_survey_user_input_line__answer_type
+msgid "Answer Type"
+msgstr "Vastauksen tyyppi"
+
+#. module: survey_question_html
+#. odoo-python
+#: code:addons/survey_question_html/models/survey_user_input_line.py:0
+#: model:ir.model.fields.selection,name:survey_question_html.selection__survey_user_input_line__answer_type__html
+#, python-format
+msgid "HTML"
+msgstr ""
+
+#. module: survey_question_html
+#: model:ir.model.fields,field_description:survey_question_html.field_survey_user_input_line__value_html
+msgid "HTML Answer"
+msgstr "HTML-vastaus"
+
+#. module: survey_question_html
+#: model:ir.model.fields.selection,name:survey_question_html.selection__survey_question__question_type__html
+msgid "HTML field"
+msgstr "HTML-kenttä"
+
+#. module: survey_question_html
+#: model:ir.model.fields,field_description:survey_question_html.field_survey_question__question_type
+msgid "Question Type"
+msgstr "Kysymyksen tyyppi"
+
+#. module: survey_question_html
+#: model:ir.model,name:survey_question_html.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
+
+#. module: survey_question_html
+#: model:ir.model,name:survey_question_html.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Käyttäjäsyöte kyselyssä"
+
+#. module: survey_question_html
+#: model:ir.model,name:survey_question_html.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Kyselyn käyttäjän syöttörivi"
+
+#. module: survey_question_html
+#. odoo-python
+#: code:addons/survey_question_html/models/survey_question.py:0
+#, python-format
+msgid "This field is required."
+msgstr "Tämä kenttä on pakollinen"
+
+#. module: survey_question_html
+#: model_terms:ir.ui.view,arch_db:survey_question_html.question_html
+msgid "Write your answer..."
+msgstr "Kirjoita vastaukesi..."

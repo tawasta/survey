@@ -303,6 +303,11 @@
                                                 t-if="user_input_line.answer_type == 'suggestion'"
                                                 t-out="user_input_line.suggested_answer_id.value"
                                             />
+                      <t
+                                                t-if="user_input_line.answer_type == 'html'"
+                                                t-out="user_input_line.value_html"
+                                            />
+
                                         </td>
                                     </tr>
                                 </t>
