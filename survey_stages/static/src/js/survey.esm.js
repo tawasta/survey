@@ -10,7 +10,9 @@ SurveyFormWidget.include({
         // Re-use code from core to prevent multiline input enter press
         // submitting the form:
         if (
-            (this.$("textarea").is(":focus") || this.$("input").is(":focus")) &&
+            (this.$("textarea").is(":focus") ||
+                this.$("input").is(":focus") ||
+                $(event.target).closest(".ck-editor__editable").length) &&
             (!(event.ctrlKey || event.metaKey) || event.key !== "Enter")
         ) {
             return;
