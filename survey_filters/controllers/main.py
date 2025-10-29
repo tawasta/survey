@@ -294,20 +294,22 @@ class SurveyFilter(Survey):
 
         # Kurssi- ja tapahtumasuodatus
         if selected_courses:
-            courses = (
-                request.env["op.course"].sudo().search([("id", "in", selected_courses)])
-            )
-            for course_id in courses.ids:
-                line_filter_domain.append(("event_id.course_id", "=", course_id))
+            if hasattr(selected_courses, "ids"):
+                course_ids = list(map(int, selected_courses.ids))
+            elif isinstance(selected_courses, (list, tuple, set)):
+                course_ids = [int(c) for c in selected_courses]
+            else:
+                course_ids = [int(x) for x in str(selected_courses).split(",") if x]
+            line_filter_domain.append(("event_id.course_id", "in", course_ids))
 
         if selected_events:
-            events = (
-                request.env["event.event"]
-                .sudo()
-                .search([("id", "in", selected_events)])
-            )
-            for event_id in events.ids:
-                line_filter_domain.append(("event_id", "=", event_id))
+            if hasattr(selected_events, "ids"):
+                event_ids = list(map(int, selected_events.ids))
+            elif isinstance(selected_events, (list, tuple, set)):
+                event_ids = [int(e) for e in selected_events]
+            else:
+                event_ids = [int(x) for x in str(selected_events).split(",") if x]
+            line_filter_domain.append(("event_id", "in", event_ids))
 
         # Hakusuodatus
         if search:
