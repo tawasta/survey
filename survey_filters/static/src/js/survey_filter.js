@@ -2,154 +2,102 @@ odoo.define("survey.survey_page_statistics_inner", function () {
     "use strict";
 
     $(function () {
-        $("#select_user").on("change", function () {
-            var val = $(this).val();
-            var path = window.location.pathname;
-
-            if (path.indexOf("/user") >= 0) {
-                path = window.location.pathname.split("/user")[0];
-            }
-            if (val) {
-                window.location.href = path + "/user/" + val;
-            } else {
-                window.location.href = path;
-            }
-        });
-
-        $("#select_course").select2({
-            placeholder: "Select courses",
-            allowClear: true,
-        });
-        $("#selectevent").select2({
-            placeholder: "Select events",
-            allowClear: true,
-        });
-
-        $("#select_course").on("change", function () {
-            $("#hidden_courses").val($("#select_course").val().toString());
-            var path = window.location.pathname;
-            var val = $("#hidden_courses").val();
-            if (path.indexOf("/course") >= 0) {
-                path = window.location.pathname.split("/course")[0];
-            }
-
-            if (val) {
-                window.location.href = path + "/course/" + val;
-            } else {
-                window.location.href = path;
-            }
-        });
-
-        $("#selectevent").on("change", function () {
-            $("#hiddenevents").val($("#selectevent").val().toString());
-            var path = window.location.pathname;
-            var val = $("#hiddenevents").val();
-            if (path.indexOf("/event") >= 0) {
-                path = window.location.pathname.split("/event")[0];
-            }
-
-            if (val) {
-                window.location.href = path + "/event/" + val;
-            } else {
-                window.location.href = path;
-            }
-        });
-
-        var path = window.location.pathname;
-        if (path.indexOf("/date_start") >= 0) {
-            var date_current = path.split("/date_start/")[1];
-            var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
-            $("#datetimepicker-filter-date").datetimepicker({
-                format: "DD.MM.Y",
+        // Asetusten määrittely yhdellä kertaa
+        const initDatePicker = (selector) => {
+            $(selector).datetimepicker({
+                format: "DD.MM.YYYY",
                 locale: moment.locale(),
-                defaultDate: newDateTime,
             });
-        } else {
-            $("#datetimepicker-filter-date").datetimepicker({
-                format: "DD.MM.Y",
-                locale: moment.locale(),
+        };
+
+        const initSelect2 = (selector, placeholder) => {
+            $(selector).select2({
+                placeholder: placeholder,
+                allowClear: true,
+            });
+        };
+
+        // Päivämäärävalitsimien ja pudotusvalikkojen alustaminen
+        initDatePicker("#datetimepicker-filter-date");
+        initDatePicker("#datetimepicker-filter-end-date");
+        initSelect2("#select_course", "Select courses");
+        initSelect2("#selectevent", "Select events");
+
+        function _showAnswers() {
+            $("table[id^='survey_table_question_']").each(function () {
+                var $table = $(this);
+                var $tbody = $table.find("tbody");
+                var limit =
+                    parseInt(
+                        $table.closest("div").find(".pagination").data("record_limit"),
+                        10
+                    ) || 10;
+                // Näytetään vain ensimmäiset 'limit' määrän vastauksia
+                $tbody.find("tr").addClass("d-none");
+                $tbody.find("tr").slice(0, limit).removeClass("d-none");
             });
         }
 
-        $("#datetimepicker-filter-date").on("hide.datetimepicker", function () {
-            var newStartDate = $(this).find(".datetimepicker-input").val();
-            var basePath = window.location.pathname
-                .split("/date_start")[0]
-                .split("/date_end")[0];
-            var endDatePath =
-                basePath +
-                (window.location.pathname.indexOf("/date_end") >= 0
-                    ? window.location.pathname.split("/date_end")[1]
-                    : "");
+        function applyFiltersFromURL() {
+            const urlPath = window.location.pathname;
+            const hasFilters =
+                /course=|event=|date_start=|date_end=/.test(urlPath) ||
+                window.location.search.includes("filters");
 
-            if (newStartDate) {
-                var newPath = basePath + "/date_start/" + newStartDate;
-                // Check if end_date exists and compare dates
-                if (endDatePath) {
-                    // Console.log("=====TANNE MENENEE=====");
-                    var endDate = moment(
-                        window.location.pathname.split("/date_end/")[1],
-                        "DD.MM.YYYY"
-                    );
-                    var startDate = moment(newStartDate, "DD.MM.YYYY");
-
-                    // Console.log(startDate);
-                    // console.log(endDate);
-                    if (startDate.isBefore(endDate)) {
-                        newPath +=
-                            "/date_end/" +
-                            window.location.pathname.split("/date_end/")[1];
-                    }
-                }
-                window.location.href = newPath;
-                // Console.log(newPath);
-            } else {
-                window.location.href = basePath;
-                // Console.log("basePath");
+            if (hasFilters) {
+                _showAnswers();
             }
-        });
-
-        // $("#datetimepicker-filter-date").on("hide.datetimepicker", function () {
-        //     var date = $(this).find(".datetimepicker-input").val();
-        //     console.log(date);
-        //     var path = window.location.pathname;
-        //     if (path.indexOf("/date_start") >= 0) {
-        //         path = window.location.pathname.split("/date_start")[0];
-        //     }
-
-        //     if (date) {
-        //         window.location.href = path + "/date_start/" + date;
-        //     } else {
-        //         window.location.href = path;
-        //     }
-        // });
-        if (path.indexOf("/date_end") >= 0) {
-            var date_current = path.split("/date_end/")[1];
-            var newDateTime = moment(date_current, "DD.MM.YYYY").toDate();
-            $("#datetimepicker-filter-end-date").datetimepicker({
-                format: "DD.MM.Y",
-                locale: moment.locale(),
-                defaultDate: newDateTime,
-            });
-        } else {
-            $("#datetimepicker-filter-end-date").datetimepicker({
-                format: "DD.MM.Y",
-                locale: moment.locale(),
-            });
         }
 
-        $("#datetimepicker-filter-end-date").on("hide.datetimepicker", function () {
-            var date = $(this).find(".datetimepicker-input").val();
-            var path = window.location.pathname;
-            if (path.indexOf("/date_end") >= 0) {
-                path = window.location.pathname.split("/date_end")[0];
+        applyFiltersFromURL();
+
+        // Päivitä-painikkeen toiminnallisuus
+        $("#apply_filters").on("click", function () {
+            // Kerätään valitut arvot tai asetetaan tyhjä lista oletuksena
+            const selectedCourses = $("#select_course").val() || [];
+            const selectedEvents = $("#selectevent").val() || [];
+            const startDate = $("#filter-date").val();
+            const endDate = $("#filter-end-date").val();
+
+            // Poimitaan nykyisestä URL:sta survey-tieto (esim. "testi-1")
+            const surveyPathMatch = window.location.pathname.match(
+                /\/survey\/results\/([^\/]+)/
+            );
+            const surveyPath = surveyPathMatch ? surveyPathMatch[1] : null;
+
+            if (!surveyPath) {
+                alert("Survey information is missing from the URL!");
+                return;
             }
 
-            if (date) {
-                window.location.href = path + "/date_end/" + date;
-            } else {
-                window.location.href = path;
+            // Luo URL-suodatinpolku vain valituista arvoista
+            const filters = [];
+            if (selectedCourses.length > 0) {
+                filters.push(`course=${selectedCourses.join(",")}`);
             }
+            if (selectedEvents.length > 0) {
+                filters.push(`event=${selectedEvents.join(",")}`);
+            }
+            if (startDate) {
+                filters.push(`date_start=${encodeURIComponent(startDate)}`);
+            }
+            if (endDate) {
+                filters.push(`date_end=${encodeURIComponent(endDate)}`);
+            }
+
+            // Rakennetaan uusi URL
+            let newPath = `/survey/results/${surveyPath}`; // Säilytetään survey ID tai nimi
+            if (filters.length > 0) {
+                newPath += `/${filters.join("/")}`; // Lisätään valitut suodattimet avain=arvo-parina
+            } else {
+                console.warn("No filters selected, defaulting to survey path.");
+            }
+
+            // Tarkistetaan, että URL rakentuu oikein debug-logilla
+            console.log("Generated URL:", newPath);
+
+            // Päivitä sivu suodattimien mukaan
+            window.location.href = newPath;
         });
     });
 });
