@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 09:10+0000\n"
-"PO-Revision-Date: 2025-09-25 09:10+0000\n"
+"POT-Creation-Date: 2025-11-05 10:23+0000\n"
+"PO-Revision-Date: 2025-11-05 10:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,21 @@ msgstr "Aihepiiri hankerekisterissä"
 msgid ""
 "Category in survey registry, computed based on survey question configuration"
 msgstr ""
-"Hankerekisterissä näytettävä aihepiiri, muodostetaan kysymysten konfiguraation"
-" pohjalta."
+"Aihepiiri hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__confirmed_funders_in_survey_registry
+msgid "Confirmed Funders In Survey Registry"
+msgstr "Vahvistetut rahoittajat hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__confirmed_funders_in_survey_registry
+msgid ""
+"Confirmed_funders in survey registry, computed based on survey question "
+"configuration"
+msgstr "Vahvistetut rahoittajat hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__create_uid
@@ -81,6 +94,45 @@ msgid "Format As Monetary In Survey Registry"
 msgstr "Näytä rahasummana hankerekisterissä"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__funding_amount_applied_in_survey_registry
+msgid "Funding Amount Applied In Survey Registry"
+msgstr ""
+"Haettu rahoitus hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__funding_amount_total_in_survey_registry
+msgid "Funding Amount Total In Survey Registry"
+msgstr "Rahoitus yhteensä hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__funding_amount_applied_in_survey_registry
+msgid ""
+"Funding applied for in survey registry, computed based on survey question "
+"configuration"
+msgstr "Haettu rahoitus hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__funding_amount_total_in_survey_registry
+msgid ""
+"Funding total in survey registry, computed based on survey question "
+"configuration"
+msgstr "Rahoitus yhteensä hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__goals_in_survey_registry
+msgid "Goals In Survey Registry"
+msgstr "Tavoitteet hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__goals_in_survey_registry
+msgid ""
+"Goals in survey registry, computed based on survey question configuration"
+msgstr "Tavoitteet hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta"
+
+#. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.portal_breadcrumbs
 msgid "Home"
 msgstr "Etusivu"
@@ -109,6 +161,132 @@ msgstr ""
 "Jos rastitettu, numeerinen vastaus muotoillaan rahasummaksi, esim. 12,34 €"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_category_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Category in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Kategoria hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_confirmed_funders_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Confirmed funders in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Vahvistetut rahoittajat hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_funding_amount_applied_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Funding amount applied in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Haettu rahoitus' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_funding_amount_total_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Funding amount total in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Rahoitus yhteensä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_goals_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Goals in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Tavoitteet hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_implementation_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Implementation in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Toteutus hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_other_implementers_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Other implementers in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Muut toteuttajat hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_primary_implementer_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Primary implementer in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Toteuttajaorganisaatio hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_progress_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Progress in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Edistyminen hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_results_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Results in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Tulokset hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_schedule_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Schedule in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Aikataulu hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_subject_to_vat_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Subject to VAT in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Arvonlisäverovelvollisuus hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Title in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Otsikko hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_unconfirmed_funders_in_survey_registry
+msgid ""
+"If checked, the answer to this question will be saved to participation "
+"header level as 'Unconfirmed funders in survey registry'"
+msgstr ""
+"Jos rastitettu, vastaus tähän kysymyksen tallennetaan kyselyosallistumiseen "
+"'Epävarmat rahoittajat hankerekisterissä' -kenttään."
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_question__show_answer_in_survey_registry
 msgid ""
 "If checked, the answer to this question will be shown on the website in the "
@@ -116,51 +294,6 @@ msgid ""
 msgstr ""
 "Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
 "hankerekisterissä."
-
-#. module: survey_registry_portal
-#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_category_in_survey_registry
-msgid ""
-"If checked, the answer to this question will be used as the category in the "
-"survey registry."
-msgstr ""
-"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
-"hankerekisterissä aihepiiritietona."
-
-#. module: survey_registry_portal
-#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_other_implementers_in_survey_registry
-msgid ""
-"If checked, the answer to this question will be used as the other "
-"implementers in the survey registry."
-msgstr ""
-"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
-"hankerekisterissä muut toteuttajat -tietona."
-
-#. module: survey_registry_portal
-#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_primary_implementer_in_survey_registry
-msgid ""
-"If checked, the answer to this question will be used as the primary "
-"implementer in the survey registry."
-msgstr ""
-"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
-"hankerekisterissä toteuttajaorganisaatiotietona."
-
-#. module: survey_registry_portal
-#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_schedule_in_survey_registry
-msgid ""
-"If checked, the answer to this question will be used as the schedule in the "
-"survey registry."
-msgstr ""
-"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
-"hankerekisterissä hankkeen aikataulu -tietona."
-
-#. module: survey_registry_portal
-#: model:ir.model.fields,help:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
-msgid ""
-"If checked, the answer to this question will be used as the title in the "
-"survey registry."
-msgstr ""
-"Jos rastitettu, vastaus tähän kysymyksen näytetään verkkosivuilla "
-"hankerekisterissä otsikkotietona."
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,help:survey_registry_portal.field_survey_survey__survey_registry_field_line_ids
@@ -172,6 +305,20 @@ msgstr ""
 "Jos tämän kyselyn vastauksia näytetään hankerekisterissä, voit valita mitä "
 "lisäkenttiä (varsinaisten vastausten lisäksi) siellä näytetään, esimerkiksi "
 "vastauksen tila."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__implementation_in_survey_registry
+msgid "Implementation In Survey Registry"
+msgstr "Toteutus hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__implementation_in_survey_registry
+msgid ""
+"Implementation in survey registry, computed based on survey question "
+"configuration"
+msgstr ""
+"Muut toteuttajat hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -188,6 +335,11 @@ msgid ""
 "Indicates whether this survey response can be shown in the public registry."
 msgstr ""
 "Näytetäänkö tämä osallistuminen julkisessa hankerekisterissä verkkosivuilla."
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
+msgid "Individual answer mapping"
+msgstr "Vastausten yhdistäminen osallistumisen kenttiin"
 
 #. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
@@ -208,6 +360,16 @@ msgstr "Viimeksi päivittänyt"
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_registry_field_line__write_date
 msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
+
+#. module: survey_registry_portal
+#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
+msgid ""
+"Map answers to fields at Survey Participation top level for easier searching, filtering\n"
+"                            and exporting. Ensure no option is checked twice for same survey's questions."
+msgstr ""
+"Yhdistä vastauksia osallistumistietueeseen helpompaa hakua, suodatusta ja "
+"vientiä varten. Varmista että mikään valinta ei ole rastitettuna kahdesti "
+"saman kyselyn kysymyksille."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -250,13 +412,8 @@ msgid ""
 "Other implementers in survey registry, computed based on survey question "
 "configuration"
 msgstr ""
-"Hankerekisterissä näytettävät muut toteuttajat, muodostetaan kysymysten konfiguraation"
-" pohjalta."
-
-#. module: survey_registry_portal
-#: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_question_form
-msgid "Participation visibility trigger"
-msgstr "Osallistumisen näkyvyysehto"
+"Muut toteuttajat hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
@@ -274,8 +431,21 @@ msgid ""
 "Primary implementer in survey registry, computed based on survey question "
 "configuration"
 msgstr ""
-"Hankerekisterissä näytettävä toteuttajaorganisaatio, muodostetaan kysymysten konfiguraation"
-" pohjalta."
+"Toteuttajaorganisaatio hankerekisterissä, muodostetaan kysymysten"
+" konfiguraation pohjalta."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__progress_in_survey_registry
+msgid "Progress In Survey Registry"
+msgstr "Hankkeen eteneminen hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__progress_in_survey_registry
+msgid ""
+"Progress in survey registry, computed based on survey question configuration"
+msgstr ""
+"Hankkeen eteneminen hankerekisterissä, muodostetaan kysymysten"
+" konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -284,6 +454,19 @@ msgstr ""
 #, python-format
 msgid "Respondent"
 msgstr "Vastaaja"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__results_in_survey_registry
+msgid "Results In Survey Registry"
+msgstr "Tulokset hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__results_in_survey_registry
+msgid ""
+"Results in survey registry, computed based on survey question configuration"
+msgstr ""
+"Tulokset hankerekisterissä, muodostetaan kysymysten"
+" konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
@@ -300,8 +483,8 @@ msgstr "Hankkeen aikataulu hankerekisterissä"
 msgid ""
 "Schedule in survey registry, computed based on survey question configuration"
 msgstr ""
-"Hankerekisterissä näytettävä hankkeen aikataulu, muodostetaan kysymysten konfiguraation"
-" pohjalta."
+"Hankkeen aikataulu hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -324,6 +507,20 @@ msgstr "Näytä vastaus hankerekisterissä"
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__show_in_registry
 msgid "Show Answers in Survey Registry"
 msgstr "Näytä vastaukset hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__subject_to_vat_in_survey_registry
+msgid "Subject To Vat In Survey Registry"
+msgstr "Arvonlisäverovelvollisuus hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__subject_to_vat_in_survey_registry
+msgid ""
+"Subject to VAT in survey registry, computed based on survey question "
+"configuration"
+msgstr ""
+"Arvonlisäverovelvollisuus hankerekisterissä, muodostetaan kysymysten "
+"konfiguraation pohjalta."
 
 #. module: survey_registry_portal
 #. odoo-python
@@ -380,7 +577,7 @@ msgstr "Avainsanat"
 #: model_terms:ir.ui.view,arch_db:survey_registry_portal.survey_registry_page
 #, python-format
 msgid "Title"
-msgstr "Hankkeen otsikko"
+msgstr "Hanke"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__title_in_survey_registry
@@ -397,7 +594,21 @@ msgstr "Kentän otsikko verkkosivulla"
 msgid ""
 "Title in survey registry, computed based on survey question configuration"
 msgstr ""
-"Hankerekisterissä näytettävä otsikko, muodostetaan kysymysten konfiguraation"
+"Otsikko hankerekisterissä, muodostetaan kysymysten konfiguraation"
+" pohjalta."
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_user_input__unconfirmed_funders_in_survey_registry
+msgid "Unconfirmed Funders In Survey Registry"
+msgstr "Epävarmat rahoittajat hankerekisterissä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,help:survey_registry_portal.field_survey_user_input__unconfirmed_funders_in_survey_registry
+msgid ""
+"Unconfirmed_funders in survey registry, computed based on survey question "
+"configuration"
+msgstr ""
+"Epävarmat rahoittajat hankerekisterissä, muodostetaan kysymysten konfiguraation"
 " pohjalta."
 
 #. module: survey_registry_portal
@@ -406,24 +617,69 @@ msgid "Use Answer As Category In Survey Registry"
 msgstr "Käytä vastausta Aihepiiri-tietona hankerekisterissä"
 
 #. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_confirmed_funders_in_survey_registry
+msgid "Use Answer As Confirmed Funders In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Epävarmat rahoittajat"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_funding_amount_applied_in_survey_registry
+msgid "Use Answer As Funding Amount Applied In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Haettu rahoitus"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_funding_amount_total_in_survey_registry
+msgid "Use Answer As Funding Amount Total In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Rahoitus yhteensä"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_goals_in_survey_registry
+msgid "Use Answer As Goals In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Tavoitteet"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_implementation_in_survey_registry
+msgid "Use Answer As Implementation In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Toteutus"
+
+#. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_other_implementers_in_survey_registry
 msgid "Use Answer As Other Implementers In Survey Registry"
-msgstr "Käytä vastausta Muut toteuttajat -tietona hankerekisterissä"
+msgstr "Käytä vastausta hankerekisterissä: Muut toteuttajat"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_primary_implementer_in_survey_registry
 msgid "Use Answer As Primary Implementer In Survey Registry"
-msgstr "Käytä vastausta Toteuttajaorganisaatio-tietona hankerekisterissä"
+msgstr "Käytä vastausta hankerekisterissä: Toteuttajaorganisaatio"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_progress_in_survey_registry
+msgid "Use Answer As Progress In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Hankkeen eteneminen"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_results_in_survey_registry
+msgid "Use Answer As Results In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Tulokset"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_schedule_in_survey_registry
 msgid "Use Answer As Schedule In Survey Registry"
-msgstr "Käytä vastausta Aikataulu-tietona hankerekisterissä"
+msgstr "Käytä vastausta hankerekisterissä: Aikataulu"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_subject_to_vat_in_survey_registry
+msgid "Use Answer As Subject To Vat In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Arvonlisäverovelvollisuus"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_title_in_survey_registry
 msgid "Use Answer As Title In Survey Registry"
-msgstr "Käytä vastausta Hankkeen otsikko -tietona hankerekisterissä"
+msgstr "Käytä vastausta hankerekisterissä: Hankkeen otsikko"
+
+#. module: survey_registry_portal
+#: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_unconfirmed_funders_in_survey_registry
+msgid "Use Answer As Unconfirmed Funders In Survey Registry"
+msgstr "Käytä vastausta hankerekisterissä: Epävarmat rahoittajat"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_survey__survey_registry_field_line_ids

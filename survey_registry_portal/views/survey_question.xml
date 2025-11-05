@@ -7,41 +7,104 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Survey Registry">
+
                     <group
                         string="Individual answer visibility"
-                        name="survey_registry_answer_visibility"
+                        name="group_survey_registry_answer_visibility"
                     >
                         <field name="show_answer_in_survey_registry" />
-                        <field
-                            name="use_answer_as_title_in_survey_registry"
-                            invisible="not show_answer_in_survey_registry or question_type != 'char_box'"
-                        />
-                        <field
-                            name="use_answer_as_category_in_survey_registry"
-                            invisible="not show_answer_in_survey_registry or question_type != 'simple_choice'"
-                        />
-
-                        <field
-                            name="use_answer_as_schedule_in_survey_registry"
-                            invisible="not show_answer_in_survey_registry or question_type != 'char_box'"
-                        />
-
-                        <field
-                            name="use_answer_as_primary_implementer_in_survey_registry"
-                            invisible="not show_answer_in_survey_registry or question_type not in ['char_box', 'text_box']"
-                        />
-
-                        <field
-                            name="use_answer_as_other_implementers_in_survey_registry"
-                            invisible="not show_answer_in_survey_registry or question_type not in ['char_box', 'text_box']"
-                        />
-
                         <field
                             name="format_as_monetary_in_survey_registry"
                             invisible="not show_answer_in_survey_registry or question_type != 'numerical_box'"
                         />
+
+                        <field
+                            name="save_as_registry_visibility"
+                            invisible="question_type != 'simple_choice'"
+                        />
+
                     </group>
 
+                    <group
+                        string="Individual answer mapping"
+                        name="group_mapping_to_user_input"
+                    >
+                        <div colspan="2" class="text-muted">
+                            Map answers to fields at Survey Participation top level for easier searching, filtering
+                            and exporting. Ensure no option is checked twice for same survey's questions.
+                        </div>
+
+                        <field
+                            name="use_answer_as_title_in_survey_registry"
+                            invisible="question_type != 'char_box'"
+                        />
+
+                        <field
+                            name="use_answer_as_primary_implementer_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_other_implementers_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_funding_amount_applied_in_survey_registry"
+                            invisible="question_type != 'numerical_box'"
+                        />
+
+                        <field
+                            name="use_answer_as_funding_amount_total_in_survey_registry"
+                            invisible="question_type != 'numerical_box'"
+                        />
+
+                        <field
+                            name="use_answer_as_subject_to_vat_in_survey_registry"
+                            invisible="question_type != 'simple_choice'"
+                        />
+
+                        <field
+                            name="use_answer_as_confirmed_funders_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_unconfirmed_funders_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_schedule_in_survey_registry"
+                            invisible="question_type != 'char_box'"
+                        />
+                        <field
+                            name="use_answer_as_category_in_survey_registry"
+                            invisible="question_type != 'simple_choice'"
+                        />
+
+                        <field
+                            name="use_answer_as_goals_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_implementation_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_progress_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+
+                        <field
+                            name="use_answer_as_results_in_survey_registry"
+                            invisible="question_type not in ['char_box', 'text_box']"
+                        />
+                    </group>
+
+                    <!--
                     <group
                         string="Participation visibility trigger"
                         name="participation_visibility_trigger"
@@ -49,6 +112,7 @@
                     >
                         <field name="save_as_registry_visibility" />
                     </group>
+                    -->
                 </page>
             </notebook>
         </field>

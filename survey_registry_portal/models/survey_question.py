@@ -40,28 +40,73 @@ class SurveyQuestion(models.Model):
     # Enable having some of the answers as stored columns at user input levels so they
     # can be used for e.g. searching
     use_answer_as_title_in_survey_registry = fields.Boolean(
-        help="If checked, the answer to this question will be used as the title "
-        "in the survey registry."
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Title in survey registry'"
     )
 
     use_answer_as_category_in_survey_registry = fields.Boolean(
-        help="If checked, the answer to this question will be used as the category "
-        "in the survey registry."
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Category in survey registry'"
     )
 
     use_answer_as_schedule_in_survey_registry = fields.Boolean(
-        help="If checked, the answer to this question will be used as the schedule "
-        "in the survey registry."
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Schedule in survey registry'"
     )
 
     use_answer_as_primary_implementer_in_survey_registry = fields.Boolean(
-        help="If checked, the answer to this question will be used as the primary "
-        "implementer in the survey registry."
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Primary implementer in survey registry'"
     )
 
     use_answer_as_other_implementers_in_survey_registry = fields.Boolean(
-        help="If checked, the answer to this question will be used as the other "
-        "implementers in the survey registry."
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Other implementers in survey registry'"
+    )
+
+    use_answer_as_funding_amount_applied_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Funding amount applied in survey registry'"
+    )
+
+    use_answer_as_funding_amount_total_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Funding amount total in survey registry'"
+    )
+
+    use_answer_as_subject_to_vat_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Subject to VAT in survey registry'"
+    )
+
+    use_answer_as_confirmed_funders_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Confirmed funders in survey registry'"
+    )
+
+    use_answer_as_unconfirmed_funders_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Unconfirmed funders in survey registry'"
+    )
+
+    use_answer_as_goals_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Goals in survey registry'"
+    )
+
+    use_answer_as_implementation_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Implementation in survey registry'"
+    )
+
+    use_answer_as_progress_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Progress in survey registry'"
+    )
+
+    use_answer_as_results_in_survey_registry = fields.Boolean(
+        help="If checked, the answer to this question will be saved to participation "
+        "header level as 'Results in survey registry'"
     )
 
     # 3. Default methods
