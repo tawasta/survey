@@ -619,7 +619,7 @@ msgstr "Käytä vastausta Aihepiiri-tietona hankerekisterissä"
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_confirmed_funders_in_survey_registry
 msgid "Use Answer As Confirmed Funders In Survey Registry"
-msgstr "Käytä vastausta hankerekisterissä: Epävarmat rahoittajat"
+msgstr "Käytä vastausta hankerekisterissä: Vahvistetut rahoittajat"
 
 #. module: survey_registry_portal
 #: model:ir.model.fields,field_description:survey_registry_portal.field_survey_question__use_answer_as_funding_amount_applied_in_survey_registry
