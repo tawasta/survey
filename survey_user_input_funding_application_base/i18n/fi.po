@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-23 13:30+0000\n"
-"PO-Revision-Date: 2025-09-23 13:30+0000\n"
+"POT-Creation-Date: 2025-11-05 10:21+0000\n"
+"PO-Revision-Date: 2025-11-05 10:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_amount
 msgid "Amount Funded"
 msgstr "Rahoituspäätös"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,help:survey_user_input_funding_application_base.field_survey_user_input__funding_paid_amount
+msgid "Calculated by combining Payments made."
+msgstr "Muodostettu summaamalla tehdyt maksut"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,help:survey_user_input_funding_application_base.field_survey_user_input__funding_left_amount
@@ -33,6 +38,7 @@ msgstr "Valmistumistiedot"
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_decision_currency_id
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_left_currency_id
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_paid_currency_id
 msgid "Currency"
 msgstr "Valuutta"
 
@@ -63,19 +69,24 @@ msgid "Funding Information &amp; Payments"
 msgstr "Rahoituspäätöksen tiedot &amp; maksut"
 
 #. module: survey_user_input_funding_application_base
-#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_left_amount
-msgid "Funding Left Amount"
-msgstr "Rahoitusta jäljellä"
-
-#. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_overspent_date
 msgid "Funding Overspending Decision Date"
 msgstr "Rahoituspäätöksen ylityspäätöksen päiväys"
 
 #. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_left_amount
+msgid "Funding left"
+msgstr "Rahoitusta jäljellä"
+
+#. module: survey_user_input_funding_application_base
 #: model_terms:ir.ui.view,arch_db:survey_user_input_funding_application_base.survey_user_input_view_form_inherit_survey_payment_link
 msgid "Internal Information"
 msgstr "Sisäiset tiedot"
+
+#. module: survey_user_input_funding_application_base
+#: model:ir.model.fields,field_description:survey_user_input_funding_application_base.field_survey_user_input__funding_paid_amount
+msgid "Payments total"
+msgstr "Maksettu yhteensä"
 
 #. module: survey_user_input_funding_application_base
 #: model:ir.model.fields,help:survey_user_input_funding_application_base.field_survey_user_input__user_id
