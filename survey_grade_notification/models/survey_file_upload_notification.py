@@ -1,4 +1,5 @@
 import logging
+
 import pytz
 
 from odoo import _, fields, models
@@ -79,7 +80,9 @@ class SurveyUserInput(models.Model):
                 score = (
                     user_input_line.answer_score
                     if user_input_line.answer_score is not None
-                    else getattr(user_input_line.suggested_answer_id, "answer_score", None)
+                    else getattr(
+                        user_input_line.suggested_answer_id, "answer_score", None
+                    )
                 )
                 if score is not None and score < question.min_acceptable_value:
                     for user in question.notification_recipients:
