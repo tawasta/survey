@@ -135,7 +135,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_title_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_title_in_survey_registry(self):
         survey_user_input_line_obj = self.env["survey.user_input.line"]
@@ -153,7 +153,7 @@ class SurveyUserInput(models.Model):
             if title_user_input_lines:
                 user_input.title_in_survey_registry = title_user_input_lines[
                     0
-                ].value_char_box
+                ].string_answer
             else:
                 user_input.title_in_survey_registry = "-"
 
@@ -161,7 +161,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_category_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_category_in_survey_registry(self):
         survey_user_input_line_obj = self.env["survey.user_input.line"]
@@ -191,7 +191,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_schedule_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_schedule_in_survey_registry(self):
         survey_user_input_line_obj = self.env["survey.user_input.line"]
@@ -204,7 +204,7 @@ class SurveyUserInput(models.Model):
                         "=",
                         True,
                     ),
-                    ("question_id.question_type", "=", "char_box"),
+                    ("question_id.question_type", "in", ["char_box", "text_box"]),
                     ("user_input_id", "=", user_input.id),
                 ],
                 limit=1,
@@ -213,7 +213,7 @@ class SurveyUserInput(models.Model):
             if schedule_user_input_lines:
                 user_input.schedule_in_survey_registry = schedule_user_input_lines[
                     0
-                ].value_char_box
+                ].string_answer
             else:
                 user_input.schedule_in_survey_registry = "-"
 
@@ -221,7 +221,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_primary_implementer_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_primary_implementer_in_survey_registry(self):
         # Check which user input line contains the survey registry primary implementer
@@ -253,7 +253,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_other_implementers_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_other_implementers_in_survey_registry(self):
         # Check which user input line contains the survey registry other implementers
@@ -351,7 +351,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_subject_to_vat_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_subject_to_vat_in_survey_registry(self):
         # Check which user input line contains the funding applied amount
@@ -383,7 +383,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_confirmed_funders_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_confirmed_funders_in_survey_registry(self):
         _logger.info("recalc confirmed funders")
@@ -414,7 +414,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_unconfirmed_funders_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_unconfirmed_funders_in_survey_registry(self):
         survey_user_input_line_obj = self.env["survey.user_input.line"]
@@ -444,7 +444,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_goals_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_goals_in_survey_registry(self):
         survey_user_input_line_obj = self.env["survey.user_input.line"]
@@ -474,7 +474,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_implementation_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_implementation_in_survey_registry(self):
         # Check which user input line contains the funding applied amount
@@ -506,7 +506,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_progress_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_progress_in_survey_registry(self):
         # Check which user input line contains the funding applied amount
@@ -538,7 +538,7 @@ class SurveyUserInput(models.Model):
         "user_input_line_ids",
         "user_input_line_ids.question_id.use_answer_as_results_in_survey_registry",
         "user_input_line_ids.question_id.question_type",
-        "user_input_line_ids.value_char_box",
+        "user_input_line_ids.string_answer",
     )
     def _compute_results_in_survey_registry(self):
         # Check which user input line contains the funding applied amount
