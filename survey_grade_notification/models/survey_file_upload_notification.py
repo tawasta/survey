@@ -121,17 +121,24 @@ class SurveyUserInput(models.Model):
         time_str = local_dt.strftime("%d.%m.%Y %H:%M") if local_dt else "-"
 
         message = _("<p><b>Low feedback score given.</b></p>")
-        message += _(f"<p><b>Time:</b> {time_str}</p>")
+        message += _("<p><b>Time:</b> {time}</p>").format(time=time_str)
         if self.event_id:
-            message += _(
-                f"<p><b>Event:</b> {self.event_id.name if self.event_id else 'Not available'}</p>"
+            message += _("<p><b>Event:</b> {event}</p>").format(
+                event=self.event_id.name or _("Not available")
             )
-        message += _(f"<p><b>Survey:</b> {self.survey_id.title}</p>")
+        message += _("<p><b>Survey:</b> {survey}</p>").format(
+            survey=self.survey_id.title
+        )
         message += "<ul>"
 
         for question, response_value in low_responses:
             message += _(
-                f"<li><b>Question:</b> {question.title} - {response_value} (Minimum: {question.min_acceptable_value})</li>"
+                "<li><b>Question:</b> {question} - {value} "
+                "(Minimum: {min_value})</li>"
+            ).format(
+                question=question.title,
+                value=response_value,
+                min_value=question.min_acceptable_value,
             )
 
         message += "</ul>"
