@@ -57,16 +57,22 @@ class SurveyUserInput(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
-    def _create_new_company(self, vals_list):
+    def _create_new_company(self, company_vals, contact_ids):
         """Create a new company
 
         This function creates a new contact for survey answer from dictionary of values.
-        :param Dictionary vals_list: Values to create a new contact
-        :returns: res.partner company: Created company
+        :param Dictionary company_vals: Values to create a new company
+        :param Array contact_ids: ids of contacts to link to the newly created company
+        :returns: res.partner new_company: Created company record
         """
-        company = self.env["res.partner"].sudo().create(vals_list)
-        _logger.debug("Created a new company %s." % company)  # noqa: UP031
-        return company
+        partner_obj = self.env["res.partner"]
+        new_company = partner_obj.sudo().create(company_vals)
+
+        for contact_id in contact_ids:
+            partner_obj.browse(contact_id).sudo().write({"parent_id": new_company.id})
+
+        _logger.debug("Created a new company %s." % new_company.id)  # noqa: UP031
+        return new_company
 
     def _save_company_contact(self, contact):
         """This function will save a contact to partner's company"""
@@ -81,15 +87,12 @@ class SurveyUserInput(models.Model):
             # )
         else:
             self._create_new_company(
-                {
+                company_vals={
                     "name": "null",
                     "type": "invoice",
                     "company_type": "company",
-                    "contact_ids": [
-                        (4, self.partner_id.id, 0),
-                        (4, contact.id, 0),
-                    ],
-                }
+                },
+                contact_ids=[self.partner_id.id, contact.id],
             )
 
     def _save_contact_field(self, question, answer, field):
@@ -129,17 +132,17 @@ class SurveyUserInput(models.Model):
             # )
         else:
             self._create_new_company(
-                {
+                company_vals={
                     field: answer,
                     "type": "invoice",
                     "company_type": "company",
-                    "contact_ids": [(4, self.partner_id.id, 0)]
-                    + [
-                        (4, contact.id, 0)
-                        for contact in self.contact_ids
-                        if self.survey_id.attach_contacts_to_company
-                    ],
-                }
+                },
+                contact_ids=[self.partner_id.id]
+                + [
+                    contact.id
+                    for contact in self.contact_ids
+                    if self.survey_id.attach_contacts_to_company
+                ],
             )
 
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
