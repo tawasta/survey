@@ -10,15 +10,10 @@
                 <field
                     name="value_attachment_ids"
                     invisible="answer_type != 'attachment'"
-                >
-                    <tree create="0" edit="0">
-                        <field name="name" />
-                        <field name="file_size" optional="show" />
-                        <field name="datas" widget="binary" filename="name" />
-                        <field name="link_url" widget="url" />
-                    </tree>
-                </field>
+                    widget="many2many_binary"
+                />
             </field>
+
         </field>
     </record>
 </odoo>
