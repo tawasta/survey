@@ -4,8 +4,6 @@ from odoo import api, fields, models
 class SurveyUserInput(models.Model):
     _inherit = "survey.user_input"
 
-    service_identifier = fields.Char(tracking=True)
-
     user_id = fields.Many2one(
         comodel_name="res.users",
         string="Responsible",

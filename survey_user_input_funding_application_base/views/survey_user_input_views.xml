@@ -38,7 +38,6 @@
         <field name="arch" type="xml">
 
             <field name="survey_id" position="before">
-                <field name="service_identifier" optional="show" />
                 <field name="user_id" optional="show" />
                 <field name="funding_decision_date" optional="show" />
                 <field
@@ -95,8 +94,6 @@
                         string="Internal Information"
                         name="group_internal_information"
                     >
-                        <!-- TODO: can maybe be removed, just utilize the ref field -->
-                        <field name="service_identifier" />
                         <field name="user_id" options="{'no_create': True}" />
                     </group>
                     <group string="Completion Details" name="group_completion_details">
