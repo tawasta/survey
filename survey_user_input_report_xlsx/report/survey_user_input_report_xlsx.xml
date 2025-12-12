@@ -3,6 +3,7 @@
     <record id="survey_user_input_xlsx" model="ir.actions.report">
         <field name="name">Print Survey Participations to XLSX</field>
         <field name="model">survey.user_input</field>
+        <field name="type">ir.actions.report</field>
         <field name="report_type">xlsx</field>
         <field
             name="report_name"

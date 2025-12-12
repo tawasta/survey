@@ -17,7 +17,7 @@ Configuration
 
 Usage
 =====
-\-
+* Select some participations from list and click Print -> Print Survey Participations to XLSX
 
 Known issues / Roadmap
 ======================
@@ -33,6 +33,7 @@ Contributors
 ------------
 
 * Miika Nissi <miika.nissi@futural.fi>
+* Timo Talvitie <timo.talvitie@futural.fi>
 
 Maintainer
 ----------
