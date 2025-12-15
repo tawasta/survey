@@ -39,10 +39,13 @@
                     <field
                         name="child_survey_user_input_ids"
                         options="{ 'no_create': 1}"
+                        colspan="3"
                     >
                         <tree>
-                            <field name="survey_id" />
-                            <field name="state" />
+                            <field name="ref" />
+                            <field name="survey_id" optional="show" />
+                            <field name="create_date" optional="show" />
+                            <field name="stage_id" optional="show" />
                         </tree>
                     </field>
                 </group>
