@@ -27,6 +27,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey"],
+    "depends": ["survey", "survey_stages"],
     "data": ["views/survey_user_input_views.xml", "views/survey_views.xml"],
 }
