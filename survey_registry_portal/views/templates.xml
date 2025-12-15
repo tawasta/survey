@@ -295,10 +295,17 @@
                                                     />
                                                 </t>
                                             </t>
+
                                             <t
                                                 t-if="user_input_line.answer_type == 'text_box'"
-                                                t-out="user_input_line.value_text_box"
-                                            />
+                                            >
+                                                <!-- With this we can preserve any line breaks user has entered -->
+                                                <span
+                                                    t-out="user_input_line.value_text_box"
+                                                    style="white-space: pre-line;"
+                                                />
+                                            </t>
+
                                             <t
                                                 t-if="user_input_line.answer_type == 'suggestion'"
                                                 t-out="user_input_line.suggested_answer_id.value"
