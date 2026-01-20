@@ -135,3 +135,15 @@ repos:
       - id: pylint_odoo
         args:
           - --rcfile=.pylintrc-mandatory
+  - repo: https://github.com/tawasta/github-workflows.git
+    rev: v1.1.0
+    hooks:
+      - id: ensure-finnish-translation
+  - repo: https://github.com/mondeja/pre-commit-po-hooks
+    rev: v1.7.3
+    hooks:
+      - id: untranslated-messages
+  - repo: https://github.com/tawasta/github-workflows.git
+    rev: v1.1.0
+    hooks:
+      - id: ensure-module-icon
