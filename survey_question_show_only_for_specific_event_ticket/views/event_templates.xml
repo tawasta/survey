@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    put an extra condition after society_event_core's 'display_question':
+    override and hide the question if it should be rendered only for
+    specific event tickets.
+    -->
+    <template
+        id="question_container"
+        inherit_id="society_event_core.question_container"
+    >
+        <xpath expr="//t[@t-set='display_question']" position="after">
+            <t
+                t-if="display_question and question.event_ticket_ids and ticket['id'] not in question.event_ticket_ids.mapped('id')"
+            >
+                <t t-set="display_question" t-value="False" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
