@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_show_only_for_specific_event_ticket
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-18 11:14+0000\n"
+"PO-Revision-Date: 2026-02-18 11:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model,name:survey_question_show_only_for_specific_event_ticket.model_event_event_ticket
+msgid "Event Ticket"
+msgstr "Tapahtuman lippu"
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model.fields,help:survey_question_show_only_for_specific_event_ticket.field_survey_question__event_ticket_ids
+msgid ""
+"If set, this question is only shown on event questionnaires if the event "
+"registrant is buying one of these tickets"
+msgstr ""
+"Jos asetettu, kysymys näytetään tapahtuman kyselylomakkeella vain, jos tapahtuman osallistuja "
+"on ostamassa jotain näistä lipuista."
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model.fields,field_description:survey_question_show_only_for_specific_event_ticket.field_event_event_ticket__survey_question_ids
+msgid "Questions Specific to this Event Ticket"
+msgstr "Tätä tapahtumalippua koskevat kysymykset"
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model.fields,help:survey_question_show_only_for_specific_event_ticket.field_event_event_ticket__survey_question_ids
+msgid ""
+"Questions that have been configured to be asked when event registrant is "
+"buying this ticket"
+msgstr ""
+"Kysymykset, jotka on asetettu näkymään, kun tapahtumaosallistuja on ostamassa tätä lippua. "
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model.fields,field_description:survey_question_show_only_for_specific_event_ticket.field_survey_question__event_ticket_ids
+msgid "Show only for Specific Event Tickets"
+msgstr ""
+"Näytä vain tietyille tapahtumalipuille"
+
+#. module: survey_question_show_only_for_specific_event_ticket
+#: model:ir.model,name:survey_question_show_only_for_specific_event_ticket.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymykset"
