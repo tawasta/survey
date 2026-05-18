@@ -15,7 +15,7 @@ exclude: |
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
 default_language_version:
-  python: python3
+  python: python3.12
   node: "14.13.0"
 repos:
   - repo: local
@@ -41,9 +41,11 @@ repos:
         args: ["https://gitlab.com/tawasta/odoo/survey"]
       - id: oca-gen-addons-table
   - repo: https://github.com/myint/autoflake
-    rev: v1.4
+    rev: v2.3.3
     hooks:
       - id: autoflake
+        additional_dependencies:
+          - "setuptools==82.0.1"
         args:
           - --expand-star-imports
           - --ignore-init-module-imports
@@ -61,8 +63,8 @@ repos:
       - id: prettier
         name: prettier (with plugin-xml)
         additional_dependencies:
-          - "prettier@2.1.2"
-          - "@prettier/plugin-xml@0.12.0"
+          - "prettier@2.7.1"
+          - "@prettier/plugin-xml@2.2.0"
         args:
           - --plugin=@prettier/plugin-xml
         files: \.(css|htm|html|js|json|jsx|less|md|scss|toml|ts|xml|yaml|yml)$
@@ -110,21 +112,27 @@ repos:
           - --settings=.
         exclude: /__init__\.py$
   - repo: https://github.com/acsone/setuptools-odoo
-    rev: 3.1.8
+    rev: 3.0.3
     hooks:
       - id: setuptools-odoo-make-default
+        additional_dependencies:
+          - "setuptools<=80.10.2"
       - id: setuptools-odoo-get-requirements
         args:
           - --output
           - requirements.txt
           - --header
           - "# generated from manifests external_dependencies"
+        additional_dependencies:
+          - "setuptools<=80.10.2"
   - repo: https://github.com/PyCQA/flake8
-    rev: 3.8.3
+    rev: 7.3.0
     hooks:
       - id: flake8
         name: flake8
-        additional_dependencies: ["flake8-bugbear==20.1.4"]
+        additional_dependencies:
+          - "flake8-bugbear==20.1.4"
+          - "setuptools==82.0.1"
   - repo: https://github.com/OCA/pylint-odoo
     rev: 7.0.2
     hooks:
