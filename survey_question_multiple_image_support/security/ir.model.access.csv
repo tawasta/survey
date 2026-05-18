@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_survey_question_image_user,survey.question.image.user,model_survey_question_image,base.group_user,1,1,1,1
+access_survey_language_user,survey.language.user,model_survey_language,base.group_user,1,1,1,1
+access_survey_print_wizard_user,survey.print.wizard.user,model_survey_print_wizard,base.group_user,1,1,1,1

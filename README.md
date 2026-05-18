@@ -33,6 +33,7 @@ addon | version | summary
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.3 | Adds a new question type 'attachment' to survey
 [survey_question_list_view](survey_question_list_view/) | 14.0.1.0.0 | Show survey questions in a list view
+[survey_question_multiple_image_support](survey_question_multiple_image_support/) | 14.0.1.2.0 | Survey question with multiple images
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 | Ability to add privacies as questions to survey
 [survey_question_save_as_company](survey_question_save_as_company/) | 14.0.2.1.0 | Save the user's answer as its company name
 [survey_question_untranslated](survey_question_untranslated/) | 14.0.1.0.0 | Changes question titles to be untranslated
