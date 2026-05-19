@@ -31,6 +31,7 @@ addon | version | summary
 [survey_multi_company](survey_multi_company/) | 14.0.1.0.0 | Survey multi company
 [survey_portal](survey_portal/) | 14.0.1.1.2 | Ability to view survey answers in portal
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 14.0.1.0.2 | Upload attachments to surveys from portal
+[survey_print_qrcode](survey_print_qrcode/) | 14.0.1.0.0 | Survey print qr code
 [survey_question_attachment](survey_question_attachment/) | 14.0.1.2.3 | Adds a new question type 'attachment' to survey
 [survey_question_list_view](survey_question_list_view/) | 14.0.1.0.0 | Show survey questions in a list view
 [survey_question_privacy](survey_question_privacy/) | 14.0.1.1.0 | Ability to add privacies as questions to survey
