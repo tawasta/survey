@@ -91,9 +91,8 @@ odoo.define("survey_portal_upload_attachments.survey_attachments", function (req
                                                 data: data,
                                             });
                                         });
-                                    self.file_value[
-                                        $(file_node).data("name")
-                                    ] = files_list;
+                                    self.file_value[$(file_node).data("name")] =
+                                        files_list;
                                     self.file_value[
                                         $(file_node).data("name")
                                     ].is_answer_update = true;
