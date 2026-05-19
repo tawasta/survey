@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="survey_survey_form_inherit_print_images" model="ir.ui.view">
+        <field name="name">survey.survey.form.inherit.print.images</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_open_print_wizard"
+                    type="object"
+                    string="Print with images"
+                    attrs="{'invisible': [('id', '=', False)]}"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
