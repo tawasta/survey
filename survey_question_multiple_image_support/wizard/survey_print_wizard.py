@@ -9,7 +9,7 @@ class SurveyPrintWizard(models.TransientModel):
 
     partner_id = fields.Many2one("res.partner", string="Contact")
 
-    lang_id = fields.Many2one("survey.language", string="Print Language", required=True)
+    lang_id = fields.Many2one("res.lang", string="Print Language", required=True)
 
     @api.model
     def default_get(self, fields_list):
@@ -22,16 +22,16 @@ class SurveyPrintWizard(models.TransientModel):
             if partner.survey_lang_id:
                 res["lang_id"] = partner.survey_lang_id.id
             elif survey_id:
-                # Fallback to first available survey language
-                first_lang = self.env["survey.language"].search(
-                    [("active", "=", True)], order="sequence", limit=1
+                # Fallback to first installed Odoo language
+                first_lang = self.env["res.lang"].search(
+                    [("active", "=", True)], order="name", limit=1
                 )
                 if first_lang:
                     res["lang_id"] = first_lang.id
         elif survey_id:
-            # Fallback to first available survey language
-            first_lang = self.env["survey.language"].search(
-                [("active", "=", True)], order="sequence", limit=1
+            # Fallback to first installed Odoo language
+            first_lang = self.env["res.lang"].search(
+                [("active", "=", True)], order="name", limit=1
             )
             if first_lang:
                 res["lang_id"] = first_lang.id

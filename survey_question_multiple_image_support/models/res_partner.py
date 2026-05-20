@@ -5,7 +5,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     survey_lang_id = fields.Many2one(
-        "survey.language",
+        "res.lang",
         string="Survey Language",
         help="Language to use when printing surveys for this contact.",
     )

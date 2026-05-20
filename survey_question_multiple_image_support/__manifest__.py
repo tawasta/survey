@@ -32,7 +32,6 @@
         "security/ir.model.access.csv",
         "views/survey_templates_print_inherit.xml",
         "views/survey_question_views.xml",
-        "views/survey_language_views.xml",
         "views/res_partner_views.xml",
         "views/survey_print_button_views.xml",
         "wizard/survey_wizard_views.xml",

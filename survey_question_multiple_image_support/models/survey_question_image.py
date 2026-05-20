@@ -7,7 +7,7 @@ class SurveyQuestionImage(models.Model):
 
     question_id = fields.Many2one("survey.question", required=True, ondelete="cascade")
 
-    image_lang_id = fields.Many2one("survey.language", string="Language", required=True)
+    image_lang_id = fields.Many2one("res.lang", string="Language", required=True)
 
     question_image = fields.Image(
         string="Image", max_width=1920, max_height=1920, required=True
