@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_survey_print_wizard_form" model="ir.ui.view">
+        <field name="name">survey.print.wizard.form</field>
+        <field name="model">survey.print.wizard</field>
+        <field name="arch" type="xml">
+
+            <form string="Print Survey">
+
+                <group>
+                    <field name="survey_id" invisible="1" />
+                    <field name="partner_id" options="{'no_create': True}" />
+                    <field name="lang_id" options="{'no_create': True}" />
+                </group>
+
+                <footer>
+                    <button
+                        name="action_print"
+                        string="Print"
+                        type="object"
+                        class="btn-primary"
+                    />
+
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+
+            </form>
+
+        </field>
+    </record>
+
+</odoo>
