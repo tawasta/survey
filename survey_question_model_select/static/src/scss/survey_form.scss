@@ -1,0 +1,48 @@
+.o_survey_form,
+.o_survey_print,
+.o_survey_session_manage,
+.o_survey_quick_access {
+    .o_survey_privacy_btn {
+        transition: background-color 0.3s ease;
+        flex: 1 0 300px;
+        color: $primary;
+
+        span {
+            line-height: 25px;
+        }
+        i {
+            top: 0px;
+            font-size: large;
+            &.fa-check-circle,
+            &.fa-check-square {
+                display: none;
+            }
+        }
+
+        &.o_survey_selected i {
+            display: none;
+            &.fa-check-circle,
+            &.fa-check-square {
+                display: inline;
+            }
+        }
+    }
+}
+.o_survey_form {
+    .o_survey_choice_btn {
+        cursor: pointer;
+        background-color: rgba($primary, 0.1);
+        box-shadow: $primary 0px 0px 0px 1px;
+
+        &.o_survey_selected {
+            box-shadow: $primary 0px 0px 0px 2px;
+        }
+
+        &:hover {
+            background-color: rgba($primary, 0.3);
+            .o_survey_choice_key span.o_survey_key {
+                opacity: 1;
+            }
+        }
+    }
+}
