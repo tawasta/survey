@@ -65,28 +65,58 @@ class SurveyUserInput(models.Model):
             answer,
         )
 
+        vals = {
+            "user_input_id": self.id,
+            "question_id": question.id,
+            "answer_type": "suggestion",
+            "skipped": True,
+            "suggested_answer_id": False,
+        }
+
+        if answer:
+            answer_id = int(answer)
+            suggested_answer = question.suggested_answer_ids.filtered(
+                lambda item: item.id == answer_id
+            )
+
+            _logger.info(
+                "[model_select] resolved suggested_answer: "
+                "question_id=%s answer_id=%s suggested_answer_ids=%s",
+                question.id,
+                answer_id,
+                suggested_answer.ids,
+            )
+
+            if suggested_answer:
+                vals.update(
+                    {
+                        "skipped": False,
+                        "suggested_answer_id": suggested_answer.id,
+                    }
+                )
+
         _logger.info(
-            "[model_select] calling _save_line_choice: "
-            "user_input_id=%s question_id=%s answer=%r old_answer_ids=%s",
+            "[model_select] writing user_input_line vals: "
+            "user_input_id=%s question_id=%s old_answer_ids=%s vals=%r",
             self.id,
             question.id,
-            answer,
             old_answers.ids,
+            vals,
         )
 
-        result = self._save_line_choice(question, old_answers, answer, comment)
+        if old_answers:
+            old_answers.write(vals)
+            result = old_answers
+        else:
+            result = self.env["survey.user_input.line"].create(vals)
 
         _logger.info(
-            "[model_select] _save_line_choice result: "
-            "user_input_id=%s question_id=%s result=%s result_ids=%s "
-            "answer_type=%s suggested_answer_ids=%s skipped=%s",
-            self.id,
-            question.id,
-            result,
-            result.ids if result else False,
-            result.mapped("answer_type") if result else False,
-            result.mapped("suggested_answer_id").ids if result else False,
-            result.mapped("skipped") if result else False,
+            "[model_select] saved result: result_ids=%s answer_type=%s "
+            "suggested_answer_ids=%s skipped=%s",
+            result.ids,
+            result.mapped("answer_type"),
+            result.mapped("suggested_answer_id").ids,
+            result.mapped("skipped"),
         )
 
         return result
