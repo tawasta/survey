@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_question_form_inherit" model="ir.ui.view">
+        <field
+            name="name"
+        >survey.question.view.form.inherit.show.for.event.ticket</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+
+            <field name="triggering_answer_ids" position="after">
+                <field
+                    name="event_ticket_ids"
+                    widget="many2many_tags"
+                    options="{ 'no_create': True, 'no_create_edit': True }"
+                />
+            </field>
+
+        </field>
+    </record>
+</odoo>

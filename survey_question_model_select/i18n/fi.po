@@ -1,0 +1,211 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_model_select
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260528\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-05 10:37+0000\n"
+"PO-Revision-Date: 2026-06-05 10:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.question_model_select
+msgid "<option value=\"\">Select...</option>"
+msgstr "<option value=\"\">Valitse...</option>"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid ""
+"<span>Choose from Odoo records</span><br/>\n"
+"                    <i class=\"fa fa-list fa-4x\"/>"
+msgstr ""
+"<span>Valitse Odoo-tietueista</span><br/>\n"
+"                    <i class=\"fa fa-list fa-4x\"/>"
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question__model_select_domain
+msgid "Condition Domain"
+msgstr "Suodatusehto"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Data Source"
+msgstr "Tietolähde"
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,help:survey_question_model_select.field_survey_question__model_select_domain
+msgid "Domain used to fetch answer values from the selected model."
+msgstr "Valitun mallin tietueiden hakemiseen käytettävä domain-suodatin."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question__model_select_model_id
+msgid "Dropdown Model"
+msgstr "Pudotusvalikon malli"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Dropdown Value"
+msgstr "Pudotusvalikon arvo"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Dropdown Values"
+msgstr "Pudotusvalikon arvot"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Generate dropdown values from the selected model and filter."
+msgstr "Luo pudotusvalikon arvot valitun mallin ja suodattimen perusteella."
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "Invalid condition domain: %s"
+msgstr "Virheellinen suodatusehto: %s"
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "Invalid selected value."
+msgstr "Virheellinen valittu arvo."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question__model_select_limit
+msgid "Maximum Values"
+msgstr "Arvojen enimmäismäärä"
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "Maximum Values must be greater than zero."
+msgstr "Arvojen enimmäismäärän on oltava suurempi kuin nolla."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,help:survey_question_model_select.field_survey_question__model_select_limit
+msgid "Maximum number of values generated from the selected model."
+msgstr "Valitusta mallista luotavien arvojen enimmäismäärä."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields.selection,name:survey_question_model_select.selection__survey_question__question_type__model_select
+msgid "Odoo Model Dropdown"
+msgstr "Odoo-mallin pudotusvalikko"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Odoo model dropdown"
+msgstr "Odoo-mallin pudotusvalikko"
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "Please select a dropdown model first."
+msgstr "Valitse ensin pudotusvalikon malli."
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "Please select a dropdown model."
+msgstr "Valitse pudotusvalikon malli."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question__question_type
+msgid "Question Type"
+msgstr "Kysymyksen tyyppi"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Record Filter"
+msgstr "Tietuesuodatin"
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid ""
+"Select a source model, optionally filter its records, then generate\n"
+"                    the dropdown values below."
+msgstr ""
+"Valitse lähdemalli, suodata sen tietueita tarvittaessa ja luo\n"
+"                    alla näkyvät pudotusvalikon arvot."
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,help:survey_question_model_select.field_survey_question__model_select_model_id
+msgid ""
+"Select the Odoo model whose records are used to create dropdown answers."
+msgstr ""
+"Valitse Odoo-malli, jonka tietueita käytetään pudotusvalikon vaihtoehtoina."
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Source ID"
+msgstr "Lähdetietueen tunniste"
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question_answer__model_select_res_model
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Source Model"
+msgstr "Lähdemalli"
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question_answer__model_select_res_id
+msgid "Source Record ID"
+msgstr "Lähdetietueen tunniste"
+
+#. module: survey_question_model_select
+#: model:ir.model,name:survey_question_model_select.model_survey_question_answer
+msgid "Survey Label"
+msgstr "Kyselyn otsikko"
+
+#. module: survey_question_model_select
+#: model:ir.model,name:survey_question_model_select.model_survey_question
+msgid "Survey Question"
+msgstr "Kyselyn kysymys"
+
+#. module: survey_question_model_select
+#: model:ir.model,name:survey_question_model_select.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Kyselyn käyttäjäsyöte"
+
+#. module: survey_question_model_select
+#: model:ir.model.fields,field_description:survey_question_model_select.field_survey_question__model_select_model
+msgid "Technical Model"
+msgstr "Tekninen malli"
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "The selected value is not allowed."
+msgstr "Valittu arvo ei ole sallittu."
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid ""
+"These are the choices shown in the survey dropdown. Remove rows that\n"
+"                    should not be available."
+msgstr ""
+"Nämä vaihtoehdot näytetään kyselyn pudotusvalikossa. Poista rivit,\n"
+"                    joiden ei tule olla valittavissa."
+
+#. module: survey_question_model_select
+#. odoo-python
+#: code:addons/survey_question_model_select/models/survey_question.py:0
+#, python-format
+msgid "This question requires an answer."
+msgstr "Tähän kysymykseen on vastattava."
+
+#. module: survey_question_model_select
+#: model_terms:ir.ui.view,arch_db:survey_question_model_select.survey_question_form_model_select
+msgid "Update Dropdown Values"
+msgstr "Päivitä pudotusvalikon arvot"

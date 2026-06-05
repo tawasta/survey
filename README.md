@@ -26,8 +26,10 @@ addon | version | maintainers | summary
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 17.0.1.0.0 |  | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 17.0.1.0.0 |  | Adds a new question type 'attachment' to survey
 [survey_question_html](survey_question_html/) | 17.0.1.0.0 |  | Adds a new Survey question type that uses CKEditor 5 (HTML field)
+[survey_question_model_select](survey_question_model_select/) | 17.0.1.0.0 |  | Survey question type for selecting records from an Odoo model
 [survey_question_privacy](survey_question_privacy/) | 17.0.1.0.0 |  | Ability to add privacies as questions to survey
 [survey_question_save_as_company](survey_question_save_as_company/) | 17.0.1.0.0 |  | Save the user's answer as its company name
+[survey_question_show_only_for_specific_event_ticket](survey_question_show_only_for_specific_event_ticket/) | 17.0.1.0.0 |  | Add option for showing question only for event surveys where participant is buying a specific ticket
 [survey_question_ssn](survey_question_ssn/) | 17.0.1.0.0 |  | Ability to add ssn as questions to survey
 [survey_question_untranslated](survey_question_untranslated/) | 17.0.1.0.0 |  | Changes question titles to be untranslated
 [survey_registry_portal](survey_registry_portal/) | 17.0.1.1.1 |  | Show surveys' answers on website
