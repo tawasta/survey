@@ -28,10 +28,7 @@
                     the dropdown values below.
                 </div>
 
-                <group
-                    invisible="question_type != 'model_select'"
-                    string="Data Source"
-                >
+                <group invisible="question_type != 'model_select'" string="Data Source">
                     <group>
                         <field
                             name="model_select_model_id"
@@ -50,10 +47,7 @@
                     invisible="question_type != 'model_select'"
                 />
 
-                <div
-                    invisible="question_type != 'model_select'"
-                    class="mb-3"
-                >
+                <div invisible="question_type != 'model_select'" class="mb-3">
                     <field
                         name="model_select_domain"
                         widget="domain"

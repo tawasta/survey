@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import ast
 import logging
 
@@ -141,10 +139,14 @@ class SurveyQuestion(models.Model):
         domain = self._get_model_select_domain()
         limit = self.model_select_limit or 200
 
-        return self.env[model_name].sudo().search(
-            domain,
-            limit=limit,
-            order="display_name asc",
+        return (
+            self.env[model_name]
+            .sudo()
+            .search(
+                domain,
+                limit=limit,
+                order="display_name asc",
+            )
         )
 
     def _refresh_model_select_answers(self):
