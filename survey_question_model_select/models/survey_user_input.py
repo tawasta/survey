@@ -10,7 +10,7 @@ class SurveyUserInput(models.Model):
 
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         _logger.info(
-            "[model_select] _save_lines: user_input_id=%s question_id=%s question_type=%s answer=%r",
+            "[model_select] _save_lines: user_input_id=%s question_id=%s question_type=%s answer=%r",  # noqa E501
             self.id,
             question.id,
             question.question_type,
@@ -26,7 +26,7 @@ class SurveyUserInput(models.Model):
             )
 
             _logger.info(
-                "[model_select] old_answers: user_input_id=%s question_id=%s old_answer_ids=%s",
+                "[model_select] old_answers: user_input_id=%s question_id=%s old_answer_ids=%s",  # noqa E501
                 self.id,
                 question.id,
                 old_answers.ids,
@@ -43,7 +43,7 @@ class SurveyUserInput(models.Model):
 
     def _save_line_model_select(self, question, old_answers, answer, comment=None):
         _logger.info(
-            "[model_select] _save_line_model_select before extract: question_id=%s answer=%r",
+            "[model_select] _save_line_model_select before extract: question_id=%s answer=%r",  # noqa E501
             question.id,
             answer,
         )
@@ -56,7 +56,7 @@ class SurveyUserInput(models.Model):
             )
 
         _logger.info(
-            "[model_select] _save_line_model_select after extract: question_id=%s answer=%r",
+            "[model_select] _save_line_model_select after extract: question_id=%s answer=%r",  # noqa E501
             question.id,
             answer,
         )
