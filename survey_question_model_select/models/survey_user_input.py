@@ -10,7 +10,8 @@ class SurveyUserInput(models.Model):
 
     def _save_lines(self, question, answer, comment=None, overwrite_existing=True):
         _logger.info(
-            "[model_select] _save_lines: user_input_id=%s question_id=%s question_type=%s answer=%r",  # noqa E501
+            "[model_select] _save_lines: user_input_id=%s question_id=%s "
+            "question_type=%s answer=%r",
             self.id,
             question.id,
             question.question_type,
@@ -26,7 +27,8 @@ class SurveyUserInput(models.Model):
             )
 
             _logger.info(
-                "[model_select] old_answers: user_input_id=%s question_id=%s old_answer_ids=%s",  # noqa E501
+                "[model_select] old_answers: user_input_id=%s question_id=%s "
+                "old_answer_ids=%s",
                 self.id,
                 question.id,
                 old_answers.ids,
@@ -43,7 +45,8 @@ class SurveyUserInput(models.Model):
 
     def _save_line_model_select(self, question, old_answers, answer, comment=None):
         _logger.info(
-            "[model_select] _save_line_model_select before extract: question_id=%s answer=%r",  # noqa E501
+            "[model_select] _save_line_model_select before extract: "
+            "question_id=%s answer=%r",
             question.id,
             answer,
         )
@@ -56,9 +59,34 @@ class SurveyUserInput(models.Model):
             )
 
         _logger.info(
-            "[model_select] _save_line_model_select after extract: question_id=%s answer=%r",  # noqa E501
+            "[model_select] _save_line_model_select after extract: "
+            "question_id=%s answer=%r",
             question.id,
             answer,
         )
 
-        return self._save_line_choice(question, old_answers, answer, comment)
+        _logger.info(
+            "[model_select] calling _save_line_choice: "
+            "user_input_id=%s question_id=%s answer=%r old_answer_ids=%s",
+            self.id,
+            question.id,
+            answer,
+            old_answers.ids,
+        )
+
+        result = self._save_line_choice(question, old_answers, answer, comment)
+
+        _logger.info(
+            "[model_select] _save_line_choice result: "
+            "user_input_id=%s question_id=%s result=%s result_ids=%s "
+            "answer_type=%s suggested_answer_ids=%s skipped=%s",
+            self.id,
+            question.id,
+            result,
+            result.ids if result else False,
+            result.mapped("answer_type") if result else False,
+            result.mapped("suggested_answer_id").ids if result else False,
+            result.mapped("skipped") if result else False,
+        )
+
+        return result
