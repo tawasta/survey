@@ -39,7 +39,7 @@ class CombineSurveyUserInputXlsx(models.AbstractModel):
 
     def generate_xlsx_report(self, workbook, data, survey_user_inputs):
         survey_user_inputs = survey_user_inputs.sorted(
-            key=lambda r: r.registration_id.id
+            key=lambda r: r.registration_id.id or r.id
         )
         sheet = workbook.add_worksheet(_("Survey Answers"))
         sheet.set_landscape()
@@ -103,10 +103,12 @@ class CombineSurveyUserInputXlsx(models.AbstractModel):
     # Collects the survey answers to a dict. If the same
     # user has answered multiple surveys, then combines all
     # the answers into one dict using the registration_id field.
+    # If registration_id is missing, uses survey.user_input id instead.
     def _collect_input_values(self, survey_user_inputs, surveys, user_input_fnames):
         input_values = {}
         for user_input in survey_user_inputs:
-            reg_id = user_input.registration_id.id
+            reg_id = user_input.registration_id.id or user_input.id
+
             if reg_id not in input_values:
                 input_values[reg_id] = {}
 
