@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Survey Portal: Certificate Download Option",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Marketing/Surveys",
     "summary": "Download certification PDFs from the portal survey answers list",
     "website": "https://github.com/tawasta/survey",
