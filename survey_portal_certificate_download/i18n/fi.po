@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_portal_certificate_download
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260817\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-08 11:25+0000\n"
+"PO-Revision-Date: 2026-09-08 11:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_portal_certificate_download
+#: model_terms:ir.ui.view,arch_db:survey_portal_certificate_download.portal_my_survey_answers_certificate
+msgid ""
+"<i class=\"fa fa-fw fa-trophy\" role=\"img\" aria-label=\"Download Certificate\"/>\n"
+"                Download Certificate"
+msgstr ""
+"<i class=\"fa fa-fw fa-trophy\" role=\"img\" aria-label=\"Lataa todistus\"/>\n"
+"                Lataa todistus"
+
+#. module: survey_portal_certificate_download
+#: model:ir.model.fields,help:survey_portal_certificate_download.field_survey_survey__certification_downloadable_in_portal
+msgid ""
+"Allow portal users to download their certificate from the survey answers "
+"list in the portal."
+msgstr ""
+"Salli portaalikäyttäjien ladata sertifikaattinsa portaalin 'Kyselyn vastaukset' -näkymästä"
+
+
+#. module: survey_portal_certificate_download
+#: model:ir.model.fields,field_description:survey_portal_certificate_download.field_survey_survey__certification_downloadable_in_portal
+msgid "Certificate Downloadable in Portal"
+msgstr "Sertifikaatti ladattavissa omatoimisesti portaalista"
+
+#. module: survey_portal_certificate_download
+#: model:ir.model,name:survey_portal_certificate_download.model_survey_survey
+msgid "Survey"
+msgstr "Kysely"
