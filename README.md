@@ -23,6 +23,8 @@ addon | version | maintainers | summary
 [survey_notifications](survey_notifications/) | 17.0.1.0.1 |  | Notify users on survey submission or file upload
 [survey_payment_link](survey_payment_link/) | 17.0.1.0.0 |  | Link survey user inputs to account payments
 [survey_portal](survey_portal/) | 17.0.1.0.1 |  | Ability to view survey answers in portal
+[survey_portal_certificate_download](survey_portal_certificate_download/) | 17.0.1.0.0 |  | Download certification PDFs from the portal survey answers list
+[survey_portal_survey_based_visibility](survey_portal_survey_based_visibility/) | 17.0.1.0.0 |  | Show survey answers in portal only for selected surveys
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 17.0.1.0.0 |  | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 17.0.1.0.0 |  | Adds a new question type 'attachment' to survey
 [survey_question_html](survey_question_html/) | 17.0.1.0.0 |  | Adds a new Survey question type that uses CKEditor 5 (HTML field)

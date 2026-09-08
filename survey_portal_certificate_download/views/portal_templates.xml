@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="portal_my_survey_answers_certificate"
+        name="Portal survey answers: download certificate button"
+        inherit_id="survey_portal.portal_my_survey_answers"
+    >
+        <xpath expr="//a[@id='button-review-answer']" position="after">
+            <a
+                id="button-download-certificate"
+                t-if="answer.survey_id.certification and answer.survey_id.certification_downloadable_in_portal and answer.scoring_success"
+                t-att-href="'/my/surveys/%d/certification' % answer.id"
+                class="btn btn-primary btn-sm m-2 d-block"
+            >
+                <i
+                    class="fa fa-fw fa-trophy"
+                    role="img"
+                    aria-label="Download Certificate"
+                />
+                Download Certificate
+            </a>
+        </xpath>
+    </template>
+</odoo>
