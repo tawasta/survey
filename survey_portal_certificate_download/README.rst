@@ -5,27 +5,26 @@
 ==================================
 Survey Portal Certificate Download
 ==================================
-* Adds a **"Download Certificate"** button to the portal survey answers list
-  (`/my/surveys`)
+* Adds a "Download Certificate" button to the portal survey answers list
 * The button is shown for an answer only if:
   * the survey is a certification
-  * the user has passed the certification (`scoring_success`)
-  * the survey has **"Downloadable in Portal"** enabled
+  * the user has passed the certification
+  * the survey has "Downloadable in Portal" enabled
 * The certificate is generated for that exact answer, using the styling selected
-  in the survey's **Certification template** (`certification_report_layout`)
+  in the survey's "Certification template"
 
 
 Configuration
 =============
-\- Open a survey and enable **Is a Certification**
-\- Tick **Downloadable in Portal**
-\- Pick the wanted **Certification template** style
+* Open a survey and enable "Is a Certification"
+* Tick "Downloadable in Portal"
+* Pick the wanted "Certification template" style
 
 Usage
 =====
-\- Log in as a portal user
-\- Go to **My Account > Survey Answers**
-\- Click **Download Certificate** on a passed certification row
+* Answer the survey as a portal user
+* Go to My Account > Survey Answers
+* Click Download Certificate on a passed certification row
 
 Known issues / Roadmap
 ======================
