@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [survey_registry_portal](survey_registry_portal/) | 17.0.1.1.1 |  | Show surveys' answers on website
 [survey_registry_portal_excluded_stages](survey_registry_portal_excluded_stages/) | 17.0.1.1.0 |  | Limit stages in which survey answers can show in the registry
 [survey_sequence](survey_sequence/) | 17.0.1.0.0 |  | Order Surveys by sequence
+[survey_show_numeric_score_after_answering](survey_show_numeric_score_after_answering/) | 17.0.1.0.0 |  | Adds an option to show achieved score after the survey
 [survey_stages](survey_stages/) | 17.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 17.0.1.0.0 |  | Save each answer value as string
 [survey_user_input_funding_application_base](survey_user_input_funding_application_base/) | 17.0.1.0.0 |  | New fields for when participations are used for collecting funding applications
@@ -51,6 +52,7 @@ addon | version | maintainers | summary
 [survey_user_input_parent_survey_user_input_link](survey_user_input_parent_survey_user_input_link/) | 17.0.1.0.0 |  | Relation for representing participations and follow-up participations
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 17.0.1.0.0 |  | Give survey answers a unique reference with sequence
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 17.0.1.1.0 |  | Print an xlsx report from survey user inputs
+[survey_user_input_report_xlsx_scores](survey_user_input_report_xlsx_scores/) | 17.0.1.0.0 |  | Show user input report scores in XLSX report
 [survey_user_input_show_scoring_total](survey_user_input_show_scoring_total/) | 17.0.1.0.0 |  | Shows the numeric total score field that is by default hidden
 [survey_user_input_tags](survey_user_input_tags/) | 17.0.1.0.0 |  | Enables tagging participation records in backend
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 17.0.1.0.0 |  | Ability to align survey choice buttons vertically
