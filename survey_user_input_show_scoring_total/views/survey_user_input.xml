@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field name="name">survey.user.input.form.inherit.show.scoring.total</field>
+        <field name="model">survey.user_input</field>
+        <field name="priority">17</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='scoring_percentage']" position="before">
+                <label
+                    for="scoring_total"
+                    string="Total Score"
+                    invisible="scoring_type == 'no_scoring'"
+                />
+                <div invisible="scoring_type == 'no_scoring'" class="d-inline-flex">
+                    <field name="scoring_total" nolabel="1" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

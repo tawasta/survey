@@ -15,7 +15,11 @@ addon | version | maintainers | summary
 [survey_answer_report](survey_answer_report/) | 17.0.1.0.0 |  | Print an pdf report from survey answer
 [survey_auditlog_rules](survey_auditlog_rules/) | 17.0.1.1.0 |  | Adds audit log rules for surveys
 [survey_contact_ids](survey_contact_ids/) | 17.0.1.0.1 |  | Add multiple contacts to view and receive mails from survey answer
+[survey_contact_ids_save_city](survey_contact_ids_save_city/) | 17.0.1.0.0 |  | Save survey answer as partner or contact city
+[survey_contact_ids_save_street](survey_contact_ids_save_street/) | 17.0.1.0.0 |  | Save survey answer as partner or contact street
+[survey_contact_ids_save_zip](survey_contact_ids_save_zip/) | 17.0.1.0.0 |  | Save survey answer as partner or contact zip
 [survey_customizable_frontend_terms_and_elements](survey_customizable_frontend_terms_and_elements/) | 17.0.1.0.0 |  | survey customizable frontend terms and elements
+[survey_hide_live](survey_hide_live/) | 17.0.1.0.0 |  | Hide live session button
 [survey_hide_retry](survey_hide_retry/) | 17.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_integer_widget](survey_integer_widget/) | 17.0.1.0.0 |  | Allow defining per survey question if numerical answers are rendered as integers.
 [survey_mailing](survey_mailing/) | 17.0.1.0.0 |  | Send emails to survey user partners using core's mail.compose.message wizard
@@ -23,7 +27,7 @@ addon | version | maintainers | summary
 [survey_notifications](survey_notifications/) | 17.0.1.0.1 |  | Notify users on survey submission or file upload
 [survey_payment_link](survey_payment_link/) | 17.0.1.0.0 |  | Link survey user inputs to account payments
 [survey_portal](survey_portal/) | 17.0.1.0.1 |  | Ability to view survey answers in portal
-[survey_portal_certificate_download](survey_portal_certificate_download/) | 17.0.1.0.0 |  | Download certification PDFs from the portal survey answers list
+[survey_portal_certificate_download](survey_portal_certificate_download/) | 17.0.1.0.1 |  | Download certification PDFs from the portal survey answers list
 [survey_portal_survey_based_visibility](survey_portal_survey_based_visibility/) | 17.0.1.0.0 |  | Show survey answers in portal only for selected surveys
 [survey_portal_upload_attachments](survey_portal_upload_attachments/) | 17.0.1.0.0 |  | Upload attachments to surveys from portal
 [survey_question_attachment](survey_question_attachment/) | 17.0.1.0.0 |  | Adds a new question type 'attachment' to survey
@@ -47,6 +51,7 @@ addon | version | maintainers | summary
 [survey_user_input_parent_survey_user_input_link](survey_user_input_parent_survey_user_input_link/) | 17.0.1.0.0 |  | Relation for representing participations and follow-up participations
 [survey_user_input_reference_sequence](survey_user_input_reference_sequence/) | 17.0.1.0.0 |  | Give survey answers a unique reference with sequence
 [survey_user_input_report_xlsx](survey_user_input_report_xlsx/) | 17.0.1.1.0 |  | Print an xlsx report from survey user inputs
+[survey_user_input_show_scoring_total](survey_user_input_show_scoring_total/) | 17.0.1.0.0 |  | Shows the numeric total score field that is by default hidden
 [survey_user_input_tags](survey_user_input_tags/) | 17.0.1.0.0 |  | Enables tagging participation records in backend
 [survey_vertical_choice_button](survey_vertical_choice_button/) | 17.0.1.0.0 |  | Ability to align survey choice buttons vertically
 

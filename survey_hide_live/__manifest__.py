@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Futural Oy
-#    Copyright 2026- Futural Oy (https://futural.fi)
+#    Copyright 2026 Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,17 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
+
 {
-    "name": "Survey Portal: Certificate Download Option",
-    "version": "17.0.1.0.1",
+    "name": "Survey Hide Live",
+    "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Download certification PDFs from the portal survey answers list",
-    "website": "https://github.com/tawasta/survey",
+    "summary": "Hide live session button",
     "author": "Futural",
+    "website": "https://github.com/tawasta/survey",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_portal"],
-    "data": [
-        "views/survey_survey_views.xml",
-        "views/portal_templates.xml",
-    ],
+    "depends": ["survey"],
+    "data": ["views/survey_survey_views.xml"],
 }

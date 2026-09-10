@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Futural Oy
-#    Copyright 2026- Futural Oy (https://futural.fi)
+#    Copyright 2026 Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,18 +18,15 @@
 #
 ##############################################################################
 {
-    "name": "Survey Portal: Certificate Download Option",
-    "version": "17.0.1.0.1",
+    "name": "Survey Contacts Save Street",
+    "version": "17.0.1.0.0",
     "category": "Marketing/Surveys",
-    "summary": "Download certification PDFs from the portal survey answers list",
+    "summary": "Save survey answer as partner or contact street",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["survey_portal"],
-    "data": [
-        "views/survey_survey_views.xml",
-        "views/portal_templates.xml",
-    ],
+    "depends": ["survey_contact_ids_save_zip"],
+    "data": ["views/survey_question_views.xml"],
 }
