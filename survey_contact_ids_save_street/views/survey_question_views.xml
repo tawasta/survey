@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="survey_question_form_save_street">
+        <field name="name">survey.question.form.save.street</field>
+        <field name="model">survey.question</field>
+        <field
+            name="inherit_id"
+            ref="survey_contact_ids_save_zip.survey_question_form_save_zip"
+        />
+        <field name="arch" type="xml">
+            <field name="contact_number" position="attributes">
+                <attribute
+                    name="invisible"
+                >not save_as_contact_name and not save_as_contact_phone and not save_as_contact_email and not save_as_contact_city and not save_as_contact_zip and not save_as_contact_street</attribute>
+                <attribute
+                    name="required"
+                >save_as_contact_name or save_as_contact_phone or save_as_contact_email or save_as_contact_city or save_as_contact_zip or save_as_contact_street</attribute>
+            </field>
+            <field name="save_as_contact_zip" position="after">
+                <field name="save_as_partner_street" />
+                <field name="save_as_contact_street" />
+            </field>
+        </field>
+    </record>
+</odoo>
