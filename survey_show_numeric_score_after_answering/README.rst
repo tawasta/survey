@@ -25,8 +25,7 @@ Usage
 
 Known issues / Roadmap
 ======================
-* Possible extra features: showing individual scores per question,
-  configurable messages per score range.
+\-
 
 Credits
 =======
