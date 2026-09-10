@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [survey_registry_portal](survey_registry_portal/) | 17.0.1.1.1 |  | Show surveys' answers on website
 [survey_registry_portal_excluded_stages](survey_registry_portal_excluded_stages/) | 17.0.1.1.0 |  | Limit stages in which survey answers can show in the registry
 [survey_sequence](survey_sequence/) | 17.0.1.0.0 |  | Order Surveys by sequence
+[survey_show_numeric_score_after_answering](survey_show_numeric_score_after_answering/) | 17.0.1.0.0 |  | Adds an option to show achieved score after the survey
 [survey_stages](survey_stages/) | 17.0.1.0.0 |  | Ability to edit survey answers and send mail based on stages
 [survey_string_answer](survey_string_answer/) | 17.0.1.0.0 |  | Save each answer value as string
 [survey_user_input_funding_application_base](survey_user_input_funding_application_base/) | 17.0.1.0.0 |  | New fields for when participations are used for collecting funding applications
