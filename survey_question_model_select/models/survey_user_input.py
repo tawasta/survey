@@ -68,7 +68,7 @@ class SurveyUserInput(models.Model):
         vals = {
             "user_input_id": self.id,
             "question_id": question.id,
-            "answer_type": "suggestion",
+            "answer_type": False,
             "skipped": True,
             "suggested_answer_id": False,
         }
@@ -90,6 +90,7 @@ class SurveyUserInput(models.Model):
             if suggested_answer:
                 vals.update(
                     {
+                        "answer_type": "suggestion",
                         "skipped": False,
                         "suggested_answer_id": suggested_answer.id,
                     }
