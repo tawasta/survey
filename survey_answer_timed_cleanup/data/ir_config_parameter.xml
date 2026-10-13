@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="retention_days_parameter" model="ir.config_parameter">
+        <field name="key">survey_answer_timed_cleanup.retention_days</field>
+        <field name="value">0</field>
+    </record>
+</odoo>
