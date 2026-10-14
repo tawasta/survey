@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_form_timed_cleanup" model="ir.ui.view">
+        <field name="name">survey.survey.form.timed.cleanup</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='options']/group[@name='options']"
+                position="inside"
+            >
+                <group string="Data retention" name="data_retention">
+                    <field name="answer_retention_auto" />
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not answer_retention_auto"
+                    >
+                        <i
+                            class="fa fa-exclamation-triangle"
+                            role="img"
+                            aria-label="Warning"
+                            title="Warning"
+                        />
+                            All answers of this survey's questions are deleted permanently
+                            after the retention period stored in the system parameter
+                            "survey_answer_timed_cleanup.retention_days" (days) and cannot be
+                            recovered afterwards. A retention period set on an individual
+                            question takes precedence.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
