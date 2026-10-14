@@ -22,7 +22,7 @@
     "name": "Survey Answer Timed Cleanup",
     "summary": "Delete survey answers after a per-question or survey-wide "
     "retention period",
-    "version": "17.0.1.2.0",
+    "version": "17.0.1.3.0",
     "category": "Survey",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",

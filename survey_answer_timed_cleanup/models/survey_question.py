@@ -32,19 +32,23 @@ class SurveyQuestion(models.Model):
         now = fields.Datetime.now()
         answer_lines = self.env["survey.user_input.line"]
         deleted = self.env["survey.user_input.line"]
-        # Group questions by their retention period so each group only needs
-        # one search for expired answers.
-        questions_by_days = {}
+        # Group questions by their retention period and date field so each
+        # group only needs one search for expired answers.
+        questions_by_key = {}
         for question in retention_questions:
-            questions_by_days.setdefault(
-                question._get_effective_retention_days(), []
+            questions_by_key.setdefault(
+                (
+                    question._get_effective_retention_days(),
+                    question._get_retention_date_field(),
+                ),
+                [],
             ).append(question.id)
-        for retention_days, question_ids in questions_by_days.items():
+        for (retention_days, date_field), question_ids in questions_by_key.items():
             cutoff = now - relativedelta(days=retention_days)
             expired_lines = answer_lines.search(
                 [
                     ("question_id", "in", question_ids),
-                    ("create_date", "<", cutoff),
+                    (date_field, "<", cutoff),
                 ]
             )
             deleted |= expired_lines
@@ -102,3 +106,9 @@ class SurveyQuestion(models.Model):
                 )
 
         return 0
+
+    def _get_retention_date_field(self):
+        """Return the date field this question's answers are aged against."""
+
+        self.ensure_one()
+        return "create_date"
