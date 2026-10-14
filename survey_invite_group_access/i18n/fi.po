@@ -17,14 +17,14 @@ msgstr ""
 
 #. module: survey_invite_group_access
 #: model:res.groups,name:survey_invite_group_access.group_survey_invite_reader
-msgid "Survey: Share wizard reader"
-msgstr "Kysely: Jakoikkunan lukija"
+msgid "Survey: Share and test"
+msgstr "Kysely: Jaa ja testaa"
 
 #. module: survey_invite_group_access
 #: model:res.groups,comment:survey_invite_group_access.group_survey_invite_reader
 msgid ""
-"Can read the participations of a survey (the field \"User responses\"), which "
-"the Share wizard needs."
+"Can use the Share and Test buttons of a survey: reads the participations "
+"(the field \"User responses\") and creates a test answer."
 msgstr ""
-"Voi lukea kyselyn osallistumiset (kenttä \"Vastaukset\"), joita Jaa-ikkuna "
-"tarvitsee."
+"Voi käyttää kyselyn Jaa- ja Testaa-painikkeita: lukee osallistumiset "
+"(kenttä \"Vastaukset\") ja luo testivastauksen."

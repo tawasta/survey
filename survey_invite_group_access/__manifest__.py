@@ -20,9 +20,9 @@
 
 {
     "name": "Survey: Share wizard group access",
-    "summary": "A group that lets the survey Share wizard work without the "
-    "Surveys / User group",
-    "version": "17.0.1.0.0",
+    "summary": "A group that lets the survey Share and Test buttons work "
+    "without the Surveys / User group",
+    "version": "17.0.1.1.0",
     "category": "Marketing/Surveys",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
