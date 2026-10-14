@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="group_survey_invite_reader" model="res.groups">
-        <field name="name">Survey: Share wizard reader</field>
+        <field name="name">Survey: Share and test</field>
         <field
             name="comment"
-        >Can read the participations of a survey (the field "User responses"), which the Share wizard needs.</field>
+        >Can use the Share and Test buttons of a survey: reads the participations (the field "User responses") and creates a test answer.</field>
     </record>
 </odoo>
