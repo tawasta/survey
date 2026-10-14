@@ -22,6 +22,7 @@ addon | version | maintainers | summary
 [survey_hide_live](survey_hide_live/) | 17.0.1.0.0 |  | Hide live session button
 [survey_hide_retry](survey_hide_retry/) | 17.0.1.0.0 |  | Ability to hide "Retry" button after Survey completion
 [survey_integer_widget](survey_integer_widget/) | 17.0.1.0.0 |  | Allow defining per survey question if numerical answers are rendered as integers.
+[survey_invite_group_access](survey_invite_group_access/) | 17.0.1.0.0 |  | A group that lets the survey Share wizard work without the Surveys / User group
 [survey_mailing](survey_mailing/) | 17.0.1.0.0 |  | Send emails to survey user partners using core's mail.compose.message wizard
 [survey_multi_company](survey_multi_company/) | 17.0.1.0.0 |  | Survey multi company
 [survey_notifications](survey_notifications/) | 17.0.1.0.1 |  | Notify users on survey submission or file upload
