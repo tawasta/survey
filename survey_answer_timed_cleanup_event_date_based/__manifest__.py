@@ -22,7 +22,7 @@
     "name": "Survey Answer Timed Cleanup Event Date Based",
     "summary": "Base the answer retention period of event survey questions "
     "on the event start or end date",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "Survey",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",

@@ -20,8 +20,6 @@
 
 from odoo.tests import TransactionCase, tagged
 
-from ..models.survey_question import RETENTION_DAYS_PARAM
-
 
 @tagged("at_install")
 class TestAnswerPurge(TransactionCase):
@@ -86,27 +84,15 @@ class TestAnswerPurge(TransactionCase):
 
         self.assertTrue(old.exists(), "Answer without retention period must be kept.")
 
-    def test_purge_all_answers(self):
-        """The purge-all action deletes every answer of retained questions."""
+    def test_retention_days_decide_not_the_toggle(self):
+        """The retention period governs the purge, the enable field is a UI switch."""
 
+        # A retention period can be set without the form onchange running, e.g.
+        # by an import or by another module writing the field.
+        self.question.answer_retention_enabled = False
         self.question.answer_retention_days = 10
         expired = self._create_answer_line(age_days=20)
-        recent = self._create_answer_line()
-
-        self.question_model._cron_purge_all_answers()
-
-        self.assertFalse(expired.exists(), "Expired answer must be purged.")
-        self.assertFalse(recent.exists(), "Recent answer must be purged as well.")
-
-    def test_survey_auto_retention(self):
-        """Survey-level retention applies the system parameter period."""
-
-        self.env["ir.config_parameter"].sudo().set_param(RETENTION_DAYS_PARAM, "10")
-        self.survey.answer_retention_auto = True
-        expired = self._create_answer_line(age_days=20)
-        recent = self._create_answer_line(age_days=5)
 
         self.question_model._cron_purge_expired_answers()
 
         self.assertFalse(expired.exists(), "Expired answer must be purged.")
-        self.assertTrue(recent.exists(), "Recent answer must be kept.")

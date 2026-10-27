@@ -9,7 +9,11 @@
         />
         <field name="arch" type="xml">
             <field name="answer_retention_days" position="after">
-                <field name="answer_retention_date_basis" widget="radio" />
+                <field
+                    name="answer_retention_date_basis"
+                    widget="radio"
+                    invisible="not answer_retention_enabled"
+                />
             </field>
         </field>
     </record>

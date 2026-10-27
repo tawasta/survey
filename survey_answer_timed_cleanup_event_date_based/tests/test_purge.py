@@ -125,14 +125,3 @@ class TestAnswerPurgeEventDate(TransactionCase):
         self.question_model._cron_purge_expired_answers()
 
         self.assertTrue(line.exists(), "Upcoming event's answer must be kept.")
-
-    def test_purge_all_includes_event_basis(self):
-        """The purge-all action covers event-date-based questions too."""
-
-        self.question.answer_retention_days = 10
-        self.question.answer_retention_date_basis = "start"
-        line = self._create_answer_line(self._create_event(begin_days_ago=-5))
-
-        self.question_model._cron_purge_all_answers()
-
-        self.assertFalse(line.exists(), "Answer must be purged by the purge-all run.")

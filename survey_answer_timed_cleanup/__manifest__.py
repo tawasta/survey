@@ -20,9 +20,8 @@
 
 {
     "name": "Survey Answer Timed Cleanup",
-    "summary": "Delete survey answers after a per-question or survey-wide "
-    "retention period",
-    "version": "17.0.1.3.0",
+    "summary": "Delete survey answers after a per-question retention period",
+    "version": "17.0.1.4.0",
     "category": "Survey",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
@@ -33,9 +32,7 @@
         "survey",
     ],
     "data": [
-        "data/ir_config_parameter.xml",
         "data/ir_cron.xml",
         "views/survey_question_views.xml",
-        "views/survey_survey_views.xml",
     ],
 }

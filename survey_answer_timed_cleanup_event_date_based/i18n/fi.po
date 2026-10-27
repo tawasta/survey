@@ -46,3 +46,13 @@ msgstr "Tapahtuman alkamispäivä"
 #: model:ir.model.fields.selection,name:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis__end
 msgid "Event End Date"
 msgstr "Tapahtuman päättymispäivä"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: code:addons/survey_answer_timed_cleanup_event_date_based/models/survey_question.py:0
+msgid "Survey not linked to any event."
+msgstr "Kyselyä ei ole liitetty tapahtumaan."
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: code:addons/survey_answer_timed_cleanup_event_date_based/models/survey_question.py:0
+msgid "Warning"
+msgstr "Varoitus"

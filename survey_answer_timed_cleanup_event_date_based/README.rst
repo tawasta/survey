@@ -6,8 +6,6 @@
 Survey Answer Timed Cleanup Event Date Based
 ============================================
 
-* Intended for event questionnaires where answers must not be kept longer
-  than necessary after the event itself (e.g. GDPR storage limitation).
 * Adds an "Answer Data Retention Basis" radio to survey questions, counting
   the retention period from the event start or end date instead of from when
   the answer was recorded.
@@ -22,6 +20,8 @@ Configuration
   survey_answer_timed_cleanup. Zero or empty keeps the answers indefinitely.
 * Choose "Event Start Date" or "Event End Date" as the retention basis;
   "Answer Date" keeps the default behaviour of the base module.
+* An event date basis can only purge answers that carry the event link
+  ("event_id") stored by society_event_core.
 * Activate the scheduled action "Survey: purge expired answer data" from
   survey_answer_timed_cleanup.
 
@@ -29,7 +29,7 @@ Usage
 =====
 Answers linked to an event are deleted by the cleanup action once the
 selected event date is older than the question's retention period. Answers
-without an event are never purged by the event date rules.
+without an event are never purged by the event date rules (Odoo default behaviour).
 
 Known issues / Roadmap
 ======================

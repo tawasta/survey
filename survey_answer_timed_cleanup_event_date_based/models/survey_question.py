@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import _, api, fields, models
 
 
 class SurveyQuestion(models.Model):
@@ -18,6 +18,10 @@ class SurveyQuestion(models.Model):
         "an event.",
     )
 
+    survey_is_event_survey = fields.Boolean(
+        related="survey_id.is_event_survey",
+    )
+
     def _get_retention_date_field(self):
         """Map the retention basis to the date field the base cleanup cron
         ages answers against."""
@@ -28,3 +32,18 @@ class SurveyQuestion(models.Model):
         if self.answer_retention_date_basis == "end":
             return "event_id.date_end"
         return super()._get_retention_date_field()
+
+    @api.onchange("answer_retention_date_basis")
+    def _onchange_answer_retention_date_basis(self):
+        """Keep the event bases unreachable for non-event surveys."""
+
+        event_basis = self.answer_retention_date_basis in ("start", "end")
+        if event_basis and not self.survey_is_event_survey:
+            self.answer_retention_date_basis = "answer_date"
+            return {
+                "warning": {
+                    "title": _("Warning"),
+                    "message": _("Survey not linked to any event."),
+                    "type": "notification",
+                }
+            }
