@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 00:00+0000\n"
-"PO-Revision-Date: 2026-10-12 00:00+0000\n"
+"POT-Creation-Date: 2026-10-27 00:00+0000\n"
+"PO-Revision-Date: 2026-10-27 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,9 +22,18 @@ msgid "Survey: purge expired answer data"
 msgstr "Kysely: poista vanhentuneet vastausdatat"
 
 #. module: survey_answer_timed_cleanup
-#: model:ir.cron,name:survey_answer_timed_cleanup.ir_cron_purge_all_survey_answers
-msgid "Survey: purge all answer data now"
-msgstr "Kysely: poista kaikki vastausdatat nyt"
+#: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_enabled
+msgid "Enable Answer Data Retention"
+msgstr "Ota vastausten säilytysaika käyttöön"
+
+#. module: survey_answer_timed_cleanup
+#: model:ir.model.fields,help_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_enabled
+msgid ""
+"If enabled, answers to this question are automatically deleted after a "
+"certain number of days."
+msgstr ""
+"Jos tämä on käytössä, kysymykseen annetut vastaukset poistetaan "
+"automaattisesti tietyn päivämäärän jälkeen."
 
 #. module: survey_answer_timed_cleanup
 #: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_days
@@ -34,55 +43,40 @@ msgstr "Vastausten säilytysaika (päivinä)"
 #. module: survey_answer_timed_cleanup
 #: model:ir.model.fields,help_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_days
 msgid ""
-"Number of days an answer to this question is kept before it is deleted by the "
-"scheduled cleanup action, counted from when the answer was recorded. Applies "
-"to every response, including unfinished ones. Takes precedence over the "
-"survey-level automatic retention. Leave empty or zero to fall back on the "
-"survey-level retention, or to keep the answers indefinitely when that is not "
-"enabled."
+"Number of days an answer to this question is kept before it is deleted by "
+"the scheduled cleanup action, counted from when the answer was recorded. "
+"Applies to every response, including unfinished ones. Leave empty or zero to "
+"keep the answers indefinitely."
 msgstr ""
-"Kuinka monta päivää tähän kysymykseen annettu vastaus säilytetään, ennen kuin "
-"ajastettu siivoustoimenpide poistaa sen. Laskenta alkaa vastauksen "
-"kirjoitushetkestä. Koskee kaikkia vastauksia myös keskeytettyihin. On "
-"etusijassa verrattuna kyselytason automaattiseen säilytykseen. Jätä tyhjäksi "
-"tai nollaksi käyttääksesi kyselytason säilytysaikaa, tai säilyttääksesi "
-"vastaukset toistaiseksi jos kyselytason säilytystä ei ole otettu käyttöön."
-
-#. module: survey_answer_timed_cleanup
-#: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_survey__answer_retention_auto
-msgid "Automatic Answer Retention"
-msgstr "Vastausten automaattinen säilytysaika"
-
-#. module: survey_answer_timed_cleanup
-#: model:ir.model.fields,help_description:survey_answer_timed_cleanup.field_survey_survey__answer_retention_auto
-msgid ""
-"Apply the retention period from the system parameter "
-"survey_answer_timed_cleanup.retention_days to every question of this survey, "
-"including questions added later. A retention period set on an individual "
-"question always takes precedence."
-msgstr ""
-"Sovella järjestelmäparametrissa survey_answer_timed_cleanup.retention_days "
-"tallennettua säilytysaikaa tämän kyselyn kaikkiin kysymyksiin, myös "
-"myöhemmin lisättyihin. Yksittäiselle kysymykselle asetettu säilytysaika on "
-"aina etusijalla."
+"Kuinka monta päivää tähän kysymykseen annettu vastaus säilytetään, ennen "
+"kuin ajastettu siivoustoimenpide poistaa sen. Laskenta alkaa vastauksen "
+"kirjoitushetkestä. Koskee kaikkia vastauksia myös keskeytettyihin. Jätä "
+"tyhjäksi tai nollaksi säilyttääksesi vastaukset toistaiseksi."
 
 #. module: survey_answer_timed_cleanup
 #: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
-#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_form_timed_cleanup
 msgid "Data retention"
 msgstr "Tietojen säilytys"
 
 #. module: survey_answer_timed_cleanup
-#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_form_timed_cleanup
+#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
+msgid "Warning"
+msgstr "Varoitus"
+
+#. module: survey_answer_timed_cleanup
+#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
 msgid ""
-"All answers of this survey's questions are deleted permanently after the "
-"retention period stored in the system parameter "
-"\"survey_answer_timed_cleanup.retention_days\" (days) and cannot be "
-"recovered afterwards. A retention period set on an individual question takes "
-"precedence."
+"Answers are deleted permanently by the cleanup action and cannot be "
+"recovered afterwards."
 msgstr ""
-"Kaikki tämän kyselyn kysymysten vastaukset poistetaan pysyvästi "
-"järjestelmäparametrissa \"survey_answer_timed_cleanup.retention_days\" "
-"(päivinä) tallennetun säilytysajan jälkeen, eikä niitä voi palauttaa "
-"poiston jälkeen. Yksittäiselle kysymykselle asetettu säilytysaika on aina "
-"etusijalla."
+"Siivoustoimenpide poistaa vastaukset pysyvästi, eikä niitä voi palauttaa "
+"poiston jälkeen."
+
+#. module: survey_answer_timed_cleanup
+#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
+msgid ""
+"This survey uses scoring. Please be aware of the implications before "
+"enabling answer retention."
+msgstr ""
+"Tässä kyselyssä käytetään pisteytystä. Huomioithan seuraukset ennen "
+"vastausten säilytysajan käyttöönottoa."

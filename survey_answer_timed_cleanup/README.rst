@@ -6,23 +6,25 @@
 Survey Answer Timed Cleanup
 ============================
 
-* Intended for surveys that collect personal data which must not be kept longer
-  than necessary (e.g. GDPR storage limitation).
+* Intended for survey questions that collect personal data which must not be kept longer
+  than necessary
 * Adds an "Answer Data Retention (days)" field to survey questions.
-* Adds an "Automatic Answer Retention" toggle to surveys that applies a global
-  retention period to every question of the survey.
 * A scheduled action deletes submitted answers to those questions once they are
   older than the configured retention period.
 
 Configuration
 =============
 
+* Check "Enable Answer Data Retention" on the questions whose answers must be
+  purged and set "Answer Data Retention (days)". A question without a retention
+  period keeps its answers indefinitely.
+* Activate the scheduled action "Survey: purge expired answer data".
 
 Usage
 =====
 Answers to questions with a retention period are deleted by the scheduled action
-once their recorded date is older than that period. For automatic retention, 
-configure the day amount in the system parameter before enabling the toggle.
+once their recorded date is older than that period. The answers are gone
+permanently and cannot be recovered afterwards.
 
 Known issues / Roadmap
 ======================
