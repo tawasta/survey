@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_answer_timed_cleanup_event_date_based
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 00:00+0000\n"
+"PO-Revision-Date: 2026-10-14 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fi\n"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: model:ir.model.fields,field_description:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis
+msgid "Answer Data Retention Basis"
+msgstr "Vastausten säilytysajan laskentaperuste"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: model:ir.model.fields,help_description:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis
+msgid ""
+"Which date the answer retention period of this question is counted from. "
+"Has an effect only when a retention period applies to the question. The "
+"event date options purge only answers linked to an event."
+msgstr ""
+"Millä päivämäärällä tämän kysymyksen vastausten säilytysaika alkaa. Vaikuttaa "
+"vain, jos kysymykseen sovelletaan säilytysaikaa. Tapahtumapäivävaihtoehdot "
+"poistavat vain vastaukset, jotka liittyvät tapahtumaan."
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: model:ir.model.fields.selection,name:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis__answer_date
+msgid "Answer Date"
+msgstr "Vastauspäivä"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: model:ir.model.fields.selection,name:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis__start
+msgid "Event Start Date"
+msgstr "Tapahtuman alkamispäivä"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: model:ir.model.fields.selection,name:survey_answer_timed_cleanup_event_date_based.field_survey_question__answer_retention_date_basis__end
+msgid "Event End Date"
+msgstr "Tapahtuman päättymispäivä"
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: code:addons/survey_answer_timed_cleanup_event_date_based/models/survey_question.py:0
+msgid "Survey not linked to any event."
+msgstr "Kyselyä ei ole liitetty tapahtumaan."
+
+#. module: survey_answer_timed_cleanup_event_date_based
+#: code:addons/survey_answer_timed_cleanup_event_date_based/models/survey_question.py:0
+msgid "Warning"
+msgstr "Varoitus"

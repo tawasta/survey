@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_question_form_timed_cleanup" model="ir.ui.view">
+        <field name="name">survey.question.form.timed.cleanup</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='options']/group[2]" position="inside">
+                <group string="Data retention">
+                    <field name="answer_retention_enabled" />
+                    <field
+                        name="answer_retention_days"
+                        invisible="not answer_retention_enabled"
+                    />
+                    <field name="survey_scoring_type" invisible="True" />
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not answer_retention_enabled"
+                    >
+                        <i
+                            class="fa fa-exclamation-triangle"
+                            role="img"
+                            aria-label="Warning"
+                            title="Warning"
+                        />
+                            Answers are deleted permanently by the cleanup action and cannot be recovered afterwards.
+                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not answer_retention_enabled or survey_scoring_type == 'no_scoring'"
+                    >
+                        <i
+                            class="fa fa-exclamation-triangle"
+                            role="img"
+                            aria-label="Warning"
+                            title="Warning"
+                        />
+                            This survey uses scoring. Please be aware of the implications before enabling answer retention.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
