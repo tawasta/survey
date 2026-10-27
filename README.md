@@ -13,6 +13,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [survey_answer_renderer](survey_answer_renderer/) | 17.0.1.0.0 |  | Adds formatted survey answers rendering.
 [survey_answer_report](survey_answer_report/) | 17.0.1.0.0 |  | Print an pdf report from survey answer
+[survey_answer_timed_cleanup](survey_answer_timed_cleanup/) | 17.0.1.4.0 |  | Delete survey answers after a per-question retention period
 [survey_auditlog_rules](survey_auditlog_rules/) | 17.0.1.1.0 |  | Adds audit log rules for surveys
 [survey_contact_ids](survey_contact_ids/) | 17.0.1.0.1 |  | Add multiple contacts to view and receive mails from survey answer
 [survey_contact_ids_save_city](survey_contact_ids_save_city/) | 17.0.1.0.0 |  | Save survey answer as partner or contact city
