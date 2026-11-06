@@ -16,7 +16,7 @@ class SurveyQuestion(models.Model):
     _inherit = "survey.question"
 
     answer_retention_enabled = fields.Boolean(
-        string="Enable Answer Data Retention",
+        string="Enable timed answer cleanup",
         help="If enabled, answers to this question are automatically deleted "
         "after a certain number of days.",
     )
@@ -32,6 +32,20 @@ class SurveyQuestion(models.Model):
     survey_scoring_type = fields.Selection(
         related="survey_id.scoring_type",
     )
+
+    answer_retention_active = fields.Boolean(
+        string="Data retention",
+        compute="_compute_answer_retention_active",
+    )
+
+    @api.depends("answer_retention_enabled", "answer_retention_days")
+    def _compute_answer_retention_active(self):
+        """Tell whether the cleanup actually purges this question's answers."""
+
+        for question in self:
+            question.answer_retention_active = (
+                question.answer_retention_enabled and question.answer_retention_days > 0
+            )
 
     def _cron_purge_expired_answers(self):
         # Delete answers older than each question's retention period.
@@ -65,11 +79,20 @@ class SurveyQuestion(models.Model):
 
             deleted |= expired_lines
         if deleted:
+            # Has to run before the unlink: afterwards the lines and their
+            # links to questions and responses are gone.
+            deleted._timed_cleanup_log_purged()
             deleted.unlink()
 
     def _get_retention_questions(self):
-        # Return questions whose answers must be purged by the cleanup.
-        return self.search([("answer_retention_days", ">", 0)])
+        """Return the questions the switched-on cleanup must purge."""
+
+        return self.search(
+            [
+                ("answer_retention_enabled", "=", True),
+                ("answer_retention_days", ">", 0),
+            ]
+        )
 
     def _get_effective_retention_days(self):
         # Return the retention period applied to this question's answers.

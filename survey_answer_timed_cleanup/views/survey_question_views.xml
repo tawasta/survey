@@ -14,7 +14,8 @@
                     />
                     <field name="survey_scoring_type" invisible="True" />
                     <div
-                        class="alert alert-warning"
+                        colspan="2"
+                        class="alert alert-warning d-flex align-items-center gap-2 py-2 px-3 mb-2 w-100"
                         role="alert"
                         invisible="not answer_retention_enabled"
                     >
@@ -24,10 +25,16 @@
                             aria-label="Warning"
                             title="Warning"
                         />
-                            Answers are deleted permanently by the cleanup action and cannot be recovered afterwards.
+                            <span
+                            class="flex-grow-1"
+                            style="min-width: 0; white-space: normal;"
+                        >
+                                Answers are deleted permanently by the cleanup action and cannot be recovered afterwards.
+                            </span>
                     </div>
                     <div
-                        class="alert alert-warning"
+                        colspan="2"
+                        class="alert alert-warning d-flex align-items-center gap-2 py-2 px-3 mb-2 w-100"
                         role="alert"
                         invisible="not answer_retention_enabled or survey_scoring_type == 'no_scoring'"
                     >
@@ -37,9 +44,43 @@
                             aria-label="Warning"
                             title="Warning"
                         />
-                            This survey uses scoring. Please be aware of the implications before enabling answer retention.
+                            <span
+                            class="flex-grow-1"
+                            style="min-width: 0; white-space: normal;"
+                        >
+                                This survey uses scoring. Please be aware of the implications before enabling answer retention.
+                            </span>
                     </div>
                 </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_survey_view_form_timed_cleanup" model="ir.ui.view">
+        <field name="name">survey.survey.view.form.timed.cleanup</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='question_and_page_ids']//tree//field[@name='question_type']"
+                position="after"
+            >
+                <field
+                    name="answer_retention_active"
+                    optional="show"
+                    invisible="is_page"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_question_tree_timed_cleanup" model="ir.ui.view">
+        <field name="name">survey.question.tree.timed.cleanup</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='question_type']" position="after">
+                <field name="answer_retention_active" optional="show" />
             </xpath>
         </field>
     </record>

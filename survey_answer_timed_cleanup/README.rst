@@ -11,6 +11,7 @@ Survey Answer Timed Cleanup
 * Adds an "Answer Data Retention (days)" field to survey questions.
 * A scheduled action deletes submitted answers to those questions once they are
   older than the configured retention period.
+* Each response whose answers were purged gets a note in its chatter.
 
 Configuration
 =============
@@ -25,6 +26,10 @@ Usage
 Answers to questions with a retention period are deleted by the scheduled action
 once their recorded date is older than that period. The answers are gone
 permanently and cannot be recovered afterwards.
+
+Every response that lost answers gets a system note in its chatter naming the
+questions that were purged. The note contains no answer content and notifies
+nobody by mail, so a cleanup run stays a quiet audit trail.
 
 Known issues / Roadmap
 ======================

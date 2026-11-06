@@ -38,6 +38,13 @@ class TestAnswerPurgeEventDate(TransactionCase):
             }
         )
 
+    def _enable_retention(self, days):
+        """Arm the cleanup on the test question: switch on, period set."""
+
+        self.question.write(
+            {"answer_retention_enabled": True, "answer_retention_days": days}
+        )
+
     def _create_answer_line(self, event=False, age_days=0):
         """Create an answer line, optionally linked to an event and backdated."""
 
@@ -83,7 +90,7 @@ class TestAnswerPurgeEventDate(TransactionCase):
     def test_purge_by_event_start_date(self):
         """Answers of past events are purged, upcoming and eventless kept."""
 
-        self.question.answer_retention_days = 10
+        self._enable_retention(10)
         self.question.answer_retention_date_basis = "start"
         expired = self._create_answer_line(self._create_event(begin_days_ago=20))
         recent = self._create_answer_line(self._create_event(begin_days_ago=-5))
@@ -98,7 +105,7 @@ class TestAnswerPurgeEventDate(TransactionCase):
     def test_purge_by_event_end_date(self):
         """Only the event end date governs the retention with the end basis."""
 
-        self.question.answer_retention_days = 10
+        self._enable_retention(10)
         self.question.answer_retention_date_basis = "end"
         expired = self._create_answer_line(
             self._create_event(begin_days_ago=20, end_days_ago=20)
@@ -115,7 +122,7 @@ class TestAnswerPurgeEventDate(TransactionCase):
     def test_event_basis_not_purged_by_answer_date(self):
         """An old create_date must not purge answers of an event-basis question."""
 
-        self.question.answer_retention_days = 10
+        self._enable_retention(10)
         self.question.answer_retention_date_basis = "start"
         # An answer recorded long ago for an event that has not started yet.
         line = self._create_answer_line(

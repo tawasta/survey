@@ -21,7 +21,7 @@
 {
     "name": "Survey Answer Timed Cleanup",
     "summary": "Delete survey answers after a per-question retention period",
-    "version": "17.0.1.4.0",
+    "version": "17.0.1.7.0",
     "category": "Survey",
     "website": "https://github.com/tawasta/survey",
     "author": "Futural",
@@ -29,6 +29,7 @@
     "application": False,
     "installable": True,
     "depends": [
+        "mail",
         "survey",
     ],
     "data": [

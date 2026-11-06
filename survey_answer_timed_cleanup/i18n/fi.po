@@ -17,6 +17,32 @@ msgstr ""
 "Language: fi\n"
 
 #. module: survey_answer_timed_cleanup
+#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
+msgid ""
+"<i class=\"fa fa-exclamation-triangle\" role=\"img\" aria-label=\"Warning\" title=\"Warning\"/>\n"
+"                            <span class=\"flex-grow-1\" style=\"min-width: 0; white-space: normal;\">\n"
+"                                Answers are deleted permanently by the cleanup action and cannot be recovered afterwards.\n"
+"                            </span>"
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle\" role=\"img\" aria-label=\"Warning\" title=\"Warning\"/>\n"
+"                            <span class=\"flex-grow-1\" style=\"min-width: 0; white-space: normal;\">\n"
+"                                Vastaukset poistuvat lopullisesti eivätkä ole palautettavissa jälkikäteen.\n"
+"  
+
+#. module: survey_answer_timed_cleanup
+#: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
+msgid ""
+"<i class=\"fa fa-exclamation-triangle\" role=\"img\" aria-label=\"Warning\" title=\"Warning\"/>\n"
+"                            <span class=\"flex-grow-1\" style=\"min-width: 0; white-space: normal;\">\n"
+"                                This survey uses scoring. Please be aware of the implications before enabling answer retention.\n"
+"                            </span>"
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle\" role=\"img\" aria-label=\"Warning\" title=\"Warning\"/>\n"
+"                            <span class=\"flex-grow-1\" style=\"min-width: 0; white-space: normal;\">\n"
+"                                Tässä kyselyssä käytetään pisteytystä. Otathan huomioon, että vastausten ajastettu poisto voi vaikuttaa pisteytyksen toimintaan.\n"
+"                            </span>"
+
+#. module: survey_answer_timed_cleanup
 #: model:ir.cron,name:survey_answer_timed_cleanup.ir_cron_purge_expired_survey_answers
 msgid "Survey: purge expired answer data"
 msgstr "Kysely: poista vanhentuneet vastausdatat"
@@ -24,7 +50,7 @@ msgstr "Kysely: poista vanhentuneet vastausdatat"
 #. module: survey_answer_timed_cleanup
 #: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_enabled
 msgid "Enable Answer Data Retention"
-msgstr "Ota vastausten säilytysaika käyttöön"
+msgstr "Ota vastausten ajastettu poisto käyttöön"
 
 #. module: survey_answer_timed_cleanup
 #: model:ir.model.fields,help_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_enabled
@@ -56,7 +82,7 @@ msgstr ""
 #. module: survey_answer_timed_cleanup
 #: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
 msgid "Data retention"
-msgstr "Tietojen säilytys"
+msgstr "Tietojen ajastettu poisto"
 
 #. module: survey_answer_timed_cleanup
 #: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
@@ -80,3 +106,13 @@ msgid ""
 msgstr ""
 "Tässä kyselyssä käytetään pisteytystä. Huomioithan seuraukset ennen "
 "vastausten säilytysajan käyttöönottoa."
+
+#. module: survey_answer_timed_cleanup
+#: code:addons/survey_answer_timed_cleanup/models/survey_user_input.py:0
+#, python-format
+msgid ""
+"Answers to the following questions were deleted because their data "
+"retention period has ended:"
+msgstr ""
+"Seuraaviin kysymyksiin annetut vastaukset poistettiin ajastetusti, koska niiden "
+"säilytysaika on päättynyt:"
