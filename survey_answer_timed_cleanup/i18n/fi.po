@@ -27,7 +27,7 @@ msgstr ""
 "<i class=\"fa fa-exclamation-triangle\" role=\"img\" aria-label=\"Warning\" title=\"Warning\"/>\n"
 "                            <span class=\"flex-grow-1\" style=\"min-width: 0; white-space: normal;\">\n"
 "                                Vastaukset poistuvat lopullisesti eivätkä ole palautettavissa jälkikäteen.\n"
-"  
+"                            </span>"
 
 #. module: survey_answer_timed_cleanup
 #: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
@@ -49,7 +49,7 @@ msgstr "Kysely: poista vanhentuneet vastausdatat"
 
 #. module: survey_answer_timed_cleanup
 #: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_enabled
-msgid "Enable Answer Data Retention"
+msgid "Enable timed answer cleanup"
 msgstr "Ota vastausten ajastettu poisto käyttöön"
 
 #. module: survey_answer_timed_cleanup
@@ -80,6 +80,7 @@ msgstr ""
 "tyhjäksi tai nollaksi säilyttääksesi vastaukset toistaiseksi."
 
 #. module: survey_answer_timed_cleanup
+#: model:ir.model.fields,field_description:survey_answer_timed_cleanup.field_survey_question__answer_retention_active
 #: model_terms:ir.ui.view,arch_db:survey_answer_timed_cleanup.survey_question_form_timed_cleanup
 msgid "Data retention"
 msgstr "Tietojen ajastettu poisto"
