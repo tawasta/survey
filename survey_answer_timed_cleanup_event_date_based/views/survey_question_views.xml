@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_question_form_event_date_based" model="ir.ui.view">
+        <field name="name">survey.question.form.event.date.based</field>
+        <field name="model">survey.question</field>
+        <field
+            name="inherit_id"
+            ref="survey_answer_timed_cleanup.survey_question_form_timed_cleanup"
+        />
+        <field name="arch" type="xml">
+            <field name="answer_retention_days" position="after">
+                <field
+                    name="answer_retention_date_basis"
+                    widget="radio"
+                    invisible="not answer_retention_enabled"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
